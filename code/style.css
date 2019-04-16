@@ -1,0 +1,19 @@
+.title {
+	text-align: center;
+	font-size: 200%;
+	margin-top: 5%;
+}
+
+.functional_blocks {
+	text-align: center;
+	font-size: 200%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.f_block {
+	display:inline-block;
+	width: 30%;
+	height: 30%;
+	margin-bottom: 3%;
+}
