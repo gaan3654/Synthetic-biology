@@ -15,5 +15,9 @@
 	display:inline-block;
 	width: 30%;
 	height: 30%;
+	height: 165px;
 	margin-bottom: 3%;
+	border-width: 2px;
+	border-style: solid;
+	line-height: 165px;
 }
