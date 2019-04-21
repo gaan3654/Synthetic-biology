@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Synthetic biology</title>
+		<meta name="viewport" content="width=device-width"/>
+        <link type="text/css" rel="stylesheet" href="style.css">
+        
+        <script type="text/javascript" src="odex.js" ></script>
+
+	</head>
+	<body style="background-image: linear-gradient(#8A2387, #E94057, #F27121)">
+	<div id="body">
+		<div class="title">
+			Synthetic biology
+		</div>
+		<div class="functional_blocks">
+			<div class="f_block">
+				Conductor1
+			</div>
+			<div class="f_block">
+				Conductor2
+			</div>
+			<div class="f_block">
+				Conductor3
+			</div>
+			<div class="f_block">
+				Conductor4
+			</div>
+			<div class="f_block">
+				Conductor5
+			</div>
+			<div class="f_block">
+				Conductor6
+			</div>
+		</div>
+    </div>
+    
+<h2>'A + E -k> B + E'</h2>
+A:<input type="text" id="n1"/> 
+
+<select id = "operators">
+
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="/">/</option>
+    <option value="X">X</option>
+
+</select>
+
+E: <input type="text" id="n2"/>
+k: <input type="text" id="n3"/>
+
+<button onclick="calc();">-></button>
+<input type="text" id="result"/>
+
+
+    </body>
+    
+
+<script>
+function calc()
+{
+    var n1=parseInt(document.getElementById('n1').value);
+    var n2 = parseInt(document.getElementById('n2').value);
+    var n3 = parseInt(document.getElementById('n3').value);
+    var oper = document.getElementById('operators').value;
+
+    if(oper === '+'){
+        var n2 = document.getElementById('result').value = n3*(n1+n2);
+    }
+
+}
+</script>
+
+</html>
