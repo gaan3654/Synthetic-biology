@@ -18,6 +18,36 @@
         int_begins.setAttribute("value", "0");
         body.appendChild(int_begins);
 
+        //Sukuria input lauką intervalo pabaigai
+        var body = document.getElementsByTagName("body")[0];
+        var int_ends_name = document.createElement("text");
+        int_ends_name.innerHTML = "Intervalo pabaiga: ";
+        body.appendChild(int_ends_name);
+        var int_ends = document.createElement("input");
+        int_ends.setAttribute("type", "number");
+        int_ends.setAttribute("value", "1");
+        body.appendChild(int_ends);
+
+        //Sukuria input lauką y0 reikšmei
+        var body = document.getElementsByTagName("body")[0];
+        var y0_name = document.createElement("text");
+        y0_name.innerHTML = "Y0: ";
+        body.appendChild(y0_name);
+        var y0_inp = document.createElement("input");
+        y0_inp.setAttribute("type", "number");
+        y0_inp.setAttribute("value", "1");
+        body.appendChild(y0_inp);
+
+        //Sukuria input lauką N reikšmei
+        var body = document.getElementsByTagName("body")[0];
+        var n_name = document.createElement("text");
+        n_name.innerHTML = "N: ";
+        body.appendChild(n_name);
+        var n_inp = document.createElement("input");
+        n_inp.setAttribute("type", "number");
+        n_inp.setAttribute("value", "100");
+        body.appendChild(n_inp);
+
 
         //creates buton
         var button = document.createElement("button");
@@ -27,8 +57,6 @@
 
 
         //Runge–Kutta metodas
-        var y0 = 1;
-
         function f(t,y){
             return y;
         }
@@ -93,13 +121,16 @@
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         button.addEventListener("click", function(event) {
-            var int_begin = int_begins.value;
-            console.log(typeof int_begin);
-            var [yy, tt] = solution(y0, /*int_begin*/0, 1, 100);
-            var [yp,tp] = normalization(yy, tt, /*int_begin*/0, 1, c.height, c.width);
+            var int_begin = parseInt(int_begins.value);
+            var int_end = parseInt(int_ends.value);
+            var y0 = parseInt(y0_inp.value);
+            var N = parseInt(n_inp.value);
+            console.log(int_begin);
+            var [yy, tt] = solution(y0, int_begin, int_end, N);
+            var [yp,tp] = normalization(yy, tt, int_begin, int_end, c.height, c.width);
             //Piešiamia kreivė
             ctx.moveTo(tp[0],yp[0]);
-            for(i=1; i<100; i++){
+            for(i=1; i<N; i++){
                 ctx.lineTo(tp[i],yp[i]); 
             }
             
