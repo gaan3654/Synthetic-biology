@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script type="text/javascript" src='RKm.js'> </script>
+            <link type="text/css" rel="stylesheet" href="style.css">
+            <title>Differential equation solver</title><meta charset="utf-8"/>
+    </head>
+    <body>
+        
+        <div>
+            <div id=canvas>
+                <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+            <div id=inputs>
+                <div id=funtion class=input>
+                    Funkcija f(y,t):         
+                    <input type="text" id="func" value="y">
+                </div>
+                
+                <div id=interv_begins class=input>
+                    Intervalo pradžia: 
+                    <input type="number" id="int_begins" value="0"> 
+                </div> 
+                
+                <div id=interv_ends class=input> 
+                    Intervalo pabaiga:
+                    <input type="number" id="int_ends" value="1"> 
+                </div>
+                
+                <div id=y0 class=input>
+                    y0:               
+                    <input type="number" id="y0_inp" value="1"> 
+                </div> 
+                
+                <div id=N class=input>
+                    N:                
+                    <input type="number" id="n_inp" value="100"> 
+                </div>
+                
+                <div id=button class=input>
+                    <button id=submit>Submit</button>
+                </div>
+            </div>
+
+            <script>
+                //Runge–Kutta metodas
+                function f(t,y, func){
+                    return eval(func);
+                }
+
+                function k1(t, y, h, func){
+                    return h * f(t,y, func);
+                }
+
+                function k2(t, y, h, k1, func){
+                    return h * f(t+h/2,y+k1/2, func);
+                }
+
+                function k3(t, y, h, k2, func){
+                    return h * f(t+h/2,y+k2/2, func);
+                }
+
+                function k4(t, y, h, k3, func){
+                    return h * f(t+h,y+k3, func);
+                }
+
+                function solution(y0, a, b, N, func){
+                    var t=[];
+                    var y=[];
+                    y[0] = y0;
+                    t[0] = a;
+                    var h= (b-a)/N;
+                    for (var i=0; i < N; i++) {
+                        t[i+1] = t[i]+h;
+                        var kk1 = k1(t[i], y[i], h, func);
+                        var kk2 = k2(t[i], y[i], h, kk1, func);
+                        var kk3 = k3(t[i], y[i], h, kk2, func);
+                        var kk4 = k4(t[i], y[i], h, kk3, func);
+                        y[i+1] = y[i]+1/6*(kk1+2*kk2+2*kk3+kk4);
+                    } 
+                return [y,t];
+                }
+                //Gautų rezultatų normalizavimas
+                function normalization(yy,tt, a, b, height, width){
+                    var yp = [];
+                    var tp = [];
+                    var y_max=yy[0];
+                    var y_min=0;
+                    for(i=0; i<101; i++){
+                        //Jei y_min ir y_max sutampa tai if'ą
+                        if(y_max<yy[i]){
+                            y_max=yy[i]
+                        }
+                        //yy normalizacija
+                        var k = 1/(y_max-y_min);
+                        var l = -y_min/(y_max-y_min);
+                        //tt normalizacija
+                        var kt = 1/(b-a);
+                        var lt = -a/(b-a);
+                    }
+                    for(i=0; i<101; i++){
+                        yp[i] = height-(k*yy[i]+l)*height;
+                        tp[i] = (kt*tt[i]+lt)*width;
+                    }
+                    return [yp,tp];
+                }
+                //Atsitiktinės spalvos generavimas
+                function getRandomColor() {
+                        var letters = '0123456789ABCDEF';
+                        var color = '#';
+                        for (var i = 0; i < 6; i++) {
+                            color += letters[Math.floor(Math.random() * 16)];
+                        }
+                        return color;
+                    }
+                //Sukuriamas laukas grafikui
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                //Nupiešiami sąsiyuvinio langeliai
+                for(i=50; i<c.height; i+=50){
+                    ctx.moveTo(i,0);
+                    ctx.lineTo(i,c.width);     
+                    ctx.moveTo(0,i);
+                    ctx.lineTo(c.width,i);     
+                }
+                ctx.strokeStyle = "#CCE5FF";
+                ctx.lineWidth = 0.5 ;
+                ctx.stroke();
+                //Nupiešiama kreivė pagal įvestus parametrus
+                button.addEventListener("click", function(event) {
+                    var funct = document.getElementById("func").value;
+                    var int_begin = parseInt(document.getElementById("int_begins").value);
+                    var int_end = parseInt(document.getElementById("int_ends").value);
+                    var y0 = parseInt(document.getElementById("y0_inp").value);
+                    var N = parseInt(document.getElementById("n_inp").value);
+                    console.log(typeof funct, typeof int_begin, typeof int_end, typeof y0, typeof N);
+                    var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
+                    var [yp,tp] = normalization(yy, tt, int_begin, int_end, c.height, c.width);
+                    
+                    //Piešiamia kreivė
+                    ctx.moveTo(tp[0],yp[0]);
+                    for(i=1; i<N; i++){
+                        ctx.lineTo(tp[i],yp[i]); 
+                    }
+                    
+                    ctx.strokeStyle = getRandomColor();
+                    ctx.stroke();   
+                });
+                
+                //Liko suformatuoti grafiką
+                
+        </script>
+    </div>
+    </body>
+</html>
