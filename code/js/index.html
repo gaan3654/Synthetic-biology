@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
 <body>
+    <script type="text/javascript" src='RKm.js'> </script>
+    <title>Differential equation solver</title><meta charset="utf-8"/>
     <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
         Your browser does not support the HTML5 canvas tag.
     </canvas>
+<!--<form action="">
+        Intervalo pradžia: <input type="number" id="int_begins" value=0 class=graph_input min=0><br>
+        Intervalo pabaiga: <input type="number" id="int_ends" value=1 class=graph_input min=0><br>
+        y0: <input type="number" id="y0" class=graph_input value=1><br>
+        N: <input type="number" id="N" class=graph_input value=100><br>
+        <input type="submit" class=graph_submit value="Submit">  
+    </form>
+-->
+    <br>
     <script>
+        /*var body = document.getElementsByTagName("body")[0];
+        var int_begins_name = document.createElement("text");
+        int_begins_name.innerHTML = "Intervalo pradžia: ";
+        body.appendChild(int_begins_name);
+        var int_begins = document.createElement("input");
+        int_begins.innerHTML = "Intervalo pradžia";
+        body.appendChild(int_begins);
+        int_begins.value = 0;
+
+
+
+        //creates buton
+        var button = document.createElement("button");
+        button.innerHTML = "Submit";
+        body.appendChild(button);
+        */
+
+
+
         var y0 = 1;
 
         function f(t,y){
@@ -44,7 +74,7 @@
         return [y,t];
         }
 
-        function normalization(yy,tt, a, b){
+        function normalization(yy,tt, a, b, height, width){
             var yp = [];
             var tp = [];
             var y_max=yy[0];
@@ -62,24 +92,48 @@
                 var lt = -a/(b-a);
             }
             for(i=0; i<101; i++){
-                yp[i] = 400-(k*yy[i]+l)*400;
-                tp[i] = (kt*tt[i]+lt)*400;
+                yp[i] = height-(k*yy[i]+l)*height;
+                tp[i] = (kt*tt[i]+lt)*width;
             }
             return [yp,tp];
         }
 
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
-        var [yy, tt] = solution(y0, 0, 1, 100);
-        var [yp,tp] = normalization(yy,tt,0,1);
+        //button.addEventListener("click", function(event) {
+            //var int_begin = int_begins.value;
+            /*var int_ends = document.getElementById('int_ends').value;
+            var y0 = document.getElementById('y0').value;
+            var N = document.getElementById('N').value;
+            
+            console.log(int_ends);
+            console.log(y0);
+            console.log(N);*/
+            //console.log(int_begin);
+            var [yy, tt] = solution(y0, 0, 1, 100);
+            var [yp,tp] = normalization(yy, tt, 0, 1, c.height, c.width);
 
-        ctx.moveTo(tp[0],yp[0]);
-        for(i=1; i<100; i++){
-        ctx.lineTo(tp[i],yp[i]); 
+            ctx.moveTo(tp[0],yp[0]);
+            for(i=1; i<100; i++){
+                ctx.lineTo(tp[i],yp[i]); 
+            }
+            
+            ctx.strokeStyle = "#0F00FF";
+            ctx.stroke();   
+        //});
+        //Nupiešiami sąsiyuvinio langeliai
+        for(i=50; i<c.height; i+=50){
+            ctx.moveTo(i,0);
+            ctx.lineTo(i,c.width);     
+            ctx.moveTo(0,i);
+            ctx.lineTo(c.width,i);     
         }
-        //nupiešti sąsiuvinio langelius, suformatuoti grafiką
-        ctx.strokeStyle = "#FF0000";
+        ctx.strokeStyle = "#CCE5FF";
+        ctx.lineWidth = 0.5 ;
         ctx.stroke();   
+        //Liko suformatuoti grafiką
+        
   </script>
+  
 </body>
 </html>
