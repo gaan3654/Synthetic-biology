@@ -61,7 +61,7 @@
                 </div>
 
                 <div id=delete_button class=input>
-                    <button id=submit>Išvalyti grafiką(kol kas nespausti)</button>
+                    <button id=submit>Išvalyti grafiką</button>
                 </div>
 
             </div>
@@ -220,25 +220,67 @@
 
             
                 
-                 //Išvalo grafiką
+             //Išvalo grafiką
                  delete_button.addEventListener("click", function(event) {
-                    var funct = document.getElementById("func").value;
-                    var int_begin = parseInt(document.getElementById("int_begins").value);
-                    var int_end = parseInt(document.getElementById("int_ends").value);
-                    var y0 = parseInt(document.getElementById("y0_inp").value);
-                    var N = parseInt(document.getElementById("n_inp").value);
-                    console.log(typeof funct, typeof int_begin, typeof int_end, typeof y0, typeof N);
-                    var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
-                    var [yp,tp] = normalization(yy, tt, int_begin, int_end, c.height, c.width);
-                    
-                    //valoma kreivė
-                    ctx.moveTo(tp[0],yp[0]);
-                    for(i=1; i<N; i++){
-                        ctx.clearRect(tp[0],yp[0],yp[i], tp[i]); 
+                    ctx.clearRect(0,0, c.width, c.height )
+
+                    ctx.beginPath();
+
+                    //Nupiešiami sąsiyuvinio langeliai
+                    for(i=20; i<c.height; i+=20){
+                        ctx.moveTo(i,0);
+                        ctx.lineTo(i,c.width);     
+                        ctx.moveTo(0,i);
+                        ctx.lineTo(c.width,i);   
                     }
-                    
-                     
+
+                    ctx.strokeStyle = "#CCE5FF";
+                    ctx.lineWidth = 0.5 ;
+                    ctx.stroke();
+
+                    //Nupiešiamos OX ir OY 
+                    //OX    
+                    ctx.beginPath();
+                    ctx.moveTo(0, 380);
+                    ctx.lineTo(400, 380);
+                    ctx.moveTo(395, 375);
+                    ctx.lineTo(400, 380);
+                    ctx.lineTo(395, 385);
+                    //OY
+                    ctx.moveTo(20, 0);
+                    ctx.lineTo(20, 400);
+                    ctx.moveTo(15, 5);
+                    ctx.lineTo(20, 0);
+                    ctx.lineTo(25, 5);
+                    ctx.strokeStyle = "#000000";
+                    ctx.stroke();
+
+                    //tekstas prie ašių
+                    ctx.font = "bold 12px sans-serif";
+                    ctx.fillText("t", 390, 395 )
+                    ctx.fillText("y", 7, 13 )
+
+                    //žymės ant ašių
+                    //ant OX
+                    for(i=40; i<400; i+=20){
+                        ctx.beginPath();
+                        ctx.moveTo(i,376);
+                        ctx.lineTo(i,384);
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = "#000000";
+                        ctx.stroke();
+                    }
+                    //ant OY
+                    for(i=20; i<380; i+=20){
+                        ctx.beginPath();
+                        ctx.moveTo(16,i);
+                        ctx.lineTo(24,i);  
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = "#000000";
+                        ctx.stroke();  
+                    }
                 });
+
 
                 
         </script>
