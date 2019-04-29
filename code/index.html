@@ -96,15 +96,13 @@
                 document.getElementById("submit").addEventListener("click", function(event) {
                     var funct_count = parseInt(document.getElementById("func_counter").value);
 
-                    
-                    var int_begin = parseInt(document.getElementById("int_begins").value);
-                    var int_end = parseInt(document.getElementById("int_ends").value);
+                    var int_begin = parseFloat(document.getElementById("int_begins").value);
+                    var int_end = parseFloat(document.getElementById("int_ends").value);
                     var y0 = parseInt(document.getElementById("y0_inp").value);
                     var N = parseInt(document.getElementById("n_inp").value);
-
+                    //sutvarkyti add function
                     for(i=0; i<funct_count; i++){
                         var function_name = "func"+i;
-                        console.log(function_name);
                         var funct = document.getElementById(function_name).value;
                         var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
                         var [yp,tp] = normalization(yy, tt, int_begin, int_end, c.height, c.width);
