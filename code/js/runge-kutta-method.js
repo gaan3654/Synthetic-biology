@@ -40,21 +40,28 @@ function normalization(yy,tt, a, b, height, width){
     var yp = [];
     var tp = [];
     var y_max=yy[0];
-    var y_min=0;
+    var y_min=yy[0];
     for(i=0; i<101; i++){
         //Jei y_min ir y_max sutampa tai if'ą
         if(y_max<yy[i]){
             y_max=yy[i]
         }
-        //yy normalizacija
+        if(y_min>yy[i]){
+            y_min=yy[i]
+        }
+    }
+    //yy normalizacija
+    if(y_min != y_max){
         var k = 1/(y_max-y_min);
         var l = -y_min/(y_max-y_min);
-        //tt normalizacija
-        var kt = 1/(b-a);
-        var lt = -a/(b-a);
+    } else {
+
     }
+    //tt normalizacija
+    var kt = 1/(b-a);
+    var lt = -a/(b-a);
     for(i=0; i<101; i++){
-        yp[i] = (height-(k*yy[i]+l)*height)+20;
+        yp[i] = (height-(k*yy[i]+l)*height)-20;
         tp[i] = ((kt*tt[i]+lt)*width)+20;
     }
     return [yp,tp];
