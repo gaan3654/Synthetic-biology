@@ -1,11 +1,12 @@
 * { 
     margin: 0 auto;
 	font-family: 'Lato', sans-serif;
-	
 }
+
 body{
 	display: block;
 }
+
 .mainDetails {
     background-color: #78003F;
     color: #fff;
@@ -41,28 +42,23 @@ body{
 
 .Objects{
 	display: inline-block;
-	margin: 5%;
-	width: 50%;
+	margin: 3%;
+	margin-bottom: 0%;
+	width: 55%;
 	height: 50%;
-	/* background-color: pink; */
 }
+
 #function {
 	display: block;
 	float: left;
-	/* background-color: blue; */
 	margin: 3%;
 	width: 42%;
 	height: 42%;
 }
 
-#f{
-
-}
-
 #inputs {
 	display: block;
 	float: right;
-	/* background-color: aqua; */
 	margin: 3%;
 	width: 42%;
 	height: 42%;
@@ -84,45 +80,51 @@ input {
 }
 
 button {
-	display: block;
 	border-style: solid;
 	border-radius: 15px;
 	width: 48%;
 	height: 15%;
-	
-	
 }
 
 .visimygtukai{
-	background-color: blue;
+	display: inline-block;
+	margin: 3%;
+	margin-top: 0%;
+	width: 55%;
+	height: 50%;
 }
 
 #button{
+	display: inline; 
 	float: left;
-	background-color: #78003F
+	margin: 3%;
+	width: 42%;
+	height: 22%; 
 }
 
 #dumygtukai{
+	display: inline;
 	float: right;
-	display: inline-block;
-	background-color: aquamarine;
+	margin: 3%;
+	width: 42%;
+	height: 22%; 
 }
 #add_func {
-	margin-top: 20%;
+	margin-top: 5%;
 }
 
 #delete{
-	float: left;
+	float: left; 
 	margin-top: 5%;
 }
 
 #submit {
-	float: right;
+	 float: right; 
 	margin-top: 5%;
 
 }
 .canvas {
 	float: right;
-	margin: 5%;
+	margin: 3%;
 	
 }
