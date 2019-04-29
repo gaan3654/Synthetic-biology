@@ -27,12 +27,14 @@
                     Your browser does not support the HTML5 canvas tag.
                 </canvas>
             </div>
-            <div id=inputs class=object>
+            <div id=funkcijos class=object>
                 <div id=funtion class=function_input>
                     Funkcija f(y,t):         
                     <input type="text" id="func" value="y">
                 </div>
-                
+            </div>
+               
+            <div id=inputs class=object>
                 <div id=interv_begins class=input>
                     Intervalo pradžia: 
                     <input type="number" id="int_begins" value="0"> 
@@ -192,6 +194,7 @@
                     }
 
                 }
+
 
                 //Nupiešiama kreivė pagal įvestus parametrus
                 document.getElementById("submit").addEventListener("click", function(event) {
