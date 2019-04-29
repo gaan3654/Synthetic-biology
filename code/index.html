@@ -41,6 +41,7 @@
                 
                 <div id=button class=input>
                     <button id=submit>Submit</button>
+                    <button id=delete>Išvalyti grafiką</button>
                     <button id=add_func>Add another function</button>
                 </div>
             </div>
@@ -102,8 +103,8 @@
                         var lt = -a/(b-a);
                     }
                     for(i=0; i<101; i++){
-                        yp[i] = height-(k*yy[i]+l)*height;
-                        tp[i] = (kt*tt[i]+lt)*width;
+                        yp[i] = (height-(k*yy[i]+l)*height)+20;
+                        tp[i] = ((kt*tt[i]+lt)*width)+20;
                     }
                     return [yp,tp];
                 }
@@ -119,6 +120,63 @@
                 //Sukuriamas laukas grafikui
                 var c = document.getElementById("myCanvas");
                 var ctx = c.getContext("2d");
+
+                 //Nupiešiami sąsiyuvinio langeliai
+                 for(i=20; i<c.height; i+=20){
+                    ctx.moveTo(i,0);
+                    ctx.lineTo(i,c.width);     
+                    ctx.moveTo(0,i);
+                    ctx.lineTo(c.width,i);     
+                }
+                ctx.strokeStyle = "#CCE5FF";
+                ctx.lineWidth = 0.5 ;
+                ctx.stroke();
+
+                
+                //Nupiešiamos OX ir OY 
+                //OX    
+                ctx.beginPath();
+                ctx.moveTo(0, c.height-20);
+                ctx.lineTo(c.width, c.height-20);
+                ctx.moveTo(c.width-5, c.height-25);
+                ctx.lineTo(c.width, c.height-20);
+                ctx.lineTo(c.width-5, c.height-15);
+                //OY
+                ctx.moveTo(20, 0);
+                ctx.lineTo(20, c.height);
+                ctx.moveTo(15, 5);
+                ctx.lineTo(20, 0);
+                ctx.lineTo(25, 5);
+                ctx.strokeStyle = "#000000";
+                ctx.stroke();
+
+                //tekstas prie ašių
+                ctx.font = "bold 12px sans-serif";
+                ctx.fillText("t", c.width-10, c.height-5 )
+                ctx.fillText("y", 7, 13 )
+
+                //žymės ant ašių
+                //ant OX
+                for(i=40; i<400; i+=20){
+                    ctx.beginPath();
+                    ctx.moveTo(i,376);
+                    ctx.lineTo(i,384);
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = "#000000";
+                    ctx.stroke();
+                }
+                //ant OY
+                for(i=20; i<380; i+=20){
+                    ctx.beginPath();
+                    ctx.moveTo(16,i);
+                    ctx.lineTo(24,i);  
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = "#000000";
+                    ctx.stroke();  
+                }
+
+
+
                 
                 //Nupiešiama kreivė pagal įvestus parametrus
                 document.getElementById("submit").addEventListener("click", function(event) {
@@ -139,22 +197,71 @@
                     ctx.strokeStyle = getRandomColor();
                     ctx.stroke();   
                 });
-                //Nupiešiami sąsiyuvinio langeliai
-                for(i=50; i<c.height; i+=50){
-                    ctx.moveTo(i,0);
-                    ctx.lineTo(i,c.width);     
-                    ctx.moveTo(0,i);
-                    ctx.lineTo(c.width,i);     
-                }
-                ctx.strokeStyle = "#CCE5FF";
-                ctx.lineWidth = 0.5 ;
-                ctx.stroke();
+               
                 
                 //Liko suformatuoti grafiką
+    
+             //Išvalo grafiką
+             document.getElementById("delete").addEventListener("click", function(event){
+                    ctx.clearRect(0,0, c.width, c.height )
 
-                document.getElementById("submit").addEventListener("click", function(event) {
-                    
-                })
+                    ctx.beginPath();
+
+                    //Nupiešiami sąsiyuvinio langeliai
+                    for(i=20; i<c.height; i+=20){
+                        ctx.moveTo(i,0);
+                        ctx.lineTo(i,c.width);     
+                        ctx.moveTo(0,i);
+                        ctx.lineTo(c.width,i);   
+                    }
+
+                    ctx.strokeStyle = "#CCE5FF";
+                    ctx.lineWidth = 0.5 ;
+                    ctx.stroke();
+
+                    //Nupiešiamos OX ir OY 
+                    //OX    
+                    ctx.beginPath();
+                    ctx.moveTo(0, 380);
+                    ctx.lineTo(400, 380);
+                    ctx.moveTo(395, 375);
+                    ctx.lineTo(400, 380);
+                    ctx.lineTo(395, 385);
+                    //OY
+                    ctx.moveTo(20, 0);
+                    ctx.lineTo(20, 400);
+                    ctx.moveTo(15, 5);
+                    ctx.lineTo(20, 0);
+                    ctx.lineTo(25, 5);
+                    ctx.strokeStyle = "#000000";
+                    ctx.stroke();
+
+                    //tekstas prie ašių
+                    ctx.font = "bold 12px sans-serif";
+                    ctx.fillText("t", 390, 395 )
+                    ctx.fillText("y", 7, 13 )
+
+                    //žymės ant ašių
+                    //ant OX
+                    for(i=40; i<400; i+=20){
+                        ctx.beginPath();
+                        ctx.moveTo(i,376);
+                        ctx.lineTo(i,384);
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = "#000000";
+                        ctx.stroke();
+                    }
+                    //ant OY
+                    for(i=20; i<380; i+=20){
+                        ctx.beginPath();
+                        ctx.moveTo(16,i);
+                        ctx.lineTo(24,i);  
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = "#000000";
+                        ctx.stroke();  
+                    }
+                });
+
                 
         </script>
     </div>
