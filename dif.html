@@ -193,6 +193,15 @@
                 }
                 
 
+                ctx.beginPath();
+                ctx.moveTo(20, c.height-20);
+                    ctx.lineTo(100, 100);
+                   
+                    ctx.strokeStyle = "#cc0000";
+                    ctx.stroke();
+
+
+
                 //Nupiešiama kreivė pagal įvestus parametrus
                 button.addEventListener("click", function(event) {
                     var funct = document.getElementById("func").value;
@@ -218,7 +227,7 @@
             
                 
              //Išvalo grafiką
-                 delete_button.addEventListener("click", function(event) {
+             document.getElementById("delete").addEventListener("click", function(event){
                     ctx.clearRect(0,0, c.width, c.height )
 
                     ctx.beginPath();
@@ -278,6 +287,7 @@
                     }
                 });
 
+                
 
                 
         </script>
