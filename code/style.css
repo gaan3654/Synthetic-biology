@@ -3,6 +3,9 @@
 	font-family: 'Lato', sans-serif;
 	
 }
+body{
+	display: block;
+}
 .mainDetails {
     background-color: #78003F;
     color: #fff;
@@ -38,22 +41,24 @@
 
 .Objects{
 	display: inline-block;
-	width: 1000px;
-	height: 500px;
+	margin: 50px;
+	width: 50%;
+	height: 50%;
 	background-color: pink;
 }
 #function {
 	float: left;
-	margin: 15px;
-	background-color: blue
+	background-color: blue;
+	width: 50%;
+	height: 50%;
 }
 
 #inputs {
 	display: block;
 	float: right;
-	
-	margin-left: 500px; 
 	background-color: aqua;
+	width: 50%;
+	height: 50%;
 
 }
 
