@@ -1,4 +1,4 @@
-.title {
+/*.title {
 	text-align: center;
 	font-size: 200%;
 	margin-top: 5%;
@@ -20,4 +20,33 @@
 	border-width: 2px;
 	border-style: solid;
 	line-height: 165px;
+}*/
+
+.input {
+	display:block;
+	margin-bottom: 2%;
+}
+#inputs {
+	width: 301px;
+}
+#canvas {
+	float: right;
+}
+input {
+	border-style: solid;
+	border-radius: 15px;
+	border-width: 1px;
+	padding-left: 10px;
+	float: right;
+}
+
+button {
+	border-style: solid;
+	border-radius: 15px;
+	width: 150px;
+	height: 25px;
+}
+
+#submit {
+	float: right;
 }
