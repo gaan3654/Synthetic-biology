@@ -3,7 +3,7 @@
     <head>
             <script type="text/javascript" src='RKm.js'> </script>
             <link type="text/css" rel="stylesheet" href="style.css">
-            <title>Differential equation solver1</title><meta charset="utf-8"/>
+            <title>Differential equation solver</title><meta charset="utf-8"/>
     </head>
     <body>
         
@@ -14,7 +14,7 @@
                 </canvas>
             </div>
             <div id=inputs>
-                <div id=funtion class=input>
+                <div id=funtion class=function_input>
                     Funkcija f(y,t):         
                     <input type="text" id="func" value="y">
                 </div>
@@ -42,7 +42,7 @@
                 <div id=button class=input>
                     <button id=submit>Submit</button>
                     <button id=delete>Išvalyti grafiką</button>
-                    <button id=add_func>Add another function</button>
+                    <button id=add_func onclick="add_field(1)">Add another function</button>
                 </div>
             </div>
 
@@ -197,9 +197,12 @@
                     ctx.strokeStyle = getRandomColor();
                     ctx.stroke();   
                 });
-               
+
                 
-                //Liko suformatuoti grafiką
+                function add_field(i) {
+                    var d = document.getElementById("function");
+                    d.innerHTML += "Funkcija f(y,t): <input type='text' id='func'+i value='y'>";
+                }
     
              //Išvalo grafiką
              document.getElementById("delete").addEventListener("click", function(event){
