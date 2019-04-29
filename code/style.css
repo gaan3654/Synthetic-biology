@@ -41,9 +41,9 @@ body{
 
 .Objects{
 	display: inline-block;
-	margin: 50px;
-	width: 60%;
-	height: 55%;
+	margin: 5%;
+	width: 50%;
+	height: 50%;
 	/* background-color: pink; */
 }
 #function {
@@ -101,7 +101,6 @@ button {
 }
 .canvas {
 	float: right;
-	margin-right: 50px;
-	margin-top: 50px;
+	margin: 5%;
 	
 }
