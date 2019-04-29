@@ -55,6 +55,10 @@ body{
 	height: 42%;
 }
 
+#f{
+
+}
+
 #inputs {
 	display: block;
 	float: right;
@@ -73,20 +77,38 @@ input {
 	border-style: solid;
 	border-radius: 15px;
 	border-width: 1px;
-	padding-left: 10px;
+	padding-left: 5%;
+	width: 48%;
+	height: 15%;
 	float: right;
 }
 
 button {
+	display: block;
 	border-style: solid;
 	border-radius: 15px;
-	width: 150px;
-	height: 25px;
-	float: left;
+	width: 48%;
+	height: 15%;
+	
+	
 }
 
+.visimygtukai{
+	background-color: blue;
+}
+
+#button{
+	float: left;
+	background-color: #78003F
+}
+
+#dumygtukai{
+	float: right;
+	display: inline-block;
+	background-color: aquamarine;
+}
 #add_func {
-	margin-top: 23%;
+	margin-top: 20%;
 }
 
 #delete{
