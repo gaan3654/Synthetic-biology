@@ -33,17 +33,17 @@
             <div class="Objects">
                 <div id=function>
                     <div id=f>
-                    Funkcija f(y,t):
-                    <input type="text" id="func" value="y">
+                        Funkcija f(y,t):
+                        <input type="text" id="func" value="y">
                     </div>         
                     
                     <div id=sk>
-                            Funkcijų skaičius:
-                            <input type="text" id="func" >
+                        Kiek funkcijų pridėti?
+                        <input type="number" id="func_counter" value="2">
                     </div> 
 
                     <div id=button>
-                            <button id=add_func onclick="add_field(1)">Add another function</button>
+                        <button id=add_func>Add another function</button>
                     </div>
                 </div>
             
@@ -53,7 +53,7 @@
                         <input type="number" id="int_begins" value="0"> 
                     </div> 
                 
-                     <div id=interv_ends class=input> 
+                    <div id=interv_ends class=input> 
                         Intervalo pabaiga:
                         <input type="number" id="int_ends" value="1"> 
                     </div>
@@ -85,6 +85,7 @@
                 
                 //Nupiešiama kreivė pagal įvestus parametrus
                 document.getElementById("submit").addEventListener("click", function(event) {
+                    var funct_count = parseInt(document.getElementById("func_counter").value);
                     var funct = document.getElementById("func").value;
                     var int_begin = parseInt(document.getElementById("int_begins").value);
                     var int_end = parseInt(document.getElementById("int_ends").value);
