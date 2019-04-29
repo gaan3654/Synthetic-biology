@@ -6,8 +6,8 @@
 .mainDetails {
     background-color: #78003F;
     color: #fff;
-    padding-bottom: 4rem;
-    padding-top: 5rem;
+    padding-bottom: 50px;
+    padding-top: 50px;
 	overflow: hidden;
 }
 
@@ -17,22 +17,22 @@
     border-radius: 50%;
     float:left;
     object-fit: cover;
-    margin-left: 2rem;
+    margin-left: 32px;
 }
 
 .mainDetails__info {
     float: left;
-    padding-top: 1rem;
-    margin-left: 2rem;
+    padding-top: 16px;
+    margin-left: 32px;
 }
 
 .mainDetails__info h2 {
-    padding-top: 0.5rem;
+    padding-top: 8px;
 }
 
 .mainDetails__contact {
-    padding-top: 0.2rem;
-    padding-right: 3rem;
+    padding-top: 4px;
+    padding-right: 48px;
     float: right;
 }
 
