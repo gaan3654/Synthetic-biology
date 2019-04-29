@@ -36,20 +36,35 @@
     float: right;
 }
 
+.Objects{
+	display: inline-block;
+	width: 1000px;
+	height: 500px;
+	background-color: pink;
+}
+#function {
+	float: left;
+	margin: 15px;
+	background-color: blue
+}
+
+#inputs {
+	display: block;
+	float: right;
+	
+	margin-left: 500px; 
+	background-color: aqua;
+
+}
+
 .input {
-	display: flex;
+	display: block;
 	margin-bottom: 2%;
 }
-#inputs {
-	width: 500px;
-	margin-top: 50px;
-	margin-left: 250px;
-}
-#canvas {
-	float: right;
-	margin-right: 350px;
-	
-}
+
+/* 
+
+
 input {
 	border-style: solid;
 	border-radius: 15px;
@@ -58,13 +73,11 @@ input {
 	float: right;
 }
 
-#function {
-	float: left;
-}
+
 
 #interv_begins{
 	float:right;
-}
+} */
 
 button {
 	border-style: solid;
@@ -76,4 +89,10 @@ button {
 
 #submit {
 	float: right;
+}
+.canvas {
+	float: right;
+	margin-right: 50px;
+	margin-top: 50px;
+	
 }

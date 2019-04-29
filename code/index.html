@@ -23,45 +23,59 @@
                 <div class="clear"></div>
             </header>
         <div>
-            <div id=canvas class=object>
+
+            <div id=canvas class=canvas>
                 <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
                     Your browser does not support the HTML5 canvas tag.
                 </canvas>
             </div>
-            <div id=funkcijos class=object>
-                <div id=funtion class=function_input>
-                    Funkcija f(y,t):         
+
+            <div class="Objects">
+                <div id=function>
+                    <div id=f>
+                    Funkcija f(y,t):
                     <input type="text" id="func" value="y">
+                    </div>         
+                    
+                    <div id=sk>
+                            Funkcijų skaičius:
+                            <input type="text" id="func" >
+                    </div> 
+
+                    <div id=button>
+                            <button id=add_func onclick="add_field(1)">Add another function</button>
+                    </div>
+                </div>
+            
+                <div id=inputs>
+                    <div id=interv_begins class=input>
+                        Intervalo pradžia: 
+                        <input type="number" id="int_begins" value="0"> 
+                    </div> 
+                
+                     <div id=interv_ends class=input> 
+                        Intervalo pabaiga:
+                        <input type="number" id="int_ends" value="1"> 
+                    </div>
+                
+                    <div id=y0 class=input>
+                        y0:               
+                        <input type="number" id="y0_inp" value="1"> 
+                    </div> 
+                
+                    <div id=N class=input>
+                        N:                
+                        <input type="number" id="n_inp" value="100"> 
+                    </div>
+                
+                    <div id=button class=input>
+                            <button id=submit>Submit</button>
+                        <button id=delete>Išvalyti grafiką</button>
+                        
+                    </div>
                 </div>
             </div>
-               
-            <div id=inputs class=object>
-                <div id=interv_begins class=input>
-                    Intervalo pradžia: 
-                    <input type="number" id="int_begins" value="0"> 
-                </div> 
-                
-                <div id=interv_ends class=input> 
-                    Intervalo pabaiga:
-                    <input type="number" id="int_ends" value="1"> 
-                </div>
-                
-                <div id=y0 class=input>
-                    y0:               
-                    <input type="number" id="y0_inp" value="1"> 
-                </div> 
-                
-                <div id=N class=input>
-                    N:                
-                    <input type="number" id="n_inp" value="100"> 
-                </div>
-                
-                <div id=button class=input>
-                    <button id=submit>Submit</button>
-                    <button id=delete>Išvalyti grafiką</button>
-                    <button id=add_func onclick="add_field(1)">Add another function</button>
-                </div>
-            </div>
+        </div>
 
             <script>
                 
