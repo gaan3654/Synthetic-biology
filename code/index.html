@@ -91,10 +91,10 @@
                     ctx.stroke();   
                 });
 
-                
+                //Prideda papildomą funkcijos input lauką
                 function add_field(i) {
-                    var d = document.getElementById("function");
-                    d.innerHTML += "Funkcija f(y,t): <input type='text' id='func'+i value='y'>";
+                    var d = document.getElementById("funkcijos");
+                    d.innerHTML += "<div id='func'+i class=function_input>Funkcija f(y,t): <input type='text' value='y'></div>";
                 }
     
                 //Išvalo grafiką
