@@ -33,7 +33,7 @@
             <div class="Objects">
                 <div id=function>
                     <div id=f>
-                        Funkcija f(y,t):
+                        Funkcija f(t,y):
                         <input type="text" id="func0" value="y">
                     </div>         
                     
@@ -109,7 +109,8 @@
                         
                         //Piešiamia kreivė
                         ctx.moveTo(tp[0],yp[0]);
-                        for(i=1; i<N; i++){
+                        for(i=1; i<N+1; i++){
+                            console.log(yy[i]);
                             ctx.lineTo(tp[i],yp[i]); 
                         }
                         ctx.strokeStyle = getRandomColor();
@@ -119,16 +120,13 @@
 
                 //Prideda papildomą funkcijos input lauką
                 document.getElementById("add_func").addEventListener("click", function(event){
-                    var d = document.getElementById("funkcijos");
+                    var d = document.getElementById("function");
 
                     var funct_count = parseInt(document.getElementById("func_counter").value);
                     
-                    for(i=1; i<funct_count; i++){
+                    for(i=1; i<funct_count+1; i++){
                         var function_name = "func"+i;
-                        var function_html = `<div id=${function_name} class=function_input>Funkcija f(y,t): <input type='text' value='y'></div>`;
-                        console.log(function_html);
-                        console.log(typeof function_html);
-                        d.innerHTML += `<div id=${function_name} class=function_input>Funkcija f(y,t): <input type='text' value='y'></div>`;
+                        d.innerHTML += `<div id=${function_name} class=function_input>Funkcija f(t,y): <input type='text' value='y'></div>`;
                     }
                 });
     
