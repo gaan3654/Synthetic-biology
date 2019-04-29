@@ -58,10 +58,7 @@
                 
                 <div id=button class=input>
                     <button id=submit>Pateikti</button>
-                </div>
-
-                <div id=delete_button class=input>
-                    <button id=submit>Išvalyti grafiką</button>
+                    <button id=delete>Išvalyti grafiką</button>
                 </div>
 
             </div>
@@ -156,14 +153,14 @@
                 //Nupiešiamos OX ir OY 
                 //OX    
                 ctx.beginPath();
-                ctx.moveTo(0, 380);
-                ctx.lineTo(400, 380);
-                ctx.moveTo(395, 375);
-                ctx.lineTo(400, 380);
-                ctx.lineTo(395, 385);
+                ctx.moveTo(0, c.height-20);
+                ctx.lineTo(c.width, c.height-20);
+                ctx.moveTo(c.width-5, c.height-25);
+                ctx.lineTo(c.width, c.height-20);
+                ctx.lineTo(c.width-5, c.height-15);
                 //OY
                 ctx.moveTo(20, 0);
-                ctx.lineTo(20, 400);
+                ctx.lineTo(20, c.height);
                 ctx.moveTo(15, 5);
                 ctx.lineTo(20, 0);
                 ctx.lineTo(25, 5);
@@ -172,7 +169,7 @@
 
                 //tekstas prie ašių
                 ctx.font = "bold 12px sans-serif";
-                ctx.fillText("t", 390, 395 )
+                ctx.fillText("t", c.width-10, c.height-5 )
                 ctx.fillText("y", 7, 13 )
 
                 //žymės ant ašių
