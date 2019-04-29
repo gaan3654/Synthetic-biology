@@ -42,33 +42,32 @@ body{
 .Objects{
 	display: inline-block;
 	margin: 50px;
-	width: 50%;
-	height: 50%;
-	background-color: pink;
+	width: 60%;
+	height: 55%;
+	/* background-color: pink; */
 }
 #function {
+	display: block;
 	float: left;
-	background-color: blue;
-	width: 50%;
-	height: 50%;
+	/* background-color: blue; */
+	margin: 3%;
+	width: 42%;
+	height: 42%;
 }
 
 #inputs {
 	display: block;
 	float: right;
-	background-color: aqua;
-	width: 50%;
-	height: 50%;
-
+	/* background-color: aqua; */
+	margin: 3%;
+	width: 42%;
+	height: 42%;
 }
 
 .input {
 	display: block;
 	margin-bottom: 2%;
 }
-
-/* 
-
 
 input {
 	border-style: solid;
@@ -78,12 +77,6 @@ input {
 	float: right;
 }
 
-
-
-#interv_begins{
-	float:right;
-} */
-
 button {
 	border-style: solid;
 	border-radius: 15px;
@@ -92,8 +85,19 @@ button {
 	float: left;
 }
 
+#add_func {
+	margin-top: 23%;
+}
+
+#delete{
+	float: left;
+	margin-top: 5%;
+}
+
 #submit {
 	float: right;
+	margin-top: 5%;
+
 }
 .canvas {
 	float: right;
