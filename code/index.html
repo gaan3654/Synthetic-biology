@@ -59,7 +59,7 @@
                 <div id=button class=input>
                     <button id=submit>Submit</button>
                     <button id=delete>Išvalyti grafiką</button>
-                    <button id=add_func onclick="add_field(1)">Add another function</button>
+                    <button id=add_func>Add another function</button>
                 </div>
             </div>
 
@@ -69,8 +69,6 @@
                 var ctx = c.getContext("2d");
                 draw(ctx);
                 
-
-
                 //Nupiešiama kreivė pagal įvestus parametrus
                 document.getElementById("submit").addEventListener("click", function(event) {
                     var funct = document.getElementById("func").value;
@@ -92,10 +90,11 @@
                 });
 
                 //Prideda papildomą funkcijos input lauką
-                function add_field(i) {
+                document.getElementById("add_func").addEventListener("click", function(event){
                     var d = document.getElementById("funkcijos");
+                    
                     d.innerHTML += "<div id='func'+i class=function_input>Funkcija f(y,t): <input type='text' value='y'></div>";
-                }
+                });
     
                 //Išvalo grafiką
                 document.getElementById("delete").addEventListener("click", function(event){
