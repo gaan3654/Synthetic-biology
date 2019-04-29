@@ -69,7 +69,7 @@
                     </div>
                 
                     <div id=button class=input>
-                            <button id=submit>Submit</button>
+                        <button id=submit>Submit</button>
                         <button id=delete>Išvalyti grafiką</button>
                         
                     </div>
@@ -78,24 +78,11 @@
         </div>
 
             <script>
-                
-                //Atsitiktinės spalvos generavimas
-                function getRandomColor() {
-                        var letters = '0123456789ABCDEF';
-                        var color = '#';
-                        for (var i = 0; i < 6; i++) {
-                            color += letters[Math.floor(Math.random() * 16)];
-                        }
-                        return color;
-                    }
-
                 //Sukuriamas laukas grafikui
                 var c = document.getElementById("myCanvas");
                 var ctx = c.getContext("2d");
                 draw(ctx);
                 
-
-
                 //Nupiešiama kreivė pagal įvestus parametrus
                 document.getElementById("submit").addEventListener("click", function(event) {
                     var funct = document.getElementById("func").value;
@@ -116,14 +103,15 @@
                     ctx.stroke();   
                 });
 
-                
-                function add_field(i) {
-                    var d = document.getElementById("function");
-                    d.innerHTML += "Funkcija f(y,t): <input type='text' id='func'+i value='y'>";
-                }
+                //Prideda papildomą funkcijos input lauką
+                document.getElementById("add_func").addEventListener("click", function(event){
+                    var d = document.getElementById("funkcijos");
+                    
+                    d.innerHTML += "<div id='func'+i class=function_input>Funkcija f(y,t): <input type='text' value='y'></div>";
+                });
     
-             //Išvalo grafiką
-             document.getElementById("delete").addEventListener("click", function(event){
+                //Išvalo grafiką
+                document.getElementById("delete").addEventListener("click", function(event){
                 ctx.clearRect(0,0, c.width, c.height )
                 ctx.beginPath();
                 draw(ctx);
