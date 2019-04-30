@@ -53,7 +53,7 @@ body{
 	display: block;
 	float: left;
 	margin: 3%;
-	width: 42%;
+	width: 43%;
 	height: 42%;
 }
 
@@ -61,7 +61,7 @@ body{
 	display: block;
 	float: right;
 	margin: 3%;
-	width: 42%;
+	width: 43%;
 	height: 42%;
 }
 
@@ -112,6 +112,7 @@ button {
 }
 #add_func {
 	margin-top: 5%;
+	float: right;
 }
 
 #delete{
