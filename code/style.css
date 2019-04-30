@@ -11,14 +11,14 @@ body{
 .mainDetails {
     background-color: #78003F;
     color: #fff;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-bottom: 2%;
+    padding-top: 2%;
 	overflow: hidden;
 }
 
 .mainDetails__photo img{
-    height: 125px;
-	width: 125px;
+    height: 8%;
+	width: 8%;
     border-radius: 50%;
     float:left;
     object-fit: cover;
