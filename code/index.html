@@ -7,20 +7,20 @@
         <title>Differential equation solver</title><meta charset="utf-8"/>
     </head>
     <body>
-            <header class="mainDetails ">
-                <div class="mainDetails__photo">
-                    <img src="../assets/graph-logo.png" alt="Logo">
-                </div>
-                <div class="mainDetails__info">
-                    <h1>Diferencialinių lygčių sprendimo sistema</h1>
-                    <h2>Sukūrė: Gabrielė Anužytė, Dominika Barilovič</h2>
-                </div>
-                <div class="mainDetails__contact">
-                    <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
-                    <a href="mailto:dominika.barilovic@mif.stud.vu.lt">e: dominika.barilovic@mif.stud.vu.lt</a> <br>
-                    <a href="http://vu.lt">w: www.vu.lt</a> <br>
-                </div>    
-            </header>
+        <header class="mainDetails ">
+            <div class="mainDetails__photo">
+                <img src="../assets/graph-logo.png" alt="Logo">
+            </div>
+            <div class="mainDetails__info">
+                <h1>Diferencialinių lygčių sprendimo sistema</h1>
+                <h2>Sukūrė: Gabrielė Anužytė, Dominika Barilovič</h2>
+            </div>
+            <div class="mainDetails__contact">
+                <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
+                <a href="mailto:dominika.barilovic@mif.stud.vu.lt">e: dominika.barilovic@mif.stud.vu.lt</a> <br>
+                <a href="http://vu.lt">w: www.vu.lt</a> <br>
+            </div>    
+        </header>
         <div>
 
             <div id=canvas class=canvas>
@@ -29,19 +29,18 @@
                 </canvas>
             </div>
 
-            <div class="Objects">
+            <div id="all_inputs">
                 <div id=function>
                     <div id=f class=input>
                         Funkcija f(t,y):
                         <input type="text" id="func0" value="y">
+                        <input type="color" id="color0" class="f_colors" value="#ff0000">
                     </div>         
                     
                     <div id=sk class=input>
                         Kiek funkcijų pridėti?
-                        <input type="number" id="func_counter" value="2">
+                        <input type="number" id="func_counter" value="1">
                     </div> 
-
-                    
                 </div>
             
                 <div id=inputs>
@@ -77,62 +76,81 @@
                 </div>
                 <!-- <div id=dumygtukai class=input> -->
                 <div id=dumygtukai>
-                   <button id=submit>Submit</button>
-                   <button id=delete>Išvalyti grafiką</button>
-                   
-                 </div>
+                <button id=submit>Submit</button>
+                <button id=delete>Išvalyti grafiką</button>
+                
+                </div>
             </div>
 
         </div>
 
-            <script>
-                //Sukuriamas laukas grafikui
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                draw(ctx);
-                var func_names = ["func0"];
-                //Kreivių piešimas
-                document.getElementById("submit").addEventListener("click", function(event) {
-                    var int_begin = parseFloat(document.getElementById("int_begins").value);
-                    var int_end = parseFloat(document.getElementById("int_ends").value);
-                    var y0 = parseInt(document.getElementById("y0_inp").value);
-                    var N = parseInt(document.getElementById("n_inp").value);
-                    for(j=0; j<func_names.length; j++){
-                        //Apskaičiuojami kiekvienos funkcijos taškai
-                        var funct = document.getElementById(func_names[j]).value;
-                        var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
-                        var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
-                        //Piešiamia kreivė
-                        ctx.moveTo(t_norm[0],y_norm[0]);
-                        for(p=1; p<=N; p++){
-                            ctx.lineTo(t_norm[p],y_norm[p]);
-                        }
-                        ctx.strokeStyle = getRandomColor();
+        <script>
+            //Sukuriamas laukas grafikui
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            draw(ctx);
+            var func_names = ["func0"];
+            var func_color_id = ["color0"];
+            var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "ff9900"];
+            //Kreivių piešimas
+            document.getElementById("submit").addEventListener("click", function(event) {
+                var int_begin = parseFloat(document.getElementById("int_begins").value);
+                var int_end = parseFloat(document.getElementById("int_ends").value);
+                var y0 = parseInt(document.getElementById("y0_inp").value);
+                var N = parseInt(document.getElementById("n_inp").value);
+                for(j=0; j<func_names.length; j++){
+                    //Apskaičiuojami kiekvienos funkcijos taškai
+                    console.log(func_color[j]);
+                    var funct = document.getElementById(func_names[j]).value;
+                    var f_color = document.getElementById(func_color_id[j]).value;
+                    var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
+                    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
+                    //Piešiamia kreivė
+                    ctx.beginPath();
+                    ctx.moveTo(t_norm[0],y_norm[0]);
+                    for(p=1; p<=N; p++){
+                        ctx.lineTo(t_norm[p],y_norm[p]);
                     }
-                    ctx.stroke();   
-                });
-                
-                //Prideda papildomą funkcijos input lauką
-                document.getElementById("add_func").addEventListener("click", function(event){
-                    var d = document.getElementById("function");
-                    var funct_count = parseInt(document.getElementById("func_counter").value);
+                    ctx.strokeStyle = f_color;
+                    ctx.stroke(); 
+                }
                     
-                    for(i=1; i<funct_count+1; i++){
-                        var function_name = "func"+i;
-                        func_names[i] = function_name;
-                        d.innerHTML += `<div class=input>Funkcija f(t,y): <input id=${function_name} type='text' value='y+t'></div>`;
+            });
+            
+            //Prideda papildomą funkcijos input lauką
+            document.getElementById("add_func").addEventListener("click", function(event){
+                var d = document.getElementById("function");
+                var funct_count = parseInt(document.getElementById("func_counter").value);
+                
+                for(i=1; i<funct_count+1; i++){
+                    func_names[i] = "func"+i;
+                    func_color_id[i] = "color"+i;
+                    //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
+                    if(func_color[i] == null){
+                        func_color[i] = getRandomColor();
+                        //Tikrinama ar tokia spalva jau nėra priskirta
+                        for(j=0; j<func_color.length-1; j++){
+                            if(func_color[i]==func_color[j]){
+                                func_color[i] = getRandomColor();
+                                j = 0;
+                            }
+                        }
                     }
-                });
-    
-                //Išvalo grafiką
-                document.getElementById("delete").addEventListener("click", function(event){
+                    //Pridedami įvesties laukai papildomoms funkcijoms
+                    d.innerHTML += 
+                    `<div class=input>
+                        Funkcija f(t,y): <input id=${func_names[i]} type='text' value='y+t'>
+                        <input type="color" id=${func_color_id[i]} class="f_colors" value=${func_color[i]}>
+                    </div>`;
+                }
+            });
+
+            //Išvalo grafiką
+            document.getElementById("delete").addEventListener("click", function(event){
                 ctx.clearRect(0,0, c.width, c.height )
                 ctx.beginPath();
                 draw(ctx);
             });
-
-                
         </script>
-    </div>
     </body>
 </html>

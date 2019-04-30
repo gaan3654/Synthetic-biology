@@ -1,5 +1,5 @@
 function draw(ctx){
-    //Nupiešiami sąsiyuvinio langeliai
+    //Nupiešiami sąsiuvinio langeliai
     for(i=20; i<c.height; i+=20){
         ctx.moveTo(i,0);
         ctx.lineTo(i,c.width);     

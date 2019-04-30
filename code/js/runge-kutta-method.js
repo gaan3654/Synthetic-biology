@@ -33,7 +33,7 @@ function solution(y0, a, b, N, func){
         var kk4 = k4(t[i], y[i], h, kk3, func);
         y[i+1] = y[i]+1/6*(kk1+2*kk2+2*kk3+kk4);
     } 
-return [y,t];
+    return [y,t];
 }
 //Gautų rezultatų normalizavimas
 function normalization(yy,tt, a, b, N, height, width){
