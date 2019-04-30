@@ -3,6 +3,7 @@
     <head>
         <script type="text/javascript" src='js/draw_graph.js'> </script>
         <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
+        <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
         <link type="text/css" rel="stylesheet" href="style.css">
         <title>Differential equation solver</title><meta charset="utf-8"/>
     </head>
@@ -33,7 +34,7 @@
                 <div id=function>
                     <div id=f class=input>
                         Funkcija f(t,y):
-                        <input type="text" id="func0" value="y">
+                        <input type="text" id="func0" value="t^2+5">
                         <input type="color" id="color0" class="f_colors" value="#ff0000">
                     </div>         
                     
@@ -89,9 +90,10 @@
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             draw(ctx);
+            //Kintamieji funkcijų grafikų piešimui
             var func_names = ["func0"];
             var func_color_id = ["color0"];
-            var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "ff9900"];
+            var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
                 var int_begin = parseFloat(document.getElementById("int_begins").value);
@@ -100,8 +102,10 @@
                 var N = parseInt(document.getElementById("n_inp").value);
                 for(j=0; j<func_names.length; j++){
                     //Apskaičiuojami kiekvienos funkcijos taškai
-                    console.log(func_color[j]);
+                    //console.log(func_color[j]);
                     var funct = document.getElementById(func_names[j]).value;
+                    funct = replace_symbols(funct);
+                    
                     var f_color = document.getElementById(func_color_id[j]).value;
                     var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
                     var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
