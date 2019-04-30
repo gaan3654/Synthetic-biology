@@ -9,7 +9,7 @@
     <body>
             <header class="mainDetails ">
                 <div class="mainDetails__photo">
-                    <img src="../assets/Grafikas.png" alt="Logo">
+                    <img src="../assets/graph-logo.png" alt="Logo">
                 </div>
                 <div class="mainDetails__info">
                     <h1>Diferencialinių lygčių sprendimo sistema</h1>
@@ -90,42 +90,37 @@
                 var c = document.getElementById("myCanvas");
                 var ctx = c.getContext("2d");
                 draw(ctx);
-                
-                //Nupiešiama kreivė pagal įvestus parametrus
+                var func_names = ["func0"];
+                //Kreivių piešimas
                 document.getElementById("submit").addEventListener("click", function(event) {
-                    var funct_count = parseInt(document.getElementById("func_counter").value);
-
                     var int_begin = parseFloat(document.getElementById("int_begins").value);
                     var int_end = parseFloat(document.getElementById("int_ends").value);
                     var y0 = parseInt(document.getElementById("y0_inp").value);
                     var N = parseInt(document.getElementById("n_inp").value);
-                    //sutvarkyti add function
-                    for(i=0; i<funct_count; i++){
-                        var function_name = "func"+i;
-                        var funct = document.getElementById(function_name).value;
+                    for(j=0; j<func_names.length; j++){
+                        //Apskaičiuojami kiekvienos funkcijos taškai
+                        var funct = document.getElementById(func_names[j]).value;
                         var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
-                        var [yp,tp] = normalization(yy, tt, int_begin, int_end, c.height, c.width);
-                        
+                        var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
                         //Piešiamia kreivė
-                        ctx.moveTo(tp[0],yp[0]);
-                        for(i=1; i<N+1; i++){
-                            console.log(yy[i]);
-                            ctx.lineTo(tp[i],yp[i]); 
+                        ctx.moveTo(t_norm[0],y_norm[0]);
+                        for(p=1; p<=N; p++){
+                            ctx.lineTo(t_norm[p],y_norm[p]);
                         }
                         ctx.strokeStyle = getRandomColor();
-                        ctx.stroke();   
                     }
+                    ctx.stroke();   
                 });
-
+                
                 //Prideda papildomą funkcijos input lauką
                 document.getElementById("add_func").addEventListener("click", function(event){
                     var d = document.getElementById("function");
-
                     var funct_count = parseInt(document.getElementById("func_counter").value);
                     
                     for(i=1; i<funct_count+1; i++){
                         var function_name = "func"+i;
-                        d.innerHTML += `<div id=${function_name} class=input>Funkcija f(t,y): <input type='text' value=''></div>`;
+                        func_names[i] = function_name;
+                        d.innerHTML += `<div class=input>Funkcija f(t,y): <input id=${function_name} type='text' value='y+t'></div>`;
                     }
                 });
     

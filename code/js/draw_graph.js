@@ -1,8 +1,4 @@
 function draw(ctx){
-    ctx.moveTo(20,380);
-    ctx.lineTo(21,379);
-    ctx.lineWidth = 10;
-    ctx.stroke();
     //Nupiešiami sąsiyuvinio langeliai
     for(i=20; i<c.height; i+=20){
         ctx.moveTo(i,0);
@@ -39,7 +35,7 @@ function draw(ctx){
 
     //žymės ant ašių
     //ant OX
-    for(i=40; i<c.width-20; i+=20){
+    for(i=40; i<c.width; i+=20){
         ctx.beginPath();
         ctx.moveTo(i,c.width-24);
         ctx.lineTo(i,c.width-16);

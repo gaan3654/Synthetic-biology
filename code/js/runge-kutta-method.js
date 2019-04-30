@@ -36,12 +36,12 @@ function solution(y0, a, b, N, func){
 return [y,t];
 }
 //Gautų rezultatų normalizavimas
-function normalization(yy,tt, a, b, height, width){
+function normalization(yy,tt, a, b, N, height, width){
     var yp = [];
     var tp = [];
     var y_max=yy[0];
     var y_min=yy[0];
-    for(i=0; i<101; i++){
+    for(i=0; i<N; i++){
         //Jei y_min ir y_max sutampa tai if'ą
         if(y_max<yy[i]){
             y_max=yy[i]
@@ -60,7 +60,7 @@ function normalization(yy,tt, a, b, height, width){
     //tt normalizacija
     var kt = 1/(b-a);
     var lt = -a/(b-a);
-    for(i=0; i<101; i++){
+    for(i=0; i<N; i++){
         yp[i] = (height-(k*yy[i]+l)*height)-20;
         tp[i] = ((kt*tt[i]+lt)*width)+20;
     }
