@@ -40,7 +40,6 @@ function replace_symbols(funct){
     }
     //Natūrinis logaritmas
     //ln(t)
-    //Bet dar reikia patestuoti natūrinio funkcionalumą
     if(new RegExp(/ln/ig).test(funct)){
         funct = funct.replace(/ln/ig, "Math.log");
         console.log(funct+" Funkcija ln");
