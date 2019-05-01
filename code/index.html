@@ -34,7 +34,7 @@
                 <div id=function>
                     <div id=f class=input>
                         Funkcija f(t,y):
-                        <input type="text" id="func0" value="t^2+5">
+                        <input type="text" id="func0" value="log(t,5)">
                         <input type="color" id="color0" class="f_colors" value="#ff0000">
                     </div>         
                     
@@ -114,6 +114,7 @@
                     ctx.moveTo(t_norm[0],y_norm[0]);
                     for(p=1; p<=N; p++){
                         ctx.lineTo(t_norm[p],y_norm[p]);
+                        console.log(y_norm[p]);
                     }
                     ctx.strokeStyle = f_color;
                     ctx.stroke(); 
