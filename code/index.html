@@ -17,8 +17,8 @@
                 <img src="../assets/graph-logo.png" alt="Logo">
             </div>
             <div class="mainDetails__info">
-                <h1>Diferencialinių lygčių sprendimo sistema</h1>
-                <h2>Paremtas Runge-Kutta metodu</h2>
+                <h1>Diferencialinių lygčių sistemų sprendimas</h1>
+                <h2>Paremta Runge-Kutta metodu</h2>
             </div>
             <div class="mainDetails__contact">
                 <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
@@ -68,7 +68,22 @@
                     </p>
             </div>
 
-            <div id="all_inputs">
+            <div class="chemical_functions">
+                    <button id=chemf1>Funkcija 1</button>
+                    <button id=chemf2>Funkcija 2</button>
+                    <button id=chemf3>Funkcija 3</button>
+                    <button id=chemf4>Funkcija 4</button>
+                    <button id=chemf5>Funkcija 5</button>
+                    <button id=chemf6>Funkcija 6</button>
+                    <button id=chemf7>Funkcija 7</button>
+                    <button id=chemf8>Funkcija 8</button>
+                    <button id=chemf9>Funkcija 9</button>
+                    <button id=chemf10>Funkcija 10</button>
+                    <button id=chemf11>Funkcija 11</button>
+                    <button id=chemf12>Funkcija 12</button>
+                </div>
+
+            <div id="all_inputs">                    
                 <div id=function>
                     <div id=f class=input>
                         Funkcija f(t,y):
@@ -162,6 +177,7 @@
             var func_names = ["func0"];
             var func_color_id = ["color0"];
             var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
+
 
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
