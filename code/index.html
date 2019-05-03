@@ -22,22 +22,7 @@
                 <a href="http://vu.lt">w: www.vu.lt</a> <br>
             </div>    
         </header>
-        <div>
-
-            <div class="visimygtukai">
-                <!-- <div id=button class=input> -->
-                <div id=button>
-                    <button id=add_func>Add another function</button>
-                </div>
-                <!-- <div id=dumygtukai class=input> -->
-                <div id=dumygtukai>
-                <button id=submit>Submit</button>
-                <button id=delete>Išvalyti grafiką</button>
-                
-                </div>
-            </div>
-
-            
+        <div>          
 
             <div id="all_inputs">
                 <div id=function>
@@ -77,6 +62,18 @@
                     
                 </div>
                 
+            </div>
+
+            <div class="visimygtukai">
+                <!-- <div id=button class=input> -->
+                <div id=button>
+                    <button id=add_func>Pridėti funkciją(as)</button>
+                </div>
+                <!-- <div id=dumygtukai class=input> -->
+                <div id=dumygtukai>
+                <button id=submit>Piešti grafiką</button>
+                <button id=delete>Išvalyti grafiką</button>
+                </div>
             </div>
 
             <div id=canvas class=canvas>
@@ -166,6 +163,12 @@
                         Funkcija f(t,y): <input id=${func_names[i]} type='text' value='y+t'>
                         <input type="color" id=${func_color_id[i]} class="f_colors" value=${func_color[i]}>
                     </div>`;
+
+                    //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
+                    var button = document.getElementById("add_func")
+                    button.style.display = 'none'
+                    var sk = document.getElementById("sk")
+                    sk.style.display = 'none'
 
 
                 }
