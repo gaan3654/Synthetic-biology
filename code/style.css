@@ -92,15 +92,18 @@ button {
 .visimygtukai{
 	display: inline-block;
 	margin: 3%;
+	margin-top: 1%;
 	margin-bottom: 0%;
 	width: 55%;
 	height: 50%;
+	background-color: black;
 }
 
 #button{
 	display: inline; 
 	float: left;
 	margin: 3%;
+	margin-top: 1%;
 	width: 42%;
 	height: 22%; 
 }
@@ -109,6 +112,7 @@ button {
 	display: inline;
 	float: right;
 	margin: 3%;
+	margin-top: 1%;
 	width: 42%;
 	height: 22%; 
 }
@@ -125,13 +129,13 @@ button {
 #submit {
 	 float: right; 
 	margin-top: 5%;
-
 }
 .canvas {
 	float: right;
-	margin: 3%;
-	
+	margin-top: 0%;
+	margin-right: 10%;	
 }
+
 .f_colors{
 	width: 20px;
 	height: 20px;
