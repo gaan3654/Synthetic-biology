@@ -34,8 +34,8 @@
                     <br>Sukūrėme šią sistemą remdamosis Runge-Kutta metodu, diferencialinėms lygtims spręsti.<br>
                     <br><strong>Sistemos naudojimas specifinėms funkcijoms.</strong><br>
                     <br><ul>
-                            <li>Cosinuso lygtims spręsti įveskite: acos(lygtis)</li>
-                            <li>Sinuso lygtims spręsti įveskite: asin(lygtis)</li>
+                            <li>Cosinuso lygtims spręsti įveskite: cos(lygtis)</li>
+                            <li>Sinuso lygtims spręsti įveskite: sin(lygtis)</li>
                             <li>Kvadratiniai šakniai traukti įveskite: sqrt(lygtis)</li>
                             <li>Kubiniai šakniai traukti įveskite: cbrt(lygtis)</li>
                             <li>Lygties kelimui laipsniu įveskite: pagrindas^laipsnis</li>
@@ -223,10 +223,20 @@
             });
 
             //Išvalo grafiką
+            var funct_count = parseInt(document.getElementById("func_counter").value);
             document.getElementById("delete").addEventListener("click", function(event){
                 ctx.clearRect(0,0, c.width, c.height )
                 ctx.beginPath();
                 draw(ctx);
+                //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
+                for(i=1; i<funct_count+1; i++){
+                var button = document.getElementById("add_func")
+                button.style.display = 'block'
+                var sk = document.getElementById("sk")
+                sk.style.display = 'block'
+
+                //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
+                }
             });           
         </script>
     </body>

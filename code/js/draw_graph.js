@@ -1,4 +1,5 @@
 function draw(ctx){
+
     //Nupiešiami sąsiuvinio langeliai
     for(i=20; i<c.height; i+=20){
         ctx.moveTo(i,0);
