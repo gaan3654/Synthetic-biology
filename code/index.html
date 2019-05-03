@@ -96,12 +96,14 @@
             var func_names = ["func0"];
             var func_color_id = ["color0"];
             var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
+
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
                 var int_begin = parseFloat(document.getElementById("int_begins").value);
                 var int_end = parseFloat(document.getElementById("int_ends").value);
                 var y0 = parseInt(document.getElementById("y0_inp").value);
                 var N = parseInt(document.getElementById("n_inp").value);
+
                 for(j=0; j<func_names.length; j++){
                     //Apskaičiuojami kiekvienos funkcijos taškai
                     //console.log(func_color[j]);
@@ -120,6 +122,21 @@
                     }
                     ctx.strokeStyle = f_color;
                     ctx.stroke(); 
+                }
+
+                 // alertai
+                var funct_count = parseInt(document.getElementById("func_counter").value);
+                for(i=0; i<funct_count+1; i++){
+                    var value = document.getElementById("func"+i).value ;
+                    // iškviečiamas alert laukas jei nįšvesta funkcija
+                    if(value.trim() == "") {
+                    alert("Error: Tuščias įvesties laukas!");
+                    }
+                    //iškviečiamas alert laukas jei įvesta netinkama funkcija
+                    if(value.trim() == "y/t") {
+                    alert("Error: Funkcija y/t neegzistuoja!");
+                    return false;
+                    }
                 }
                     
             });
@@ -149,6 +166,8 @@
                         Funkcija f(t,y): <input id=${func_names[i]} type='text' value='y+t'>
                         <input type="color" id=${func_color_id[i]} class="f_colors" value=${func_color[i]}>
                     </div>`;
+
+
                 }
             });
 
