@@ -69,7 +69,7 @@
             </div>
 
             <div class="chemical_functions">
-                    <button id=chemf1>Funkcija 1</button>
+                    <button id=chemf1>Osciliacija</button>
                     <button id=chemf2>Funkcija 2</button>
                     <button id=chemf3>Funkcija 3</button>
                     <button id=chemf4>Funkcija 4</button>
@@ -179,6 +179,23 @@
             var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
 
 
+            //pavyzdinės cheminės reakcijos, kurias užrašome kaip matematines funkcijas
+            //osciliacija pvz gal ne visai gerai
+            $('#chemf1').click(function(){
+             $('#func0').val('1/2*cos(t)+3*sin(t)');
+             $('#int_ends').val('13');
+            });
+
+            //konversija 'A + E -k> B + E'
+            $('#chemf2').click(function(){
+            $('#func_counter').val('2');
+             $('#func0').val('(-k * A * E)');
+             $('#func1').val('(k * A * E)*t');
+             $('#func2').val('0');
+             $('#int_ends').val('25');
+            });
+
+
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
                 var int_begin = parseFloat(document.getElementById("int_begins").value);
@@ -217,7 +234,7 @@
                     var oy_number=(y_norm[p]);  
                     oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
                      console.log(oy_number); 
-                    ctx.font = " 12px sans-serif";
+                    ctx.font = "9px sans-serif";
                     ctx.fillText(oy_number, 0 ,c.height-i);
                     i+=40; 
                 }       
@@ -227,7 +244,7 @@
                 for(i=40; i<c.width; i+=40){
                     var ox_number = int_end/20; //intervalo ilgį dalinu iš 20 nes yra 20 langelių
                     ox_number = ox_number.toFixed(2); //suapvalinu iki dviejų skaičių po kablelio
-                    ctx.font = " 12px sans-serif";
+                    ctx.font = " 10px sans-serif";
                     ctx.fillText(ox_number*i/20, (i+20)-5,c.width-4 ); //i+20 kad pradėtų piešti nuo 60 langelio
                     //ox_number*i, kad didėtų reikšmės tolygiai ties kiekvienu langeliu
                     
