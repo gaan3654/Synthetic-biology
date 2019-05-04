@@ -208,7 +208,12 @@
 
                 //skaičiai ant ašies OY
                 var i=40;
-                for(p=N/10; p<N; p+=N/10){ //dalinu iš 10 nes piešiame kas antrą langelį???
+                //čia mano logika intervalų skaičiukų nustatymui. 
+                //jei turime [y_norm[1], y_norm[100]], t.y N=100
+                //ir turime 20 langelių, tačiau piešiame kas antram, tai gaunas kad reikia tik 10 reikšmių
+                //tai čia paimu y_norm[10]; y_norm[20]; y_norm[30], ..., y_norm[100]
+                //reikia man pagalvoti kaip bus su skirtingais N...
+                for(p=N/10; p<N; p+=N/10){ 
                     var oy_number=(y_norm[p]);  
                     oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
                      console.log(oy_number); 
