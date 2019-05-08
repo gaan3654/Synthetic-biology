@@ -68,6 +68,7 @@
             </div>
                 
             <div id="substance_input">
+                
                 <div id=substance>  
                     A:
                     <input type="text" id="subs0"> <br>
@@ -78,49 +79,42 @@
                     C:
                     <input type="text" id="subs2"> <br>
                     <input type="color" id="color2" class="s_colors" value="#00ff00">
+                    <div id=count_subst>
+                            Kiek medžiagų norite pridėti?
+                            <input type="number" id="subs_counter" value="1">
+                        </div>
                 </div>
-                <div id=count_subst>
-                    Kiek medžiagų norite pridėti?
-                    <input type="number" id="subs_counter" value="1">
-                </div>
-                <button id=add_subs>Pridėti medžiagą(as)</button>
-            </div>
-            
-            <div id="all_inputs">                    
-                <div id=function>
-                    <div id=f class=input>
-                        Funkcija f(t,y):
-                        <input type="text" id="func0" value="log(t,5)">
-                        <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
-                    </div>         
-                </div>
+                
 
                 <div id=inputs>
-                    <div id=interv_begins class=input>
-                        Intervalo pradžia: 
-                        <input type="number" id="int_begins" value="0"> 
-                    </div> 
-                    
-                    <div id=interv_ends class=input> 
-                        Intervalo pabaiga:
-                        <input type="number" id="int_ends" value="1"> 
-                    </div>
-                    
-                    <div id=y0 class=input>
-                        y0:               
-                        <input type="number" id="y0_inp" value="1"> 
-                    </div> 
-                    
-                    <div id=N class=input>
-                        N:                
-                        <input type="number" id="n_inp" value="100"> 
-                    </div>   
-                </div>
+                        <div id=interv_begins class=input>
+                            Intervalo pradžia: 
+                            <input type="number" id="int_begins" value="0"> 
+                        </div> 
+                        
+                        <div id=interv_ends class=input> 
+                            Intervalo pabaiga:
+                            <input type="number" id="int_ends" value="1"> 
+                        </div>
+                        
+                        <div id=y0 class=input>
+                            y0:               
+                            <input type="number" id="y0_inp" value="1"> 
+                        </div> 
+                        
+                        <div id=N class=input>
+                            N:                
+                            <input type="number" id="n_inp" value="100"> 
+                        </div>   
+                 </div>
+
+                
             </div>
+          
             
             <div class="subs_react_buttons">
             <button id=add_subs>Pridėti medžiagą(as)</button>
-            <button id=submit_reaction>Pateikti reakciją(as)</button>
+            <button id=submit_reaction>Vykdyti reakciją(as)</button>
             </div>
 
             <div id="all_inputs">                    

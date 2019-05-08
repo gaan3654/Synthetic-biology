@@ -53,7 +53,7 @@ body{
 	margin-left: 3%;
 	margin-top: 1%;
 	margin-bottom: 0%;
-	width: 55%;
+	width: 80%;
 	height: 50%;
 	/* background-color: pink; */
 }
@@ -67,8 +67,7 @@ body{
 	height: 42%;
 	/* background-color: red; */
 }
-
-#substance_input {
+#substance{
 	display: block;
 	float: left;
 	margin: 3%;
@@ -85,6 +84,20 @@ body{
 	width: 43%;
 	height: 42%;
 	/* background-color: aqua; */
+}
+#submit_reaction{
+	float: right;
+}
+#add_subs{
+	float: left;
+}
+#subs_react_buttons{
+	display: inline-block;
+	margin-left: 3%;
+	margin-top: 1%;
+	margin-bottom: 0%;
+	width: 80%;
+	height: 50%;
 }
 
 .input {
@@ -179,7 +192,7 @@ button {
 	padding: 0;
 	border: none;
 	border-radius: 0;
-	margin-right: 1%;
+	margin-right: 2%;
 }
 
 .s_colors{
