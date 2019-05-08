@@ -63,5 +63,5 @@ function normalization(yy,tt, a, b, N, height, width){
         yp[i] = (height-(k*yy[i]+l)*height)-20;
         tp[i] = ((kt*tt[i]+lt)*width)+20;
     }
-    return [yp,tp];
+    return [yp,tp,y_max];
 }

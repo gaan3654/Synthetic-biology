@@ -69,3 +69,32 @@ function getRandomColor() {
 
     
 }
+
+function axle_numbers(N, y_max, int_end) {
+    //skaičiai ant ašies OY
+    var l=40;
+    //čia mano logika intervalų skaičiukų nustatymui. 
+    //jei turime [y_norm[1], y_norm[100]], t.y N=100
+    //ir turime 20 langelių, tačiau piešiame kas antram, tai gaunas kad reikia tik 10 reikšmių
+    //tai čia paimu y_norm[10]; y_norm[20]; y_norm[30], ..., y_norm[100]
+    //reikia man pagalvoti kaip bus su skirtingais N...
+    for(p=N/10; p<N; p+=N/10){ 
+        var oy_number=(y_max);  
+        oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
+         //console.log(oy_number); 
+        ctx.font = "9px sans-serif";
+        ctx.fillText(oy_number, 0 ,0+l);
+        l+=40; 
+    }       
+    
+
+    //skaičiai ant ašies OX
+    for(i=40; i<c.width; i+=40){
+        var ox_number = int_end/20; //intervalo ilgį dalinu iš 20 nes yra 20 langelių
+        ox_number = ox_number.toFixed(2); //suapvalinu iki dviejų skaičių po kablelio
+        ctx.font = " 10px sans-serif";
+        ctx.fillText(ox_number*i/20, (i+20)-5,c.width-4 ); //i+20 kad pradėtų piešti nuo 60 langelio
+        //ox_number*i, kad didėtų reikšmės tolygiai ties kiekvienu langeliu
+        
+    }
+}
