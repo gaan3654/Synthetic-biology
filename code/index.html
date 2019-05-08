@@ -72,17 +72,17 @@
                 <div id=substance>  
                     <div class=input_blocks>
                         [A']:
-                        <input type="text" id="A"> 
+                        <input type="text" id="A" value="1"> 
                         <input type="color" id="color0" class="s_colors" value="#ff0000">
                     </div>
                     <div class=input_blocks>
                         [B']:
-                        <input type="text" id="B"> 
+                        <input type="text" id="B" value="2"> 
                         <input type="color" id="color1" class="s_colors" value="#0000ff">
                     </div>
                     <div class=input_blocks>
                         [C']:
-                        <input type="text" id="C"> 
+                        <input type="text" id="C" value="3"> 
                         <input type="color" id="color2" class="s_colors" value="#00ff00">
                     </div>
                     <div id=count_subst>
@@ -188,16 +188,38 @@
                 var int_end = parseFloat(document.getElementById("int_ends").value);
                 //var y0 = parseInt(document.getElementById("y0_inp").value);
                 var N = parseInt(document.getElementById("n_inp").value);
-                
+                var reaction_array = [
+                    replace_symbols(document.getElementById("reaction_side0").value),
+                    replace_symbols(document.getElementById("reaction_side1").value)
+                ];
+                reaction_array[0] = reaction_array[0].replace(/\W|\d/g,"");
+                reaction_array[1] = reaction_array[1].replace(/\W|\d/g,"");
+                console.log(reaction_array[0]);
+                console.log(reaction_array[1]);
+
+                //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
+                var y0_left = reaction_array[0].split("");
+                for(i=0; i<reaction_array[0].length; i++){
+                    y0_left[i] = document.getElementById(`${y0_left[i]}`).value;
+                }
+                var y0_right = reaction_array[1].split("");
+                for(i=0; i<reaction_array[1].length; i++){
+                    y0_right[i] = document.getElementById(`${y0_right[i]}`).value;
+                }
+                var y0 = [y0_left, y0_right];
+                console.log(y0[0]);
+                console.log(y0[1]);
+
                 for(j=0; j<2; j++){
-                    var reaction_array = document.getElementById(`reaction_side${j}`).value;
-                    console.log(reaction_array);s
-                    //Apskaičiuojami kiekvienos funkcijos taškai
-                    var funct = document.getElementById(func_names[j]).value;
-                    funct = replace_symbols(funct);
+                    //var reaction_array = document.getElementById(`reaction_side${j}`).value;
+                    //reaction_array = replace_symbols(reaction_array);
                     
-                    var f_color = document.getElementById(func_color_id[j]).value;
-                    var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
+                    var s_color = document.getElementById(subs_color_id[j]).value;
+
+                    
+                   
+
+                    var [yy, tt] = solution(y0, int_begin, int_end, N, reaction_array);
                     var [y_norm,t_norm, y_max] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
                     //Piešiamia kreivė
                     ctx.beginPath();
@@ -206,14 +228,13 @@
                         ctx.lineTo(t_norm[p],y_norm[p]);
                         //console.log(y_norm[p]);
                     }
-                    ctx.strokeStyle = f_color;
+                    ctx.strokeStyle = s_color;
                     ctx.stroke(); 
                 }
                 //Piešiami skičiai prie grafiko ašių
-                axle_numbers(N, y_max, int_end);
+                //axle_numbers(N, y_max, int_end);
                     
             });
-
 
             //Užpildomi funkcijų laukai iš pateiktos reakcijos
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
@@ -221,14 +242,7 @@
                 var get_rate = document.getElementById("reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
-                //Išskiria kairioji reakcijos pusė nuo dešinės
-                var left_reaction = reaction_sides[0].split("+");
-                var right_reaction;
-                if(new RegExp(/\+/).test(reaction_sides[1])){
-                    right_reaction = reaction_sides[1].split("+");
-                } else {
-                    right_reaction = reaction_sides[1];
-                }
+                
                 //Sugeneruojamos funkcijos abiem reakcijos pusėms
                 reaction_sides[0] = reaction_sides[0].replace("+", "*")+`*(-${get_rate})`;
                 reaction_sides[1] = reaction_sides[1].replace("+", "*")+`*${get_rate}`;
@@ -243,7 +257,7 @@
                 d.innerHTML += 
                 `<div class=input_blocks>
                     Dešinioji: 
-                    <input type="text" id="reaction_side0" value=${reaction_sides[1]}>
+                    <input type="text" id="reaction_side1" value=${reaction_sides[1]}>
                 </div>`;
             });
 
@@ -251,7 +265,7 @@
             var subs_names = ["A","B","C"];
             var subs_color_id = ["color0", "color1", "color2"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-            var subs_html_name = ["A","B","C","D","E","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
             
             //Prideda papildomą medžiagos input lauką
             document.getElementById("add_subs").addEventListener("click", function(event){
