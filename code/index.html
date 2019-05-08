@@ -72,17 +72,17 @@
                 <div id=substance>  
                     <div class=input_blocks>
                         A:
-                        <input type="text" id="subs0"> 
+                        <input type="text" id="A"> 
                         <input type="color" id="color0" class="s_colors" value="#ff0000">
                     </div>
                     <div class=input_blocks>
                         B:
-                        <input type="text" id="subs1"> 
+                        <input type="text" id="B"> 
                         <input type="color" id="color1" class="s_colors" value="#0000ff">
                     </div>
                     <div class=input_blocks>
                         C:
-                        <input type="text" id="subs2"> 
+                        <input type="text" id="C"> 
                         <input type="color" id="color2" class="s_colors" value="#00ff00">
                     </div>
                     <div id=count_subst>
@@ -114,7 +114,7 @@
                     </div>   
                     <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
-                        <input type="text" id="reaction" value="A+B->0">
+                        <input type="text" id="reaction_input" value="A+B->C">
                     </div>
                  </div>
 
@@ -233,10 +233,25 @@
                     
             });
 
-            var subs_names = ["subs0","subs1","subs2"];
+
+
+            document.getElementById("submit_reaction").addEventListener("click", function(event) {
+                var get_reaction = document.getElementById("reaction_input").value;
+                var reaction_sides = get_reaction.split(/<?->/);
+                reaction_sides[0] = reaction_sides[0].replace("+", "*");
+                reaction_sides[1] = reaction_sides[1].replace("+", "*");
+                console.log(reaction_sides);
+            });
+
+
+
+
+
+            //var subs_names = ["subs0","subs1","subs2"];
+            var subs_names = ["A","B","C"];
             var subs_color_id = ["color0", "color1", "color2"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-            var subs_html_name = ["A","B","C","D","E","F","G","H"];
+            var subs_html_name = ["A","B","C","D","E","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
              //Prideda papildomą medžiagos input lauką
              document.getElementById("add_subs").addEventListener("click", function(event){
                 var d = document.getElementById("substance");
@@ -244,7 +259,8 @@
                 var substance_count = subs_color_id.length+subs_count;
                 for(i=subs_color_id.length; i<substance_count; i++){
                     console.log(i);
-                    subs_names[i] = "subs"+i;
+                    //subs_names[i] = "subs"+i;
+                    subs_names[i] = subs_html_name[i];
                     subs_color_id[i] = "color"+i;
                     //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
                     if(subs_color[i] == null){
@@ -282,14 +298,15 @@
                 ctx.beginPath();
                 draw(ctx);
                 //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
-                /*for(i=1; i<funct_count+1; i++){
-                var button = document.getElementById("add_func")
+                //Reikia pašalinti papildomai pridėtus laukus
+                //for(i=1; i<funct_count+1; i++){
+                var button = document.getElementById("add_subs")
                 button.style.display = 'block'
-                var sk = document.getElementById("sk")
-                sk.style.display = 'block'
+                var counter_input_field = document.getElementById("count_subst")
+                counter_input_field.style.display = 'block'
 
                 //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
-                }*/
+                //}
             });           
         </script>
     </body>
