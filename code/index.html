@@ -70,17 +70,17 @@
             <div id="substance_input">
                 
                 <div id=substance>  
-                    <div class=input>
+                    <div class=input_blocks>
                         A:
                         <input type="text" id="subs0"> 
                         <input type="color" id="color0" class="s_colors" value="#ff0000">
                     </div>
-                    <div class=input>
+                    <div class=input_blocks>
                         B:
                         <input type="text" id="subs1"> 
                         <input type="color" id="color1" class="s_colors" value="#0000ff">
                     </div>
-                    <div class=input>
+                    <div class=input_blocks>
                         C:
                         <input type="text" id="subs2"> 
                         <input type="color" id="color2" class="s_colors" value="#00ff00">
@@ -93,26 +93,26 @@
                 
 
                 <div id=inputs>
-                    <div id=interv_begins class=input>
+                    <div id=interv_begins class=input_blocks>
                         Intervalo pradžia: 
                         <input type="number" id="int_begins" value="0"> 
                     </div> 
                     
-                    <div id=interv_ends class=input> 
+                    <div id=interv_ends class=input_blocks> 
                         Intervalo pabaiga:
                         <input type="number" id="int_ends" value="1"> 
                     </div>
                     
-                    <div id=y0 class=input>
+                    <div id=y0 class=input_blocks>
                         y0:               
                         <input type="number" id="y0_inp" value="1"> 
                     </div> 
                     
-                    <div id=N class=input>
+                    <div id=N class=input_blocks>
                         N:                
                         <input type="number" id="n_inp" value="100"> 
                     </div>   
-                    <div id=reaction class=input>
+                    <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
                         <input type="text" id="reaction" value="A+B->0">
                     </div>
@@ -129,7 +129,7 @@
 
             <div id="all_inputs">                    
                 <div id=function>
-                    <div id=f class=input>
+                    <div id=f class=input_blocks>
                         Funkcija f(t,y):
                         <input type="text" id="func0" value="log(t,5)">
                         <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
@@ -259,7 +259,7 @@
                     }
                     //Pridedami įvesties laukai papildomoms funkcijoms
                     d.innerHTML += 
-                    `<div class=input>
+                    `<div class=input_blocks>
                         ${subs_html_name[i]}: <input id=${subs_names[i]} type='text'>
                         <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                     </div>`;
@@ -273,12 +273,6 @@
 
                 }
             });
-
-
-
-
-
-
 
 
             //Išvalo grafiką
