@@ -71,17 +71,17 @@
                 
                 <div id=substance>  
                     <div class=input_blocks>
-                        A:
+                        [A']:
                         <input type="text" id="A"> 
                         <input type="color" id="color0" class="s_colors" value="#ff0000">
                     </div>
                     <div class=input_blocks>
-                        B:
+                        [B']:
                         <input type="text" id="B"> 
                         <input type="color" id="color1" class="s_colors" value="#0000ff">
                     </div>
                     <div class=input_blocks>
-                        C:
+                        [C']:
                         <input type="text" id="C"> 
                         <input type="color" id="color2" class="s_colors" value="#00ff00">
                     </div>
@@ -117,8 +117,8 @@
                         <input type="text" id="reaction_input" value="A+B->C">
                     </div>
                     <div id=reaction class=input_blocks>
-                            Reakcijos greitis:
-                            <input type="text" id="reaction_rate" value="0.1">
+                        Reakcijos greitis:
+                        <input type="text" id="reaction_rate" value="0.1">
                     </div>
                    
                  </div>
@@ -186,10 +186,12 @@
             document.getElementById("submit").addEventListener("click", function(event) {
                 var int_begin = parseFloat(document.getElementById("int_begins").value);
                 var int_end = parseFloat(document.getElementById("int_ends").value);
-                var y0 = parseInt(document.getElementById("y0_inp").value);
+                //var y0 = parseInt(document.getElementById("y0_inp").value);
                 var N = parseInt(document.getElementById("n_inp").value);
-
-                for(j=0; j<func_names.length; j++){
+                
+                for(j=0; j<2; j++){
+                    var reaction_array = document.getElementById(`reaction_side${j}`).value;
+                    console.log(reaction_array);s
                     //Apskaičiuojami kiekvienos funkcijos taškai
                     var funct = document.getElementById(func_names[j]).value;
                     funct = replace_symbols(funct);
@@ -209,37 +211,17 @@
                 }
                 //Piešiami skičiai prie grafiko ašių
                 axle_numbers(N, y_max, int_end);
-
-                // alertai
-                /*var funct_count = parseInt(document.getElementById("subs_counter").value);
-                for(i=0; i<funct_count+1; i++){
-                    var value = document.getElementById("func"+i).value ;
-                    // iškviečiamas alert laukas jei nįšvesta funkcija
-                    if(value.trim() == "") {
-                        alert("Error: Tuščias įvesties laukas!");
-                        return false;
-                    }
-                    //iškviečiamas alert laukas jei įvesta netinkama funkcija
-                    //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
-                    if(value.trim() == "y/t") {
-                        alert("Error: Funkcija y/t neegzistuoja!");
-                        return false;
-                    }
-                    else{
-                        return true;
-                    }
-                }*/
                     
             });
 
 
-
+            //Užpildomi funkcijų laukai iš pateiktos reakcijos
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
                 var d = document.getElementById("function");
                 var get_rate = document.getElementById("reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
-
+                //Išskiria kairioji reakcijos pusė nuo dešinės
                 var left_reaction = reaction_sides[0].split("+");
                 var right_reaction;
                 if(new RegExp(/\+/).test(reaction_sides[1])){
@@ -247,39 +229,32 @@
                 } else {
                     right_reaction = reaction_sides[1];
                 }
-                
+                //Sugeneruojamos funkcijos abiem reakcijos pusėms
                 reaction_sides[0] = reaction_sides[0].replace("+", "*")+`*(-${get_rate})`;
                 reaction_sides[1] = reaction_sides[1].replace("+", "*")+`*${get_rate}`;
-
-                for(i=0;i<left_reaction.length;i++){
-                    console.log(left_reaction[i]);
-                    d.innerHTML += 
-                    `<div class=input_blocks>
-                        [${left_reaction[i]}']: 
-                        <input type="text" id=${left_reaction[i]} value=${reaction_sides[0]}>
-                    </div>`;
-                }
-                for(i=0;i<right_reaction.length;i++){
-                    d.innerHTML += 
-                    `<div class=input_blocks>
-                        [${right_reaction[i]}']: 
-                        <input type="text" id=${right_reaction[i]} value=${reaction_sides[1]}>
-                    </div>`;
-                }
-                
+                //Sukuriami input laukai funkcijoms
+                //kairioji pusė
+                d.innerHTML += 
+                `<div class=input_blocks>
+                    Kairioji: 
+                    <input type="text" id="reaction_side0" value=${reaction_sides[0]}>
+                </div>`;
+                //dešinioji pusė
+                d.innerHTML += 
+                `<div class=input_blocks>
+                    Dešinioji: 
+                    <input type="text" id="reaction_side0" value=${reaction_sides[1]}>
+                </div>`;
             });
 
 
-
-
-
-            //var subs_names = ["subs0","subs1","subs2"];
             var subs_names = ["A","B","C"];
             var subs_color_id = ["color0", "color1", "color2"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
             var subs_html_name = ["A","B","C","D","E","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-             //Prideda papildomą medžiagos input lauką
-             document.getElementById("add_subs").addEventListener("click", function(event){
+            
+            //Prideda papildomą medžiagos input lauką
+            document.getElementById("add_subs").addEventListener("click", function(event){
                 var d = document.getElementById("substance");
                 var subs_count = parseInt(document.getElementById("subs_counter").value);
                 var substance_count = subs_color_id.length+subs_count;
@@ -302,7 +277,7 @@
                     //Pridedami įvesties laukai papildomoms funkcijoms
                     d.innerHTML += 
                     `<div class=input_blocks>
-                        ${subs_html_name[i]}: <input id=${subs_names[i]} type='text'>
+                        [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text'>
                         <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                     </div>`;
 
@@ -333,7 +308,27 @@
 
                 //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
                 //}
-            });           
+            });    
+
+              // alertai
+                /*var funct_count = parseInt(document.getElementById("subs_counter").value);
+                for(i=0; i<funct_count+1; i++){
+                    var value = document.getElementById("func"+i).value ;
+                    // iškviečiamas alert laukas jei nįšvesta funkcija
+                    if(value.trim() == "") {
+                        alert("Error: Tuščias įvesties laukas!");
+                        return false;
+                    }
+                    //iškviečiamas alert laukas jei įvesta netinkama funkcija
+                    //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
+                    if(value.trim() == "y/t") {
+                        alert("Error: Funkcija y/t neegzistuoja!");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }*/       
         </script>
     </body>
 </html>
