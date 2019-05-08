@@ -131,25 +131,9 @@
             <button id=add_subs>Pridėti medžiagą(as)</button>
             <button id=submit_reaction>Vykdyti reakciją(as)</button>
             </div>
-
-            <div id="all_inputs">                    
-                <div id=function>
-                    <div id=f class=input_blocks>
-                        Funkcija f(t,y):
-                        <input type="text" id="func0" value="log(t,5)">
-                        <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
-                    </div> 
-                    <div id=f class=input_blocks>
-                            Funkcija f(t,y):
-                            <input type="text" id="func1" value="log(t,5)">
-                            <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
-                    </div>  
-                    <div id=f class=input_blocks>
-                            Funkcija f(t,y):
-                            <input type="text" id="func3" value="log(t,5)">
-                            <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
-                    </div>  
-                </div>
+            
+            <div id=function>
+                <!--Talpinamos reakcijos sukurtos funkcijos-->
             </div>
 
             <div class="visimygtukai">
@@ -251,12 +235,38 @@
 
 
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
+                var d = document.getElementById("function");
                 var get_rate = document.getElementById("reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
+
+                var left_reaction = reaction_sides[0].split("+");
+                var right_reaction;
+                if(new RegExp(/\+/).test(reaction_sides[1])){
+                    right_reaction = reaction_sides[1].split("+");
+                } else {
+                    right_reaction = reaction_sides[1];
+                }
+                
                 reaction_sides[0] = reaction_sides[0].replace("+", "*")+`*(-${get_rate})`;
                 reaction_sides[1] = reaction_sides[1].replace("+", "*")+`*${get_rate}`;
-                console.log(reaction_sides);
+
+                for(i=0;i<left_reaction.length;i++){
+                    console.log(left_reaction[i]);
+                    d.innerHTML += 
+                    `<div class=input_blocks>
+                        [${left_reaction[i]}']: 
+                        <input type="text" id=${left_reaction[i]} value=${reaction_sides[0]}>
+                    </div>`;
+                }
+                for(i=0;i<right_reaction.length;i++){
+                    d.innerHTML += 
+                    `<div class=input_blocks>
+                        [${right_reaction[i]}']: 
+                        <input type="text" id=${right_reaction[i]} value=${reaction_sides[1]}>
+                    </div>`;
+                }
+                
             });
 
 
