@@ -16,8 +16,8 @@ body{
 }
 
 .mainDetails__photo img{
-    height: 8%;
-	width: 8%;
+    height: 6%;
+	width: 6%;
     border-radius: 50%;
     float:left;
     object-fit: cover;
@@ -59,15 +59,6 @@ body{
 	/* background-color: pink; */
 }
 
-#function {
-	display: block;
-	float: left;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 43%;
-	height: 42%;
-	/* background-color: red; */
-}
 #substance{
 	display: block;
 	float: left;
@@ -88,24 +79,35 @@ body{
 	/* background-color: aqua; */
 }
 
-#submit_reaction{
-	float: right;
-}
-
-#add_subs{
-	float: left;
-}
-
-#subs_react_buttons{
+.subs_react_buttons{
 	display: inline-block;
 	margin-left: 3%;
-	margin-top: 1%;
+	margin-top: 0%;
 	margin-bottom: 0%;
 	width: 80%;
 	height: 50%;
 }
 
-.input {
+#add_subs{
+	float: left;
+	margin-left: 23%;
+	margin-bottom: 1%;
+	margin-top: 0%;
+	width: 23%;
+	height: 22%;
+}
+
+#submit_reaction{
+	display: inline;
+	float: right;
+	margin: 3%;
+	margin-bottom: 1%;
+	margin-top: 0%;
+	width: 23%;
+	height: 22%; 
+}
+
+.input_blocks {
 	display: block;
 	margin-bottom: 2%;
 }
@@ -126,15 +128,7 @@ button {
 	width: 48%;
 	height: 15%;
 }
-.subs_react_buttons{
-	display: inline-block;
-	margin-left: 3%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	width: 55%;
-	height: 50%;
-	/* background-color: gold; */
-}
+
 #function {
 	display: block;
 	float: left;
@@ -144,6 +138,7 @@ button {
 	height: 42%;
 	/* background-color: red; */
 }
+
 .visimygtukai{
 	display: inline-block;
 	margin-left: 3%;
@@ -172,7 +167,6 @@ button {
 	height: 22%; 
 }
 
-
 #delete{
 	float: left; 
 	margin-top: 5%;
@@ -182,6 +176,7 @@ button {
 	float: right; 
 	margin-top: 5%;
 }
+
 #canvas {
 	float: right;
 	margin-top: 0%;
@@ -189,15 +184,6 @@ button {
 	width: 30%;
 	height: 50%;
 	/* background-color: green;	 */
-}
-
-.f_colors{
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	border: none;
-	border-radius: 0;
-	margin-right: 2%;
 }
 
 .s_colors{
