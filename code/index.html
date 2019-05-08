@@ -29,43 +29,42 @@
         <div>    
             <button id=info >Info</button>
             <div id="dialog">
-                    <br><strong>Sistemos naudojimas specifinėms funkcijoms.</strong><br>
-                    <br><ul>
-                            <li>Trigonometrinės lygties pavyzdys:
-                                <ul>
-                                    <li>cos(lygtis)</li>
-                                    <li>acos(lygtis)</li>
-                                </ul>
-                            </li>
-                            <li>Šaknies traukimas:
-                                    <ul>
-                                        <li>sqrt(lygtis)</li>
-                                        <li>cbrt(lygtis)</li>
-                                    </ul>
-                                </li>
-                            </li>
-                            <li>Kėlimui laipsniu:
-                                    <ul>
-                                        <li>pagrindas^laipsnis</li>
-                                    </ul>
-                                </li>
-                            </li>
-                            <li>Logaritmai:
-                                    <ul>
-                                        <li>log(pagrindas,logaritmuojamas reiškinys</li>
-                                        <li>ln(lygtis)</li>
-                                    </ul>
-                                </li>
-                            </li>
-                            <li>Konstantos:
-                                    <ul>
-                                        <li>pi</li>
-                                        <li>e</li>
-                                    </ul>
-                                </li>
-                            </li>
-                          </ul> 
-                    </p>
+                <br><strong>Sistemos naudojimas specifinėms funkcijoms.</strong><br><br>
+                <ul>
+                    <li>Trigonometrinės lygties pavyzdys:
+                        <ul>
+                            <li>cos(lygtis)</li>
+                            <li>acos(lygtis)</li>
+                        </ul>
+                    </li>
+                    <li>Šaknies traukimas:
+                            <ul>
+                                <li>sqrt(lygtis)</li>
+                                <li>cbrt(lygtis)</li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li>Kėlimui laipsniu:
+                            <ul>
+                                <li>pagrindas^laipsnis</li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li>Logaritmai:
+                            <ul>
+                                <li>log(pagrindas,logaritmuojamas reiškinys</li>
+                                <li>ln(lygtis)</li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li>Konstantos:
+                            <ul>
+                                <li>pi</li>
+                                <li>e</li>
+                            </ul>
+                        </li>
+                    </li>
+                </ul> 
             </div>
 
             <div class="chemical_functions">
@@ -130,8 +129,8 @@
                 </div>
                 <!-- <div id=dumygtukai class=input> -->
                 <div id=dumygtukai>
-                <button id=submit>Piešti grafiką</button>
-                <button id=delete>Išvalyti grafiką</button>
+                    <button id=submit>Piešti grafiką</button>
+                    <button id=delete>Išvalyti grafiką</button>
                 </div>
             </div>
 
@@ -144,7 +143,7 @@
         </div>
 
         <script>
-            //jQuery messagui gauti
+            //jQuery pranešimui gauti
             $(document).ready(function() {
             $(function() {
                 $( "#dialog" ).dialog({
@@ -205,7 +204,6 @@
 
                 for(j=0; j<func_names.length; j++){
                     //Apskaičiuojami kiekvienos funkcijos taškai
-                    //console.log(func_color[j]);
                     var funct = document.getElementById(func_names[j]).value;
                     funct = replace_symbols(funct);
                     
@@ -217,7 +215,7 @@
                     ctx.moveTo(t_norm[0],y_norm[0]);
                     for(p=1; p<=N; p++){
                         ctx.lineTo(t_norm[p],y_norm[p]);
-                        console.log(y_norm[p]);
+                        //console.log(y_norm[p]);
                     }
                     ctx.strokeStyle = f_color;
                     ctx.stroke(); 
@@ -233,7 +231,7 @@
                 for(p=N/10; p<N; p+=N/10){ 
                     var oy_number=(y_norm[p]);  
                     oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
-                     console.log(oy_number); 
+                     //console.log(oy_number); 
                     ctx.font = "9px sans-serif";
                     ctx.fillText(oy_number, 0 ,c.height-i);
                     i+=40; 
