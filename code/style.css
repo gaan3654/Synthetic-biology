@@ -147,10 +147,7 @@ button {
 	width: 42%;
 	height: 22%; 
 }
-#add_func {
-	margin-top: 5%;
-	float: right;
-}
+
 
 #delete{
 	float: left; 
@@ -186,18 +183,4 @@ button {
 	border: none;
 	border-radius: 0;
 	margin-right: 1%;
-}
-
-.chemical_functions{
-	/* background-color: blue; */
-	margin-left: 3%;
-	margin-top: 2%;
-	width: 55%;	
-	height: 50%;
-}
-
-.chemical_functions button{
-	margin: 1%;
-	width: 30%;	
-	height: 50%;
 }

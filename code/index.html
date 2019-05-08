@@ -70,14 +70,14 @@
             <div id="substance_input">
                 <div id=substance>  
                     A:
-                    <input type="text" id="a"> <br>
+                    <input type="text" id="subs0"> <br>
                     <input type="color" id="color0" class="s_colors" value="#ff0000">
                     B:
-                    <input type="text" id="b"> <br>
-                    <input type="color" id="color1" class="s_colors" value="#ff0000">
+                    <input type="text" id="subs1"> <br>
+                    <input type="color" id="color1" class="s_colors" value="#0000ff">
                     C:
-                    <input type="text" id="c"> <br>
-                    <input type="color" id="color2" class="s_colors" value="#ff0000">
+                    <input type="text" id="subs2"> <br>
+                    <input type="color" id="color2" class="s_colors" value="#00ff00">
                     Kiek medžiagų norite pridėti?
                     <input type="number" id="subs_counter" value="1">
             </div>
@@ -91,13 +91,8 @@
                     <div id=f class=input>
                         Funkcija f(t,y):
                         <input type="text" id="func0" value="log(t,5)">
-                        <input type="color" id="color0" class="f_colors" value="#ff0000">
+                        <!--<input type="color" id="color0" class="f_colors" value="#ff0000">-->
                     </div>         
-                    
-                    <div id=sk class=input>
-                        Kiek funkcijų pridėti?
-                        <input type="number" id="func_counter" value="1">
-                    </div> 
                 </div>
             
                 <div id=inputs>
@@ -127,11 +122,6 @@
             </div>
 
             <div class="visimygtukai">
-                <!-- <div id=button class=input> -->
-                <div id=button>
-                    <button id=add_func>Pridėti funkciją(as)</button>
-                </div>
-                <!-- <div id=dumygtukai class=input> -->
                 <div id=dumygtukai>
                     <button id=submit>Piešti grafiką</button>
                     <button id=delete>Išvalyti grafiką</button>
@@ -176,28 +166,6 @@
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             draw(ctx);
-            //Kintamieji funkcijų grafikų piešimui
-            var func_names = ["func0"];
-            var func_color_id = ["color0"];
-            var func_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-
-
-            //pavyzdinės cheminės reakcijos, kurias užrašome kaip matematines funkcijas
-            //osciliacija pvz gal ne visai gerai
-            $('#chemf1').click(function(){
-             $('#func0').val('1/2*cos(t)+3*sin(t)');
-             $('#int_ends').val('13');
-            });
-
-            //konversija 'A + E -k> B + E'
-            $('#chemf2').click(function(){
-            $('#func_counter').val('2');
-             $('#func0').val('(-k * A * E)');
-             $('#func1').val('(k * A * E)*t');
-             $('#func2').val('0');
-             $('#int_ends').val('25');
-            });
-
 
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
@@ -213,7 +181,7 @@
                     
                     var f_color = document.getElementById(func_color_id[j]).value;
                     var [yy, tt] = solution(y0, int_begin, int_end, N, funct);
-                    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
+                    var [y_norm,t_norm, y_max] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
                     //Piešiamia kreivė
                     ctx.beginPath();
                     ctx.moveTo(t_norm[0],y_norm[0]);
@@ -224,36 +192,11 @@
                     ctx.strokeStyle = f_color;
                     ctx.stroke(); 
                 }
-
-                //skaičiai ant ašies OY
-                var i=40;
-                //čia mano logika intervalų skaičiukų nustatymui. 
-                //jei turime [y_norm[1], y_norm[100]], t.y N=100
-                //ir turime 20 langelių, tačiau piešiame kas antram, tai gaunas kad reikia tik 10 reikšmių
-                //tai čia paimu y_norm[10]; y_norm[20]; y_norm[30], ..., y_norm[100]
-                //reikia man pagalvoti kaip bus su skirtingais N...
-                for(p=N/10; p<N; p+=N/10){ 
-                    var oy_number=(y_norm[p]);  
-                    oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
-                     //console.log(oy_number); 
-                    ctx.font = "9px sans-serif";
-                    ctx.fillText(oy_number, 0 ,0+i);
-                    i+=40; 
-                }       
-                
-
-                //skaičiai ant ašies OX
-                for(i=40; i<c.width; i+=40){
-                    var ox_number = int_end/20; //intervalo ilgį dalinu iš 20 nes yra 20 langelių
-                    ox_number = ox_number.toFixed(2); //suapvalinu iki dviejų skaičių po kablelio
-                    ctx.font = " 10px sans-serif";
-                    ctx.fillText(ox_number*i/20, (i+20)-5,c.width-4 ); //i+20 kad pradėtų piešti nuo 60 langelio
-                    //ox_number*i, kad didėtų reikšmės tolygiai ties kiekvienu langeliu
-                    
-                }
+                //Piešiami skičiai prie grafiko ašių
+                axle_numbers(N, y_max, int_end);
 
                 // alertai
-                var funct_count = parseInt(document.getElementById("func_counter").value);
+                /*var funct_count = parseInt(document.getElementById("subs_counter").value);
                 for(i=0; i<funct_count+1; i++){
                     var value = document.getElementById("func"+i).value ;
                     // iškviečiamas alert laukas jei nįšvesta funkcija
@@ -262,6 +205,7 @@
                         return false;
                     }
                     //iškviečiamas alert laukas jei įvesta netinkama funkcija
+                    //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
                     if(value.trim() == "y/t") {
                         alert("Error: Funkcija y/t neegzistuoja!");
                         return false;
@@ -269,58 +213,20 @@
                     else{
                         return true;
                     }
-                }
+                }*/
                     
             });
 
-            
-            //Prideda papildomą funkcijos input lauką
-            document.getElementById("add_func").addEventListener("click", function(event){
-                var d = document.getElementById("function");
-                var funct_count = parseInt(document.getElementById("func_counter").value);
-                
-                for(i=1; i<funct_count+1; i++){
-                    func_names[i] = "func"+i;
-                    func_color_id[i] = "color"+i;
-                    //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
-                    if(func_color[i] == null){
-                        func_color[i] = getRandomColor();
-                        //Tikrinama ar tokia spalva jau nėra priskirta
-                        for(j=0; j<func_color.length-1; j++){
-                            if(func_color[i]==func_color[j]){
-                                func_color[i] = getRandomColor();
-                                j = 0;
-                            }
-                        }
-                    }
-                    //Pridedami įvesties laukai papildomoms funkcijoms
-                    d.innerHTML += 
-                    `<div class=input>
-                        Funkcija f(t,y): <input id=${func_names[i]} type='text' value='y+t'>
-                        <input type="color" id=${func_color_id[i]} class="f_colors" value=${func_color[i]}>
-                    </div>`;
-
-                    //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
-                    var button = document.getElementById("add_func")
-                    button.style.display = 'none'
-                    var sk = document.getElementById("sk")
-                    sk.style.display = 'none'
-
-
-                }
-            });
-
-            var subs_names = ["func0"];
-            var subs_color_id = ["color0"];
+            var subs_names = ["subs0","subs1","subs2"];
+            var subs_color_id = ["color0", "color1", "color2"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
 
              //Prideda papildomą medžiagos input lauką
              document.getElementById("add_subs").addEventListener("click", function(event){
                 var d = document.getElementById("substance");
                 var subs_count = parseInt(document.getElementById("subs_counter").value);
-                
-                for(i=1; i<subs_count+1; i++){
-                    subs_names[i] = "func"+i;
+                for(i=subs_color_id.length; i<subs_count+1; i++){
+                    subs_names[i] = "subs"+i;
                     subs_color_id[i] = "color"+i;
                     //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
                     if(subs_color[i] == null){
@@ -341,7 +247,7 @@
                     </div>`;
 
                     //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
-                    var button = document.getElementById("add_func")
+                    var button = document.getElementById("add_subs")
                     button.style.display = 'none'
                     var sk = document.getElementById("sk")
                     sk.style.display = 'none'
@@ -358,20 +264,20 @@
 
 
             //Išvalo grafiką
-            var funct_count = parseInt(document.getElementById("func_counter").value);
+            //var funct_count = parseInt(document.getElementById("func_counter").value);
             document.getElementById("delete").addEventListener("click", function(event){
                 ctx.clearRect(0,0, c.width, c.height )
                 ctx.beginPath();
                 draw(ctx);
                 //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
-                for(i=1; i<funct_count+1; i++){
+                /*for(i=1; i<funct_count+1; i++){
                 var button = document.getElementById("add_func")
                 button.style.display = 'block'
                 var sk = document.getElementById("sk")
                 sk.style.display = 'block'
 
                 //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
-                }
+                }*/
             });           
         </script>
     </body>
