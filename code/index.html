@@ -118,7 +118,7 @@
                     </div>
                     <div id=reaction class=input_blocks>
                             Reakcijos greitis:
-                            <input type="text" id="reaction_rate" value="k">
+                            <input type="text" id="reaction_rate" value="0.1">
                     </div>
                    
                  </div>
@@ -241,10 +241,11 @@
 
 
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
+                var get_rate = document.getElementById("reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
-                reaction_sides[0] = reaction_sides[0].replace("+", "*");
-                reaction_sides[1] = reaction_sides[1].replace("+", "*");
+                reaction_sides[0] = reaction_sides[0].replace("+", "*")+`*(-${get_rate})`;
+                reaction_sides[1] = reaction_sides[1].replace("+", "*")+`*${get_rate}`;
                 console.log(reaction_sides);
             });
 
