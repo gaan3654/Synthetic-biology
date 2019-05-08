@@ -35,19 +35,18 @@ function solution(y0, a, b, N, func){
     } 
     return [y,t];
 }
+var y_min=0;
+var y_max;
 //Gautų rezultatų normalizavimas
 function normalization(yy,tt, a, b, N, height, width){
     var yp = [];
     var tp = [];
-    var y_max=yy[0];
-    var y_min=yy[0];
+    y_max=yy[0];
+    //console.log(y_max);
     for(i=0; i<N; i++){
         //Jei y_min ir y_max sutampa tai if'ą
         if(y_max<yy[i]){
             y_max=yy[i]
-        }
-        if(y_min>yy[i]){
-            y_min=yy[i]
         }
     }
     //yy normalizacija
