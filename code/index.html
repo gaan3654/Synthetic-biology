@@ -67,22 +67,21 @@
                           </ul> 
                     </p>
             </div>
+                
+            <div id="substance_input">
+                    <div id=substance>  
+                    A:<input type="text" id="a"> <br>
+                    <input type="color" id="color0" class="s_colors" value="#ff0000">
+                    B:<input type="text" id="b"> <br>
+                    <input type="color" id="color1" class="s_colors" value="#ff0000">
+                    C:<input type="text" id="c"> <br>
+                    <input type="color" id="color2" class="s_colors" value="#ff0000">
+                    Kiek medžiagų norite pridėti?
+                    <input type="number" id="subs_counter" value="1">
+                    </div>
+                    <button id=add_subs>Pridėti medžiagą(as)</button>
 
-            <div class="chemical_functions">
-                    <button id=chemf1>Osciliacija</button>
-                    <button id=chemf2>Funkcija 2</button>
-                    <button id=chemf3>Funkcija 3</button>
-                    <button id=chemf4>Funkcija 4</button>
-                    <button id=chemf5>Funkcija 5</button>
-                    <button id=chemf6>Funkcija 6</button>
-                    <button id=chemf7>Funkcija 7</button>
-                    <button id=chemf8>Funkcija 8</button>
-                    <button id=chemf9>Funkcija 9</button>
-                    <button id=chemf10>Funkcija 10</button>
-                    <button id=chemf11>Funkcija 11</button>
-                    <button id=chemf12>Funkcija 12</button>
-                </div>
-
+            </div>
             <div id="all_inputs">                    
                 <div id=function>
                     <div id=f class=input>
@@ -235,7 +234,7 @@
                     oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
                      console.log(oy_number); 
                     ctx.font = "9px sans-serif";
-                    ctx.fillText(oy_number, 0 ,c.height-i);
+                    ctx.fillText(oy_number, 0 ,0+i);
                     i+=40; 
                 }       
                 
@@ -306,6 +305,50 @@
 
                 }
             });
+
+
+             //Prideda papildomą medžiagos input lauką
+             document.getElementById("add_subs").addEventListener("click", function(event){
+                var d = document.getElementById("substance");
+                var subs_count = parseInt(document.getElementById("subs_counter").value);
+                
+                for(i=1; i<subs_count+1; i++){
+                    subs_names[i] = "func"+i;
+                    subs_color_id[i] = "color"+i;
+                    //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
+                    if(subs_color[i] == null){
+                        subs_color[i] = getRandomColor();
+                        //Tikrinama ar tokia spalva jau nėra priskirta
+                        for(j=0; j<subs_color.length-1; j++){
+                            if(subs_color[i]==subs_color[j]){
+                                subs_color[i] = getRandomColor();
+                                j = 0;
+                            }
+                        }
+                    }
+                    //Pridedami įvesties laukai papildomoms funkcijoms
+                    d.innerHTML += 
+                    `<div class=input>
+                        Funkcija f(t,y): <input id=${subs_names[i]} type='text'>
+                        <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
+                    </div>`;
+
+                    //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
+                    var button = document.getElementById("add_func")
+                    button.style.display = 'none'
+                    var sk = document.getElementById("sk")
+                    sk.style.display = 'none'
+
+
+                }
+            });
+
+
+
+
+
+
+
 
             //Išvalo grafiką
             var funct_count = parseInt(document.getElementById("func_counter").value);
