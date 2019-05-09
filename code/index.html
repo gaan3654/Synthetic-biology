@@ -73,17 +73,17 @@
                     <div class=input_blocks>
                         [A']:
                         <input type="text" id="A" value="2"> 
-                        <input type="color" id="color0" class="s_colors" value="#ff0000">
+                        <input type="color" id="colorA" class="s_colors" value="#ff0000">
                     </div>
                     <div class=input_blocks>
                         [B']:
                         <input type="text" id="B" value="3"> 
-                        <input type="color" id="color1" class="s_colors" value="#0000ff">
+                        <input type="color" id="colorB" class="s_colors" value="#0000ff">
                     </div>
                     <div class=input_blocks>
                         [C']:
                         <input type="text" id="C" value="3"> 
-                        <input type="color" id="color2" class="s_colors" value="#00ff00">
+                        <input type="color" id="colorC" class="s_colors" value="#00ff00">
                     </div>
                     <div id=count_subst>
                         Kiek medžiagų norite pridėti?
@@ -195,23 +195,26 @@
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                 substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-
                 //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
                 var y0_left = substance_array[0].split("");
-                for(i=0; i<substance_array[0].length; i++){
+                var color_left = [];
+                for(var i=0; i<substance_array[0].length; i++){
+                    color_left[i] = document.getElementById(`color${y0_left[i]}`).value;
                     y0_left[i] = parseFloat(document.getElementById(`${y0_left[i]}`).value);
                 }
                 var y0_right = substance_array[1].split("");
-                for(i=0; i<substance_array[1].length; i++){
+                var color_right = [];
+                for(var i=0; i<substance_array[1].length; i++){
+                    color_right[i] = document.getElementById(`color${y0_right[i]}`).value;
                     y0_right[i] = parseFloat(document.getElementById(`${y0_right[i]}`).value);
                 }
                 var y0 = [y0_left, y0_right];
                 //Kairioji pusė
                 var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array[0]);
-                normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width);
+                normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width, color_left);
                 //Dešinioji pusė
                 var [y_right, tt] = solution(y0_right, int_begin, int_end, N, func_array[1]);
-                normalize_and_draw(y_right, tt, int_begin, int_end, c.height, c.width);
+                normalize_and_draw(y_right, tt, int_begin, int_end, c.height, c.width, color_right);
                 
                 //Piešiami skičiai prie grafiko ašių
                 //axle_numbers(N, y_max, int_end);
@@ -247,7 +250,7 @@
 
 
             var subs_names = ["A","B","C"];
-            var subs_color_id = ["color0", "color1", "color2"];
+            var subs_color_id = ["colorA", "colorB", "colorC"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
             var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
             
@@ -256,16 +259,14 @@
                 var d = document.getElementById("substance");
                 var subs_count = parseInt(document.getElementById("subs_counter").value);
                 var substance_count = subs_color_id.length+subs_count;
-                for(i=subs_color_id.length; i<substance_count; i++){
-                    console.log(i);
-                    //subs_names[i] = "subs"+i;
+                for(var i=subs_color_id.length; i<substance_count; i++){
                     subs_names[i] = subs_html_name[i];
-                    subs_color_id[i] = "color"+i;
+                    subs_color_id[i] = "color"+subs_html_name[i];
                     //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
                     if(subs_color[i] == null){
                         subs_color[i] = getRandomColor();
                         //Tikrinama ar tokia spalva jau nėra priskirta
-                        for(j=0; j<subs_color.length-1; j++){
+                        for(var j=0; j<subs_color.length-1; j++){
                             if(subs_color[i]==subs_color[j]){
                                 subs_color[i] = getRandomColor();
                                 j = 0;

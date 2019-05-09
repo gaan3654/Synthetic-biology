@@ -51,7 +51,7 @@ function k4(t, y, h, k3, func){
         }
         y_copy.push(y_temp);
     }
-    //Prie konsentracijos reikšių pridedama k1/2
+    //Prie konsentracijos reikšių pridedama k3
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k3);
     }
