@@ -102,7 +102,6 @@ function axle_numbers(N, y_max, int_end) {
 
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width){
     var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
-    console.log(y_norm);
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
         ctx.beginPath();
