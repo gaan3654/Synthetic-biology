@@ -110,7 +110,7 @@
                     
                     <div id=N class=input_blocks>
                         N:                
-                        <input type="number" id="n_inp" value="100"> 
+                        <input type="number" id="n_inp" value="1"> 
                     </div>   
                     <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
@@ -188,38 +188,40 @@
                 var int_end = parseFloat(document.getElementById("int_ends").value);
                 //var y0 = parseInt(document.getElementById("y0_inp").value);
                 var N = parseInt(document.getElementById("n_inp").value);
-                var reaction_array = [
+                var func_array = [
                     replace_symbols(document.getElementById("reaction_side0").value),
                     replace_symbols(document.getElementById("reaction_side1").value)
                 ];
-                reaction_array[0] = reaction_array[0].replace(/\W|\d/g,"");
-                reaction_array[1] = reaction_array[1].replace(/\W|\d/g,"");
-                console.log(reaction_array[0]);
-                console.log(reaction_array[1]);
+                //console.log(func_array);
+                var substance_array = [];
+                substance_array[0] = func_array[0].replace(/\W|\d/g,"");
+                substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                //console.log(substance_array[0]);
+                //console.log(substance_array[1]);
 
                 //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
-                var y0_left = reaction_array[0].split("");
-                for(i=0; i<reaction_array[0].length; i++){
+                var y0_left = substance_array[0].split("");
+                for(i=0; i<substance_array[0].length; i++){
                     y0_left[i] = document.getElementById(`${y0_left[i]}`).value;
                 }
-                var y0_right = reaction_array[1].split("");
-                for(i=0; i<reaction_array[1].length; i++){
+                var y0_right = substance_array[1].split("");
+                for(i=0; i<substance_array[1].length; i++){
                     y0_right[i] = document.getElementById(`${y0_right[i]}`).value;
                 }
                 var y0 = [y0_left, y0_right];
-                console.log(y0[0]);
-                console.log(y0[1]);
+                //console.log(substance_array);
+                //console.log(y0[1]);
 
-                for(j=0; j<2; j++){
-                    //var reaction_array = document.getElementById(`reaction_side${j}`).value;
-                    //reaction_array = replace_symbols(reaction_array);
+                //for(j=0; j<2; j++){
+                    //var substance_array = document.getElementById(`reaction_side${j}`).value;
+                    //substance_array = replace_symbols(substance_array);
                     
-                    var s_color = document.getElementById(subs_color_id[j]).value;
+                    //var s_color = document.getElementById(subs_color_id[j]).value;
 
                     
-                   
+                    var [yy, tt] = solution(y0_left, int_begin, int_end, N, func_array[0]);
 
-                    var [yy, tt] = solution(y0, int_begin, int_end, N, reaction_array);
+                    
                     var [y_norm,t_norm, y_max] = normalization(yy, tt, int_begin, int_end, N, c.height, c.width);
                     //Piešiamia kreivė
                     ctx.beginPath();
@@ -228,9 +230,9 @@
                         ctx.lineTo(t_norm[p],y_norm[p]);
                         //console.log(y_norm[p]);
                     }
-                    ctx.strokeStyle = s_color;
+                    ctx.strokeStyle = "#ff0000";//s_color;
                     ctx.stroke(); 
-                }
+                //}
                 //Piešiami skičiai prie grafiko ašių
                 //axle_numbers(N, y_max, int_end);
                     
