@@ -97,4 +97,21 @@ function axle_numbers(N, y_max, int_end) {
         //ox_number*i, kad didėtų reikšmės tolygiai ties kiekvienu langeliu
         
     }
+    
+}
+
+function normalize_and_draw(yy, tt, int_begin, int_end, height, width){
+    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
+    console.log(y_norm);
+    //Piešiamia kreivė
+    for(var i=0; i<y_norm.length; i++){
+        ctx.beginPath();
+        ctx.moveTo(t_norm[0],y_norm[i][0]);    
+        for(var j=1; j<=y_norm[i].length; j++){
+            ctx.lineTo(t_norm[j],y_norm[i][j]);
+        }
+        ctx.strokeStyle = "#ff0000";//s_color;
+        ctx.stroke();
+    }
+    console.log(y_norm[0]);
 }
