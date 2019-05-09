@@ -4,23 +4,58 @@ function f(t,y, func){
 }
 
 function k1(t, y, h, func){
-    return h * f(t,y, func);
+    return h * f(t, y, func);
 }
 
 function k2(t, y, h, k1, func){
-    var y_new = [];
+    //Nuklonuojamas y masyvas į y_copy
+    var y_copy = [];
     for(var i = 0; i < y.length; i++){
-        
+        var y_temp = [];
+        for(var j = 0; j < y[i].length; j++){
+            y_temp[j] = y[i][j];
+        }
+        y_copy.push(y_temp);
     }
-    return h * f(t+h/2,y+k1/2, func);
-}
+    //Prie konsentracijos reikšių pridedama k1/2
+    for(var i = 0; i < y_copy.length; i++){
+        y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k1 / 2);
+    }
+    return h * f(t+h/2, y_copy, func);
+}   
 
 function k3(t, y, h, k2, func){
-    return h * f(t+h/2,y+k2/2, func);
+    //Nuklonuojamas y masyvas į y_copy
+    var y_copy = [];
+    for(var i = 0; i < y.length; i++){
+        var y_temp = [];
+        for(var j = 0; j < y[i].length; j++){
+            y_temp[j] = y[i][j];
+        }
+        y_copy.push(y_temp);
+    }
+    //Prie konsentracijos reikšių pridedama k2/2
+    for(var i = 0; i < y_copy.length; i++){
+        y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k2 / 2);
+    }
+    return h * f(t+h/2, y_copy, func);
 }
 
 function k4(t, y, h, k3, func){
-    return h * f(t+h,y+k3, func);
+    //Nuklonuojamas y masyvas į y_copy
+    var y_copy = [];
+    for(var i = 0; i < y.length; i++){
+        var y_temp = [];
+        for(var j = 0; j < y[i].length; j++){
+            y_temp[j] = y[i][j];
+        }
+        y_copy.push(y_temp);
+    }
+    //Prie konsentracijos reikšių pridedama k1/2
+    for(var i = 0; i < y_copy.length; i++){
+        y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k3);
+    }
+    return h * f(t+h, y_copy, func);
 }
 
 function solution(y0, a, b, N, func){
@@ -42,21 +77,19 @@ function solution(y0, a, b, N, func){
             //console.log(func);
         }
         t[i+1] = t[i]+h;
-        console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func");
+        //console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func");
         var kk1 = k1(t[i], y, h, func);
-        console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk1, " kk1");
+        //console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk1, " kk1");
         var kk2 = k2(t[i], y, h, kk1, func);
-        console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk1, " kk1---", kk2, " kk2");
+        //console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk2, " kk2");
         var kk3 = k3(t[i], y, h, kk2, func);
+        //console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk3, " kk3");
         var kk4 = k4(t[i], y, h, kk3, func);
-        //  y[i+1] = y[i]+1/6*(kk1+2*kk2+2*kk3+kk4);
-        // console.log(kk1);
-        // console.log(kk2);
-        // console.log(kk3);
-        // console.log(kk4);
+        //console.log(t[i]," t[i]---", y[0], " y[0]---", h," h---"    , func, " func---", kk4, " kk4");
+
         for(var j = 0; j < y.length; j++){
-            y[j][i+1] = y[j][i]+1/6*(kk1+2*kk2+2*kk3+kk4);
-            //console.log(y[j][i+1]);
+            y[j][i+1] = eval(y[j][i]+1/6*(kk1+2*kk2+2*kk3+kk4));
+            console.log(y[j][i+1]);
         }
     } 
     return [y,t];
