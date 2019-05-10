@@ -138,8 +138,8 @@
 
             <div class="visimygtukai">
                 <div id=dumygtukai>
-                    <button id=submit>Piešti grafiką</button>
-                    <button id=delete>Išvalyti grafiką</button>
+                    <button id=submit onclick="disablesbutton()">Piešti grafiką</button>
+                    <button id=delete onclick="window.location.reload(true);">Išvalyti</button>
                 </div>
             </div>
 
@@ -290,24 +290,31 @@
                 }
             });
 
+            //funkcija, kuri sustabdo mygtukų veikimą kai grafikas jau yra nupieštas
+            function disablesbutton() {
+                document.getElementById("submit_reaction").disabled = true;
+                document.getElementById("add_subs").disabled = true;
+            }
 
-            //Išvalo grafiką
-            //var funct_count = parseInt(document.getElementById("func_counter").value);
-            document.getElementById("delete").addEventListener("click", function(event){
-                ctx.clearRect(0,0, c.width, c.height )
-                ctx.beginPath();
-                draw(ctx);
-                //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
-                //Reikia pašalinti papildomai pridėtus laukus
-                //for(i=1; i<funct_count+1; i++){
-                var button = document.getElementById("add_subs")
-                button.style.display = 'block'
-                var counter_input_field = document.getElementById("count_subst")
-                counter_input_field.style.display = 'block'
 
-                //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
-                //}
-            });    
+
+            // //Išvalo grafiką
+            // //var funct_count = parseInt(document.getElementById("func_counter").value);
+            // document.getElementById("delete").addEventListener("click", function(event){
+            //     ctx.clearRect(0,0, c.width, c.height )
+            //     ctx.beginPath();
+            //     draw(ctx);
+            //     //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
+            //     //Reikia pašalinti papildomai pridėtus laukus
+            //     //for(i=1; i<funct_count+1; i++){
+            //     var button = document.getElementById("add_subs")
+            //     button.style.display = 'block'
+            //     var counter_input_field = document.getElementById("count_subst")
+            //     counter_input_field.style.display = 'block'
+
+            //     //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
+            //     //}
+            // });    
 
               // alertai
                 /*var funct_count = parseInt(document.getElementById("subs_counter").value);
