@@ -129,7 +129,7 @@
             
             <div class="subs_react_buttons">
             <button id=add_subs>Pridėti medžiagą(as)</button>
-            <button id=submit_reaction>Vykdyti reakciją(as)</button>
+            <button id=submit_reaction onclick="disablesbutton()">Vykdyti reakciją(as)</button>
             </div>
             
             <div id=function>
@@ -295,6 +295,7 @@
                 document.getElementById("submit_reaction").disabled = true;
                 document.getElementById("add_subs").disabled = true;
             }
+
 
 
 
