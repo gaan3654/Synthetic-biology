@@ -129,22 +129,25 @@
             <button id=add_subs>Pridėti medžiagą(as)</button>
             <button id=submit_reaction onclick="disablesbutton()">Vykdyti reakciją(as)</button>
             </div>
-            
-            <div id=function>
-                <!--Talpinamos reakcijos sukurtos funkcijos-->
-            </div>
 
-            <div class="visimygtukai">
-                <div id=dumygtukai>
-                    <button id=submit onclick="disablesbutton()">Piešti grafiką</button>
-                    <button id=delete onclick="window.location.reload(true);">Išvalyti</button>
+            <div id="graph_draw">
+                <div id=function_block>
+                    <div id=function>
+                        <!--Talpinamos reakcijos sukurtos funkcijos-->
+                    </div>
+                    <div class="visimygtukai">
+                            <div id=dumygtukai>
+                                <button id=submit onclick="disablesbutton()">Piešti grafiką</button>
+                                <button id=delete onclick="window.location.reload(true);">Išvalyti</button>
+                            </div>
+                    </div>
                 </div>
-            </div>
 
-            <div id=canvas class=canvas>
-                <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
-                    Your browser does not support the HTML5 canvas tag.
-                </canvas>
+                <div id=canvas class=canvas>
+                    <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                </div>
             </div>
 
         </div>
