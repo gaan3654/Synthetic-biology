@@ -137,8 +137,8 @@
                     </div>
                     <div class="visimygtukai">
                             <div id=dumygtukai>
-                                <button id=submit onclick="disablesbutton()">Piešti grafiką</button>
-                                <button id=delete onclick="window.location.reload(true);">Išvalyti</button>
+                                <button id=submit onclick="disablesbutton()" style="display:none">Piešti grafiką</button>
+                                <button id=delete onclick="window.location.reload(true);" style="display:none">Išvalyti</button>
                             </div>
                     </div>
                 </div>
@@ -248,6 +248,9 @@
                     Dešinioji: 
                     <input type="text" id="reaction_side1" value=${reaction_sides[1]}>
                 </div>`;
+
+                $("#submit").css("display","inline")
+                $("#delete").css("display","inline")
             });
 
 
