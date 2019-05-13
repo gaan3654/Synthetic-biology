@@ -211,6 +211,7 @@
                 }
                 var y0 = [y0_left, y0_right];
                 //Kairioji pusė
+                console.log(func_array[0]);
                 var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array[0]);
                 normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width, color_left);
                 //Dešinioji pusė
@@ -231,11 +232,9 @@
                 var get_rate_2 = document.getElementById("second_reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
-                console.log(reaction_sides[0]);
                 //Sugeneruojamos funkcijos abiem reakcijos pusėms
                 reaction_sides[0] = reaction_sides[0].replace(/\+/g, "*")+`*(-${get_rate})`;
-                reaction_sides[1] = reaction_sides[1].replace(/\+/g, "*")+`*${get_rate}`;
-                console.log(reaction_sides[0]);
+                reaction_sides[1] = reaction_sides[1].replace(/\+/g, "*")+`*${get_rate_2}`;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
                 d.innerHTML += 

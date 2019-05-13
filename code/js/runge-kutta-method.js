@@ -115,7 +115,7 @@ function normalization(yy,tt, a, b, height, width){
             // yp_temp[j] = ((height-20)-(k*yy[i][j]+l)*(height-20));
             yp_temp[j] = ((height-20)-((yy[i][j]-y_min)/y_max-y_min)*(height-20));
             yy[i][j]=yp_temp[j];
-            console.log(yy[i][j]);
+            //console.log(yy[i][j]);
             if(i==0){
                 tp[j] = ((kt*tt[j]+lt)*(width-20))+20;
                 // tp[j] = ((tt[i]-a)/(b-a)*(width-20))+20;
