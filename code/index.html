@@ -101,13 +101,7 @@
                     <div id=interv_ends class=input_blocks> 
                         Intervalo pabaiga:
                         <input type="number" id="int_ends" value="1"> 
-                    </div>
-                    
-                    <div id=y0 class=input_blocks>
-                        y0:               
-                        <input type="number" id="y0_inp" value="1"> 
-                    </div> 
-                    
+                    </div>                    
                     <div id=N class=input_blocks>
                         N:                
                         <input type="number" id="n_inp" value="100"> 
@@ -117,8 +111,12 @@
                         <input type="text" id="reaction_input" value="A+B->C">
                     </div>
                     <div id=reaction class=input_blocks>
-                        Reakcijos greitis:
+                        Reakcijos greitis k1:
                         <input type="text" id="reaction_rate" value="0.9">
+                    </div>
+                    <div id=reaction class=input_blocks>
+                        Reakcijos greitis k2:
+                        <input type="text" id="second_reaction_rate" value="0.5">
                     </div>
                    
                  </div>
@@ -129,7 +127,7 @@
             
             <div class="subs_react_buttons">
             <button id=add_subs>Pridėti medžiagą(as)</button>
-            <button id=submit_reaction>Vykdyti reakciją(as)</button>
+            <button id=submit_reaction onclick="disablesbutton()">Vykdyti reakciją(as)</button>
             </div>
             
             <div id=function>
@@ -227,6 +225,7 @@
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
                 var d = document.getElementById("function");
                 var get_rate = document.getElementById("reaction_rate").value;
+                var get_rate_2 = document.getElementById("second_reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
                 console.log(reaction_sides[0]);
@@ -296,6 +295,7 @@
                 document.getElementById("submit_reaction").disabled = true;
                 document.getElementById("add_subs").disabled = true;
             }
+
 
 
 
