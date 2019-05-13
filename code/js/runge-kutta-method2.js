@@ -1,80 +1,127 @@
 //Runge–Kutta metodas
 function dA(t,A, B, C){
-    return A*B*(-0.1)+C*0.2;
+    return eval(A*B*(-0.1)+C*0.2);
 }
 function dB(t,A, B, C){
-    return A*B*(-0.1)+C*0.2;
+    return eval(A*B*(-0.1)+C*0.2);
 }
 function dC(t,A, B, C){
-    return A*B*(0.1)+C*(-0.2);
+    return eval(A*B*(0.1)+C*(-0.2));
 }
 
-function kA1(t, A, B, C){
+function kA1(t, A, B, C, h, dA){
     return h * dA(t,A, B, C);
 }
-function kB1(t, A, B, C){
+function kB1(t, A, B, C, h, dB){
     return h * dB(t,A, B, C);
 }
-function kC1(t, A, B, C){
-    return h * dA(t,A, B, C);
+function kC1(t, A, B, C, h, dC){
+    return h * dC(t,A, B, C);
 }
 
-function kA2(t, A, B, C){
-    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
+function kA2(t, A, B, C, h, kA1, kB1, kC1, dA){    
+    return h * dA(t+h/2, eval(A+kA1/2), eval(B+kB1/2), eval(C+kC1/2));
 };
-function kB2(t, A, B, C){
-    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
+function kB2(t, A, B, C, h, kA1, kB1, kC1,  dB){
+    return h * dB(t+h/2, eval(A+kA1/2), eval(B+kB1/2), eval(C+kC1/2))
 };
-function kC2(t, A, B, C){
-    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
-};
-
-function kA3(t, A, B, C){
-    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
-};
-function kB3(t, A, B, C){
-    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
-};
-function kC3(t, A, B, C){
-    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
+function kC2(t, A, B, C, h, kA1, kB1, kC1,  dC){
+    return h * dC(t+h/2,eval(A+kA1/2), eval(B+kB1/2), eval(C+kC1/2))
 };
 
-function kA4(t, A, B, C){
-    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+function kA3(t, A, B, C, h, kA2, kB2, kC2, dA){
+    return h * dA(t+h/2, eval(A+kA2/2), eval(B+kB2/2), eval(C+kC2/2) )
 };
-function kA4(t, A, B, C){
-    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+function kB3(t, A, B, C, h, kA2, kB2, kC2, dB){
+    return h * dB(t+h/2, eval(A+kA2/2), eval(B+kB2/2), eval(C+kC2/2) )
 };
-function kA4(t, A, B, C){
-    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+function kC3(t, A, B, C, h, kA2, kB2, kC2, dC){
+    return h * dC(t+h/2, eval(A+kA2/2), eval(B+kB2/2), eval(C+kC2/2) )
 };
 
 
-function solution(y0, a, b, N, func){
+
+function kA4(t, A, B, C, h, kA3, kB3, kC3, dA){
+    return h * dA(t+h, eval(A+kA3), eval(B+kB3), eval(C+kC3) )
+};
+function kB4(t, A, B, C, h, kA3, kB3, kC3, dB){
+    return h * dB(t+h, eval(A+kA3), eval(B+kB3), eval(C+kC3) )
+};
+function kC4(t, A, B, C, h, kA3, kB3, kC3, dC){
+    return h * dC(t+h, eval(A+kA3), eval(B+kB3), eval(C+kC3) )
+};
+
+
+
+
+function solution(y0, a, b, N){
     var t=[];
-    //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
-    var y =[];
+    var y=[];
     for(var i = 0; i<y0.length; i++){
         y.push([y0[i]]);
     }
+    //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
+    var A =[];
+    var B =[];
+    var C =[];
+    // for(var i = 0; i<y0.length; i++){
+    //     y.push([y0[i]]);
+    //  }
+    A.push([y0[0]]);
+    B.push([y0[1]]);
+    C.push([y0[2]]);
+
+    console.log(y);
+
+    // console.log(A);
+    // console.log(B);
+    // console.log(C);
+
     t[0] = a;
     var h= (b-a)/N;
     for (var i=0; i < N; i++) {
-        for(var j = 0; j < y.length; j++){
-            func = func.replace(/A|B|C|D/, `y[${j}][${y[j].length-1}]`);
-        }
-        t[i+1] = t[i]+h;
-        var kk1 = k1(t[i], y, h, func);
-        var kk2 = k2(t[i], y, h, kk1, func);
-        var kk3 = k3(t[i], y, h, kk2, func);
-        var kk4 = k4(t[i], y, h, kk3, func);
+     console.log(A);
+    // console.log(B);
+    // console.log(C);
 
+        // for(var j = 0; j < y.length; j++){
+        //     func = func.replace(/A|B|C|D/, `y[${j}][${y[j].length-1}]`);
+        // }
+        t[i+1] = t[i]+h;
+        var kkA1 = kA1(t[i], A, B, C, h, dA);
+        var kkB1 = kB1(t[i], A, B, C, h, dB);
+        var kkC1 = kC1(t[i], A, B, C, h, dC);
+
+        var kkA2 = kA2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dA);
+        var kkB2 = kB2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dB);
+        var kkC2 = kC2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dC);
+
+        var kkA3 = kA3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dA);
+        var kkB3 = kB3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dB);
+        var kkC3 = kC3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dC);
+
+        var kkA4 = kA4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dA);
+        var kkB4 = kB4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dB);
+        var kkC4 = kC4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dC);
+
+        // console.log(kkC1);
+        // console.log(kkC2);
+        // console.log(kkC3);
+        // console.log(kkC4);
+        
+        
         for(var j = 0; j < y.length; j++){
-            y[j][i+1] = eval(y[j][i]+1/6*(kk1+2*kk2+2*kk3+kk4));
+            A[i+1] = eval(y[0][i]+1/6*(kkA1+2*kkA2+2*kkA3+kkA4));
+            y[1][i+1] = eval(y[1][i]+1/6*(kkB1+2*kkB2+2*kkB3+kkB4));
+            y[2][i+1] = eval(y[2][i]+1/6*(kkC1+2*kkC2+2*kkC3+kkC4));
         }
+        // A.push(y[0]);
+        // B.push(y[1]);
+        // C.push(y[2]);
     } 
     return [y,t];
 }
+
 var y_min=0;
 var y_max;
 //Gautų rezultatų normalizavimas

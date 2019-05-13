@@ -2,7 +2,7 @@
 <html>
     <head>
         <script type="text/javascript" src='js/draw_graph.js'> </script>
-        <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
+        <script type="text/javascript" src='js/runge-kutta-method2.js'> </script>
         <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
@@ -82,7 +82,7 @@
                     </div>
                     <div class=input_blocks>
                         [C']:
-                        <input type="text" id="C" value="3"> 
+                        <input type="text" id="C" value="1"> 
                         <input type="color" id="colorC" class="s_colors" value="#00ff00">
                     </div>
                     <div id=count_subst>
@@ -196,7 +196,7 @@
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                 substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-                console.log(substance_array[0]);
+                //console.log(substance_array[0]);
                 //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
                 var y0_left = substance_array[0].split("");
                 var color_left = [];
@@ -205,7 +205,7 @@
                     y0_left[i] = parseFloat(document.getElementById(`${y0_left[i]}`).value);
                     
                 }
-                console.log(y0_left);
+                //console.log(y0_left);
                 var y0_right = substance_array[1].split("");
                 var color_right = [];
                 for(var i=0; i<substance_array[1].length; i++){
