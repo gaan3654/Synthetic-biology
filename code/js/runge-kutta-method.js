@@ -86,8 +86,8 @@ function solution(y0, a, b, N, func){
         }
 
     } 
-    console.log(y[0]);
-    console.log(y[1]);
+    // console.log(y[0]);
+    // console.log(y[1]);
     return [y,t];
 }
 var y_min=0;
