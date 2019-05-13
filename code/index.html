@@ -231,10 +231,11 @@
                 var get_rate_2 = document.getElementById("second_reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction_sides = get_reaction.split(/<?->/);
-                
+                console.log(reaction_sides[0]);
                 //Sugeneruojamos funkcijos abiem reakcijos pusėms
-                reaction_sides[0] = reaction_sides[0].replace("+", "*")+`*(-${get_rate})`;
-                reaction_sides[1] = reaction_sides[1].replace("+", "*")+`*${get_rate_2}`;
+                reaction_sides[0] = reaction_sides[0].replace(/\+/g, "*")+`*(-${get_rate})`;
+                reaction_sides[1] = reaction_sides[1].replace(/\+/g, "*")+`*${get_rate}`;
+                console.log(reaction_sides[0]);
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
                 d.innerHTML += 
