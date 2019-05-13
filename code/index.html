@@ -196,13 +196,16 @@
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                 substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                console.log(substance_array[0]);
                 //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
                 var y0_left = substance_array[0].split("");
                 var color_left = [];
                 for(var i=0; i<substance_array[0].length; i++){
                     color_left[i] = document.getElementById(`color${y0_left[i]}`).value;
                     y0_left[i] = parseFloat(document.getElementById(`${y0_left[i]}`).value);
+                    
                 }
+                console.log(y0_left);
                 var y0_right = substance_array[1].split("");
                 var color_right = [];
                 for(var i=0; i<substance_array[1].length; i++){
@@ -243,10 +246,13 @@
                 var get_rate = document.getElementById("reaction_rate").value;
                 var get_rate_2 = document.getElementById("second_reaction_rate").value;
                 var get_reaction = document.getElementById("reaction_input").value;
-                var reaction_sides = get_reaction.split(/<?->/);
+                var reaction = get_reaction.split(/<?->/);
                 //Sugeneruojamos funkcijos abiem reakcijos pusėms
-                reaction_sides[0] = reaction_sides[0].replace(/\+/g, "*")+`*(-${get_rate})`;
-                reaction_sides[1] = reaction_sides[1].replace(/\+/g, "*")+`*${get_rate_2}`;
+                var reaction_sides = [];
+                reaction[0] = reaction[0].replace(/\+/g, "*");
+                reaction[1] = reaction[1].replace(/\+/g, "*");
+                reaction_sides[0] = reaction[0] +`*(-${get_rate})`+ `+` +  reaction[1] +`*${get_rate_2}`;
+                reaction_sides[1] = reaction[1] +`*(-${get_rate_2})` + `+` + reaction[0] +`*${get_rate}` ;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
                 d.innerHTML += 
