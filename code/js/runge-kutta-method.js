@@ -17,6 +17,8 @@ function k2(t, y, h, k1, func){
         }
         y_copy.push(y_temp);
     }
+    //console.log(y);
+    //console.log(y_copy);
     //Prie konsentracijos reikšių pridedama k1/2
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k1 / 2);
@@ -69,9 +71,11 @@ function solution(y0, a, b, N, func){
     var h= (b-a)/N;
     for (var i=0; i < N; i++) {
         for(var j = 0; j < y.length; j++){
-            func = func.replace(/A|B|C|D/, `y[${j}][${y[j].length-1}]`);
+            func = func.replace(/A|B|C|D|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${j}][${y[j].length-1}]`);
+            func = func.replace(`y[${j}][${y[j].length-2}]`, `y[${j}][${y[j].length-1}]`);
         }
         t[i+1] = t[i]+h;
+        
         var kk1 = k1(t[i], y, h, func);
         var kk2 = k2(t[i], y, h, kk1, func);
         var kk3 = k3(t[i], y, h, kk2, func);
@@ -80,7 +84,10 @@ function solution(y0, a, b, N, func){
         for(var j = 0; j < y.length; j++){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1+2*kk2+2*kk3+kk4));
         }
+
     } 
+    console.log(y[0]);
+    console.log(y[1]);
     return [y,t];
 }
 var y_min=0;
@@ -115,7 +122,7 @@ function normalization(yy,tt, a, b, height, width){
             // yp_temp[j] = ((height-20)-(k*yy[i][j]+l)*(height-20));
             yp_temp[j] = ((height-20)-((yy[i][j]-y_min)/y_max-y_min)*(height-20));
             yy[i][j]=yp_temp[j];
-            console.log(yy[i][j]);
+            //console.log(yy[i][j]);
             if(i==0){
                 tp[j] = ((kt*tt[j]+lt)*(width-20))+20;
                 // tp[j] = ((tt[i]-a)/(b-a)*(width-20))+20;
