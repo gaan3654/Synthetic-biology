@@ -1,53 +1,93 @@
 //Runge–Kutta metodas
-function f(t,y, func){
-    return eval(func);
+function dA(t,A, B, C){
+    return A*B*(-0.1)+C*0.2;
+}
+function dB(t,A, B, C){
+    return A*B*(-0.1)+C*0.2;
+}
+function dC(t,A, B, C){
+    return A*B*(0.1)+C*(-0.2);
 }
 
-function k1(t, y, h, func){
-    return h * f(t,y, func);
+function kA1(t, A, B, C){
+    return h * dA(t,A, B, C);
+}
+function kB1(t, A, B, C){
+    return h * dB(t,A, B, C);
+}
+function kC1(t, A, B, C){
+    return h * dA(t,A, B, C);
 }
 
-function k2(t, y, h, k1, func, string){
-    return h * f(eval(string), func);
-}
+function kA2(t, A, B, C){
+    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
+};
+function kB2(t, A, B, C){
+    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
+};
+function kC2(t, A, B, C){
+    return h * dA(t+h/2, A+kA1/2, B+kB1/2, C+kC1/2 )
+};
 
-function k3(t, y, h, k2, func){
-    return h * f(t+h/2,y+k2/2, func);
-}
+function kA3(t, A, B, C){
+    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
+};
+function kB3(t, A, B, C){
+    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
+};
+function kC3(t, A, B, C){
+    return h * dA(t+h/2, A+kA2/2, B+kB2/2, C+kC2/2 )
+};
 
-function k4(t, y, h, k3, func){
-    return h * f(t+h,y+k3, func);
-}
+function kA4(t, A, B, C){
+    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+};
+function kA4(t, A, B, C){
+    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+};
+function kA4(t, A, B, C){
+    return h * dA(t+h, A+kA3, B+kB3, C+kC3 )
+};
+
 
 function solution(y0, a, b, N, func){
     var t=[];
-    var y=[];
-    y[0] = y0;
+    //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
+    var y =[];
+    for(var i = 0; i<y0.length; i++){
+        y.push([y0[i]]);
+    }
     t[0] = a;
-    var h = (b-a)/N;
+    var h= (b-a)/N;
     for (var i=0; i < N; i++) {
+        for(var j = 0; j < y.length; j++){
+            func = func.replace(/A|B|C|D/, `y[${j}][${y[j].length-1}]`);
+        }
         t[i+1] = t[i]+h;
-        var string = `t[i]+h/2,y[i]+k1/2`;
-        var kk1 = k1(t[i], y[i], h, func);
-        var kk2 = k2(t[i], y[i], h, kk1, func, string);
-        var kk3 = k3(t[i], y[i], h, kk2, func);
-        var kk4 = k4(t[i], y[i], h, kk3, func);
-        y[i+1] = y[i]+1/6*(kk1+2*kk2+2*kk3+kk4);
+        var kk1 = k1(t[i], y, h, func);
+        var kk2 = k2(t[i], y, h, kk1, func);
+        var kk3 = k3(t[i], y, h, kk2, func);
+        var kk4 = k4(t[i], y, h, kk3, func);
+
+        for(var j = 0; j < y.length; j++){
+            y[j][i+1] = eval(y[j][i]+1/6*(kk1+2*kk2+2*kk3+kk4));
+        }
     } 
     return [y,t];
 }
 var y_min=0;
 var y_max;
 //Gautų rezultatų normalizavimas
-function normalization(yy,tt, a, b, N, height, width){
+function normalization(yy,tt, a, b, height, width){
     var yp = [];
     var tp = [];
-    y_max=yy[0];
-    //console.log(y_max);
-    for(i=0; i<N; i++){
-        //Jei y_min ir y_max sutampa tai if'ą
-        if(y_max<yy[i]){
-            y_max=yy[i]
+    y_max=yy[0][0];
+    for(var i=0; i<yy.length; i++){
+        for(var j=0; j<yy[i].length; j++){
+            //Jei y_min ir y_max sutampa tai if'ą
+            if(y_max<yy[i][j]){
+                y_max=yy[i][j];
+            }
         }
     }
     //yy normalizacija
@@ -59,10 +99,23 @@ function normalization(yy,tt, a, b, N, height, width){
     }
     //tt normalizacija
     var kt = 1/(b-a);
-    var lt = -a/(b-a);
-    for(i=0; i<N; i++){
-        yp[i] = (height-(k*yy[i]+l)*height)-20;
-        tp[i] = ((kt*tt[i]+lt)*width)+20;
+    var lt = (-a)/(b-a);
+    
+    for(var i=0; i<yy.length; i++){
+        var yp_temp = [];
+        for(var j=0; j<yy[i].length; j++){
+            // yp_temp[j] = ((height-20)-(k*yy[i][j]+l)*(height-20));
+            yp_temp[j] = ((height-20)-((yy[i][j]-y_min)/y_max-y_min)*(height-20));
+            yy[i][j]=yp_temp[j];
+            //console.log(yy[i][j]);
+            if(i==0){
+                tp[j] = ((kt*tt[j]+lt)*(width-20))+20;
+                // tp[j] = ((tt[i]-a)/(b-a)*(width-20))+20;
+                // console.log(tp[j]);
+            }
+        }
+        yp.push(yp_temp);
+        
     }
-    return [yp,tp,y_max];
+    return [yp,tp];
 }
