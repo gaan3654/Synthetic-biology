@@ -1,12 +1,12 @@
 //Runge–Kutta metodas
 function dA(t,A, B, C){
-    return eval(A*B*(-0.1)+C*0.2);
+    return eval(A*B*(-3)+C*0.9);
 }
 function dB(t,A, B, C){
-    return eval(A*B*(-0.1)+C*0.2);
+    return eval(A*B*(-3)+C*0.9);
 }
 function dC(t,A, B, C){
-    return eval(A*B*(0.1)+C*(-0.2));
+    return eval(A*B*(3)+C*(-0.9));
 }
 
 function kA1(t, A, B, C, h, dA){
@@ -60,65 +60,44 @@ function solution(y0, a, b, N){
     for(var i = 0; i<y0.length; i++){
         y.push([y0[i]]);
     }
+    console.log(y0);
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
-    var A =[];
-    var B =[];
-    var C =[];
-    // for(var i = 0; i<y0.length; i++){
-    //     y.push([y0[i]]);
-    //  }
-    A.push([y0[0]]);
-    B.push([y0[1]]);
-    C.push([y0[2]]);
-
-    console.log(y);
-
-    // console.log(A);
-    // console.log(B);
-    // console.log(C);
+    // var A =[];
+    // var B =[];
+    // var C =[];
+ 
+    // A.push([y0[0]]);
+    // B.push([y0[1]]);
+    // C.push([y0[2]]);
 
     t[0] = a;
     var h= (b-a)/N;
     for (var i=0; i < N; i++) {
-     console.log(A);
-    // console.log(B);
-    // console.log(C);
-
-        // for(var j = 0; j < y.length; j++){
-        //     func = func.replace(/A|B|C|D/, `y[${j}][${y[j].length-1}]`);
-        // }
+   
         t[i+1] = t[i]+h;
-        var kkA1 = kA1(t[i], A, B, C, h, dA);
-        var kkB1 = kB1(t[i], A, B, C, h, dB);
-        var kkC1 = kC1(t[i], A, B, C, h, dC);
+        var kkA1 = kA1(t[i], y[0][i], y[1][i], y[2][i], h, dA);
+        var kkB1 = kB1(t[i], y[0][i], y[1][i], y[2][i], h, dB);
+        var kkC1 = kC1(t[i], y[0][i], y[1][i], y[2][i], h, dC);
 
-        var kkA2 = kA2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dA);
-        var kkB2 = kB2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dB);
-        var kkC2 = kC2(t[i], A, B, C, h, kkA1, kkB1, kkC1, dC);
+        var kkA2 = kA2(t[i], y[0][i], y[1][i], y[2][i], h, kkA1, kkB1, kkC1, dA);
+        var kkB2 = kB2(t[i], y[0][i], y[1][i], y[2][i], h, kkA1, kkB1, kkC1, dB);
+        var kkC2 = kC2(t[i], y[0][i], y[1][i], y[2][i], h, kkA1, kkB1, kkC1, dC);
 
-        var kkA3 = kA3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dA);
-        var kkB3 = kB3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dB);
-        var kkC3 = kC3(t[i], A, B, C, h, kkA2, kkB2, kkC2, dC);
+        var kkA3 = kA3(t[i], y[0][i], y[1][i], y[2][i], h, kkA2, kkB2, kkC2, dA);
+        var kkB3 = kB3(t[i], y[0][i], y[1][i], y[2][i], h, kkA2, kkB2, kkC2, dB);
+        var kkC3 = kC3(t[i], y[0][i], y[1][i], y[2][i], h, kkA2, kkB2, kkC2, dC);
 
-        var kkA4 = kA4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dA);
-        var kkB4 = kB4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dB);
-        var kkC4 = kC4(t[i], A, B, C, h, kkA3, kkB3, kkC3, dC);
+        var kkA4 = kA4(t[i], y[0][i], y[1][i], y[2][i], h, kkA3, kkB3, kkC3, dA);
+        var kkB4 = kB4(t[i], y[0][i], y[1][i], y[2][i], h, kkA3, kkB3, kkC3, dB);
+        var kkC4 = kC4(t[i], y[0][i], y[1][i], y[2][i], h, kkA3, kkB3, kkC3, dC);
 
-        // console.log(kkC1);
-        // console.log(kkC2);
-        // console.log(kkC3);
-        // console.log(kkC4);
+        y[0][i+1] = eval(y[0][i]+1/6*(kkA1+2*kkA2+2*kkA3+kkA4));
+        y[1][i+1] = eval(y[1][i]+1/6*(kkB1+2*kkB2+2*kkB3+kkB4));
+        y[2][i+1] = eval(y[2][i]+1/6*(kkC1+2*kkC2+2*kkC3+kkC4));
+
         
-        
-        for(var j = 0; j < y.length; j++){
-            A[i+1] = eval(y[0][i]+1/6*(kkA1+2*kkA2+2*kkA3+kkA4));
-            y[1][i+1] = eval(y[1][i]+1/6*(kkB1+2*kkB2+2*kkB3+kkB4));
-            y[2][i+1] = eval(y[2][i]+1/6*(kkC1+2*kkC2+2*kkC3+kkC4));
-        }
-        // A.push(y[0]);
-        // B.push(y[1]);
-        // C.push(y[2]);
     } 
+    console.log(y);
     return [y,t];
 }
 

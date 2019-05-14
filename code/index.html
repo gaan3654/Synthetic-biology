@@ -218,7 +218,7 @@
                 var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array[0]);
                 //normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width, color_left);
                 //Dešinioji pusė
-                var [y_right, tt] = solution(y0_right, int_begin, int_end, N, func_array[1]);
+               // var [y_right, tt] = solution(y0_right, int_begin, int_end, N, func_array[1]);
                 //normalize_and_draw(y_right, tt, int_begin, int_end, c.height, c.width, color_right);
 
                 var y = [];
@@ -227,10 +227,10 @@
                     y.push(y_left[i]);
                     color.push(color_left[i]);
                 }
-                for(var i=0; i<y_right.length; i++){
-                    y.push(y_right[i]);
-                    color.push(color_right[i]);
-                }
+                // for(var i=0; i<y_right.length; i++){
+                //     y.push(y_right[i]);
+                //     color.push(color_right[i]);
+                // }
                 normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
 
                 //Piešiami skičiai prie grafiko ašių
