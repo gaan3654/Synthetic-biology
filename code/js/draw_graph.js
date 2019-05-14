@@ -53,7 +53,7 @@ function draw(ctx){
         ctx.strokeStyle = "#000000";
         ctx.stroke();  
     }
-
+     
 }
 
 //Atsitiktinės spalvos generavimas
@@ -79,8 +79,8 @@ function axle_numbers(N, y_max, int_end) {
     //tai čia paimu y_norm[10]; y_norm[20]; y_norm[30], ..., y_norm[100]
     //reikia man pagalvoti kaip bus su skirtingais N...
     for(var p = N / 10; p < N; p += N / 10){ 
-        var oy_number = (y_max);  
-        oy_number = oy_number.toFixed(0);  //suapvalinu iki skaičių be kablelio
+        var oy_number = (y_max) - p*(y_max)/N;  
+        oy_number = oy_number.toFixed(1);  //suapvalinu iki skaičių be kablelio
         //console.log(oy_number); 
         ctx.font = "9px sans-serif";
         ctx.fillText(oy_number, 0 , 0+l);
