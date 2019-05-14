@@ -196,47 +196,19 @@
                     replace_symbols(document.getElementById("reaction_side0").value),
                     replace_symbols(document.getElementById("reaction_side1").value)
                 ];
-                
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                 substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-                //console.log(substance_array[0]);
-                //sukuriamas y0 reikšmių masyvas kairiai ir dešiniai reakcijos pusėms
-                var y0_left = substance_array[0].split("");
-                var color_left = [];
-                for(var i=0; i<substance_array[0].length; i++){
-                    color_left[i] = document.getElementById(`color${y0_left[i]}`).value;
-                    y0_left[i] = parseFloat(document.getElementById(`${y0_left[i]}`).value);
-                    
-                }
-                //console.log(y0_left);
-                var y0_right = substance_array[1].split("");
-                var color_right = [];
-                for(var i=0; i<substance_array[1].length; i++){
-                    color_right[i] = document.getElementById(`color${y0_right[i]}`).value;
-                    y0_right[i] = parseFloat(document.getElementById(`${y0_right[i]}`).value);
-                }
-                var y0 = [y0_left, y0_right];
-                //Kairioji pusė
-                //console.log(func_array[0]);
-                
-                var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array, get_reaction);
-                
-                //normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width, color_left);
-                //Dešinioji pusė
-               // var [y_right, tt] = solution(y0_right, int_begin, int_end, N, func_array[1]);
-                //normalize_and_draw(y_right, tt, int_begin, int_end, c.height, c.width, color_right);
-
-                var y = [];
+                //sukuriamas y0 reikšmių masyvas
+                var y0 = substance_array[0].split("");
                 var color = [];
-                for(var i=0; i<y_left.length; i++){
-                    y.push(y_left[i]);
-                    color.push(color_left[i]);
+                for(var i=0; i<substance_array[0].length; i++){
+                    color[i] = document.getElementById(`color${y0[i]}`).value;
+                    y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
                 }
-                // for(var i=0; i<y_right.length; i++){
-                //     y.push(y_right[i]);
-                //     color.push(color_right[i]);
-                // }
+                //Apskaičiuojamos y reikšmės
+                var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction);
+
                 normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
 
                 //Piešiami skičiai prie grafiko ašių
@@ -281,7 +253,7 @@
             var subs_names = ["A","B","C"];
             var subs_color_id = ["colorA", "colorB", "colorC"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","M","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
             
             //Prideda papildomą medžiagos input lauką
             document.getElementById("add_subs").addEventListener("click", function(event){
@@ -323,28 +295,7 @@
             function disablesbutton() {
                 document.getElementById("submit_reaction").disabled = true;
                 document.getElementById("add_subs").disabled = true;
-            }
-
-
-
-
-            // //Išvalo grafiką
-            // //var funct_count = parseInt(document.getElementById("func_counter").value);
-            // document.getElementById("delete").addEventListener("click", function(event){
-            //     ctx.clearRect(0,0, c.width, c.height )
-            //     ctx.beginPath();
-            //     draw(ctx);
-            //     //pridedame pridėti funkcijos mygtuką ir įvesties lauką.
-            //     //Reikia pašalinti papildomai pridėtus laukus
-            //     //for(i=1; i<funct_count+1; i++){
-            //     var button = document.getElementById("add_subs")
-            //     button.style.display = 'block'
-            //     var counter_input_field = document.getElementById("count_subst")
-            //     counter_input_field.style.display = 'block'
-
-            //     //reikia kažkaip padaryti kad ištrintų papildomus įvesties laukus
-            //     //}
-            // });    
+            } 
 
               // alertai
                 /*var funct_count = parseInt(document.getElementById("subs_counter").value);

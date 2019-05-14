@@ -57,6 +57,21 @@ function k4(t, y, h, k3, func){
     }
     return h * f(t+h, y_copy, func);
 }
+//Sumažinti kodą tiek k apskaičiavimu
+function renew_function(j, y, left_subs_count, func_array){
+    var func;
+    for(var m = 0; m < y.length; m++){
+        if(j < left_subs_count.length-1){
+            func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
+            func = func_array[0];
+        }
+        if(j > left_subs_count.length-1){
+            func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
+            func = func_array[1];
+        }
+    }
+    return func;
+}
 
 function solution(y0, a, b, N, func_array, get_reaction){
     var left_subs_count = get_reaction[0].split('');
@@ -78,14 +93,15 @@ function solution(y0, a, b, N, func_array, get_reaction){
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
                 if(j < left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(/A|B|C|D|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
+                    func_array[0] = func_array[0].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
                     func = func_array[0];
                 }
                 if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(/A|B|C|D|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
+                    func_array[1] = func_array[1].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
                     func = func_array[1];
                 }
             }
+            console.log(func);
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){
@@ -164,14 +180,10 @@ function normalization(yy,tt, a, b, height, width){
     for(var i=0; i<yy.length; i++){
         var yp_temp = [];
         for(var j=0; j<yy[i].length; j++){
-            // yp_temp[j] = ((height-20)-(k*yy[i][j]+l)*(height-20));
-            yp_temp[j] = ((height-20)-((yy[i][j]-y_min)/y_max-y_min)*(height-20));
+            yp_temp[j] = ((height-20)-(k*yy[i][j]+l)*(height-20));
             yy[i][j]=yp_temp[j];
-            //console.log(yy[i][j]);
             if(i==0){
                 tp[j] = ((kt*tt[j]+lt)*(width-20))+20;
-                // tp[j] = ((tt[i]-a)/(b-a)*(width-20))+20;
-                // console.log(tp[j]);
             }
         }
         yp.push(yp_temp);

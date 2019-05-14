@@ -2,33 +2,33 @@
 function replace_symbols(funct){
     //Naudojimas: acos(reišikinys)
     //Su kitomis trigonometrinėmis funkcijomis analogiškai
-    if(new RegExp(/acos/ig).test(funct)){
-        funct = funct.replace(/acos/ig, "Math.acos");
+    if(new RegExp(/acos/g).test(funct)){
+        funct = funct.replace(/acos/g, "Math.acos");
     }
-    if(new RegExp(/asin/ig).test(funct)){
-        funct = funct.replace(/asin/ig, "Math.asin");
+    if(new RegExp(/asin/g).test(funct)){
+        funct = funct.replace(/asin/g, "Math.asin");
     }//Ar tangentas iš viso mums reikalingas?
     /*if(new RegExp(/atan/ig).test(funct)){
         funct = funct.replace(/atan/ig, "Math.atan");
     }*/
-    if(new RegExp(/cos/ig).test(funct)){
-        funct = funct.replace(/cos/ig, "Math.cos");
+    if(new RegExp(/cos/g).test(funct)){
+        funct = funct.replace(/cos/g, "Math.cos");
     }
-    if(new RegExp(/sin/ig).test(funct)){
-        funct = funct.replace(/sin/ig, "Math.sin");
+    if(new RegExp(/sin/g).test(funct)){
+        funct = funct.replace(/sin/g, "Math.sin");
     }/*
     if(new RegExp(/tan/ig).test(funct)){
         funct = funct.replace(/tan/ig, "Math.tan");
     }*/
     //Kvadratinės šaknies traukimas 
     //sqrt(reiškinys)
-    if(new RegExp(/sqrt/ig).test(funct)){
-        funct = funct.replace(/sqrt/ig, "Math.sqrt");
+    if(new RegExp(/sqrt/g).test(funct)){
+        funct = funct.replace(/sqrt/g, "Math.sqrt");
     }
     //Kubinės šaknies traukimas
     //cbrt(reiškinys)
-    if(new RegExp(/cbrt/ig).test(funct)){
-        funct = funct.replace(/cbrt/ig, "Math.cbrt");
+    if(new RegExp(/cbrt/g).test(funct)){
+        funct = funct.replace(/cbrt/g, "Math.cbrt");
     }
     //Kėlimas laipsniu
     //pagrindas^laipsnis
