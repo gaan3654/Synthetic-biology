@@ -92,7 +92,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
         var kk4 = [];
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
-                if(j < left_subs_count.length-1){
+                if(j <= left_subs_count.length-1){
                     func_array[0] = func_array[0].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
                     func = func_array[0];
                 }
@@ -106,7 +106,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
         }
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
-                if(j < left_subs_count.length-1){
+                if(j <= left_subs_count.length-1){
                     func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
                     func = func_array[0];
                 }
@@ -120,7 +120,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
         }
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
-                if(j < left_subs_count.length-1){
+                if(j <= left_subs_count.length-1){
                     func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
                     func = func_array[0];
                 }
@@ -133,7 +133,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
         }
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
-                if(j < left_subs_count.length-1){
+                if(j <= left_subs_count.length-1){
                     func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
                     func = func_array[0];
                 }
