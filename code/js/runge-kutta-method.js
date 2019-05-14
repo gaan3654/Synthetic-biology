@@ -76,7 +76,9 @@ function solution(y0, a, b, N, func){
         }
         t[i+1] = t[i]+h;
         
-        var kk1 = k1(t[i], y, h, func);
+        for(var j = 0; j < y.length; j++){
+            var kk1 = k1(t[i], y, h, func);
+        }
         var kk2 = k2(t[i], y, h, kk1, func);
         var kk3 = k3(t[i], y, h, kk2, func);
         var kk4 = k4(t[i], y, h, kk3, func);
