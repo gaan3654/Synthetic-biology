@@ -188,6 +188,10 @@
                 var int_begin = parseFloat(document.getElementById("int_begins").value);
                 var int_end = parseFloat(document.getElementById("int_ends").value);
                 var N = parseInt(document.getElementById("n_inp").value);
+                var get_reaction = document.getElementById("reaction_input").value;
+                get_reaction = get_reaction.split(/<?->/);
+                get_reaction[0] = get_reaction[0].replace('+', '');
+                get_reaction[1] = get_reaction[1].replace('+', '');
                 var func_array = [
                     replace_symbols(document.getElementById("reaction_side0").value),
                     replace_symbols(document.getElementById("reaction_side1").value)
@@ -215,7 +219,9 @@
                 var y0 = [y0_left, y0_right];
                 //Kairioji pusė
                 //console.log(func_array[0]);
-                var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array[0]);
+                
+                var [y_left, tt] = solution(y0_left, int_begin, int_end, N, func_array, get_reaction);
+                
                 //normalize_and_draw(y_left, tt, int_begin, int_end, c.height, c.width, color_left);
                 //Dešinioji pusė
                // var [y_right, tt] = solution(y0_right, int_begin, int_end, N, func_array[1]);
@@ -251,8 +257,8 @@
                 var reaction_sides = [];
                 reaction[0] = reaction[0].replace(/\+/g, "*");
                 reaction[1] = reaction[1].replace(/\+/g, "*");
-                reaction_sides[0] = reaction[0] +`*(-${get_rate})`+ `+` +  reaction[1] +`*${get_rate_2}`;
-                reaction_sides[1] = reaction[1] +`*(-${get_rate_2})` + `+` + reaction[0] +`*${get_rate}` ;
+                reaction_sides[0] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
+                reaction_sides[1] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
                 d.innerHTML += 
