@@ -58,8 +58,7 @@ function k4(t, y, h, k3, func){
     return h * f(t+h, y_copy, func);
 }
 //Sumažinti kodą tiek k apskaičiavimu
-function renew_function(j, y, left_subs_count, func_array){
-    var func;
+function renew_function(j, y, left_subs_count, func_array, func){
     for(var m = 0; m < y.length; m++){
         if(j < left_subs_count.length-1){
             func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
@@ -105,43 +104,16 @@ function solution(y0, a, b, N, func_array, get_reaction){
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk2.push(k2(t[i], y, h, kk1, func));
             
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk3.push(k3(t[i], y, h, kk2, func));
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk4.push(k4(t[i], y, h, kk3, func));
         }
 
