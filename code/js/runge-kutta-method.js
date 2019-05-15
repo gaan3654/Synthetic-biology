@@ -73,14 +73,15 @@ function renew_function(j, y, left_subs_count, func_array){
     return func;
 }
 
-function solution(y0, a, b, N, func_array, get_reaction){
+function solution(substance_obj, a, b, N, func_array, get_reaction){
     var left_subs_count = get_reaction[0].split('');
     var func;
     var t=[];
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
-    var y =[];
-    for(var i = 0; i<y0.length; i++){
-        y.push([y0[i]]);
+    var y = [];
+    let naujas_y = [];
+    for(var i = 0; i<substance_obj.length; i++){
+        naujas_y.push([substance_obj[i].pr_konc]);
     }
     t[0] = a;
     var h= (b-a)/N;
@@ -90,6 +91,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
         var kk2 = [];
         var kk3 = [];
         var kk4 = [];
+        //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
                 if(j <= left_subs_count.length-1){
@@ -101,7 +103,7 @@ function solution(y0, a, b, N, func_array, get_reaction){
                     func = func_array[1];
                 }
             }
-            console.log(func);
+            //console.log(func);
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){

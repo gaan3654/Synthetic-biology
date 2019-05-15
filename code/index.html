@@ -104,11 +104,11 @@
                     </div>                    
                     <div id=N class=input_blocks>
                         N:                
-                        <input type="number" id="n_inp" value="100"> 
+                        <input type="number" id="n_inp" value="1"> 
                     </div>   
                     <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
-                        <input type="text" id="reaction_input" value="A+B->C">
+                        <input type="text" id="reaction_input" value="A+B->C+B">
                     </div>
                     <div id=reaction class=input_blocks>
                         Reakcijos greitis k1:
@@ -196,18 +196,41 @@
                     replace_symbols(document.getElementById("reaction_side0").value),
                     replace_symbols(document.getElementById("reaction_side1").value)
                 ];
+                //["ABCB", "ABCB"]
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                 substance_array[1] = func_array[1].replace(/\W|\d/g,"");
                 //sukuriamas y0 reikšmių masyvas
-                var y0 = substance_array[0].split("");
+                //[2, 3, 1, 3]
+                var substance_obj = [];
+                //["A", "B", "C", "B"]
+                var subs_arr_left = substance_array[0].split("");
                 var color = [];
+                var obj ={};
                 for(var i=0; i<substance_array[0].length; i++){
-                    color[i] = document.getElementById(`color${y0[i]}`).value;
-                    y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
+                    //color[i] = document.getElementById(`color${subs_arr_left[i]}`).value;
+                    //y0[i] = parseFloat(document.getElementById(`${subs_arr_left[i]}`).value);
+                    //Nepridedamos dulikuotos reikšmės
+                    var check_array = 0;
+                    for(let j=0; j<substance_obj.length; j++){
+                        if (subs_arr_left[i] in substance_obj[j]){
+                            check_array = 1;
+                        }
+                    }//[${subs_arr_left[i]}']
+                    if (check_array == 0){
+                        var obj ={};
+                        obj[subs_arr_left[i]] = `y[${i}][0]`;
+                        obj[`pr_konc`] = parseFloat(document.getElementById(`${subs_arr_left[i]}`).value); 
+                        obj["color"] = document.getElementById(`color${subs_arr_left[i]}`).value;
+                        substance_obj.push(obj);
+                    }
+                    //{A: 2, color: "#ff0000"}
+                    //{B: 3, color: "#0000ff"}
+                    //{C: 1, color: "#00ff00"}
+                    //console.log(substance_obj);
                 }
                 //Apskaičiuojamos y reikšmės
-                var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction);
+                var [y, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
 
                 normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
 
