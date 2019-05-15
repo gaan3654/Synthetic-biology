@@ -57,11 +57,10 @@ function k4(t, y, h, k3, func){
     }
     return h * f(t+h, y_copy, func);
 }
-//Sumažinti kodą tiek k apskaičiavimu
-function renew_function(j, y, left_subs_count, func_array){
-    var func;
-    for(var m = 0; m < y.length; m++){
-        if(j < left_subs_count.length-1){
+//Atnaujinamos funkcijų reikšmės kiekvienam k
+function renew_function(j, y, left_subs_count, func_array, func){
+    for(let m = 0; m < y.length; m++){
+        if(j == 0){
             func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
             func = func_array[0];
         }
@@ -70,6 +69,7 @@ function renew_function(j, y, left_subs_count, func_array){
             func = func_array[1];
         }
     }
+    console.log(func);
     return func;
 }
 
@@ -114,50 +114,22 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk2.push(k2(t[i], y, h, kk1, func));
-            
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk3.push(k3(t[i], y, h, kk2, func));
         }
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
-                }
-            }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk4.push(k4(t[i], y, h, kk3, func));
         }
 
         for(var j = 0; j < y.length; j++){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
         }
-    } 
+    }
     return [y,t];
 }
 var y_min=0;
