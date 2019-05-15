@@ -224,15 +224,15 @@
                         obj["color"] = document.getElementById(`color${subs_arr_left[i]}`).value;
                         substance_obj.push(obj);
                     }
-                    //{A: 2, color: "#ff0000"}
-                    //{B: 3, color: "#0000ff"}
-                    //{C: 1, color: "#00ff00"}
-                    //console.log(substance_obj);
+                    //{A: "y[0][0]", pr_konc: 2, color: "#ff0000"}
+                    //{B: "y[1][0]", pr_konc: 3, color: "#0000ff"}
+                    //{C: "y[2][0]", pr_konc: 1, color: "#00ff00"}
+                    console.log(substance_obj);
                 }
                 //Apskaičiuojamos y reikšmės
                 var [y, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
 
-                normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
+                normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, substance_obj);
 
                 //Piešiami skičiai prie grafiko ašių
                 axle_numbers(N, y_max, int_end);

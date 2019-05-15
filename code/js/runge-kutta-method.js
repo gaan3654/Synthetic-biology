@@ -79,9 +79,8 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
     var t=[];
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     var y = [];
-    let naujas_y = [];
     for(var i = 0; i<substance_obj.length; i++){
-        naujas_y.push([substance_obj[i].pr_konc]);
+        y.push([substance_obj[i].pr_konc]);
     }
     t[0] = a;
     var h= (b-a)/N;
@@ -93,14 +92,22 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         var kk4 = [];
         //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[0];
+            for(let m = 0; m < y.length; m++){
+                if(j == 0){
+                    if(func_array[0].match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
+                        let current_subs = (func_array[0].match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
+                        let new_subs = substance_obj[m][current_subs];
+                        func_array[0] = func_array[0].replace(new RegExp(current_subs, 'g'), new_subs);
+                        func = func_array[0];
+                    }
                 }
                 if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
-                    func = func_array[1];
+                    if(func_array[1].match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
+                        let current_subs = (func_array[1].match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
+                        let new_subs = substance_obj[m][current_subs];
+                        func_array[1] = func_array[1].replace(new RegExp(current_subs, 'g'), new_subs);
+                        func = func_array[1];
+                    }
                 }
             }
             //console.log(func);

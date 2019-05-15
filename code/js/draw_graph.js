@@ -100,7 +100,7 @@ function axle_numbers(N, y_max, int_end) {
     
 }
 
-function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
+function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance_obj){
     var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
@@ -109,7 +109,7 @@ function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
         for(var j=1; j<=y_norm[i].length; j++){
             ctx.lineTo(t_norm[j],y_norm[i][j]);
         }
-        ctx.strokeStyle = color[i];
+        ctx.strokeStyle = substance_obj[i].color;
         ctx.stroke();
     }
 }
