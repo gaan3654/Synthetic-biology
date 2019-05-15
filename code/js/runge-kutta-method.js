@@ -69,12 +69,24 @@ function renew_function(j, y, left_subs_count, func_array, func){
             func = func_array[1];
         }
     }
-    console.log(func);
     return func;
+}
+
+function remove_duplicates(arr) {
+    var obj = {};
+    var ret_arr = [];
+    for (var i = 0; i < arr.length; i++) {
+        obj[arr[i]] = true;
+    }
+    for (var key in obj) {
+        ret_arr.push(key);
+    }
+    return ret_arr;
 }
 
 function solution(substance_obj, a, b, N, func_array, get_reaction){
     var left_subs_count = get_reaction[0].split('');
+    left_subs_count = remove_duplicates(left_subs_count);
     var func;
     var t=[];
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
@@ -110,7 +122,6 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
                     }
                 }
             }
-            //console.log(func);
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){
@@ -132,6 +143,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
     }
     return [y,t];
 }
+
 var y_min=0;
 var y_max;
 //Gautų rezultatų normalizavimas

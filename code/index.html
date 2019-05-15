@@ -108,7 +108,7 @@
                     </div>   
                     <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
-                        <input type="text" id="reaction_input" value="A+B->C+B">
+                        <input type="text" id="reaction_input" value="A+B+B->C">
                     </div>
                     <div id=reaction class=input_blocks>
                         Reakcijos greitis k1:
@@ -190,22 +190,22 @@
                 var N = parseInt(document.getElementById("n_inp").value);
                 var get_reaction = document.getElementById("reaction_input").value;
                 get_reaction = get_reaction.split(/<?->/);
-                get_reaction[0] = get_reaction[0].replace('+', '');
-                get_reaction[1] = get_reaction[1].replace('+', '');
+                get_reaction[0] = get_reaction[0].replace(/\+/g, '');
+                get_reaction[1] = get_reaction[1].replace(/\+/g, '');
                 var func_array = [
                     replace_symbols(document.getElementById("reaction_side0").value),
                     replace_symbols(document.getElementById("reaction_side1").value)
                 ];
-                //["ABCB", "ABCB"]
-                var substance_array = [];
-                substance_array[0] = func_array[0].replace(/\W|\d/g,"");
-                substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                //["ABCB"]
+                var substance_array;
+                substance_array = func_array[0].replace(/\W|\d/g,"");
                 //Į objektą talpinami duomenis apie medžiagas: 
                 // pozicija masyve, pradinė koncentracija, kreivės spalva
                 var substance_obj = [];
+                let possition = 0;
                 //["A", "B", "C", "B"]
-                var subs_arr_left = substance_array[0].split("");
-                for(var i=0; i<substance_array[0].length; i++){
+                var subs_arr_left = substance_array.split("");
+                for(var i=0; i<substance_array.length; i++){
                     //Nepridedamos dulikuotos medžiagų reikšmės
                     var check_array = 0;
                     for(let j=0; j<substance_obj.length; j++){
@@ -215,7 +215,7 @@
                     }
                     if (check_array == 0){
                         var obj ={};
-                        obj[subs_arr_left[i]] = `y[${i}][0]`;
+                        obj[subs_arr_left[i]] = `y[${possition++}][0]`;
                         obj[`pr_konc`] = parseFloat(document.getElementById(`${subs_arr_left[i]}`).value); 
                         obj["color"] = document.getElementById(`color${subs_arr_left[i]}`).value;
                         substance_obj.push(obj);
