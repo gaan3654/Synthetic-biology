@@ -92,7 +92,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     var y = [];
     for(var i = 0; i<substance_obj.length; i++){
-        y.push([substance_obj[i].pr_konc]);
+        y.push([substance_obj[i].initial_conc]);
     }
     t[0] = a;
     var h= (b-a)/N;

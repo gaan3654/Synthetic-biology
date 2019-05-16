@@ -211,20 +211,35 @@
                     for(let j=0; j<substance_obj.length; j++){
                         if (subs_arr_left[i] in substance_obj[j]){
                             check_array = 1;
+                            substance_obj[j]["repetitions"]++;
+                            for(let n=0; n<get_reaction[0].length; n++){
+                                if(get_reaction[0].match(new RegExp(subs_arr_left[i], 'g')) && 
+                                get_reaction[1].match(new RegExp(subs_arr_left[i], 'g'))){
+                                    substance_obj[j]["occurrences"] = "both";
+                                }
+                            }
                         }
                     }
                     if (check_array == 0){
                         var obj ={};
                         obj[subs_arr_left[i]] = `y[${possition++}][0]`;
-                        obj[`pr_konc`] = parseFloat(document.getElementById(`${subs_arr_left[i]}`).value); 
+                        obj[`initial_conc`] = parseFloat(document.getElementById(`${subs_arr_left[i]}`).value); 
                         obj["color"] = document.getElementById(`color${subs_arr_left[i]}`).value;
+                        obj["repetitions"] = 1;
+                        for(let n=0; n<get_reaction[0].length; n++){
+                            if(get_reaction[0].match(new RegExp(subs_arr_left[i], 'g'))){
+                                obj["occurrences"] = "left";
+                            } else {
+                                obj["occurrences"] = "right";
+                            }
+                        }
                         substance_obj.push(obj);
                     }
-                    //{A: "y[0][0]", pr_konc: 2, color: "#ff0000"}
-                    //{B: "y[1][0]", pr_konc: 3, color: "#0000ff"}
-                    //{C: "y[2][0]", pr_konc: 1, color: "#00ff00"}
-                    // console.log(substance_obj);
                 }
+                // {A: "y[0][0]", initial_conc: 2, color: "#ff0000", repetitions: 1, occurrences: "left"}
+                // {B: "y[1][0]", initial_conc: 3, color: "#0000ff", repetitions: 2, occurrences: "both"}
+                // {C: "y[2][0]", initial_conc: 1, color: "#00ff00", repetitions: 1, occurrences: "right"}
+                console.log(substance_obj);
                 //Apskaičiuojamos y reikšmės
                 var [y, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
                 //console.log(y);
