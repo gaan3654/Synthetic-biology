@@ -1,12 +1,12 @@
 //Runge–Kutta metodas
 function dA(t,A, B, C){
-    return eval(A*B*(-3)+C*0.9);
+    return eval(A*B*(-3)+C*B*0.9);
 }
 function dB(t,A, B, C){
-    return eval(A*B*(-3)+C*0.9);
+    return eval(0);
 }
 function dC(t,A, B, C){
-    return eval(A*B*(3)+C*(-0.9));
+    return eval(A*B*(3)+C*B*(-0.9));
 }
 
 function kA1(t, A, B, C, h, dA){
@@ -54,13 +54,18 @@ function kC4(t, A, B, C, h, kA3, kB3, kC3, dC){
 
 
 
-function solution(y0, a, b, N){
+function solution(substance_obj, a, b, N){
     var t=[];
     var y=[];
-    for(var i = 0; i<y0.length; i++){
-        y.push([y0[i]]);
+    // for(var i = 0; i<y0.length; i++){
+    //     y.push([y0[i]]);
+    // }
+    // console.log(y0);
+
+    for(var i = 0; i<substance_obj.length; i++){
+        y.push([substance_obj[i].initial_conc]);
     }
-    console.log(y0);
+
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     // var A =[];
     // var B =[];
