@@ -102,6 +102,8 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         var kk2 = [];
         var kk3 = [];
         var kk4 = [];
+        //Esant B knstantai reikia abiejų pusių diff - ant lapelio surašytos funkcijos eiga
+        //a+b+b->ckol kas galima palikti ramybėj
         //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
             for(let m = 0; m < y.length; m++){
@@ -141,6 +143,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
         }
     }
+    // console.log(y);
     return [y,t];
 }
 

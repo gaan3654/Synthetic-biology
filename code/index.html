@@ -108,7 +108,7 @@
                     </div>   
                     <div id=reaction class=input_blocks>
                         Įveskite norimą reakciją:
-                        <input type="text" id="reaction_input" value="A+B+B->C">
+                        <input type="text" id="reaction_input" value="A+B->C+B">
                     </div>
                     <div id=reaction class=input_blocks>
                         Reakcijos greitis k1:
@@ -227,7 +227,7 @@
                 }
                 //Apskaičiuojamos y reikšmės
                 var [y, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
-
+                //console.log(y);
                 normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, substance_obj);
 
                 //Piešiami skičiai prie grafiko ašių
