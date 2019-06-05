@@ -52,12 +52,12 @@ function replace_symbols(funct){
         funct = funct.replace(`log(${l})`, `Math.log(${log_arr[1]}) / Math.log(${log_arr[0]})`);
     }
     //tiesiog parašius pi gaunama tiksli reikšmė
-    if(new RegExp(/PI/ig).test(funct)){
-        funct = funct.replace(/PI/ig, "Math.PI");
+    if(new RegExp(/pi/g).test(funct)){
+        funct = funct.replace(/pi/g, "Math.PI");
     }
     //Tas pats kaip ir su pi
-    if(new RegExp(/E/ig).test(funct)){
-        funct = funct.replace(/E/ig, "Math.E");
-    }
+    // if(new RegExp(/e/g).test(funct)){
+    //     funct = funct.replace(/e/g, "Math.E");
+    // }
     return funct;
 }

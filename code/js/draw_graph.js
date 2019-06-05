@@ -1,6 +1,13 @@
 function draw(ctx){
+    ctx.beginPath();
+    ctx.moveTo(c.width/2,0);
+    ctx.lineTo(c.width/2,c.width);     
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = c.height ;
+    ctx.stroke();
 
     //Nupiešiami sąsiuvinio langeliai
+    ctx.beginPath();
     for(var i=20; i<c.height; i+=20){
         ctx.moveTo(i,0);
         ctx.lineTo(i,c.width);     

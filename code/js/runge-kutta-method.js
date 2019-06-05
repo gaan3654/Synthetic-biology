@@ -5,10 +5,10 @@ function f(t,y, func, func1, substance){
     if(substance.occurrences == "both"){
         result = eval(`(${func}+${func1})`);
         //result = eval(0);
-        console.log(`(${func}+${func1})`);
+        //console.log(`(${func}+${func1})`);
     } else {
         result = eval(func);
-        console.log(`${func} paprastas`);
+        //console.log(`${func} paprastas`);
     }
     return result;
 }
@@ -91,8 +91,8 @@ function renew_function(j, y, left_subs_count, func_array, func, func1, substanc
 }
 
 function renew_init_f(original_f, substance_obj, m){
-    if(original_f.match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
-        let current_subs = (original_f.match(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
+    if(original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
+        let current_subs = (original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
         let new_subs = substance_obj[m][current_subs];
         original_f = original_f.replace(new RegExp(current_subs, 'g'), new_subs);
     }
@@ -130,7 +130,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         var kk2 = [];
         var kk3 = [];
         var kk4 = [];
-        //Esant B knstantai reikia abiejų pusių diff - ant lapelio surašytos funkcijos eiga
+        //Esant B konstantai reikia abiejų pusių diff - ant lapelio surašytos funkcijos eiga
         //a+b+b->c kol kas galima palikti ramybėj
         //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
@@ -170,7 +170,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
         }
     }
-    // console.log(y);
+    console.log(y);
     return [y,t];
 }
 

@@ -20,7 +20,7 @@
                 <h2>Diferencialinių lygčių sistemų sprendimas</h2>
                 <h3>Paremta Runge-Kutta metodu</h3>
             </div>
-            <div class="mainDetails__contact">
+            <!-- <div class="mainDetails__contact">
                 <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
                 <a href="mailto:dominika.barilovic@mif.stud.vu.lt">e: dominika.barilovic@mif.stud.vu.lt</a> <br>
                 <a href="http://vu.lt">w: www.vu.lt</a> <br>
@@ -64,7 +64,7 @@
                         </li>
                     </ul> 
                 </div>
-            </div> 
+            </div>  -->
         </header>
         <div>    
             <div id="substance_input">
@@ -85,10 +85,10 @@
                         <input type="text" id="C" value="1"> 
                         <input type="color" id="colorC" class="s_colors" value="#00ff00">
                     </div>
-                    <div id=count_subst>
+                    <!-- <div id=count_subst>
                         Kiek medžiagų norite pridėti?
                         <input type="number" id="subs_counter" value="1">
-                    </div>
+                    </div> -->
                 </div>
                 
 
@@ -126,8 +126,8 @@
           
             
             <div class="subs_react_buttons">
-            <button id=add_subs>Pridėti medžiagą(as)</button>
-            <button id=submit_reaction onclick="disablesbutton()">Vykdyti reakciją(as)</button>
+                <button id=add_subs>Pridėti medžiagą(as)</button>
+                <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją(as)"/>
             </div>
 
             <div id="graph_draw">
@@ -137,8 +137,8 @@
                     </div>
                     <div class="visimygtukai">
                             <div id=dumygtukai>
-                                <button id=submit onclick="disablesbutton()" style="display:none">Piešti grafiką</button>
-                                <button id=delete onclick="window.location.reload(true);" style="display:none">Išvalyti</button>
+                                <button id=submit style="display:none">Piešti grafiką</button>
+                                <!-- <button id=delete onclick="window.location.reload(true);" style="display:none">Išvalyti</button> -->
                             </div>
                     </div>
                 </div>
@@ -243,6 +243,8 @@
                 // console.log(substance_obj);
                 //Apskaičiuojamos y reikšmės
                 var [yy, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
+                //Atnaujinamas grafikas
+                draw(ctx);
                 normalize_and_draw(yy, tt, int_begin, int_end, c.height, c.width, substance_obj);
 
                 //Piešiami skičiai prie grafiko ašių
@@ -251,7 +253,7 @@
             });
 
             
-
+            var button_clicked = false;
             //Užpildomi funkcijų laukai iš pateiktos reakcijos
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
                 var d = document.getElementById("function");
@@ -265,35 +267,41 @@
                 reaction[1] = reaction[1].replace(/\+/g, "*");
                 reaction_sides[0] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
                 reaction_sides[1] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
-                //Sukuriami input laukai funkcijoms
-                //kairioji pusė
-                d.innerHTML += 
-                `<div class=input_blocks>
-                    Kairioji: 
-                    <input type="text" id="reaction_side0" value=${reaction_sides[0]}>
-                </div>`;
-                //dešinioji pusė
-                d.innerHTML += 
-                `<div class=input_blocks>
-                    Dešinioji: 
-                    <input type="text" id="reaction_side1" value=${reaction_sides[1]}>
-                </div>`;
+                // Sukuriami input laukai funkcijoms paleidus programą pirmą kartą
+                if(!button_clicked){
+                    //kairioji pusė
+                    d.innerHTML += 
+                    `<div class=input_blocks>
+                        Kairioji: 
+                        <input type="text" id="reaction_side0" value=${reaction_sides[0]}>
+                    </div>`;
+                    //dešinioji pusė
+                    d.innerHTML += 
+                    `<div class=input_blocks>
+                        Dešinioji: 
+                        <input type="text" id="reaction_side1" value=${reaction_sides[1]}>
+                    </div>`;
 
-                $("#submit").css("display","inline")
-                $("#delete").css("display","inline")
+                    $("#submit").css("display","inline")
+                    $("#delete").css("display","inline")
+                    button_clicked = true;
+                } else{
+                    document.getElementById("reaction_side0").value = reaction_sides[0];
+                    document.getElementById("reaction_side1").value = reaction_sides[1];
+                }
             });
 
 
             var subs_names = ["A","B","C"];
             var subs_color_id = ["colorA", "colorB", "colorC"];
-            var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#ffff00", "#ff9900", "#00ff99", "#0099ff", "#9900ff", "#990099", "#009900"];
+            var subs_html_name = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
             
-            //Prideda papildomą medžiagos input lauką
+            //Prideda papildomų medžiagų input laukų
             document.getElementById("add_subs").addEventListener("click", function(event){
                 var d = document.getElementById("substance");
-                var subs_count = parseInt(document.getElementById("subs_counter").value);
-                var substance_count = subs_color_id.length+subs_count;
+                // var subs_count = parseInt(document.getElementById("subs_counter").value);
+                var substance_count = subs_color_id.length+1;//subs_count;
                 for(var i=subs_color_id.length; i<substance_count; i++){
                     subs_names[i] = subs_html_name[i];
                     subs_color_id[i] = "color"+subs_html_name[i];
@@ -311,24 +319,25 @@
                     //Pridedami įvesties laukai papildomoms funkcijoms
                     d.innerHTML += 
                     `<div class=input_blocks>
-                        [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text'>
+                        [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text' value=0>
                         <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                     </div>`;
 
                     //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
-                    var button = document.getElementById("add_subs")
-                    button.style.display = 'none'
-                    var counter_input_field = document.getElementById("count_subst")
-                    counter_input_field.style.display = 'none'
+                    // var button = document.getElementById("add_subs")
+                    // button.style.display = 'none'
+                    // var counter_input_field = document.getElementById("count_subst")
+                    // counter_input_field.style.display = 'none'
 
 
                 }
             });
 
             //funkcija, kuri sustabdo mygtukų veikimą kai grafikas jau yra nupieštas
-            function disablesbutton() {
-                document.getElementById("submit_reaction").disabled = true;
-                document.getElementById("add_subs").disabled = true;
+            // Pakeičiamas mygtuko pavadinimas
+            function renew_button() {
+                document.getElementById("submit_reaction").value = "Atnaujiti reakciją(as)";
+                // document.getElementById("add_subs").disabled = true;
             } 
 
               // alertai
