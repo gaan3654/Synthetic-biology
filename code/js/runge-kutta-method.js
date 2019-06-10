@@ -170,7 +170,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
         }
     }
-    console.log(y);
+    // console.log(y);
     return [y,t];
 }
 
