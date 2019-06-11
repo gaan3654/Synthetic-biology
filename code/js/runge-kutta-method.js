@@ -1,23 +1,15 @@
 //Runge–Kutta metodas
-function f(t,y, func, func1, substance){
+function f(t,y, func){
     let result;
-    //Jei medžiaga yra abiejuose reakcijos pusėse, diff lygtys yra sudedamos
-    if(substance.occurrences == "both"){
-        result = eval(`(${func}+${func1})`);
-        //result = eval(0);
-        //console.log(`(${func}+${func1})`);
-    } else {
-        result = eval(func);
-        //console.log(`${func} paprastas`);
-    }
+    result = eval(func);
     return result;
 }
 
-function k1(t, y, h, func, func1, substance){
-    return h * f(t, y, func, func1, substance);
+function k1(t, y, h, func){
+    return h * f(t, y, func);
 }
 
-function k2(t, y, h, k1, func, func1, substance){
+function k2(t, y, h, k1, func){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -31,10 +23,10 @@ function k2(t, y, h, k1, func, func1, substance){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k1[i] / 2);
     }
-    return h * f(t+h/2, y_copy, func, func1, substance);
+    return h * f(t+h/2, y_copy, func);
 }   
 
-function k3(t, y, h, k2, func, func1, substance){
+function k3(t, y, h, k2, func){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -48,10 +40,10 @@ function k3(t, y, h, k2, func, func1, substance){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k2[i] / 2);
     }
-    return h * f(t+h/2, y_copy, func, func1, substance);
+    return h * f(t+h/2, y_copy, func);
 }
 
-function k4(t, y, h, k3, func, func1, substance){
+function k4(t, y, h, k3, func){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -65,29 +57,14 @@ function k4(t, y, h, k3, func, func1, substance){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k3[i]);
     }
-    return h * f(t+h, y_copy, func, func1, substance);
+    return h * f(t+h, y_copy, func);
 }
 //Atnaujinamos funkcijų reikšmės kiekvienam k
-function renew_function(j, y, left_subs_count, func_array, func, func1, substance_obj){
+function renew_function(y, func_array){
     for(let m = 0; m < y.length; m++){
-        if(substance_obj[m].occurrences != "both"){
-            if(j == 0){
-                func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                func = func_array[0];
-            }
-            if(j > left_subs_count.length-1){
-                func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-                func = func_array[1];
-            }
-            // func1 = 'undefined';
-        } else{
-            func_array[0] = func_array[0].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-            func = func_array[0];
-            func_array[1] = func_array[1].replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
-            func1 = func_array[1];
-        }
+        func_array = func_array.replace(`y[${m}][${y[m].length-2}]`, `y[${m}][${y[m].length-1}]`);
     }
-    return [func, func1];
+    return func_array;
 }
 
 function renew_init_f(original_f, substance_obj, m){
@@ -135,42 +112,28 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
             for(let m = 0; m < y.length; m++){
-                if(substance_obj[j].occurrences != "both"){
-                    if(j == 0){
-                        func_array[0] = renew_init_f(func_array[0], substance_obj, m);
-                        func = func_array[0];
-                    } else if(j > left_subs_count.length-1){
-                        func_array[1] = renew_init_f(func_array[1], substance_obj, m);
-                        func = func_array[1];
-                    }
-                    // func1 = 'undefined';
-                } else{
-                    func_array[0] = renew_init_f(func_array[0], substance_obj, m);
-                    func = func_array[0];
-                    func_array[1] = renew_init_f(func_array[1], substance_obj, m);
-                    func1 = func_array[1];
-                }
+                substance_obj[j].function = renew_init_f(substance_obj[j].function, substance_obj, m);
+                func = substance_obj[j].function;
             }
-            kk1.push(k1(t[i], y, h, func, func1, substance_obj[j]));
+            kk1.push(k1(t[i], y, h, func, substance_obj[j]));
         }
         for(var j = 0; j < y.length; j++){
-            [func, func1] = renew_function(j, y, left_subs_count, func_array, func, func1, substance_obj);
-            kk2.push(k2(t[i], y, h, kk1, func, func1, substance_obj[j]));
+            substance_obj[j].function = renew_function(y, substance_obj[j].function);
+            kk2.push(k2(t[i], y, h, kk1, substance_obj[j].function, func1, substance_obj[j]));
         }
         for(var j = 0; j < y.length; j++){
-            [func, func1] = renew_function(j, y, left_subs_count, func_array, func, func1, substance_obj);
-            kk3.push(k3(t[i], y, h, kk2, func, func1, substance_obj[j]));
+            substance_obj[j].function = renew_function(y, substance_obj[j].function);
+            kk3.push(k3(t[i], y, h, kk2, substance_obj[j].function, func1, substance_obj[j]));
         }
         for(var j = 0; j < y.length; j++){
-            [func, func1] = renew_function(j, y, left_subs_count, func_array, func, func1, substance_obj);
-            kk4.push(k4(t[i], y, h, kk3, func, func1, substance_obj[j]));
+            substance_obj[j].function = renew_function(y, substance_obj[j].function);
+            kk4.push(k4(t[i], y, h, kk3, substance_obj[j].function, func1, substance_obj[j]));
         }
 
         for(var j = 0; j < y.length; j++){
             y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
         }
     }
-    // console.log(y);
     return [y,t];
 }
 
