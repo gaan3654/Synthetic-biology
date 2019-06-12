@@ -207,13 +207,19 @@
                         replace_symbols(document.getElementById(`reaction_side1_${i}`).value)
                     ];
                     //["ABCB"]
-                    var substance_array;
-                    substance_array = func_array[0].replace(/\W|\d/g,"");
-                
-                    // console.log(substance_array);
+                    //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
+                    var substance_array = [];
+                    // console.log(func_array[0].match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/));
+                    // substance_array = func_array[0].replace(/\W|\d/g,"");
+                    let tmp = func_array[0];
+                    while(tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
+                    substance_array.push((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]));
+                    tmp = tmp.replace((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]),"");
+                    }
+                    console.log(substance_array);
                     var skip = "no";
                     //["A", "B", "C", "B"]
-                    var subs_arr_left = substance_array.split("");
+                    var subs_arr_left = substance_array;
                     for(let i=0; i<substance_array.length; i++){
                         //Nepridedamos dulikuotos medžiagų reikšmės
                         var check_array = 0;
@@ -267,7 +273,7 @@
                 // {B: "y[1][0]", initial_conc: 3, color: "#0000ff", repetitions: 2, occurrences: "both"}
                 // {C: "y[2][0]", initial_conc: 1, color: "#00ff00", repetitions: 1, occurrences: "right"}
                 
-                // console.log(func_array);
+                // console.log(substance_obj);
                 //Apskaičiuojamos y reikšmės
                 var [yy, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
                 //Atnaujinamas grafikas

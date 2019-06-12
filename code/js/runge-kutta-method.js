@@ -1,6 +1,7 @@
 //Runge–Kutta metodas
 function f(t,y, func){
     let result;
+    console.log(func);
     result = eval(func);
     return result;
 }
@@ -68,9 +69,11 @@ function renew_function(y, func_array){
 }
 
 function renew_init_f(original_f, substance_obj, m){
-    if(original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
-        let current_subs = (original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|M|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
+    if(original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
+        let current_subs = (original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
         let new_subs = substance_obj[m][current_subs];
+        // console.log(substance_obj[m][current_subs]);
+        
         original_f = original_f.replace(new RegExp(current_subs, 'g'), new_subs);
     }
     return original_f;
@@ -92,12 +95,12 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
     var left_subs_count = get_reaction[0].split('');
     left_subs_count = remove_duplicates(left_subs_count);
     var func;
-    let func1;
     var t=[];
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     var y = [];
     for(var i = 0; i<substance_obj.length; i++){
         y.push([substance_obj[i].initial_conc]);
+        // console.log(y);
     }
     t[0] = a;
     var h= (b-a)/N;
@@ -116,6 +119,7 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
                 func = substance_obj[j].function;
             }
             kk1.push(k1(t[i], y, h, func, substance_obj[j]));
+            // console.log(substance_obj[j]);
         }
         for(var j = 0; j < y.length; j++){
             substance_obj[j].function = renew_function(y, substance_obj[j].function);
@@ -176,7 +180,7 @@ function normalization(yy,tt, a, b, height, width){
             }
         }
         yp.push(yp_temp);
-        console.log(yp);
+        // console.log(yp);
     }
     return [yp,tp];
 }
