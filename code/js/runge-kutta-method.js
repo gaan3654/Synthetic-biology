@@ -1,7 +1,8 @@
+
 //Runge–Kutta metodas
 function f(t,y, func){
     let result;
-    console.log(func);
+    // console.log(func);
     result = eval(func);
     return result;
 }
@@ -60,6 +61,7 @@ function k4(t, y, h, k3, func){
     }
     return h * f(t+h, y_copy, func);
 }
+
 //Atnaujinamos funkcijų reikšmės kiekvienam k
 function renew_function(y, func_array){
     for(let m = 0; m < y.length; m++){
@@ -68,17 +70,22 @@ function renew_function(y, func_array){
     return func_array;
 }
 
+//Pradinė funkcija inicializuojama pradinėmis koncentracijomis; Raidės pakeičiamos atitinkamom y masyvo pozicijom
 function renew_init_f(original_f, substance_obj, m){
     if(original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
         let current_subs = (original_f.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/))[0];
-        let new_subs = substance_obj[m][current_subs];
-        // console.log(substance_obj[m][current_subs]);
-        
+        let new_subs;
+        for(let i = 0; i < substance_obj.length; i++){
+            if(substance_obj[i][current_subs]){
+                new_subs = substance_obj[i][current_subs];
+            }
+        }
         original_f = original_f.replace(new RegExp(current_subs, 'g'), new_subs);
     }
     return original_f;
 }
 
+//Pašalinami duplikatai iš paduodamo masyvo
 function remove_duplicates(arr) {
     var obj = {};
     var ret_arr = [];
@@ -91,6 +98,7 @@ function remove_duplicates(arr) {
     return ret_arr;
 }
 
+//Differencialinės lygties sprendimas Runge-Kutta metodu
 function solution(substance_obj, a, b, N, func_array, get_reaction){
     var left_subs_count = get_reaction[0].split('');
     left_subs_count = remove_duplicates(left_subs_count);
@@ -100,7 +108,6 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
     var y = [];
     for(var i = 0; i<substance_obj.length; i++){
         y.push([substance_obj[i].initial_conc]);
-        // console.log(y);
     }
     t[0] = a;
     var h= (b-a)/N;
@@ -114,13 +121,14 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         //a+b+b->c kol kas galima palikti ramybėj
         //Sugeneruojamos tinkamos funkcijos kiekvieno k apskaičiavimui.
         for(var j = 0; j < y.length; j++){
+            //Pirmiausia raidės esančios funkcijoje pakeičiamos atitinkamomis y masyvo pozicjims
             for(let m = 0; m < y.length; m++){
                 substance_obj[j].function = renew_init_f(substance_obj[j].function, substance_obj, m);
                 func = substance_obj[j].function;
             }
             kk1.push(k1(t[i], y, h, func, substance_obj[j]));
-            // console.log(substance_obj[j]);
         }
+        //Toliau pirminės medžiagų koncentracijos pakeičiamos naujomis; priskiriama sekanti reikšmė y masyve
         for(var j = 0; j < y.length; j++){
             substance_obj[j].function = renew_function(y, substance_obj[j].function);
             kk2.push(k2(t[i], y, h, kk1, substance_obj[j].function));
@@ -180,7 +188,6 @@ function normalization(yy,tt, a, b, height, width){
             }
         }
         yp.push(yp_temp);
-        // console.log(yp);
     }
     return [yp,tp];
 }

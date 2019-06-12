@@ -20,51 +20,6 @@
                 <h2>Diferencialinių lygčių sistemų sprendimas</h2>
                 <h3>Paremta Runge-Kutta metodu</h3>
             </div>
-            <!-- <div class="mainDetails__contact">
-                <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
-                <a href="mailto:dominika.barilovic@mif.stud.vu.lt">e: dominika.barilovic@mif.stud.vu.lt</a> <br>
-                <a href="http://vu.lt">w: www.vu.lt</a> <br>
-
-                <button id=info >Info</button>
-                <div id="dialog">
-                    <br><strong>Sistemos naudojimas specifinėms funkcijoms.</strong><br><br>
-                    <ul>
-                        <li>Trigonometrinės lygties pavyzdys:
-                            <ul>
-                                <li>cos(lygtis)</li>
-                                <li>acos(lygtis)</li>
-                            </ul>
-                        </li>
-                        <li>Šaknies traukimas:
-                                <ul>
-                                    <li>sqrt(lygtis)</li>
-                                    <li>cbrt(lygtis)</li>
-                                </ul>
-                            </li>
-                        </li>
-                        <li>Kėlimui laipsniu:
-                                <ul>
-                                    <li>pagrindas^laipsnis</li>
-                                </ul>
-                            </li>
-                        </li>
-                        <li>Logaritmai:
-                                <ul>
-                                    <li>log(pagrindas,logaritmuojamas reiškinys</li>
-                                    <li>ln(lygtis)</li>
-                                </ul>
-                            </li>
-                        </li>
-                        <li>Konstantos:
-                                <ul>
-                                    <li>pi</li>
-                                    <li>e</li>
-                                </ul>
-                            </li>
-                        </li>
-                    </ul> 
-                </div>
-            </div>  -->
         </header>
         <div>    
             <div id="substance_input">
@@ -108,7 +63,7 @@
                         <div id = reaction_info_0>
                             <div id=reaction_0 class=input_blocks>
                                 Įveskite norimą reakciją:
-                                <input type="text" id="reaction_input_0" value="A+B->C+B">
+                                <input type="text" id="reaction_input_0" value="A+B->B">
                             </div>
                             <div id=k1_0 class=input_blocks>
                                 Reakcijos greitis k<sub>1</sub>:
@@ -140,7 +95,6 @@
                     <div class="visimygtukai">
                             <div id=dumygtukai>
                                 <button id=submit style="display:none">Piešti grafiką</button>
-                                <!-- <button id=delete onclick="window.location.reload(true);" style="display:none">Išvalyti</button> -->
                             </div>
                     </div>
                 </div>
@@ -206,19 +160,17 @@
                         replace_symbols(document.getElementById(`reaction_side0_${i}`).value),
                         replace_symbols(document.getElementById(`reaction_side1_${i}`).value)
                     ];
-                    //["ABCB"]
                     //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
                     var substance_array = [];
-                    // console.log(func_array[0].match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/));
-                    // substance_array = func_array[0].replace(/\W|\d/g,"");
+
                     let tmp = func_array[0];
                     while(tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)){
                     substance_array.push((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]));
                     tmp = tmp.replace((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]),"");
                     }
-                    console.log(substance_array);
+                    // console.log(substance_array);
+
                     var skip = "no";
-                    //["A", "B", "C", "B"]
                     var subs_arr_left = substance_array;
                     for(let i=0; i<substance_array.length; i++){
                         //Nepridedamos dulikuotos medžiagų reikšmės
@@ -227,7 +179,8 @@
                             if (subs_arr_left[i] in substance_obj[j]){
                                 check_array = 1;
                                 substance_obj[j]["repetitions"]++;
-
+                                //Į objektą talpinami duomenys apie substratus, bei sugeneruojamos funkcijos
+                                //Jei medžiaga veikia kai katalizatorius
                                 if(get_reaction[0].match(new RegExp(subs_arr_left[i], 'g')) && 
                                 get_reaction[1].match(new RegExp(subs_arr_left[i], 'g'))){
                                     if(substance_obj[j]["occurrences"] == "left"){
@@ -241,6 +194,7 @@
                                         }
                                     }
                                     substance_obj[j]["occurrences"] = "both";
+                                    //Jeigu medžiaga veikia kaip substratas arba produktas
                                 } else if(get_reaction[0].match(new RegExp(subs_arr_left[i], 'g'))){
                                     substance_obj[j]["occurrences"] = "left";
                                     substance_obj[j]["function"] = `${substance_obj[j]["function"]}+${func_array[0]}`
@@ -250,6 +204,7 @@
                                 }
                             }
                         }
+                        //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
                         if (check_array == 0){
                             var obj ={};
                             obj[subs_arr_left[i]] = `y[${possition++}][0]`;
@@ -269,11 +224,8 @@
                         }
                     }
                 }
-                // {A: "y[0][0]", initial_conc: 2, color: "#ff0000", repetitions: 1, occurrences: "left"}
-                // {B: "y[1][0]", initial_conc: 3, color: "#0000ff", repetitions: 2, occurrences: "both"}
-                // {C: "y[2][0]", initial_conc: 1, color: "#00ff00", repetitions: 1, occurrences: "right"}
-                
-                // console.log(substance_obj);
+
+                console.log(substance_obj);
                 //Apskaičiuojamos y reikšmės
                 var [yy, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
                 //Atnaujinamas grafikas
@@ -360,14 +312,6 @@
                         [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text' value=0>
                         <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                     </div>`;
-
-                    //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
-                    // var button = document.getElementById("add_subs")
-                    // button.style.display = 'none'
-                    // var counter_input_field = document.getElementById("count_subst")
-                    // counter_input_field.style.display = 'none'
-
-
                 }
             });
 
@@ -390,7 +334,7 @@
                     <div id=reaction_${[i]} class=input_blocks>
                             ${i+1}. <br> 
                             Įveskite norimą reakciją:
-                        <input type="text" id="reaction_input_${[i]}" value="A->B">
+                        <input type="text" id="reaction_input_${[i]}" value="A->C">
                     </div>
                     <div id=k1_${[i]} class=input_blocks>
                         Reakcijos greitis k<sub>1</sub>:
