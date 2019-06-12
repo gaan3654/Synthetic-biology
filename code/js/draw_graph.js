@@ -79,13 +79,13 @@ function getRandomColor() {
 
 function axle_numbers(N, y_max, int_end) {
     //skaičiai ant ašies OY
-    var l=40;
+    var l=20;
     //čia mano logika intervalų skaičiukų nustatymui. 
     //jei turime [y_norm[1], y_norm[100]], t.y N=100
     //ir turime 20 langelių, tačiau piešiame kas antram, tai gaunas kad reikia tik 10 reikšmių
     //tai čia paimu y_norm[10]; y_norm[20]; y_norm[30], ..., y_norm[100]
     //reikia man pagalvoti kaip bus su skirtingais N...
-    for(var p = N / 10; p < N; p += N / 10){ 
+    for(var p = 0; p < N; p += N / 10){ 
         var oy_number = (y_max) - p*(y_max)/N;  
         oy_number = oy_number.toFixed(1);  //suapvalinu iki skaičių be kablelio
         //console.log(oy_number); 
@@ -108,7 +108,8 @@ function axle_numbers(N, y_max, int_end) {
 }
 
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance_obj){
-    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
+    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height-20, width-20);
+    //atėmu po 20 kad nesiektų kraštų
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
         ctx.beginPath();
