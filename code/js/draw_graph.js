@@ -108,7 +108,7 @@ function axle_numbers(N, y_max, int_end) {
 }
 
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance_obj){
-    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width+20);
+    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
     //atėmu po 20 kad nesiektų kraštų
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
