@@ -89,19 +89,21 @@
                 
 
                 <div id=inputs>
-                    <div id=interv_begins class=input_blocks>
-                        Intervalo pradžia: 
-                        <input type="number" id="int_begins" value="0"> 
-                    </div> 
-                    
-                    <div id=interv_ends class=input_blocks> 
-                        Intervalo pabaiga:
-                        <input type="number" id="int_ends" value="1"> 
-                    </div>                    
-                    <div id=N class=input_blocks>
-                        N:                
-                        <input type="number" id="n_inp" value="100"> 
-                    </div> 
+                    <div id=settings>
+                        <div id=interv_begins class=input_blocks>
+                            Intervalo pradžia: 
+                            <input type="number" id="int_begins" value="0"> 
+                        </div> 
+                        
+                        <div id=interv_ends class=input_blocks> 
+                            Intervalo pabaiga:
+                            <input type="number" id="int_ends" value="1"> 
+                        </div>                    
+                        <div id=N class=input_blocks>
+                            N:                
+                            <input type="number" id="n_inp" value="100"> 
+                        </div> 
+                    </div>
                     <div id = reactions>
                         <div id = reaction_info_0>
                             <div id=reaction_0 class=input_blocks>
@@ -132,7 +134,7 @@
 
             <div id="graph_draw">
                 <div id=function_block>
-                    <div id=function>
+                    <div id=function style="display:none">
                         <!--Talpinamos reakcijos sukurtos funkcijos-->
                     </div>
                     <div class="visimygtukai">
@@ -311,7 +313,7 @@
                         last_added_reaction_id = i;
                     }
                     $("#submit").css("display","inline")
-                    $("#delete").css("display","inline")
+                    $("#function").css("display","block")
                     button_clicked = true;
                 } else{
                     for(var i = 0; i < reactions_id.length; i++){
@@ -373,22 +375,23 @@
 
             //Prideda papildomų medžiagų input laukų
             document.getElementById("add_reaction").addEventListener("click", function(event){
-                var d = document.getElementById("inputs");
+                var d = document.getElementById("reactions");
                 var i = reactions_id.length;
                 reactions_id[i] = "reaction_"+[i];
                 //Pridedami įvesties laukai papildomoms funkcijoms
                 d.innerHTML += 
                 `<div id = reaction_info_${[i]}>
                     <div id=reaction_${[i]} class=input_blocks>
-                        Įveskite norimą reakciją:
+                            ${i+1}. <br> 
+                            Įveskite norimą reakciją:
                         <input type="text" id="reaction_input_${[i]}" value="A->B">
                     </div>
                     <div id=k1_${[i]} class=input_blocks>
-                        Reakcijos greitis k1:
+                        Reakcijos greitis k<sub>1</sub>:
                         <input type="number" id="reaction_rate_${[i]}" value="0.9">
                     </div>
                     <div id=k2_${[i]} class=input_blocks>
-                        Reakcijos greitis k2:
+                        Reakcijos greitis k<sub>2</sub>:
                         <input type="number" id="second_reaction_rate_${[i]}" value="0.1">
                     </div>
                 </div>`;

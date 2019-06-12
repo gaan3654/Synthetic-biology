@@ -96,7 +96,7 @@ function axle_numbers(N, y_max, int_end) {
     
 
     //skaičiai ant ašies OX
-    for(var i = 40; i < c.width; i += 40){
+    for(var i = 20; i < c.width; i += 40){
         var ox_number = int_end/20; //intervalo ilgį dalinu iš 20 nes yra 20 langelių
         ox_number = ox_number.toFixed(2); //suapvalinu iki dviejų skaičių po kablelio
         ctx.font = " 10px sans-serif";
@@ -108,7 +108,7 @@ function axle_numbers(N, y_max, int_end) {
 }
 
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance_obj){
-    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height-20, width-20);
+    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width+20);
     //atėmu po 20 kad nesiektų kraštų
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
