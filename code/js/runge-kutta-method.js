@@ -119,15 +119,15 @@ function solution(substance_obj, a, b, N, func_array, get_reaction){
         }
         for(var j = 0; j < y.length; j++){
             substance_obj[j].function = renew_function(y, substance_obj[j].function);
-            kk2.push(k2(t[i], y, h, kk1, substance_obj[j].function, func1, substance_obj[j]));
+            kk2.push(k2(t[i], y, h, kk1, substance_obj[j].function));
         }
         for(var j = 0; j < y.length; j++){
             substance_obj[j].function = renew_function(y, substance_obj[j].function);
-            kk3.push(k3(t[i], y, h, kk2, substance_obj[j].function, func1, substance_obj[j]));
+            kk3.push(k3(t[i], y, h, kk2, substance_obj[j].function));
         }
         for(var j = 0; j < y.length; j++){
             substance_obj[j].function = renew_function(y, substance_obj[j].function);
-            kk4.push(k4(t[i], y, h, kk3, substance_obj[j].function, func1, substance_obj[j]));
+            kk4.push(k4(t[i], y, h, kk3, substance_obj[j].function));
         }
 
         for(var j = 0; j < y.length; j++){
