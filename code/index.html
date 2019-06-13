@@ -4,10 +4,10 @@
         <script type="text/javascript" src='js/draw_graph.js'> </script>
         <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
         <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="packages/jquery-ui.css">
+        <script type="text/javascript" src="packages/jquery.js"></script>
+        <script src="packages/jquery-1.10.2.js"></script>
+        <script src="packages/jquery-ui.js"></script>
         <link type="text/css" rel="stylesheet" href="style.css">
         <title>Differential equation solver</title><meta charset="utf-8"/>
     </head>
@@ -17,7 +17,7 @@
                 <img src="../assets/graph-logo.png" alt="Logo">
             </div>
             <div class="mainDetails__info">
-                <h2>Diferencialinių lygčių sistemų sprendimas</h2>
+                <h2>Sintetinės Biologijos modeliai</h2>
                 <h3>Paremta Runge-Kutta metodu</h3>
             </div>
         </header>
@@ -41,6 +41,19 @@
                         <input type="color" id="colorC" class="s_colors" value="#00ff00">
                     </div>
                 </div>
+
+                <div id=examples>  
+                    <div class=example>
+                        <input type="button" id="button1" value="Pavyzdys 1"> 
+                        <!-- onclick="set_example1()" -->
+                    </div>
+                    <div class=example>
+                        <input type="button" id="button2" value="Pavyzdys 2"> 
+                    </div>
+                    <div class=example>
+                        <input type="button" id="button3" value="Pavyzdys 3"> 
+                    </div>
+                </div>
                 
 
                 <div id=inputs>
@@ -62,7 +75,7 @@
                     <div id = reactions>
                         <div id = reaction_info_0>
                             <div id=reaction_0 class=input_blocks>
-                                Įveskite norimą reakciją:
+                                1. Įveskite norimą reakciją:
                                 <input type="text" id="reaction_input_0" value="A+B->B">
                             </div>
                             <div id=k1_0 class=input_blocks>
@@ -82,9 +95,10 @@
           
             
             <div class="subs_react_buttons">
-                <button id=add_subs>Pridėti medžiagą</button>
+                <!-- <button id=add_subs>Pridėti medžiagą</button> -->
+                <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
                 <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją(as)"/>
-                <input type="button" id=add_reaction value="Pridėti reakciją"/>
+                <input type="button" id=add_reaction onclick="add_additional_reaction_input()" value="Pridėti reakciją"/>
             </div>
 
             <div id="graph_draw">
@@ -151,14 +165,21 @@
                 var substance_obj = [];
                 let possition = 0;
 
-                for(var i = 0; i < reactions_id.length; i++){
+                for(let i = 0; i < reactions_id.length; i++){
                     var get_reaction = document.getElementById(`reaction_input_${i}`).value;
                     get_reaction = get_reaction.split(/<?->/);
                     get_reaction[0] = get_reaction[0].replace(/\+/g, '');
                     get_reaction[1] = get_reaction[1].replace(/\+/g, '');
+                    let reaction_left = get_reaction[0].split("");
+                    let reaction_right = get_reaction[1].split("");
+                    
+                    // for(let j = 0; j < reaction_left.length; j++){
+                    //     let smthn = document.getElementById(`reaction_side${i}_${reaction_left[j]}_L`).value;
+                    //     console.log(smthn);
+                    // }
                     var func_array = [
-                        replace_symbols(document.getElementById(`reaction_side0_${i}`).value),
-                        replace_symbols(document.getElementById(`reaction_side1_${i}`).value)
+                        document.getElementById(`reaction_side${i}_${reaction_left[0]}_L`).value,
+                        document.getElementById(`reaction_side${i}_${reaction_right[0]}_R`).value
                     ];
                     //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
                     var substance_array = [];
@@ -168,7 +189,7 @@
                     substance_array.push((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]));
                     tmp = tmp.replace((tmp.match(/A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/)[0]),"");
                     }
-                    // console.log(substance_array);
+                    
 
                     var skip = "no";
                     var subs_arr_left = substance_array;
@@ -225,7 +246,7 @@
                     }
                 }
 
-                console.log(substance_obj);
+                // console.log(substance_obj);
                 //Apskaičiuojamos y reikšmės
                 var [yy, tt] = solution(substance_obj, int_begin, int_end, N, func_array, get_reaction);
                 //Atnaujinamas grafikas
@@ -241,54 +262,76 @@
             var button_clicked = false;
             //Užpildomi funkcijų laukai iš pateiktos reakcijos
             document.getElementById("submit_reaction").addEventListener("click", function(event) {
-                var d = document.getElementById("function");
-                //Sugeneruojamos funkcijos abiem reakcijos pusėms
-                var reaction_left = [];
-                var reaction_right = [];
-                for(var i = 0; i < reactions_id.length; i++){
-                    var get_rate = document.getElementById(`reaction_rate_${i}`).value;
-                    var get_rate_2 = document.getElementById(`second_reaction_rate_${i}`).value;
-                    var get_reaction = document.getElementById(`reaction_input_${i}`).value;
-                    var reaction = get_reaction.split(/<?->/);
-                    reaction[0] = reaction[0].replace(/\+/g, "*");
-                    reaction[1] = reaction[1].replace(/\+/g, "*");
-                    reaction_left[i] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
-                    reaction_right[i] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
-                }
-                
-                // Sukuriami input laukai funkcijoms paleidus programą pirmą kartą
-                if(!button_clicked){
-                    for(var i = last_added_reaction_id+1; i < reactions_id.length; i++){
-                        d.innerHTML += 
-                        `<div class=input_blocks>
-                            ${i+1}. Kairioji: 
-                            <input type="text" id="reaction_side0_${i}" value=${reaction_left[i]}>
-                        </div>
-                        <div class=input_blocks>
-                            ${i+1}. Dešinioji: 
-                            <input type="text" id="reaction_side1_${i}" value=${reaction_right[i]}>
-                        </div>`;
-                        last_added_reaction_id = i;
-                    }
-                    $("#submit").css("display","inline")
-                    $("#function").css("display","block")
-                    button_clicked = true;
-                } else{
+                // $("#function").show();
+                // $("#submit").show();
+                $("#function").load(" #function", function(){
+                    var d = document.getElementById("function");
+                    //Sugeneruojamos funkcijos abiem reakcijos pusėms
+                    var reaction_left = [];
+                    var reaction_right = [];
+                    var left_side = [];
+                    var right_side = [];
                     for(var i = 0; i < reactions_id.length; i++){
-                        document.getElementById(`reaction_side0_${i}`).value = reaction_left[i];
-                        document.getElementById(`reaction_side1_${i}`).value = reaction_right[i];
+                        var get_rate = document.getElementById(`reaction_rate_${i}`).value;
+                        var get_rate_2 = document.getElementById(`second_reaction_rate_${i}`).value;
+                        var get_reaction = document.getElementById(`reaction_input_${i}`).value;
+                        var reaction = get_reaction.split(/<?->/);
+                        reaction[0] = reaction[0].replace(/\+/g, "*");
+                        reaction[1] = reaction[1].replace(/\+/g, "*");
+                        reaction_left[i] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
+                        reaction_right[i] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
+
+                        left_side[i] = reaction[0].split("*");
+                        right_side[i] = reaction[1].split("*");
                     }
-                }
+                    // console.log(left_side);
+                    // console.log(right_side);
+                    // Sukuriami input laukai funkcijoms paleidus programą pirmą kartą
+                    // if(!button_clicked){
+                        // for(let n = last_added_reaction_id+1; n < reactions_id.length; n++){
+                        for(let i = 0; i < left_side.length; i++){
+                            for(var j = 0; j < left_side[i].length; j++){
+                                d.innerHTML += 
+                                `<div class=input_blocks>
+                                    ${i+1}.${j+1} ${left_side[i][j]}. Kairioji: 
+                                    <input type="text" id="reaction_side${i}_${left_side[i][j]}_L" value=${reaction_left[i]}>
+                                </div>`
+                                // <div class=input_blocks>
+                                //     ${i+1}. Dešinioji: 
+                                //     <input type="text" id="reaction_side1_${i}" value=${reaction_right[i]}>
+                                // </div>`;
+                                // last_added_reaction_id = i;
+                            }
+                            for(let n = 0; n < right_side[i].length; n++){
+                                d.innerHTML += 
+                                `<div class=input_blocks>
+                                    ${i+1}.${j+n+1} ${right_side[i][n]}. Dešinioji: 
+                                    <input type="text" id="reaction_side${i}_${right_side[i][n]}_R" value=${reaction_right[i]}>
+                                </div>`;
+                                last_added_reaction_id = left_side[i].length+n;
+                            }
+                        }
+                        // }
+                        $("#submit").css("display","inline")
+                        $("#function").css("display","block")
+                    //     button_clicked = true;
+                    // } else{
+                    //     for(var i = 0; i < reactions_id.length; i++){
+                    //         document.getElementById(`reaction_side0_${i}`).value = reaction_left[i];
+                    //         document.getElementById(`reaction_side1_${i}`).value = reaction_right[i];
+                    //     }
+                    // }
+                }); 
             });
 
 
             var subs_names = ["A","B","C"];
             var subs_color_id = ["colorA", "colorB", "colorC"];
-            var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#ffff00", "#ff9900", "#00ff99", "#0099ff", "#9900ff", "#990099", "#009900"];
+            var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#9E618D", "#ff9900", "#00ff99", "#0099ff", "#9900ff", "#990099", "#009900"];
             var subs_html_name = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
             
             //Prideda papildomų medžiagų input laukų
-            document.getElementById("add_subs").addEventListener("click", function(event){
+            function add_additional_substance_input() {
                 var d = document.getElementById("substance");
                 // var subs_count = parseInt(document.getElementById("subs_counter").value);
                 var substance_count = subs_color_id.length+1;//subs_count;
@@ -306,14 +349,14 @@
                             }
                         }
                     }
-                    //Pridedami įvesties laukai papildomoms funkcijoms
+                    //Pridedami įvesties laukai papildomoms medžiagoms
                     d.innerHTML += 
                     `<div class=input_blocks>
                         [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text' value=0>
                         <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                     </div>`;
                 }
-            });
+            }
 
             // Pakeičiamas mygtuko pavadinimas
             function renew_button() {
@@ -323,12 +366,12 @@
             var reactions_id = ["reaction_0"];
             var last_added_reaction_id = -1;
 
-            //Prideda papildomų medžiagų input laukų
-            document.getElementById("add_reaction").addEventListener("click", function(event){
+            //Prideda papildomų reakcijų input laukų
+            function add_additional_reaction_input() {
                 var d = document.getElementById("reactions");
                 var i = reactions_id.length;
                 reactions_id[i] = "reaction_"+[i];
-                //Pridedami įvesties laukai papildomoms funkcijoms
+                //Pridedami įvesties laukai papildomoms reacjimos
                 d.innerHTML += 
                 `<div id = reaction_info_${[i]}>
                     <div id=reaction_${[i]} class=input_blocks>
@@ -346,27 +389,93 @@
                     </div>
                 </div>`;
                 button_clicked = false;
+            }
+
+            // Example 1 
+            // A+B->C+B
+            $("#button1").click(function() {
+                $("#reactions").load(" #reactions > *", function() {
+                    document.getElementById("int_ends").value = "1";
+                    document.getElementById("n_inp").value = "100";
+                    document.getElementById("reaction_input_0").value = "A+B->C+B";
+                    document.getElementById("A").value = "3";
+                    document.getElementById("B").value = "2";
+                    document.getElementById("C").value = "1";
+                });
+                reactions_id = ["reaction_0"];
+                last_added_reaction_id = -1;
+                exp3_clicked = "no";
             });
 
-              // alertai
-                /*var funct_count = parseInt(document.getElementById("subs_counter").value);
-                for(i=0; i<funct_count+1; i++){
-                    var value = document.getElementById("func"+i).value ;
-                    // iškviečiamas alert laukas jei nįšvesta funkcija
-                    if(value.trim() == "") {
-                        alert("Error: Tuščias įvesties laukas!");
-                        return false;
+            // Example 2
+            // A->B
+            // C->0
+            $("#button2").click(function() {
+                $("#reactions").load(" #reactions > *", function() {
+                    document.getElementById("int_ends").value = "5";
+                    document.getElementById("n_inp").value = "100";
+                    add_additional_reaction_input();
+                    document.getElementById("reaction_input_0").value = "A->B";
+                    document.getElementById("reaction_input_1").value = "C->0";
+                    document.getElementById("A").value = "3";
+                    document.getElementById("B").value = "2";
+                    document.getElementById("C").value = "1";
+                });
+                reactions_id = ["reaction_0"];
+                last_added_reaction_id = -1;
+                exp3_clicked = "no";
+            });
+
+            var exp3_clicked = "no";
+
+            // Example 3
+            // A->B
+            // B->C
+            // C->D
+            // D->A
+            $("#button3").click(function() {
+                $("#reactions").load(" #reactions > *", function() {
+                    if(exp3_clicked == "no"){
+                        for(let i = 0; i < 3; i++){
+                            add_additional_reaction_input();
+                        }
+                        add_additional_substance_input();
+                        exp3_clicked = "yes";
                     }
-                    //iškviečiamas alert laukas jei įvesta netinkama funkcija
-                    //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
-                    if(value.trim() == "y/t") {
-                        alert("Error: Funkcija y/t neegzistuoja!");
-                        return false;
-                    }
-                    else{
-                        return true;
-                    }
-                }*/       
+                    document.getElementById("int_ends").value = "10";
+                    document.getElementById("n_inp").value = "1000";
+                    document.getElementById("reaction_input_0").value = "A->B";
+                    document.getElementById("reaction_input_1").value = "B->C";
+                    document.getElementById("reaction_input_2").value = "C->D";
+                    document.getElementById("reaction_input_3").value = "D->A";
+                });
+                reactions_id = ["reaction_0"];
+                last_added_reaction_id = -1;
+            });
+            
+            
+
+            
+
+            // alertai
+            /*var funct_count = parseInt(document.getElementById("subs_counter").value);
+            for(i=0; i<funct_count+1; i++){
+                var value = document.getElementById("func"+i).value ;
+                // iškviečiamas alert laukas jei nįšvesta funkcija
+                if(value.trim() == "") {
+                    alert("Error: Tuščias įvesties laukas!");
+                    return false;
+                }
+                //iškviečiamas alert laukas jei įvesta netinkama funkcija
+                //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
+                if(value.trim() == "y/t") {
+                    alert("Error: Funkcija y/t neegzistuoja!");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }*/       
         </script>
     </body>
 </html>
