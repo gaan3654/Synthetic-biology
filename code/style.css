@@ -49,29 +49,6 @@ body{
 	height: 50%;
 }
 
-#substance_input{
-	display: inline-block;
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	width: 94%;
-	height: 50%;
-	/* background-color: pink; */
-}
-
-#substance{
-	border-style: groove;
-	display: block;
-	float: left;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 42%;
-	height: 41%;
-	padding: 1%;
-	/* background-color: red; */
-}
-
 #settings{
 	border-style: groove;
 	padding: 2%;
@@ -91,10 +68,9 @@ body{
 	margin-bottom: 0%;
 	width: 43%;
 	height: 42%;
-	/* background-color: aqua; */
 }
 
-.subs_react_buttons{
+.main_buttons{
 	display: inline-block;
 	margin-left: 3%;
 	margin-right: 3%;
@@ -102,14 +78,37 @@ body{
 	margin-bottom: 0%;
 	width: 94%;
 	height: 50%;
+	 /* background-color: pink;  */
+}
+
+.subs_react_buttons{
+	display: block;
+	float: left;
+	margin: 3%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 43%;
+	height: 42%;
+	/* background-color: aqua;  */
+}
+
+.funct_buttons{
+	display: block;
+	float: right;
+	margin: 3%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	width: 43%;
+	height: 42%;
+	/* background-color: green; */
 }
 
 #add_subs{
 	float: left;
-	margin-left: 23%;
+	margin-left: 47%;
 	margin-bottom: 1%;
 	margin-top: 0%;
-	width: 23%;
+	width: 50%;
 	height: 22%;
 }
 
@@ -118,13 +117,13 @@ body{
 	margin: 3%;
 	margin-bottom: 1%;
 	margin-top: 0%;
-	width: 23%;
+	width: 43%;
 	height: 22%; 
 }
 
 .input_blocks {
 	display: block;
-	margin-bottom: 2%;
+	margin-bottom: 1.6%;
 }
 
 input {
@@ -219,4 +218,56 @@ button {
 	border: none;
 	border-radius: 0;
 	margin-right: 1%;
+}
+
+
+#example_substance_block {
+	display: block;
+	float: left;
+	margin: 3%;
+	margin-bottom: 0%;
+	width: 43%;
+	height: 42%;
+}
+
+
+
+#substance_input{
+	display: inline-block;
+	margin-left: 3%;
+	margin-right: 3%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	width: 94%;
+	height: 50%;
+	 /* background-color: red; */
+}
+
+#substance{
+	border-style: groove;
+	display: block;
+	/* margin: 3%; */
+	margin-top: 2%;
+	/* width: 42%;
+	height: 41%; */
+	padding: 2%;
+	/* background-color: red; */
+}
+
+#examples{
+	
+	/* background-color: #78003F; */
+	border-style: groove;
+	display: block;
+	 /* margin: 3%; */
+	/* margin-bottom: 0%; */ 
+	padding: 2%;
+}
+
+.example{
+	/* display: block; */
+	margin: 3%;
+	padding: 1%;
+	margin-top: 0%;
+	width: 90%;
 }

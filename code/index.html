@@ -24,37 +24,41 @@
         <div>    
             <div id="substance_input">
                 
-                <div id=substance>  
-                    <div class=input_blocks>
-                        [A']:
-                        <input type="number" id="A" value="2"> 
-                        <input type="color" id="colorA" class="s_colors" value="#ff0000">
+                <div id="example_substance_block">
+                    <div id=examples>  
+                        <div class=example>
+                            <input type="button" id="button1" value="Pavyzdys 1"> 
+                            <!-- onclick="set_example1()" -->
+                        </div>
+                        <div class=example>
+                            <input type="button" id="button2" value="Pavyzdys 2"> 
+                        </div>
+                        <div class=example>
+                            <input type="button" id="button3" value="Pavyzdys 3"> 
+                        </div>
                     </div>
-                    <div class=input_blocks>
-                        [B']:
-                        <input type="number" id="B" value="3"> 
-                        <input type="color" id="colorB" class="s_colors" value="#0000ff">
-                    </div>
-                    <div class=input_blocks>
-                        [C']:
-                        <input type="number" id="C" value="1"> 
-                        <input type="color" id="colorC" class="s_colors" value="#00ff00">
-                    </div>
-                </div>
 
-                <div id=examples>  
-                    <div class=example>
-                        <input type="button" id="button1" value="Pavyzdys 1"> 
-                        <!-- onclick="set_example1()" -->
+                    <div id=substance>  
+                        <div class=input_blocks>
+                            [A']:
+                            <input type="number" id="A" value="2"> 
+                            <input type="color" id="colorA" class="s_colors" value="#ff0000">
+                        </div>
+                        <div class=input_blocks>
+                            [B']:
+                            <input type="number" id="B" value="3"> 
+                            <input type="color" id="colorB" class="s_colors" value="#0000ff">
+                        </div>
+                        <div class=input_blocks>
+                            [C']:
+                            <input type="number" id="C" value="1"> 
+                            <input type="color" id="colorC" class="s_colors" value="#00ff00">
+                        </div>
                     </div>
-                    <div class=example>
-                        <input type="button" id="button2" value="Pavyzdys 2"> 
-                    </div>
-                    <div class=example>
-                        <input type="button" id="button3" value="Pavyzdys 3"> 
-                    </div>
-                </div>
+
+                   
                 
+                </div>
 
                 <div id=inputs>
                     <div id=settings>
@@ -93,12 +97,17 @@
                 
             </div>
           
+           
             
-            <div class="subs_react_buttons">
-                <!-- <button id=add_subs>Pridėti medžiagą</button> -->
-                <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
-                <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją(as)"/>
-                <input type="button" id=add_reaction onclick="add_additional_reaction_input()" value="Pridėti reakciją"/>
+            <div class="main_buttons">
+                <div class="subs_react_buttons">
+                    <!-- <button id=add_subs>Pridėti medžiagą</button> -->
+                    <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
+                </div>
+                <div class="funct_buttons">
+                    <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją(as)"/>
+                    <input type="button" id=add_reaction onclick="add_additional_reaction_input()" value="Pridėti reakciją"/>
+                </div>
             </div>
 
             <div id="graph_draw">
@@ -360,7 +369,7 @@
 
             // Pakeičiamas mygtuko pavadinimas
             function renew_button() {
-                document.getElementById("submit_reaction").value = "Atnaujiti reakciją(as)";
+                document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
             } 
 
             var reactions_id = ["reaction_0"];
