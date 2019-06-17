@@ -302,7 +302,7 @@
                             for(var j = 0; j < left_side[i].length; j++){
                                 d.innerHTML += 
                                 `<div class=input_blocks>
-                                    ${i+1}.${j+1} ${left_side[i][j]}. Kairioji: 
+                                    ${i+1}.${j+1} ${left_side[i][j]}.: 
                                     <input type="text" id="reaction_side${i}_${left_side[i][j]}_L" value=${reaction_left[i]}>
                                 </div>`
                                 // <div class=input_blocks>
@@ -314,7 +314,7 @@
                             for(let n = 0; n < right_side[i].length; n++){
                                 d.innerHTML += 
                                 `<div class=input_blocks>
-                                    ${i+1}.${j+n+1} ${right_side[i][n]}. Dešinioji: 
+                                    ${i+1}.${j+n+1} ${right_side[i][n]}.: 
                                     <input type="text" id="reaction_side${i}_${right_side[i][n]}_R" value=${reaction_right[i]}>
                                 </div>`;
                                 last_added_reaction_id = left_side[i].length+n;
@@ -369,7 +369,7 @@
 
             // Pakeičiamas mygtuko pavadinimas
             function renew_button() {
-                document.getElementById("submit_reaction").value = "Atnaujiti reakciją(as)";
+                document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
             } 
 
             var reactions_id = ["reaction_0"];
