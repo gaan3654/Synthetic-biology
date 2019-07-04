@@ -3,13 +3,13 @@
     <head>
         <script type="text/javascript" src='js/draw_graph.js'> </script>
         <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
-        <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
-        <link rel="stylesheet" href="packages/jquery-ui.css">
+        <!-- <script type="text/javascript" src='js/replace_symb_w_func.js'> </script> -->
+        <!-- <link rel="stylesheet" href="packages/jquery-ui.css"> -->
         <script type="text/javascript" src="packages/jquery.js"></script>
-        <script src="packages/jquery-1.10.2.js"></script>
-        <script src="packages/jquery-ui.js"></script>
+        <!-- <script src="packages/jquery-1.10.2.js"></script> -->
+        <!-- <script src="packages/jquery-ui.js"></script> -->
         <link type="text/css" rel="stylesheet" href="style.css">
-        <title>Differential equation solver</title><meta charset="utf-8"/>
+        <title>Modeliai sintetinėje biologijoje</title><meta charset="utf-8"/>
     </head>
     <body>
         <header class="mainDetails ">
@@ -17,7 +17,7 @@
                 <img src="../assets/graph-logo.png" alt="Logo">
             </div>
             <div class="mainDetails__info">
-                <h2>Sintetinės Biologijos modeliai</h2>
+                <h2>Modeliai sintetinėje biologijoje</h2>
                 <h3>Paremta Runge-Kutta metodu</h3>
             </div>
         </header>
@@ -28,7 +28,6 @@
                     <div id=examples>  
                         <div class=example>
                             <input type="button" id="button1" value="Pavyzdys 1"> 
-                            <!-- onclick="set_example1()" -->
                         </div>
                         <div class=example>
                             <input type="button" id="button2" value="Pavyzdys 2"> 
@@ -101,11 +100,10 @@
             
             <div class="main_buttons">
                 <div class="subs_react_buttons">
-                    <!-- <button id=add_subs>Pridėti medžiagą</button> -->
                     <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
                 </div>
                 <div class="funct_buttons">
-                    <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją(as)"/>
+                    <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją"/>
                     <input type="button" id=add_reaction onclick="add_additional_reaction_input()" value="Pridėti reakciją"/>
                 </div>
             </div>
@@ -377,6 +375,7 @@
 
             //Prideda papildomų reakcijų input laukų
             function add_additional_reaction_input() {
+                document.getElementById("submit_reaction").value = "Vykdyti reakcijas";
                 var d = document.getElementById("reactions");
                 var i = reactions_id.length;
                 reactions_id[i] = "reaction_"+[i];

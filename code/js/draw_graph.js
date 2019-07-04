@@ -5,7 +5,7 @@ function draw(ctx){
     ctx.strokeStyle = "#fff";
     ctx.lineWidth = c.height ;
     ctx.stroke();
-
+    ctx.closePath();
     //Nupiešiami sąsiuvinio langeliai
     ctx.beginPath();
     for(var i=20; i<c.height; i+=20){
@@ -17,7 +17,7 @@ function draw(ctx){
     ctx.strokeStyle = "#CCE5FF";
     ctx.lineWidth = 0.5 ;
     ctx.stroke();
-
+    ctx.closePath();
         
     //Nupiešiamos OX ir OY 
     //OX    
@@ -35,7 +35,7 @@ function draw(ctx){
     ctx.lineTo(25, 5);
     ctx.strokeStyle = "#000000";
     ctx.stroke();
-
+    ctx.closePath();
     //tekstas prie ašių
     ctx.font = "bold 12px sans-serif";
     ctx.fillText("t", c.width-10, c.height-5 )
@@ -50,6 +50,7 @@ function draw(ctx){
         ctx.lineWidth = 1;
         ctx.strokeStyle = "#000000";
         ctx.stroke();
+        ctx.closePath();
     }
     //ant OY
     for(var i=20; i<c.height-20; i+=20){
@@ -59,6 +60,7 @@ function draw(ctx){
         ctx.lineWidth = 1;
         ctx.strokeStyle = "#000000";
         ctx.stroke();  
+        ctx.closePath();
     }
      
 }
@@ -106,7 +108,7 @@ function axle_numbers(N, y_max, int_end) {
     }
     
 }
-
+var line_style = [];
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance_obj){
     var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
     //atėmu po 20 kad nesiektų kraštų
@@ -119,5 +121,6 @@ function normalize_and_draw(yy, tt, int_begin, int_end, height, width, substance
         }
         ctx.strokeStyle = substance_obj[i].color;
         ctx.stroke();
+        ctx.closePath();
     }
 }
