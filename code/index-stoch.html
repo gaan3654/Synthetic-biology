@@ -7,6 +7,9 @@
         <!-- <script type="text/javascript" src='js/replace_symb_w_func.js'> </script> -->
         <!-- <link rel="stylesheet" href="packages/jquery-ui.css"> -->
         <script type="text/javascript" src="packages/jquery.js"></script>
+
+        <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+
         <!-- <script src="packages/jquery-1.10.2.js"></script> -->
         <!-- <script src="packages/jquery-ui.js"></script> -->
         <link type="text/css" rel="stylesheet" href="style.css">
@@ -28,7 +31,7 @@
                 <div id="stochstic">
                     <div class=input_stoch>
                         Stochastinių lygčių kiekis:
-                        <input type="text" id="loop_count" value="5"> 
+                        <input type="text" id="loop_count" value="1"> 
                     </div>
                 </div>
                 <div id="example_substance_block">
@@ -139,29 +142,29 @@
 
         <script>
             //jQuery pranešimui gauti
-            $(document).ready(function() {
-            $(function() {
-                $( "#dialog" ).dialog({
-                    autoOpen: false,
-                    title: 'Info',
-                    width: 500,
-                    height: 300,
-                    show: {
-                        effect: "slide",
-                        duration: 1000
-                    },
-                    hide: {
-                        effect: "fade",
-                        duration: 1000
-                    }
+            // $(document).ready(function() {
+            // $(function() {
+            //     $( "#dialog" ).dialog({
+            //         autoOpen: false,
+            //         title: 'Info',
+            //         width: 500,
+            //         height: 300,
+            //         show: {
+            //             effect: "slide",
+            //             duration: 1000
+            //         },
+            //         hide: {
+            //             effect: "fade",
+            //             duration: 1000
+            //         }
                     
-                });
-            });
+            //     });
+            // });
 
-            $("#info").click(function(){
-                    $( "#dialog" ).dialog('open');
-                });
-            }); 
+            // $("#info").click(function(){
+            //         $( "#dialog" ).dialog('open');
+            //     });
+            // }); 
 
             //Sukuriamas laukas grafikui
             var c = document.getElementById("myCanvas");
@@ -277,7 +280,7 @@
                 var loops = parseInt(document.getElementById("loop_count").value);
 
                 // # Display five runs
-                var num_sims = 5  
+                // var num_sims = 5  
 
                 var t_init = 0
                 var t_end  = 1
@@ -299,39 +302,46 @@
                     ys.push(0);
                 }
                 ys[0] = y_init
-                
-                // Draw the canvas? Idk if it's necessary
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                draw(ctx);
-                
 
-                for(var j = 0; j < num_sims; j++){
+                yy = []
+                for(var j = 0; j < loops; j++){
                     for(var i = 1; i < ts.length; i++){
                         t = (i-1) * dt;
                         y = ys[i-1];
+                        var check = y + mu(y, t, c_theta, c_mu, dt) + c_sigma * dW(dt, c_sigma)
+                        if(check > 0){
+                            ys[i] = check;
+                        } else{
+                            ys[i] = 0;
+                        }
                         
-                        ys[i] = y + mu(y, t, c_theta, c_mu) * dt + c_sigma * dW(dt)
                     }
-                    // plt.plot(ts, ys)
-                    console.log(ys);
-                    // ########################################################################################################################
+                    yy.push(ys);
                 }
+
+                var [y_norm,t_norm] = normalization(yy, ts, t_init, t_end, c.height, c.width);
+                for(var i=0; i<y_norm.length; i++){
+                    ctx.beginPath();
+                    ctx.moveTo(t_norm[0],y_norm[i][0]);    
+                    for(var j=1; j<=y_norm[i].length; j++){
+                        ctx.lineTo(t_norm[j],y_norm[i][j]);
+                    }
+                    ctx.strokeStyle = getRandomColor();
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+                
                 document.getElementById("draw_stochastic").value = loops;
             }
 
             // Standard Normal variate using Box-Muller transform. 
-            function dW(delta_t){
-                var u = 0;
-                var v = delta_t;
-                while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-                while(v === 0) v = Math.random();
-                return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+            function dW(delta_t, c_sigma){
+                return d3.randomNormal(delta_t, c_sigma)();
             }
 
-            function mu(y, t, c_theta, c_mu){
+            function mu(y, t, c_theta, c_mu, dt){
                 // Implement the Ornstein–Uhlenbeck mu
-                return c_theta * (c_mu - y);
+                return c_theta * (c_mu - y) * dt;
             }
             
 
