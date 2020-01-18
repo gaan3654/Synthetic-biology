@@ -35,9 +35,11 @@
                     </div>
                 </div>
                 <div id="example_substance_block">
+                    SDE sprendimai - atsitiktiniai procesai:
                     <div id=examples>  
+                       
                         <div class=example>
-                            <input type="button" id="button1" value="Pavyzdys 1"> 
+                            <input type="button" id="button1" onclick="draw_stochastic()" value="Ornstein - Uhlenbeck procesas"> 
                         </div>
                         <div class=example>
                             <input type="button" id="button2" value="Pavyzdys 2"> 
@@ -111,13 +113,13 @@
             <div class="main_buttons">
                 <div class="subs_react_buttons">
                     <input type="button" id=draw_stochastic onclick="draw_stochastic()" value="Piešti stochastines lygtis"/>
-                    <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
+                   <input type="button" id=add_subs onclick="add_additional_substance_input()" value="Pridėti medžiagą"/>
                 </div>
                 <div class="funct_buttons">
                     <input type="button" id=submit_reaction onclick="renew_button()" value="Vykdyti reakciją"/>
                     <input type="button" id=add_reaction onclick="add_additional_reaction_input()" value="Pridėti reakciją"/>
                 </div>
-            </div>
+            </div> 
 
             <div id="graph_draw">
                 <div id=function_block>
@@ -277,8 +279,8 @@
             });
 
             function draw_stochastic() {
-                var loops = parseInt(document.getElementById("loop_count").value);
-
+               // var loops = parseInt(document.getElementById("loop_count").value);
+                var loops = 10;
                 // # Display five runs
                 // var num_sims = 5  
 

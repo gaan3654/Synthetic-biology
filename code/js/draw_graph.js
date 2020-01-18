@@ -1,3 +1,4 @@
+
 function draw(ctx){
 
     //Nupiešiami sąsiuvinio langeliai
