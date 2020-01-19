@@ -24,7 +24,7 @@ function k2(t, y, h, k1, func, W){
     return h * f(t+h/2, y_copy, func, W);
 }   
 
-function k3(t, y, h, k2, func, w){
+function k3(t, y, h, k2, func, W){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -103,25 +103,30 @@ function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
                 if(j <= left_subs_count.length-1){
-                    const found = func_array[0].match(regex);
-                    console.log(found);
-                    func_array[0] = func_array[0].replace(regex, `y[${m}][${y[m].length-1}]`);
-                        if(found.index in hash){
-                            func_array.replace(found[q],`y[${q}][${y[m].length-1}]`)
-                        }
-                        // } else{
-                        // var obj = {found[q]: q};
-                        // hash.push(obj);
-                        // } 
+                    // Create a hash of substances and assign corresponding indices. 
+                    // Afterwards replace letters with corresponding array location.
+                    if(func_array[0].match(regex)){
+                        var found = func_array[0].match(regex);
+                        if(hash[found[0]] !== undefined){
+                            func_array[0] = func_array[0].replace(found[0],`y[${hash[found[0]]}][${y[m].length-1}]`)
+                        } else{
+                            hash[found[0]] = Object.keys(hash).length;
+                        } 
+                    }
                     func = func_array[0];
                 }
                 if(j > left_subs_count.length-1){
-                    const found = func_array.match(regex);
-                    func_array[1] = func_array[1].replace(regex, `y[${m}][${y[m].length-1}]`);
+                    if(func_array[1].match(regex)){
+                        var found = func_array[1].match(regex);
+                        if(hash[found[0]] !== undefined){
+                            func_array[1] = func_array[1].replace(found[0],`y[${hash[found[0]]}][${y[m].length-1}]`)
+                        } else{
+                            hash[found[0]] = Object.keys(hash).length;
+                        } 
+                    }
                     func = func_array[1];
                 }
             }
-            //console.log(func);
             kk1.push(k1(t[i], y, h, func, W));
         }
         for(var j = 0; j < y.length; j++){
@@ -141,8 +146,7 @@ function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
 
         for(var j = 0; j < y.length; j++){
             // y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
-            y[j][i+1] = eval(y[j][i]+kk1[j]+g2*kk1[j]*W);
-            //console.log(y[j][i+1]);
+            y[j][i+1] = eval(y[j][i]+kk1[j]);//+g2*kk1[j]*W);
             y_mean[j][i+1] += y[j][i+1];
         }
     } 
