@@ -199,9 +199,11 @@
                 get_reaction = get_reaction.split(/<?->/);
                 get_reaction[0] = get_reaction[0].replace('+', '');
                 get_reaction[1] = get_reaction[1].replace('+', '');
-                var iterations = 100;
+
+                var iterations = 1000;
                 var y_mean = [];
-                for(var daug=0; daug<iterations; daug++){
+
+                for(var iter=0; iter<iterations; iter++){
                     var func_array = [
                         replace_symbols(document.getElementById("reaction_side0").value),
                         replace_symbols(document.getElementById("reaction_side1").value)
@@ -215,6 +217,12 @@
                     for(var i=0; i<substance_array[0].length; i++){
                         color[i] = document.getElementById(`color${y0[i]}`).value;
                         y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
+                        // Initialize y_mean with given y values
+                        if(iter == 0){
+                            y_mean_dimention = new Array(N).fill(0);
+                            y_mean[i] = y_mean_dimention;
+                            y_mean[i][0] = y0[i];
+                        }
                     }
                      //taking catalizator for Euler method
                     var get_cat = document.getElementById("reaction_cat").value;
@@ -222,24 +230,22 @@
 
         
                     var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_cat, y_mean);
-
-                    // console.log("y_masyvas:   " + y0 + int_begin +int_end + N + func_array + get_reaction + get_rate + get_cat );
                 
-                    normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
+                    normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color, 0.05);
 
                 
                 }
-                y_mean = substance_array[0].split("");
-                for(var i=1;i<y_mean.length; i++){
+                console.log(y_mean);
+                for(var i=0;i<y_mean.length; i++){
                     for(var j=1;j<y_mean[i].length; j++){
                         y_mean[i][j]= y_mean[i][j]/iterations;
                     }
                 }
-                color = ["#000000", "#000000", "#000000" ];
-                normalize_and_draw(y_mean, tt, int_begin, int_end, c.height, c.width, color);
+                color = ['#000', '#000', '#000'];
+                normalize_and_draw(y_mean, tt, int_begin, int_end, c.height, c.width, color, 1);
 
                 //Piešiami skičiai prie grafiko ašių
-                // axle_numbers(N, y_max, int_end);
+                axle_numbers(N, y_max, int_end);
                     
             });
 

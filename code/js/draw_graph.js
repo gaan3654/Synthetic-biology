@@ -101,7 +101,7 @@ function axle_numbers(N, y_max, int_end) {
     
 }
 
-function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
+function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color, stroke_width){
     var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
     //Piešiamia kreivė
     for(var i=0; i<y_norm.length; i++){
@@ -111,7 +111,7 @@ function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
             ctx.lineTo(t_norm[j],y_norm[i][j]);
         }
         ctx.strokeStyle = color[i];
-        ctx.lineWidth = 0.05;
+        ctx.lineWidth = stroke_width;
         ctx.stroke();
     }
 }
