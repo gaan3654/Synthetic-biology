@@ -212,12 +212,12 @@
                         replace_symbols(document.getElementById("reaction_side0").value),
                         replace_symbols(document.getElementById("reaction_side1").value)
                     ];
-                    console.log(func_array);
+
                     var substance_array = [];
                     substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                     substance_array[0] = substance_array[0].replace('W','');
                     substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-                    console.log(substance_array);
+
                     //sukuriamas y0 reikšmių masyvas
                     var y0 = substance_array[0].split("");
                     var color = [];
@@ -274,7 +274,7 @@
                 reaction[0] = reaction[0].replace(/\+/g, "*");
                 reaction[1] = reaction[1].replace(/\+/g, "*");
                 reaction_sides[0] = `(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` 
-                +`(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` +  `*${get_cat}` + `*W`;
+                +`+(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` +  `*${get_cat}` + `*W`;
                 reaction_sides[1] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
