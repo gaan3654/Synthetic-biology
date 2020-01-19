@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src='js/draw_graph.js'> </script>
+        <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
+        <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
+        <link type="text/css" src='jQuery/jquery-ui.css'>
+        <script type="text/javascript" src="jQuery/jquery.js"></script>
+        <script src="jQuery/jquery-1.10.2.js"></script>
+        <script src="jQuery/jquery-ui.js"></script>
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <title>Differential equation solver</title><meta charset="utf-8"/>
+    </head>
+    <body>
+        <header class="mainDetails ">
+            <div class="mainDetails__photo">
+                <a href="index.html"><img src="../assets/graph-logo.png" alt="Logo"></a>
+            </div>
+            <div class="mainDetails__info">
+                <h2>Diferencialinių lygčių sistemų sprendimas</h2>
+                <h3>Paremta Runge-Kutta metodu</h3>
+            </div>
+            <div class="mainDetails__contact">
+                <a href="mailto:gabriele.anuzyte@mif.stud.vu.lt">e: gabriele.anuzyte@mif.stud.vu.lt</a> <br>
+                <a href="mailto:dominika.barilovic@mif.stud.vu.lt">e: dominika.barilovic@mif.stud.vu.lt</a> <br>
+                <a href="http://vu.lt">w: www.vu.lt</a> <br>
+
+                <button id=info >Info</button>
+                <div id="dialog">
+                    <br><strong>Sistemos naudojimas specifinėms funkcijoms.</strong><br><br>
+                    <ul>
+                        <li>Trigonometrinės lygties pavyzdys:
+                            <ul>
+                                <li>cos(lygtis)</li>
+                                <li>acos(lygtis)</li>
+                            </ul>
+                        </li>
+                        <li>Šaknies traukimas:
+                                <ul>
+                                    <li>sqrt(lygtis)</li>
+                                    <li>cbrt(lygtis)</li>
+                                </ul>
+                            </li>
+                        </li>
+                        <li>Kėlimui laipsniu:
+                                <ul>
+                                    <li>pagrindas^laipsnis</li>
+                                </ul>
+                            </li>
+                        </li>
+                        <li>Logaritmai:
+                                <ul>
+                                    <li>log(pagrindas,logaritmuojamas reiškinys</li>
+                                    <li>ln(lygtis)</li>
+                                </ul>
+                            </li>
+                        </li>
+                        <li>Konstantos:
+                                <ul>
+                                    <li>pi</li>
+                                    <li>e</li>
+                                </ul>
+                            </li>
+                        </li>
+                    </ul> 
+                </div>
+            </div> 
+        </header>
+        <div>    
+            <div id="substance_input">
+                
+                <div id=substance>  
+                    <div class=input_blocks>
+                        [A']:
+                        <input type="text" id="A" value="2"> 
+                        <input type="color" id="colorA" class="s_colors" value="#ff0000">
+                    </div>
+                    <div class=input_blocks>
+                        [B']:
+                        <input type="text" id="B" value="3"> 
+                        <input type="color" id="colorB" class="s_colors" value="#0000ff">
+                    </div>
+                    <div class=input_blocks>
+                        [C']:
+                        <input type="text" id="C" value="1"> 
+                        <input type="color" id="colorC" class="s_colors" value="#00ff00">
+                    </div>
+                    <div id=count_subst>
+                        Kiek medžiagų norite pridėti?
+                        <input type="number" id="subs_counter" value="1">
+                    </div>
+                </div>
+                
+
+                <div id=inputs>
+                    <div id=interv_begins class=input_blocks>
+                        Intervalo pradžia: 
+                        <input type="number" id="int_begins" value="0"> 
+                    </div> 
+                    
+                    <div id=interv_ends class=input_blocks> 
+                        Intervalo pabaiga:
+                        <input type="number" id="int_ends" value="1"> 
+                    </div>                    
+                    <div id=N class=input_blocks>
+                        N:                
+                        <input type="number" id="n_inp" value="100"> 
+                    </div>   
+                    <div id=reaction class=input_blocks>
+                        Įveskite norimą reakciją:
+                        <input type="text" id="reaction_input" value="A+B->C">
+                    </div>
+                    <div id=reaction class=input_blocks>
+                        Reakcijos greitis k1:
+                        <input type="text" id="reaction_rate" value="0.9">
+                    </div>
+                    <div id=reaction class=input_blocks>
+                        Reakcijos greitis k2:
+                        <input type="text" id="second_reaction_rate" value="0.5">
+                    </div>
+                   
+                 </div>
+
+                
+            </div>
+          
+            
+            <div class="subs_react_buttons">
+            <button id=add_subs>Pridėti medžiagą(as)</button>
+            <button id=submit_reaction onclick="disablesbutton()">Vykdyti reakciją(as)</button>
+            </div>
+
+            <div id="graph_draw">
+                <div id=function_block>
+                    <div id=function>
+                        <!--Talpinamos reakcijos sukurtos funkcijos-->
+                    </div>
+                    <div class="visimygtukai">
+                            <div id=dumygtukai>
+                                <button id=submit onclick="disablesbutton()" style="display:none">Piešti grafiką</button>
+                                <button id=delete onclick="window.location.reload(true);" style="display:none">Išvalyti</button>
+                            </div>
+                    </div>
+                </div>
+
+                <div id=canvas class=canvas>
+                    <canvas id="myCanvas" width="420" height="420" style="border:1px solid #000000;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            //jQuery pranešimui gauti
+            $(document).ready(function() {
+            $(function() {
+                $( "#dialog" ).dialog({
+                    autoOpen: false,
+                    title: 'Info',
+                    width: 500,
+                    height: 300,
+                    show: {
+                        effect: "slide",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "fade",
+                        duration: 1000
+                    }
+                    
+                });
+            });
+
+            $("#info").click(function(){
+                    $( "#dialog" ).dialog('open');
+                });
+            }); 
+
+            //Sukuriamas laukas grafikui
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            draw(ctx);
+
+            //Kreivių piešimas
+            document.getElementById("submit").addEventListener("click", function(event) {
+                var int_begin = parseFloat(document.getElementById("int_begins").value);
+                var int_end = parseFloat(document.getElementById("int_ends").value);
+                var N = parseInt(document.getElementById("n_inp").value);
+                var get_reaction = document.getElementById("reaction_input").value;
+                get_reaction = get_reaction.split(/<?->/);
+                get_reaction[0] = get_reaction[0].replace('+', '');
+                get_reaction[1] = get_reaction[1].replace('+', '');
+                var func_array = [
+                    replace_symbols(document.getElementById("reaction_side0").value),
+                    replace_symbols(document.getElementById("reaction_side1").value)
+                ];
+                var substance_array = [];
+                substance_array[0] = func_array[0].replace(/\W|\d/g,"");
+                substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                //sukuriamas y0 reikšmių masyvas
+                var y0 = substance_array[0].split("");
+                var color = [];
+                for(var i=0; i<substance_array[0].length; i++){
+                    color[i] = document.getElementById(`color${y0[i]}`).value;
+                    y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
+                }
+                //Apskaičiuojamos y reikšmės
+                var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction);
+
+                normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
+
+                //Piešiami skičiai prie grafiko ašių
+                axle_numbers(N, y_max, int_end);
+                    
+            });
+
+            
+
+            //Užpildomi funkcijų laukai iš pateiktos reakcijos
+            document.getElementById("submit_reaction").addEventListener("click", function(event) {
+                var d = document.getElementById("function");
+                var get_rate = document.getElementById("reaction_rate").value;
+                var get_rate_2 = document.getElementById("second_reaction_rate").value;
+                var get_reaction = document.getElementById("reaction_input").value;
+                var reaction = get_reaction.split(/<?->/);
+                //Sugeneruojamos funkcijos abiem reakcijos pusėms
+                var reaction_sides = [];
+                reaction[0] = reaction[0].replace(/\+/g, "*");
+                reaction[1] = reaction[1].replace(/\+/g, "*");
+                reaction_sides[0] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
+                reaction_sides[1] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
+                //Sukuriami input laukai funkcijoms
+                //kairioji pusė
+                d.innerHTML += 
+                `<div class=input_blocks>
+                    Kairioji: 
+                    <input type="text" id="reaction_side0" value=${reaction_sides[0]}>
+                </div>`;
+                //dešinioji pusė
+                d.innerHTML += 
+                `<div class=input_blocks>
+                    Dešinioji: 
+                    <input type="text" id="reaction_side1" value=${reaction_sides[1]}>
+                </div>`;
+
+                $("#submit").css("display","inline")
+                $("#delete").css("display","inline")
+            });
+
+
+            var subs_names = ["A","B","C"];
+            var subs_color_id = ["colorA", "colorB", "colorC"];
+            var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
+            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            
+            //Prideda papildomą medžiagos input lauką
+            document.getElementById("add_subs").addEventListener("click", function(event){
+                var d = document.getElementById("substance");
+                var subs_count = parseInt(document.getElementById("subs_counter").value);
+                var substance_count = subs_color_id.length+subs_count;
+                for(var i=subs_color_id.length; i<substance_count; i++){
+                    subs_names[i] = subs_html_name[i];
+                    subs_color_id[i] = "color"+subs_html_name[i];
+                    //Išnaudojus nustatytas spalvas, jos funkcijoms priskiriamos atsitiktinai
+                    if(subs_color[i] == null){
+                        subs_color[i] = getRandomColor();
+                        //Tikrinama ar tokia spalva jau nėra priskirta
+                        for(var j=0; j<subs_color.length-1; j++){
+                            if(subs_color[i]==subs_color[j]){
+                                subs_color[i] = getRandomColor();
+                                j = 0;
+                            }
+                        }
+                    }
+                    //Pridedami įvesties laukai papildomoms funkcijoms
+                    d.innerHTML += 
+                    `<div class=input_blocks>
+                        [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text'>
+                        <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
+                    </div>`;
+
+                    //išvalome pridėti funkcijos mygtuką ir įvesties lauką.
+                    var button = document.getElementById("add_subs")
+                    button.style.display = 'none'
+                    var counter_input_field = document.getElementById("count_subst")
+                    counter_input_field.style.display = 'none'
+
+
+                }
+            });
+
+            //funkcija, kuri sustabdo mygtukų veikimą kai grafikas jau yra nupieštas
+            function disablesbutton() {
+                document.getElementById("submit_reaction").disabled = true;
+                document.getElementById("add_subs").disabled = true;
+            } 
+
+              // alertai
+                /*var funct_count = parseInt(document.getElementById("subs_counter").value);
+                for(i=0; i<funct_count+1; i++){
+                    var value = document.getElementById("func"+i).value ;
+                    // iškviečiamas alert laukas jei nįšvesta funkcija
+                    if(value.trim() == "") {
+                        alert("Error: Tuščias įvesties laukas!");
+                        return false;
+                    }
+                    //iškviečiamas alert laukas jei įvesta netinkama funkcija
+                    //Reikia pakeisti, kad tikrintu rezultatų egzistavimą, o ne įvestą funkciją.
+                    if(value.trim() == "y/t") {
+                        alert("Error: Funkcija y/t neegzistuoja!");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }*/       
+        </script>
+    </body>
+</html>
