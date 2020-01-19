@@ -1,13 +1,13 @@
 //Runge–Kutta metodas
-function f( t, y, func){
-    return eval(func);
+function f( t, y, func, W){
+    return eval(func,W);
 }
 
-function k1(t, y, h, func){
-    return h * f(t, y, func);
+function k1(t, y, h, func, W){
+    return h * f(t, y, func, W);
 }
 
-function k2(t, y, h, k1, func){
+function k2(t, y, h, k1, func, W){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -21,10 +21,10 @@ function k2(t, y, h, k1, func){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k1[i] / 2);
     }
-    return h * f(t+h/2, y_copy, func);
+    return h * f(t+h/2, y_copy, func, W);
 }   
 
-function k3(t, y, h, k2, func){
+function k3(t, y, h, k2, func, w){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -38,10 +38,10 @@ function k3(t, y, h, k2, func){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k2[i] / 2);
     }
-    return h * f(t+h/2, y_copy, func);
+    return h * f(t+h/2, y_copy, func, W);
 }
 
-function k4(t, y, h, k3, func){
+function k4(t, y, h, k3, func, W){
     //Nuklonuojamas y masyvas į y_copy
     var y_copy = [];
     for(var i = 0; i < y.length; i++){
@@ -55,7 +55,7 @@ function k4(t, y, h, k3, func){
     for(var i = 0; i < y_copy.length; i++){
         y_copy[i][y_copy[i].length-1] = eval(y_copy[i][y_copy[i].length-1] + k3[i]);
     }
-    return h * f(t+h, y_copy, func);
+    return h * f(t+h, y_copy, func, W);
 }
 //Sumažinti kodą tiek k apskaičiavimu
 function renew_function(j, y, left_subs_count, func_array, func){
@@ -72,12 +72,16 @@ function renew_function(j, y, left_subs_count, func_array, func){
     return func;
 }
 
-
+function randomGaussian(mean,sigma){
+    var u = Math.random();
+    return (u%1e-8>5e-9?1:-1)*Math.sqrt(-Math.log(Math.max(1e-9,u)))*sigma+mean;
+  }
 
 function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
     var left_subs_count = get_reaction[0].split('');
     var func;
     var t=[];
+    var W = randomGaussian(0,1); // (mean=0; standart_deviation=delta_t)
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     var y =[];
     for(var i = 0; i<y0.length; i++){
@@ -91,44 +95,53 @@ function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
         var kk2 = [];
         var kk3 = [];
         var kk4 = [];
+
+        var hash = {};
+        var regex = /A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|X|Y|Z/;
+        
+
         for(var j = 0; j < y.length; j++){
             for(var m = 0; m < y.length; m++){
                 if(j <= left_subs_count.length-1){
-                    func_array[0] = func_array[0].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
+                    const found = func_array[0].match(regex);
+                    console.log(found);
+                    func_array[0] = func_array[0].replace(regex, `y[${m}][${y[m].length-1}]`);
+                        if(found.index in hash){
+                            func_array.replace(found[q],`y[${q}][${y[m].length-1}]`)
+                        }
+                        // } else{
+                        // var obj = {found[q]: q};
+                        // hash.push(obj);
+                        // } 
                     func = func_array[0];
                 }
                 if(j > left_subs_count.length-1){
-                    func_array[1] = func_array[1].replace(/A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/, `y[${m}][${y[m].length-1}]`);
+                    const found = func_array.match(regex);
+                    func_array[1] = func_array[1].replace(regex, `y[${m}][${y[m].length-1}]`);
                     func = func_array[1];
                 }
             }
             //console.log(func);
-            kk1.push(k1(t[i], y, h, func));
+            kk1.push(k1(t[i], y, h, func, W));
         }
         for(var j = 0; j < y.length; j++){
             func = renew_function(j, y, left_subs_count, func_array, func);
-            kk2.push(k2(t[i], y, h, kk1, func));
+            kk2.push(k2(t[i], y, h, kk1, func, W));
             
         }
         for(var j = 0; j < y.length; j++){
             func = renew_function(j, y, left_subs_count, func_array, func);
-            kk3.push(k3(t[i], y, h, kk2, func));
+            kk3.push(k3(t[i], y, h, kk2, func,W));
         }
         for(var j = 0; j < y.length; j++){
             func = renew_function(j, y, left_subs_count, func_array, func);
-            kk4.push(k4(t[i], y, h, kk3, func));
+            kk4.push(k4(t[i], y, h, kk3, func, W));
         }
 
 
-        function randomGaussian(mean,sigma){
-            var u = Math.random();
-            return (u%1e-8>5e-9?1:-1)*Math.sqrt(-Math.log(Math.max(1e-9,u)))*sigma+mean;
-          }
-        var gaus = randomGaussian(0,1); // (mean=0; standart_deviation=delta_t)
-
         for(var j = 0; j < y.length; j++){
             // y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
-            y[j][i+1] = eval(y[j][i]+kk1[j]+g2*kk1[j]*gaus);
+            y[j][i+1] = eval(y[j][i]+kk1[j]+g2*kk1[j]*W);
             //console.log(y[j][i+1]);
             y_mean[j][i+1] += y[j][i+1];
         }

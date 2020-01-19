@@ -212,9 +212,12 @@
                         replace_symbols(document.getElementById("reaction_side0").value),
                         replace_symbols(document.getElementById("reaction_side1").value)
                     ];
+                    console.log(func_array);
                     var substance_array = [];
                     substance_array[0] = func_array[0].replace(/\W|\d/g,"");
+                    substance_array[0] = substance_array[0].replace('W','');
                     substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                    console.log(substance_array);
                     //sukuriamas y0 reikšmių masyvas
                     var y0 = substance_array[0].split("");
                     var color = [];
@@ -233,7 +236,7 @@
                     //Apskaičiuojamos y reikšmės
 
         
-                    var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_cat, y_mean);
+                    var [y, tt ] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_cat, y_mean);
                 
                     normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color, 0.05);
 
@@ -254,7 +257,7 @@
             });
 
             
-
+            
            
 
             //Užpildomi funkcijų laukai iš pateiktos reakcijos
@@ -262,16 +265,20 @@
                 var d = document.getElementById("function");
                 var get_rate = document.getElementById("reaction_rate").value;
                 var get_rate_2 = document.getElementById("second_reaction_rate").value;
+                var get_cat = document.getElementById("reaction_cat").value;
                 var get_reaction = document.getElementById("reaction_input").value;
                 var reaction = get_reaction.split(/<?->/);
                 //Sugeneruojamos funkcijos abiem reakcijos pusėms
                 var reaction_sides = [];
+
                 reaction[0] = reaction[0].replace(/\+/g, "*");
                 reaction[1] = reaction[1].replace(/\+/g, "*");
-                reaction_sides[0] = reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2}`;
+                reaction_sides[0] = `(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` 
+                +`(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` +  `*${get_cat}` + `*W`;
                 reaction_sides[1] = reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})` ;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
+
                 d.innerHTML += 
                 `<div class=input_blocks>
                     Kairioji: 
@@ -292,7 +299,7 @@
             var subs_names = ["A","B","C"];
             var subs_color_id = ["colorA", "colorB", "colorC"];
             var subs_color = ["#ff0000", "#0000ff", "#00ff00", "#990099", "#ffff00", "#ff9900"];
-            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","L","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            var subs_html_name = ["A","B","C","D","F","G","H","I","J","K","N","L","O","P","Q","R","S","T","U","V","X","Y","Z"];
             
             //Prideda papildomą medžiagos input lauką
             document.getElementById("add_subs").addEventListener("click", function(event){
