@@ -14,7 +14,7 @@
     <body>
         <header class="mainDetails ">
             <div class="mainDetails__photo">
-                <img src="../assets/graph-logo.png" alt="Logo">
+                <a href="main.html"><img src="../assets/graph-logo.png" alt="Logo"></a>
             </div>
             <div class="mainDetails__info">
                 <h2>Diferencialinių lygčių sistemų sprendimas</h2>
@@ -119,8 +119,12 @@
                         <input type="text" id="second_reaction_rate" value="0.5">
                     </div>
                     <div id=reaction class=input_blocks>
-                        Reakcijos katalizatorius(temperatūra, slėgis, itt.):
+                        Reakcijos triukšmas:
                         <input type="text" id="reaction_cat" value="0.7">
+                    </div>
+                    <div id=iter class=input_blocks>
+                        Iteracijų skaičius:
+                        <input type="text" id="iterations" value="1000">
                     </div>
                    
                  </div>
@@ -200,7 +204,7 @@
                 get_reaction[0] = get_reaction[0].replace('+', '');
                 get_reaction[1] = get_reaction[1].replace('+', '');
 
-                var iterations = 1000;
+                var iterations = parseInt(document.getElementById("iterations").value);
                 var y_mean = [];
 
                 for(var iter=0; iter<iterations; iter++){
