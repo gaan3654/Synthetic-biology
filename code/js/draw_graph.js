@@ -111,6 +111,7 @@ function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
             ctx.lineTo(t_norm[j],y_norm[i][j]);
         }
         ctx.strokeStyle = color[i];
+        ctx.lineWidth = 0.05;
         ctx.stroke();
     }
 }

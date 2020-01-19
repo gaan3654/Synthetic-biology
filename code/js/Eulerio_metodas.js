@@ -74,7 +74,7 @@ function renew_function(j, y, left_subs_count, func_array, func){
 
 
 
-function solution(y0, a, b, N, func_array, get_reaction, g1, g2){
+function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
     var left_subs_count = get_reaction[0].split('');
     var func;
     var t=[];
@@ -102,7 +102,7 @@ function solution(y0, a, b, N, func_array, get_reaction, g1, g2){
                     func = func_array[1];
                 }
             }
-            console.log(func);
+            //console.log(func);
             kk1.push(k1(t[i], y, h, func));
         }
         for(var j = 0; j < y.length; j++){
@@ -128,8 +128,9 @@ function solution(y0, a, b, N, func_array, get_reaction, g1, g2){
 
         for(var j = 0; j < y.length; j++){
             // y[j][i+1] = eval(y[j][i]+1/6*(kk1[j]+2*kk2[j]+2*kk3[j]+kk4[j]));
-            y[j][i+1] = eval(y[j][i]+g1*kk1[j]+g2*kk1[j]*gaus);
-            console.log(y[j][i+1]);
+            y[j][i+1] = eval(y[j][i]+kk1[j]+g2*kk1[j]*gaus);
+            //console.log(y[j][i+1]);
+            y_mean[j][i+1] += y[j][i+1];
         }
     } 
     

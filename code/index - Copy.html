@@ -188,7 +188,7 @@
             draw(ctx);
 
 
-            for(var daug=0; daug<1000; daug++){
+
 
             //Kreivių piešimas
             document.getElementById("submit").addEventListener("click", function(event) {
@@ -199,35 +199,51 @@
                 get_reaction = get_reaction.split(/<?->/);
                 get_reaction[0] = get_reaction[0].replace('+', '');
                 get_reaction[1] = get_reaction[1].replace('+', '');
-                var func_array = [
-                    replace_symbols(document.getElementById("reaction_side0").value),
-                    replace_symbols(document.getElementById("reaction_side1").value)
-                ];
-                var substance_array = [];
-                substance_array[0] = func_array[0].replace(/\W|\d/g,"");
-                substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-                //sukuriamas y0 reikšmių masyvas
-                var y0 = substance_array[0].split("");
-                var color = [];
-                for(var i=0; i<substance_array[0].length; i++){
-                    color[i] = document.getElementById(`color${y0[i]}`).value;
-                    y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
-                }
-                var get_rate = document.getElementById("reaction_rate").value; //taking speeds for Euler method
-                var get_cat = document.getElementById("reaction_cat").value;
-                //Apskaičiuojamos y reikšmės
+                var iterations = 100;
+                var y_mean = [];
+                for(var daug=0; daug<iterations; daug++){
+                    var func_array = [
+                        replace_symbols(document.getElementById("reaction_side0").value),
+                        replace_symbols(document.getElementById("reaction_side1").value)
+                    ];
+                    var substance_array = [];
+                    substance_array[0] = func_array[0].replace(/\W|\d/g,"");
+                    substance_array[1] = func_array[1].replace(/\W|\d/g,"");
+                    //sukuriamas y0 reikšmių masyvas
+                    var y0 = substance_array[0].split("");
+                    var color = [];
+                    for(var i=0; i<substance_array[0].length; i++){
+                        color[i] = document.getElementById(`color${y0[i]}`).value;
+                        y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
+                    }
+                     //taking catalizator for Euler method
+                    var get_cat = document.getElementById("reaction_cat").value;
+                    //Apskaičiuojamos y reikšmės
 
-                var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_rate, get_cat);
-              
-                normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
+        
+                    var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_cat, y_mean);
+
+                    // console.log("y_masyvas:   " + y0 + int_begin +int_end + N + func_array + get_reaction + get_rate + get_cat );
                 
+                    normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
+
+                
+                }
+                y_mean = substance_array[0].split("");
+                for(var i=1;i<y_mean.length; i++){
+                    for(var j=1;j<y_mean[i].length; j++){
+                        y_mean[i][j]= y_mean[i][j]/iterations;
+                    }
+                }
+                color = ["#000000", "#000000", "#000000" ];
+                normalize_and_draw(y_mean, tt, int_begin, int_end, c.height, c.width, color);
 
                 //Piešiami skičiai prie grafiko ašių
                 // axle_numbers(N, y_max, int_end);
                     
             });
 
-            }
+            
 
            
 
