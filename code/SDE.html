@@ -124,7 +124,7 @@
                     </div>
                     <div id=iter class=input_blocks>
                         Iteracijų skaičius:
-                        <input type="text" id="iterations" value="1000">
+                        <input type="text" id="iterations" value="100">
                     </div>
                    
                  </div>
@@ -217,11 +217,12 @@
                     substance_array[0] = func_array[0].replace(/\W|\d/g,"");
                     substance_array[0] = substance_array[0].replace('W','');
                     substance_array[1] = func_array[1].replace(/\W|\d/g,"");
-
+                    var uniqueItems = Array.from(new Set(substance_array[0]));
+                    // console.log(uniqueItems);
                     //sukuriamas y0 reikšmių masyvas
-                    var y0 = substance_array[0].split("");
+                    var y0 = uniqueItems;
                     var color = [];
-                    for(var i=0; i<substance_array[0].length; i++){
+                    for(var i=0; i<uniqueItems.length; i++){
                         color[i] = document.getElementById(`color${y0[i]}`).value;
                         y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
                         // Initialize y_mean with given y values
@@ -237,12 +238,12 @@
 
         
                     var [y, tt ] = solution(y0, int_begin, int_end, N, func_array, get_reaction, get_cat, y_mean);
-                
+                    // console.log(y);
                     normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color, 0.05);
 
                 
                 }
-                console.log(y_mean);
+                // console.log(y_mean);
                 for(var i=0;i<y_mean.length; i++){
                     for(var j=1;j<y_mean[i].length; j++){
                         y_mean[i][j]= y_mean[i][j]/iterations;

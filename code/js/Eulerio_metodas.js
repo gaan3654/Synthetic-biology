@@ -81,15 +81,17 @@ function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
     var left_subs_count = get_reaction[0].split('');
     var func;
     var t=[];
-    var W = randomGaussian(0,1); // (mean=0; standart_deviation=delta_t)
+    
     //daugiamatis masyvas inicializuojamas su pradinėm medžiagų konsentracijom
     var y =[];
     for(var i = 0; i<y0.length; i++){
         y.push([y0[i]]);
     }
+    // console.log(y);
     t[0] = a;
     var h= (b-a)/N;
     for (var i = 0; i < N; i++) {
+        var W = randomGaussian(0,1); // (mean=0; standart_deviation=delta_t)
         t[i+1] = t[i]+h;
         var kk1 = [];
         var kk2 = [];
@@ -101,32 +103,24 @@ function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
         
 
         for(var j = 0; j < y.length; j++){
-            for(var m = 0; m < y.length; m++){
-                if(j <= left_subs_count.length-1){
+            // For the initial run, replace all letters with corresponding array locations
+            for(var m = 0; m < func_array.length; m++){
+                while(func_array[m].match(regex)){
                     // Create a hash of substances and assign corresponding indices. 
                     // Afterwards replace letters with corresponding array location.
-                    if(func_array[0].match(regex)){
-                        var found = func_array[0].match(regex);
+                    if(func_array[m].match(regex)){
+                        var found = func_array[m].match(regex);
                         if(hash[found[0]] !== undefined){
-                            func_array[0] = func_array[0].replace(found[0],`y[${hash[found[0]]}][${y[m].length-1}]`)
+                            func_array[m] = func_array[m].replace(found[0],`y[${hash[found[0]]}][${y[hash[found[0]]].length-1}]`);
                         } else{
                             hash[found[0]] = Object.keys(hash).length;
+                            func_array[m] = func_array[m].replace(found[0],`y[${hash[found[0]]}][${y[hash[found[0]]].length-1}]`);
                         } 
                     }
-                    func = func_array[0];
-                }
-                if(j > left_subs_count.length-1){
-                    if(func_array[1].match(regex)){
-                        var found = func_array[1].match(regex);
-                        if(hash[found[0]] !== undefined){
-                            func_array[1] = func_array[1].replace(found[0],`y[${hash[found[0]]}][${y[m].length-1}]`)
-                        } else{
-                            hash[found[0]] = Object.keys(hash).length;
-                        } 
-                    }
-                    func = func_array[1];
+                    func = func_array[m];
                 }
             }
+            func = renew_function(j, y, left_subs_count, func_array, func);
             kk1.push(k1(t[i], y, h, func, W));
         }
         for(var j = 0; j < y.length; j++){
