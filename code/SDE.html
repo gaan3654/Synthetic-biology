@@ -274,10 +274,10 @@
 
                 reaction[0] = reaction[0].replace(/\+/g, "*");
                 reaction[1] = reaction[1].replace(/\+/g, "*");
-                reaction_sides[0] = `(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` 
-                +`+(` +reaction[0] + `*(-${get_rate})` + `+` +  reaction[1] + `*${get_rate_2})` +  `*${get_cat}` + `*W`;
+                reaction_sides[0] = `(` +reaction[0] + `*(-${get_rate})` + `+` + reaction[1] + `*${get_rate_2})` 
+                +`+(` +reaction[0] + `+` +  reaction[1] + `)` +  `*${get_cat}` + `*W`;
                 reaction_sides[1] = `(` +reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2}))`
-                +`+(` +reaction[0] + `*${get_rate}` + `+` +  reaction[1] + `*(-${get_rate_2}))` +  `*${get_cat}` + `*W` ;
+                +`+(` +reaction[0] +  `+` +  reaction[1] + `)` +  `*${get_cat}` + `*W` ;
                 //Sukuriami input laukai funkcijoms
                 //kairioji pusė
 
