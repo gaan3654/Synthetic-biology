@@ -73,8 +73,14 @@ function renew_function(j, y, left_subs_count, func_array, func){
 }
 
 function randomGaussian(mean,sigma){
-    var u = Math.random();
-    return (u%1e-8>5e-9?1:-1)*Math.sqrt(-Math.log(Math.max(1e-9,u)))*sigma+mean;
+    var u = 0.0;
+    for (var i=0;i<12;i++)
+       u += Math.random();
+    u -= 6;
+   
+    return u*sigma+mean;
+    // var u = Math.random();
+    // return (u%1e-8>5e-9?1:-1)*Math.sqrt(-Math.log(Math.max(1e-9,u)))*sigma+mean;
   }
 
 function solution(y0, a, b, N, func_array, get_reaction, g2, y_mean){
