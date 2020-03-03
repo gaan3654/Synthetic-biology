@@ -3,7 +3,8 @@
     <head>
         <script type="text/javascript" src='js/draw_graph.js'> </script>
         <script type="text/javascript" src='js/runge-kutta-method.js'> </script>
-        <script type="text/javascript" src='js/replace_symb_w_func.js'> </script>
+        <script type="text/javascript" src='js/normalization.js'> </script>
+        <script type="text/javascript" src='js/updateFunction.js'> </script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -193,8 +194,8 @@
                 get_reaction[0] = get_reaction[0].replace('+', '');
                 get_reaction[1] = get_reaction[1].replace('+', '');
                 var func_array = [
-                    replace_symbols(document.getElementById("reaction_side0").value),
-                    replace_symbols(document.getElementById("reaction_side1").value)
+                    document.getElementById("reaction_side0").value,
+                    document.getElementById("reaction_side1").value
                 ];
                 var substance_array = [];
                 substance_array[0] = func_array[0].replace(/\W|\d/g,"");
@@ -207,7 +208,8 @@
                     y0[i] = parseFloat(document.getElementById(`${y0[i]}`).value);
                 }
                 //Apskaičiuojamos y reikšmės
-                var [y, tt] = solution(y0, int_begin, int_end, N, func_array, get_reaction);
+                initializeValues(y0, N, int_begin, int_end, get_reaction);
+                var [y, tt] = solution(func_array);
 
                 normalize_and_draw(y, tt, int_begin, int_end, c.height, c.width, color);
 
