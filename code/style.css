@@ -1,258 +1,259 @@
-* { 
-    margin: 0 auto;
-	font-family: 'Lato', sans-serif;
+* {
+  margin: 0 auto;
+  font-family: "Lato", sans-serif;
 }
 
-body{
-	display: block;
+body {
+  display: block;
+}
+
+nav {
+  width: 100%;
+  height: 100px;
+  background-color: #bb838ca1;
 }
 
 
-nav{
-	width: 100%;
-	height: 100px;
-	background-color: #bb838ca1;
+ul li {
+  list-style: none;
+  display: inline;
+  line-height: 100px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: #fff;
 }
 
-ul{
-
+ul li a {
+  text-decoration: none;
+  font-size: 14px;
+  font-family: arial;
+  color: #1e1e1e;
 }
 
-ul li{
-	list-style: none;
-	display: inline;
-	line-height: 100px;
-	padding: 20px;
-	margin: 20px;
-	border-radius: 15px;
-	background-color: #fff;
-}
-
-ul li a{
-	text-decoration: none;
-	font-size: 14px;
-	font-family: arial;
-	color: #1e1e1e;
-}
-
-ul li:hover{
-	background-color: rgb(241, 236, 236);
+ul li:hover {
+  background-color: rgb(241, 236, 236);
 }
 
 .mainDetails {
-    background-color: #78003F;
-    color: #fff;
-    padding-bottom: 2%;
-    padding-top: 2%;
-	overflow: hidden;
+  background-color: #78003f;
+  color: #fff;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  overflow: hidden;
 }
 
-.mainDetails__photo img{
-    height: 6%;
-	width: 6%;
-    border-radius: 50%;
-    float:left;
-    object-fit: cover;
-    margin-left: 4%;
+.mainDetails__photo img {
+  height: 6%;
+  width: 6%;
+  border-radius: 50%;
+  float: left;
+  object-fit: cover;
+  margin-left: 4%;
 }
 
 .mainDetails__info {
-    float: left;
-    padding-top: 1%;
-    margin-left: 3%;
+  float: left;
+  padding-top: 1%;
+  margin-left: 3%;
 }
 
 .mainDetails__info h2 {
-    padding-top: 8px;
+  padding-top: 8px;
 }
 
 .mainDetails__contact {
-    padding-top: 4px;
-    padding-right: 48px;
-    float: right;
+  padding-top: 4px;
+  padding-right: 48px;
+  float: right;
 }
 
-#info{
-	display: block;
-	margin-left: 1.5%;
-	margin-top: 3%;
-	margin-bottom: 0%;
-	width: 25%;	
-	height: 50%;
+#info {
+  display: block;
+  margin-left: 1.5%;
+  margin-top: 3%;
+  margin-bottom: 0%;
+  width: 25%;
+  height: 50%;
 }
 
-#substance_input{
-	display: inline-block;
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	width: 94%;
-	height: 50%;
-	/* background-color: pink; */
+#substance_input {
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  width: 94%;
+  height: 50%;
+  /* background-color: pink; */
 }
 
-#examples{
-	display: inline-block;
-	padding: 2%;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	
+#examples {
+  display: inline-block;
+  padding: 2%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.example{
-	display: inline;
-	width: 97%;
-	height: 22%; 
+.example {
+  display: inline;
+  /* width: 97%;
+  height: 22%; */
 }
 
-#substance{
-	display: block;
-	float: left;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 43%;
-	height: 42%;
-	/* background-color: red; */
+#substance {
+  display: block;
+  float: left;
+  margin: 3%;
+  margin-bottom: 0%;
+  width: 43%;
+  height: 42%;
+  /* background-color: red; */
 }
 
 #inputs {
-	display: block;
-	float: right;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 43%;
-	height: 42%;
-	/* background-color: aqua; */
+  display: block;
+  float: right;
+  margin: 3%;
+  margin-bottom: 0%;
+  width: 43%;
+  height: 42%;
+  /* background-color: aqua; */
 }
 
-.subs_react_buttons{
-	display: inline-block;
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	width: 94%;
-	height: 50%;
+.subs_react_buttons {
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  width: 94%;
+  height: 50%;
 }
 
-#add_subs{
-	float: left;
-	margin-left: 23%;
-	margin-bottom: 1%;
-	margin-top: 0%;
-	width: 23%;
-	height: 22%;
+#add_subs {
+  float: left;
+  margin-left: 23%;
+  margin-bottom: 1%;
+  margin-top: 0%;
+  width: 23%;
+  height: 22%;
 }
 
-#submit_reaction{
-	float: right;
-	margin: 3%;
-	margin-bottom: 1%;
-	margin-top: 0%;
-	width: 23%;
-	height: 22%; 
+#submit_reaction {
+  float: right;
+  margin: 3%;
+  margin-bottom: 1%;
+  margin-top: 0%;
+  width: 23%;
+  height: 22%;
 }
 
 .input_blocks {
-	display: block;
-	margin-bottom: 2%;
+  display: block;
+  margin-bottom: 2%;
 }
 
 .input_stoch {
-	display: block;
-	/* margin-top: 2%;
+  display: block;
+  /* margin-top: 2%;
 	margin-bottom: 2%; */
-	padding: 2%;
-	margin: 2%;
+  padding: 2%;
+  margin: 2%;
 
-	/* background-color: aqua; */
-	
+  /* background-color: aqua; */
 }
 
 input {
-	border-style: solid;
-	border-radius: 15px;
-	border-width: 1px;
-	padding-left: 5%;
-	width: 48%;
-	height: 15%;
-	float: right;
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 1px;
+  padding-left: 5%;
+  width: 48%;
+  height: 15%;
+  float: right;
 }
 
 button {
-	border-style: solid;
-	border-radius: 15px;
-	width: 48%;
-	height: 15%;
+  border-style: solid;
+  border-radius: 15px;
+  width: 48%;
+  height: 15%;
 }
 
-#graph_draw{
-	display: inline-block;
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 0%;
-	margin-bottom: 0%;
-	width: 94%;
-	height: 50%;
-	/* background-color: pink; */
+#graph_draw {
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  width: 94%;
+  height: 50%;
+  /* background-color: pink; */
 }
 
 #function_block {
-	display: block;
-	float: left;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 43%;
-	height: 42%;
-	/* background-color: red; */
+  display: block;
+  float: left;
+  margin: 3%;
+  margin-bottom: 0%;
+  width: 43%;
+  height: 42%;
+  /* background-color: red; */
 }
 
-.visimygtukai{
-	display: inline-block;
-	float: right;
-	width: 100%;
-	height: 100%;
+.visimygtukai {
+  display: inline-block;
+  /* float: right; */
+  width: 100%;
+  height: 100%;
 }
 
-#button{
-	display: inline; 
-	float: left;
-	margin: 3%;
-	margin-top: 0%;
-	width: 42%;
-	height: 22%; 
+#button {
+  display: inline;
+  /* float: left; */
+  margin: 3%;
+  /* margin-top: 0%;
+  width: 42%;
+  height: 22%; */
 }
 
-#dumygtukai{
-	display: inline;
-	width: 97%;
-	height: 22%; 
+#dumygtukai {
+  display: inline;
+  /* width: 97%;
+  height: 22%; */
 }
 
-#delete{
-	float: left; 
+#delete {
+  float: left;
 }
 
 #submit {
-	float: right; 
+  float: right;
 }
 
 #canvas {
-	float: right;
-	margin: 3%;
-	margin-bottom: 0%;
-	width: 43%;
-	height: 42%;
-	/* background-color: green;	 */
+  float: right;
+  margin: 3%;
+  margin-bottom: 0%;
+  width: 43%;
+  height: 42%;
+  /* background-color: green;	 */
 }
 
-.s_colors{
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	border: none;
-	border-radius: 0;
-	margin-right: 1%;
+.s_colors {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  margin-right: 1%;
+}
+
+/* DE graphs */
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  max-width: 100%;
 }

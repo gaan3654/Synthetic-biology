@@ -101,12 +101,12 @@ function axle_numbers(N, y_max, int_end) {
 }
 
 function normalize_and_draw(yy, tt, int_begin, int_end, height, width, color){
-    var [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
+    let [y_norm,t_norm] = normalization(yy, tt, int_begin, int_end, height, width);
     //Piešiamia kreivė
-    for(var i=0; i<y_norm.length; i++){
+    for(let i=0; i<y_norm.length; i++){
         ctx.beginPath();
         ctx.moveTo(t_norm[0],y_norm[i][0]);    
-        for(var j=1; j<=y_norm[i].length; j++){
+        for(let j=1; j<=y_norm[i].length; j++){
             ctx.lineTo(t_norm[j],y_norm[i][j]);
         }
         ctx.strokeStyle = color[i];

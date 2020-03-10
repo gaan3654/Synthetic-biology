@@ -1,60 +1,37 @@
-<!-- Styles -->
-<style>
-  #chartdiv {
-    width: 100%;
-    height: 500px;
-    max-width: 100%;
-  }
-</style>
-
-<!-- Resources -->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
-<!-- Chart code -->
-<script>
-  am4core.ready(function() {
+function createChart(am4core, yList, tList) {
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
-
+    
     // Create chart instance
     let chart = am4core.create("chartdiv", am4charts.XYChart);
 
     // Create axes
     let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
     xAxis.title.text = "Time";
-    xAxis.renderer.maxGridDistance = 0.1;
     let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
     yAxis.title.text = "Concentration";
 
-
     let seriesList = [];
-    for (let i = 0; i < 10; i++) {
-      seriesList.push(createSeries("value" + i, "Series #" + i));
+    for (let i = 0; i < yList.length; i++) {
+      seriesList.push(createSeries(i, "Medžiaga #" + i, yList[i]));
     }
 
     // Create series
-    function createSeries(s, name) {
+    function createSeries(s, name, y) {
       let series = chart.series.push(new am4charts.LineSeries());
-      series.dataFields.valueY = s;
+      series.dataFields.valueY = "value" + s;
       series.dataFields.valueX = "time";
       series.name = name;
 
       addFeatures(series);
 
       let data = [];
-      let value = Math.round(Math.random() * 100) + 100;
-      for (let i = 1; i < 100; i++) {
-        value += Math.round(
-          (Math.random() < 0.5 ? 1 : -1) * Math.random() * 30 + i / 5
-        );
-        let dataItem = { time: i };
-        dataItem[s] = value;
+      for (let i = 0; i < y.length-1; i++) {
+        let dataItem = { time: tList[i] };
+        dataItem["value" + s] = y[i];
         data.push(dataItem);
       }
-
       series.data = data;
 
       return series;
@@ -121,8 +98,4 @@
         series.bulletsContainer.setState("default");
       });
     }
-  }); // end am4core.ready()
-</script>
-
-<!-- HTML -->
-<div id="chartdiv"></div>
+  }
