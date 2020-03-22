@@ -1,61 +1,21 @@
-function createChart(am4core, yList, tList) {
-  console.log("Print something");
+let chart;
+let yList;
+let tList;
+function initializeChart(am4core) {}
+
+function createCharts(am4core) {
   // Themes begin
   am4core.useTheme(am4themes_animated);
   // Themes end
 
   // Create chart instance
-  let chart = am4core.create("chartdiv", am4charts.XYChart);
+  chart = am4core.create("chartdiv", am4charts.XYChart);
 
   // Create axes
   let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
   xAxis.title.text = "Time";
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.title.text = "Concentration";
-
-  let seriesList = [];
-  for (let i = 0; i < yList.length; i++) {
-    seriesList.push(createSeries(i, "Medžiaga #" + i, yList[i]));
-  }
-
-  // Create series
-  function createSeries(s, name, y) {
-    let series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueY = "value" + s;
-    series.dataFields.valueX = "time";
-    series.name = name;
-
-    addFeatures(series);
-
-    let data = [];
-    for (let i = 0; i < y.length - 1; i++) {
-      let dataItem = { time: tList[i] };
-      dataItem["value" + s] = y[i];
-      data.push(dataItem);
-    }
-    series.data = data;
-
-    return series;
-  }
-
-  function addFeatures(series) {
-    let segment = series.segments.template;
-    segment.interactionsEnabled = true;
-
-    let hoverState = segment.states.create("hover");
-    hoverState.properties.strokeWidth = 3;
-
-    let dimmed = segment.states.create("dimmed");
-    dimmed.properties.stroke = am4core.color("#dadada");
-
-    segment.events.on("over", function(event) {
-      processOver(event.target.parent.parent.parent);
-    });
-
-    segment.events.on("out", function(event) {
-      processOut(event.target.parent.parent.parent);
-    });
-  }
 
   // Add scrollbar
   chart.scrollbarX = new am4charts.XYChartScrollbar();
@@ -73,31 +33,78 @@ function createChart(am4core, yList, tList) {
   chart.legend.itemContainers.template.events.on("out", function(event) {
     processOut(event.target.dataItem.dataContext);
   });
+}
 
-  function processOver(hoveredSeries) {
-    hoveredSeries.toFront();
-
-    hoveredSeries.segments.each(function(segment) {
-      segment.setState("hover");
-    });
-
-    chart.series.each(function(series) {
-      if (series != hoveredSeries) {
-        series.segments.each(function(segment) {
-          segment.setState("dimmed");
-        });
-        series.bulletsContainer.setState("dimmed");
-      }
-    });
+function addToChart(y, t) {
+  yList = y;
+  tList = t;
+  let seriesList = [];
+  for (let i = 0; i < yList.length; i++) {
+    seriesList.push(createSeries(i, "Medžiaga #" + i, yList[i]));
   }
+}
 
-  function processOut(hoveredSeries) {
-    chart.series.each(function(series) {
+// Create series
+function createSeries(s, name, y) {
+  let series = chart.series.push(new am4charts.LineSeries());
+  series.dataFields.valueY = "value" + s;
+  series.dataFields.valueX = "time";
+  series.name = name;
+
+  addFeatures(series);
+
+  let data = [];
+  for (let i = 0; i < y.length - 1; i++) {
+    let dataItem = { time: tList[i] };
+    dataItem["value" + s] = y[i];
+    data.push(dataItem);
+  }
+  series.data = data;
+
+  return series;
+}
+
+function addFeatures(series) {
+  let segment = series.segments.template;
+  segment.interactionsEnabled = true;
+
+  let hoverState = segment.states.create("hover");
+  hoverState.properties.strokeWidth = 3;
+
+  let dimmed = segment.states.create("dimmed");
+  dimmed.properties.stroke = am4core.color("#0adada");
+
+  segment.events.on("over", function(event) {
+    processOver(event.target.parent.parent.parent);
+  });
+
+  segment.events.on("out", function(event) {
+    processOut(event.target.parent.parent.parent);
+  });
+}
+
+function processOver(hoveredSeries) {
+  hoveredSeries.toFront();
+
+  hoveredSeries.segments.each(function(segment) {
+    segment.setState("hover");
+  });
+
+  chart.series.each(function(series) {
+    if (series != hoveredSeries) {
       series.segments.each(function(segment) {
-        segment.setState("default");
+        segment.setState("dimmed");
       });
-      series.bulletsContainer.setState("default");
+      series.bulletsContainer.setState("dimmed");
+    }
+  });
+}
+
+function processOut(hoveredSeries) {
+  chart.series.each(function(series) {
+    series.segments.each(function(segment) {
+      segment.setState("default");
     });
-  }
-  chart.dispose();
+    series.bulletsContainer.setState("default");
+  });
 }

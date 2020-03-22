@@ -31,13 +31,28 @@
         <div id="example_substance_block">
           <div id="examples">
             <div class="example">
-              <input type="button" id="button1" value="Pavyzdys 1" />
+              <input
+                type="button"
+                id="button1"
+                class="button"
+                value="Pavyzdys 1"
+              />
             </div>
             <div class="example">
-              <input type="button" id="button2" value="Pavyzdys 2" />
+              <input
+                type="button"
+                id="button2"
+                class="button"
+                value="Pavyzdys 2"
+              />
             </div>
             <div class="example">
-              <input type="button" id="button3" value="Pavyzdys 3" />
+              <input
+                type="button"
+                id="button3"
+                class="button"
+                value="Pavyzdys 3"
+              />
             </div>
           </div>
 
@@ -115,6 +130,7 @@
           <input
             type="button"
             id="add_subs"
+            class="button"
             onclick="add_additional_substance_input()"
             value="Pridėti medžiagą"
           />
@@ -123,12 +139,13 @@
           <input
             type="button"
             id="submit_reaction"
-            onclick="renew_button()"
+            class="button"
             value="Vykdyti reakciją"
           />
           <input
             type="button"
             id="add_reaction"
+            class="button"
             onclick="add_additional_reaction_input()"
             value="Pridėti reakciją"
           />
@@ -142,32 +159,18 @@
           </div>
           <div class="visimygtukai">
             <div id="dumygtukai">
-              <button id="submit" style="display:none">Piešti grafiką</button>
+              <button id="submit" class="button" style="display:none">
+                Piešti grafiką
+              </button>
             </div>
           </div>
         </div>
 
         <div id="chartdiv"></div>
-
-        <div id="canvas" class="canvas">
-          <canvas
-            id="myCanvas"
-            width="440"
-            height="440"
-            style="border:1px solid #000000;"
-          >
-            Your browser does not support the HTML5 canvas tag.
-          </canvas>
-        </div>
       </div>
     </div>
 
     <script>
-      //Sukuriamas laukas grafikui
-      var c = document.getElementById("myCanvas");
-      var ctx = c.getContext("2d");
-      draw(ctx);
-
       //Kreivių piešimas
       document
         .getElementById("submit")
@@ -283,21 +286,9 @@
           }
           initializeValues(N, int_begin, int_end, substance_obj);
           let [yy, tt] = solution(substance_obj);
-          createChart(am4core, yy, tt);
-          //Atnaujinamas grafikas
-          draw(ctx);
-          normalize_and_draw(
-            yy,
-            tt,
-            int_begin,
-            int_end,
-            c.height,
-            c.width,
-            substance_obj
-          );
+          createCharts(am4core);
 
-          // //Piešiami skičiai prie grafiko ašių
-          axle_numbers(N, y_max, int_end);
+          addToChart(yy, tt);
         });
 
       var button_clicked = false;
@@ -361,6 +352,10 @@
             }
             $("#submit").css("display", "inline");
             $("#function").css("display", "block");
+            if (rection_submited) {
+              chart.dispose();
+            }
+            renew_button();
           });
         });
 
@@ -432,11 +427,12 @@
                     </div>`;
         }
       }
-
+      let rection_submited = false;
       // Pakeičiamas mygtuko pavadinimas
       function renew_button() {
         document.getElementById("submit_reaction").value =
           "Atnaujinti reakciją(as)";
+        rection_submited = true;
       }
 
       var reactions_id = ["reaction_0"];
