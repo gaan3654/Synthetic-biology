@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Runge-Kutta</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Text_Page_Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+
+  </head>
+
+  <body>
+
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3 sidenav">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#section1">Apibrėžimas</a></li>
+          <li><a href="#section2">Pavyzdžiai</a></li>
+          <li><a href="#section3">Skaičiuotuvas</a></li>
+          <li><a href="index.html">Į Pradžią</a></li>
+        </ul><br>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-9 content-container">
+        <h1>Runge-Kutta metodas</h1>
+          <p>
+              Runge-Kutta sudaro keli matematiniai metodai, kurie yra naudojami diferencialinių lygčių sprendimams. 
+              Šiuos metodus sukūrė Vokietijos matematikai Carl Runge and Wilhelm Kutta, apytiksliai 1900 metais. 
+              Populiariausias yra klasikinis Runge Kutta metodas, dar vadinamas RK4-uoju.
+          </p>
+          <p>
+              Šiam metodui svarbu apibrėžti pradinę funkciją \(y’=f(t,y)\) 
+              ir pradinę kintamojo vertę nuliniame laike \(y(t_0)=y_0\). Sekančios kintamųjų reikšmės bus apskaičiuojamos tokia lygtimi :
+              \[
+                  y_{n+1}=y_n+ \frac{1}{6} (k_1+2k_2+2k_3+k_4).
+              \]
+              O \(t\) laikas didėja tokiu būdu: \(t_{n+1}=t_{n}+h\), kur  \(h=\frac{t_{max}-t_0}{n}\).
+          </p>
+          <p>
+              Lygties \(k\) elementai yra sprendžiami sekančiai:
+          </p>
+          <ul>
+              <li>\(k_{1}=hf(t_{n},y_{n})\) </li> 
+              <li>\(k_{2}=hf(t_{n} + \frac{h}{2}, y_{n} + \frac{k_{1}}{2})\) </li> 
+              <li>\(k_{3}=hf(t_{n} + \frac{h}{2}, y_{n} + \frac{k_{2}}{2})\) </li> 
+              <li>\(k_{4}=hf(t_{n} + h, y_{n} + k_{3})\) </li> 
+          </ul>
+          <p>Šis metodas yra labai tikslus, todėl juo rekomenduojama naudotis sprendžiant biologines lygtis.</p>
+
+          <!-- tegul čia lieka pvz: -->
+          <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
+        <br><br>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container-fluid">
+    <p>Footer Text</p>
+  </footer>
+
+</body>
+
+</html>
