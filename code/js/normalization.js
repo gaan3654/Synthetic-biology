@@ -4,8 +4,10 @@ let y_max;
 function normalization(y, t, a, b, height, width) {
   let yp = [];
   let tp = [];
-  
-  let y_maxRow = y.map(function(row){ return Math.max.apply(Math, row); });
+
+  let y_maxRow = y.map(function(row) {
+    return Math.max.apply(Math, row);
+  });
   y_max = Math.max.apply(null, y_maxRow);
 
   //yy normalizacija
@@ -31,4 +33,13 @@ function normalization(y, t, a, b, height, width) {
     yp.push(yp_temp);
   }
   return [yp, tp];
+}
+
+function getRandomColor() {
+  var symbols = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += symbols[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }

@@ -1,30 +1,48 @@
-function replaceLetters(function_array, y, m) {
-  return function_array.replace(
-    /A|B|C|D|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/,
-    `y[${m}][${y[m].length - 1}]`
-  );
+let alphabet_pattern = /A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/;
+
+function replaceLetters(function_to_change, substance_obj) {
+  if (function_to_change.match(alphabet_pattern)) {
+    let current_subs = function_to_change.match(alphabet_pattern)[0];
+    let new_subs;
+    for (let i = 0; i < substance_obj.length; i++) {
+      if (substance_obj[i][current_subs]) {
+        new_subs = substance_obj[i][current_subs];
+      }
+    }
+    function_to_change = function_to_change.replace(
+      new RegExp(current_subs, "g"),
+      new_subs
+    );
+  }
+
+  return function_to_change;
 }
 
-function updateArrayIndices(function_array, y, m) {
-  return (function_array = function_array.replace(
-    `y[${m}][${y[m].length - 2}]`,
-    `y[${m}][${y[m].length - 1}]`
-  ));
-}
-
-function renewFunction(j, y, func_array, initialize) {
+function renewFunction(y, j, substance_obj, initialize) {
   let updated_function;
-  let n = 1;
   for (let m = 0; m < y.length; m++) {
-    if (j <= determine_side.length - 1) {
-      n = 0;
-    }
     if (initialize) {
-      func_array[n] = replaceLetters(func_array[n], y, m);
+      substance_obj[j].function = replaceLetters(
+        substance_obj[j].function,
+        substance_obj
+      );
     } else {
-      func_array[n] = updateArrayIndices(func_array[n], y, m);
+      substance_obj[j].function = updateArrayIndices(
+        y,
+        substance_obj[j].function
+      );
     }
-    updated_function = func_array[n];
+    updated_function = substance_obj[j].function;
   }
   return updated_function;
+}
+
+function updateArrayIndices(y, func_array) {
+  for (let m = 0; m < y.length; m++) {
+    func_array = func_array.replace(
+      `y[${m}][${y[m].length - 2}]`,
+      `y[${m}][${y[m].length - 1}]`
+    );
+  }
+  return func_array;
 }
