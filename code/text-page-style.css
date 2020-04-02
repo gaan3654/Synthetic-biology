@@ -1,31 +1,33 @@
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {
-    height: 1000px;
+  height: 1000px;
 }
 
-.sidenav{
-    background-image: url("background.jpg");
-    height: 100%;
-    padding: 1%;
+.sidenav {
+  background-image: url("../assets/background.jpg");
+  height: 100%;
+  padding: 1%;
 }
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-    color: #fff;
-    background-color: #2e6da4;
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  color: #fff;
+  background-color: #2e6da4;
 }
 
-.content-container h1{
-    padding: 2%;
-    text-align: center;
-    background-color: #eee;
+.content-container h1 {
+  padding: 2%;
+  text-align: center;
+  background-color: #eee;
 }
 
-.content-container p{
-    padding: 1%;
+.content-container p {
+  padding: 1%;
 }
 
-.content-container ul{
-    padding-left: 25%;
+.content-container ul {
+  padding-left: 25%;
 }
 
 /* Set black background color, white text and some padding */
@@ -41,5 +43,7 @@ footer {
     height: auto;
     padding: 15px;
   }
-  .row.content {height: auto;} 
+  .row.content {
+    height: auto;
+  }
 }
