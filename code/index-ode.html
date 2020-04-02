@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="js/runge-kutta-method.js"></script>
+    <script type="text/javascript" src="js/normalization.js"></script>
+    <script type="text/javascript" src="js/update-function.js"></script>
+    <script type="text/javascript" src="js/dynamical-fields.js"></script>
+    <script type="text/javascript" src="packages/jquery.js"></script>
+
+    <script type="text/javascript" src="js/ode-graph.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <title>Modeliai sintetinėje biologijoje</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <header class="mainDetails ">
+      <div class="mainDetails__photo">
+        <img src="../assets/graph-logo.png" alt="Logo" />
+      </div>
+      <div class="mainDetails__info">
+        <h2>Modeliai sintetinėje biologijoje</h2>
+        <h3>Paremta Runge-Kutta metodu</h3>
+      </div>
+    </header>
+    <div>
+      <div id="substance_input">
+        <div id="example_substance_block">
+          <div id="examples">
+            <button id="example1" class="button example">
+              Pavyzdys 1
+            </button>
+            <button id="example2" class="button example">
+              Pavyzdys 2
+            </button>
+            <button id="example3" class="button example">
+              Pavyzdys 3
+            </button>
+          </div>
+
+          <div id="substance">
+            <div class="input_blocks">
+              [A']:
+              <input type="number" id="A" value="2" />
+              <input
+                type="color"
+                id="colorA"
+                class="s_colors"
+                value="#ff0000"
+              />
+            </div>
+            <div class="input_blocks">
+              [B']:
+              <input type="number" id="B" value="3" />
+              <input
+                type="color"
+                id="colorB"
+                class="s_colors"
+                value="#0000ff"
+              />
+            </div>
+            <div class="input_blocks">
+              [C']:
+              <input type="number" id="C" value="1" />
+              <input
+                type="color"
+                id="colorC"
+                class="s_colors"
+                value="#00ff00"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="inputs">
+          <div id="settings">
+            <div id="interv_begins" class="input_blocks">
+              Intervalo pradžia:
+              <input type="number" id="int_begins" value="0" />
+            </div>
+
+            <div id="interv_ends" class="input_blocks">
+              Intervalo pabaiga:
+              <input type="number" id="int_ends" value="1" />
+            </div>
+            <div id="N" class="input_blocks">
+              N:
+              <input type="number" id="n_inp" value="100" />
+            </div>
+          </div>
+          <div id="reactions">
+            <div id="reaction_info_0">
+              <div id="reaction_0" class="input_blocks">
+                1. Įveskite norimą reakciją:
+                <input type="text" id="reaction_input_0" value="A+B->B" />
+              </div>
+              <div id="k1_0" class="input_blocks">
+                Reakcijos greitis k<sub>1</sub>:
+                <input type="number" id="reaction_rate_0" value="0.9" />
+              </div>
+              <div id="k2_0" class="input_blocks">
+                Reakcijos greitis k<sub>2</sub>:
+                <input type="number" id="second_reaction_rate_0" value="0.1" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main_buttons">
+        <div class="subs_react_buttons">
+          <button
+            id="add_subs"
+            class="button"
+            onclick="add_additional_substance_input()"
+          >
+            Pridėti medžiagą
+          </button>
+        </div>
+        <div class="funct_buttons">
+          <button id="submit_reaction" class="button">
+            Vykdyti reakciją
+          </button>
+          <button
+            id="add_reaction"
+            class="button"
+            onclick="add_additional_reaction_input()"
+          >
+            Pridėti reakciją
+          </button>
+        </div>
+      </div>
+
+      <div id="graph_draw">
+        <div id="function_block">
+          <div id="function" style="display:none">
+            <!--Talpinamos reakcijos sukurtos funkcijos-->
+          </div>
+          <div class="visimygtukai">
+            <div id="dumygtukai">
+              <button id="submit" class="button" style="display:none">
+                Piešti grafiką
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="chartdiv"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/process-inputs.js"></script>
+    <script type="text/javascript" src="js/examples.js"></script>
+    <script type="text/javascript" src="js/update-inputs.js"></script>
+    <script>
+      let reactions_id = ["reaction_0"];
+      let rection_submited = false;
+      //Užpildomi funkcijų laukai iš pateiktos reakcijos
+
+      var subs_names = ["A", "B", "C"];
+      var subs_color_id = ["colorA", "colorB", "colorC"];
+      var subs_color = [
+        "#ff0000",
+        "#0000ff",
+        "#00ff00",
+        "#9E618D",
+        "#ff9900",
+        "#00ff99",
+        "#0099ff",
+        "#9900ff",
+        "#990099",
+        "#009900"
+      ];
+      var subs_html_name = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ];
+    </script>
+  </body>
+</html>
