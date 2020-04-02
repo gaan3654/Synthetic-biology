@@ -4,16 +4,25 @@
 }
 
 .sidenav {
-  background-image: url("../assets/background.jpg");
+  background-image: url("../../assets/background.jpg");
   height: 100%;
   padding: 1%;
 }
 
+.nav-pills > li > a {
+  background-color: rgba(177, 177, 177, 0.171);
+  color: rgba(206, 206, 206, 0.767);
+}
+
 .nav-pills > li.active > a,
+.nav-pills > li.active > a:active,
 .nav-pills > li.active > a:focus,
-.nav-pills > li.active > a:hover {
-  color: #fff;
-  background-color: #2e6da4;
+.nav-pills > li.active > a:hover,
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus,
+.nav-pills > li > a:active {
+  background-color: rgba(206, 206, 206, 0.541);
+  color: white;
 }
 
 .content-container h1 {

@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
     <link rel="stylesheet" type="text/css" href="text-page-style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -18,17 +19,30 @@
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
     ></script>
+
+    <script
+      type="text/javascript"
+      src="../js/calculator-html-process/dynamical-fields.js"
+    ></script>
   </head>
 
-  <body>
+  <body OnLoad="focusItem('description')">
     <div class="container-fluid">
       <div class="row content">
         <div class="col-sm-3 sidenav">
-          <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#section1">Apibrėžimas</a></li>
-            <li><a href="#section2">Pavyzdžiai</a></li>
-            <li><a href="#section3">Skaičiuotuvas</a></li>
-            <li><a href="../index.html">Į Pradžią</a></li>
+          <ul class="nav nav-pills nav-stacked" id="btn-list">
+            <li id="description" onclick="focusItem('description')">
+              <a href="#!">Apibrėžimas</a>
+            </li>
+            <li id="examples" onclick="focusItem('examples')">
+              <a href="#section2">Pavyzdžiai</a>
+            </li>
+            <li id="calculator" onclick="focusItem('calculator')">
+              <a href="#section3">Skaičiuotuvas</a>
+            </li>
+            <li id="back" onclick="focusItem('back')">
+              <a href="../index.html">Į Pradžią</a>
+            </li>
           </ul>
           <br />
           <div class="input-group">

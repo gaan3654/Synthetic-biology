@@ -59,3 +59,10 @@ function renew_button() {
   document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
   rection_submited = true;
 }
+
+let previousBtn = "btn-list";
+function focusItem(id) {
+  document.getElementById(previousBtn).classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  previousBtn = id;
+}
