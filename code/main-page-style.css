@@ -1,17 +1,17 @@
 /* This is a css file for index.html styling */
 
 .btn-primary {
-    color: rgb(19, 17, 17);
-    background-color:#fff;
-    border-color: #2e6da4;
+  color: rgb(19, 17, 17);
+  background-color: #fff;
+  border-color: #2e6da4;
 }
 
-.container{
-    background-image: url("background.jpg");
-    padding-top: 12%;
-    padding-bottom: 13%;
+.container {
+  background-image: url("../assets/background.jpg");
+  padding-top: 12%;
+  padding-bottom: 13%;
 }
 
-.equations-container{
-    padding: 2%;
+.equations-container {
+  padding: 2%;
 }
