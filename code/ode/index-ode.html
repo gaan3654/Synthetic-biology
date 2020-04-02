@@ -1,13 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="js/runge-kutta-method.js"></script>
-    <script type="text/javascript" src="js/normalization.js"></script>
-    <script type="text/javascript" src="js/update-function.js"></script>
-    <script type="text/javascript" src="js/dynamical-fields.js"></script>
-    <script type="text/javascript" src="packages/jquery.js"></script>
+    <script
+      type="text/javascript"
+      src="ode-algorithm/runge-kutta-method.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="ode-algorithm/normalization.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="ode-algorithm/update-function.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/calculator-html-process/dynamical-fields.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/external-packages/jquery.js"
+    ></script>
 
-    <script type="text/javascript" src="js/ode-graph.js"></script>
+    <script type="text/javascript" src="../js/graphs/ode-graph.js"></script>
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
@@ -19,7 +34,7 @@
   <body>
     <header class="mainDetails ">
       <div class="mainDetails__photo">
-        <img src="../assets/graph-logo.png" alt="Logo" />
+        <img src="../../assets/graph-logo.png" alt="Logo" />
       </div>
       <div class="mainDetails__info">
         <h2>Modeliai sintetinėje biologijoje</h2>
@@ -152,9 +167,15 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="js/process-inputs.js"></script>
-    <script type="text/javascript" src="js/examples.js"></script>
-    <script type="text/javascript" src="js/update-inputs.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/calculator-html-process/process-inputs.js"
+    ></script>
+    <script type="text/javascript" src="ode-algorithm/examples.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/calculator-html-process/update-inputs.js"
+    ></script>
     <script>
       let reactions_id = ["reaction_0"];
       let rection_submited = false;
