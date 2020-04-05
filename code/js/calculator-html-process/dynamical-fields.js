@@ -18,11 +18,32 @@ function add_additional_substance_input() {
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
     d.innerHTML += `<div class=input_blocks>
-                          [${subs_html_name[i]}']: <input id=${subs_names[i]} type='text' value=0>
+                      <form>
+                        <div class="input-group">
+                          <span class="input-group-addon">[${subs_html_name[i]}']</span>
+                          <input id=${subs_names[i]} type='text' value=0>
                           <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
-                      </div>`;
+                        </div>
+                      </form>
+                    </div>`;
   }
 }
+
+{/* <div class="input_blocks">
+<form>
+  <div class="input-group">
+    <span class="input-group-addon">[C']</span>
+    <input type="number" id="C" value="1" />
+    <input
+      type="color"
+      id="colorC"
+      class="s_colors"
+      value="#00ff00"
+    />
+  </div>
+</form>
+</div> */}
+
 
 //Prideda papildomų reakcijų input laukų
 function add_additional_reaction_input() {
@@ -32,25 +53,31 @@ function add_additional_reaction_input() {
   reactions_id[i] = "reaction_" + [i];
   //Pridedami įvesties laukai papildomoms reacjimos
   d.innerHTML += `<div id = reaction_info_${[i]}>
+                    <form>
+                    <div class="input-group">
+                      <span class="input-group-addon">${i + 1}. Įveskite norimą reakciją:</span>
                       <div id=reaction_${[i]} class=input_blocks>
-                              ${i + 1}. <br>
-                              Įveskite norimą reakciją:
                           <input type="text" id="reaction_input_${[
                             i
                           ]}" value="A->C">
                       </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Reakcijos greitis k<sub>1</sub></span>
                       <div id=k1_${[i]} class=input_blocks>
-                          Reakcijos greitis k<sub>1</sub>:
                           <input type="number" id="reaction_rate_${[
                             i
                           ]}" value="0.9">
                       </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Reakcijos greitis k<sub>2</sub></span>
                       <div id=k2_${[i]} class=input_blocks>
-                          Reakcijos greitis k<sub>2</sub>:
                           <input type="number" id="second_reaction_rate_${[
                             i
                           ]}" value="0.1">
                       </div>
+                    </div>
                   </div>`;
 }
 
@@ -58,11 +85,4 @@ function add_additional_reaction_input() {
 function renew_button() {
   document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
   rection_submited = true;
-}
-
-let previousBtn = "btn-list";
-function focusItem(id) {
-  document.getElementById(previousBtn).classList.remove("active");
-  document.getElementById(id).classList.add("active");
-  previousBtn = id;
 }

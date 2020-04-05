@@ -16,19 +16,12 @@
   background-color: #2e6da4;
 }
 
-.content-container h1 {
+.well {
   padding: 2%;
   text-align: center;
   background-color: #eee;
 }
 
-.content-container p {
-  padding: 1%;
-}
-
-.content-container ul {
-  padding-left: 25%;
-}
 
 /* Set black background color, white text and some padding */
 footer {

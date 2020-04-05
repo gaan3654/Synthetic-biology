@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brauno judesys</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../ode/text-page-style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="sde-text.html">Apibrėžimas</a></li>
+            <li class="active"><a href="rk-text.html">Brauno judesys ir jo modeliavimas</a></li>
+            <li><a href="euler-text.html">Eulerio metodas</a></li>
+            <li><a href="../index.html">Į Pradžią</a></li>
+          </ul>
+          <br />
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search.." />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-9 content-container">
+          <h1>Brauno judesys ir jo modeliavimas</h1>
+          <p>
+            Brauno judesys dar vadinamas Vynerio procesu yra skysčiuose ar dujose esančių dalelių šiluminis judėjimas, 
+            kuris atsiranda dėl  skysčiuose judančių molekulių \cite{BraunoWiki} . 
+            Galėtų atrodyti, jog mažų dalelių judesiai yra nereikšmingi, 
+            tačiau nuolat vykstančių susidurimų skaičius yra nepaprastai didelis apie \(10^{21}\) kartų per sekundę, 
+            dėl to per mikroskopą galima stebėti nenutrūkstamus dalelių judėjimus \cite{SA}. 
+            Svarbu pabrėžti, jog kiekvienos dalelės smūgis yra nepriklausomas. 
+            Iš čia atsirado matematinis Brauno judesio modelis, teigiantis, jog Brauno judesio chaotiškumas pasireiškia tuo, 
+            jog jo trajektorijos, nors ir yra tolydžios, yra niekur nediferencijuojamos. 
+          </p>
+
+          <p>
+            Brauno judesio apibrėžimas nurodo jo glaudų ryšį su matematika ir fizika. 
+            Tačiau šis procesas yra žymiai universalesnis. 
+            Pasaulyje egzistuoja daugybė procesų, kuriuos įtakoja smulkūs ir nepriklausomi faktoriai, 
+            kurie atskirai didelio poveikio nedaro, tačiau juos sujungus, rezultatas gali netikėtai nukrypti.
+          </p>
+
+          <p>
+            Brauno judesiui paaiškinti lengva pateikti pavyzdį. 
+            Akcijų kainų svyravimas - chaotiškai judantis procesas finansų srityje. 
+            Politiniai įvykiai, įstatymų  pokyčiai, bankų bankrotai, nusikalstamumas, stichiniai įvykiai itt. 
+            Daug įvairių požymių įtakoja kainų pokyčius, kurie atrodo pavieniai nebūtų reikšmingi, tačiau sąjungoje turi poveikį.
+          </p>
+
+          <p>
+            Apibrėžiant Brauno judėsio formulę verta žinoti centrinę ribinę teoremą (CRT), 
+            kuri teigia, kad labai bendromis sąlygomis mažų nepriklausomų dydžių suma yra apytikriai pasiskirsčiusi 
+            kaip normalusis atsitiktinis dydis, t.y. \(\xi\) pasiskirstęs pagal \(N(0,1)\). 
+            Nagrinėjant atsitiktinį procesą, apytikriai yra gaunams Brauno judesys. CRT teorema teigia, 
+            jeigu \(\mathbf{E}\xi_{n}=0, \mathbf{D}\xi_{n}= \mathbf{E}\xi_{n}^{2}=1, 
+            X_{0}=0, X_{n}=\xi_{1}+\xi_{2}+...+\xi_{n}, n \in  \mathbb{N}\), 
+             kur \(\{ \xi_{n} \}\) yra nepriklausomų vienodai pasiskirsčiusių atsitiktinių dydžių seka. 
+            Tuomet \(\frac{X_{n}}{\sqrt{n}} \rightarrow^\omega \xi \sim N(0,1), n \rightarrow \infty\).
+          </p>
+
+          <p>
+            Pratęskime, \(X_n\) yra atsitiktinė seka, o jos atsitiktinis procesas yra žymimas \(\{ X_n, t\geq0 \}\).
+          </p>
+
+          <p>
+            Toliau, laikoma 
+            \(X_t^n := \frac{X_{n t}}{\sqrt{n}}\rightarrow^\omega B_t \sim N(0,t), n \rightarrow \infty, t\geq0\).
+          </p>
+
+          <p>
+            Brauno judesio egzistavimas yra įrodomas teorema, kuri teigia:
+          </p>
+
+          <p>
+            Egzistuoja toks atsitiktinis procesas \(B =\{ B_{t}, t \geq 0\}\), kad 
+            $$\sum_{i=1}^{k} \lambda_{i} X^{n}_{t_{i}} \rightarrow^{w} \sum_{i=1}^{k} \lambda_{i} B_{t_{i}}, n \rightarrow \infty $$ 
+            su visais rinkiniais \(0 \leq t_{1} \lt t_{2} \lt ... \lt t_{k}, \lambda_{i} \in \mathbb{R}, i = 1,2,...,k, k\in \mathbb{N} \). 
+            Ši savybė yra žymima \(X^{n} \rightarrow^{w} B\) ir sakoma, 
+            kad procesų seka \(\{ X^{n} \} \) silpnai konverguoja į \(B\). 
+            Procesas \(B\) yra vadinamas Brauno judesiu arba Vynerio procesu. \cite{SA}
+          </p>
+
+          
+
+          <!-- tegul čia lieka pvz: -->
+          <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid">
+      <p>Footer Text</p>
+    </footer>
+  </body>
+</html>
