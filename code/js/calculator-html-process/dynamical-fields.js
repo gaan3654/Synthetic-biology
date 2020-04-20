@@ -29,7 +29,8 @@ function add_additional_substance_input() {
   }
 }
 
-{/* <div class="input_blocks">
+{
+  /* <div class="input_blocks">
 <form>
   <div class="input-group">
     <span class="input-group-addon">[C']</span>
@@ -42,8 +43,8 @@ function add_additional_substance_input() {
     />
   </div>
 </form>
-</div> */}
-
+</div> */
+}
 
 //Prideda papildomų reakcijų input laukų
 function add_additional_reaction_input() {
@@ -55,10 +56,12 @@ function add_additional_reaction_input() {
   d.innerHTML += `<div id = reaction_info_${[i]}>
                     <form>
                     <div class="input-group">
-                      <span class="input-group-addon">${i + 1}. Įveskite norimą reakciją:</span>
+                      <span class="input-group-addon">${
+                        i + 1
+                      }. Įveskite norimą reakciją:</span>
                       <div id=reaction_${[i]} class=input_blocks>
                           <input type="text" id="reaction_input_${[
-                            i
+                            i,
                           ]}" value="A->C">
                       </div>
                     </div>
@@ -66,7 +69,7 @@ function add_additional_reaction_input() {
                       <span class="input-group-addon">Reakcijos greitis k<sub>1</sub></span>
                       <div id=k1_${[i]} class=input_blocks>
                           <input type="number" id="reaction_rate_${[
-                            i
+                            i,
                           ]}" value="0.9">
                       </div>
                     </div>
@@ -74,7 +77,7 @@ function add_additional_reaction_input() {
                       <span class="input-group-addon">Reakcijos greitis k<sub>2</sub></span>
                       <div id=k2_${[i]} class=input_blocks>
                           <input type="number" id="second_reaction_rate_${[
-                            i
+                            i,
                           ]}" value="0.1">
                       </div>
                     </div>
@@ -85,4 +88,11 @@ function add_additional_reaction_input() {
 function renew_button() {
   document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
   rection_submited = true;
+}
+
+let previousBtn = "btn-list";
+function focusItem(id) {
+  document.getElementById(previousBtn).classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  previousBtn = id;
 }
