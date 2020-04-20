@@ -46,6 +46,7 @@ footer {
   color: rgb(19, 17, 17);
   background-color: rgba(177, 177, 177, 0.767);
   border-color: #303030ab;
+  border-radius: 0px;
 }
 
 .btn-custom:hover {
@@ -64,4 +65,8 @@ footer {
   color: #000;
   border-color: #303030ab;
   background-color: rgba(223, 223, 223, 0.87);
+}
+
+.dropdown-menu {
+  width: -webkit-fill-available !important;
 }

@@ -69,42 +69,18 @@
               ></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">
-                    <div id="substance_input">
-                      <div id="example_substance_block">
-                        <div id="examples">
-                          <div id="example1" class="button example">
-                            Pavyzdys 1
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <a href="#" id="example1" class="button example">
+                    Pavyzdys 1
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <div id="substance_input">
-                      <div id="example_substance_block">
-                        <div id="examples">
-                          <div id="example2" class="button example">
-                            Pavyzdys 2
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <a href="#" id="example2" class="button example">
+                    Pavyzdys 2
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <div id="substance_input">
-                      <div id="example_substance_block">
-                        <div id="examples">
-                          <div id="example3" class="button example">
-                            Pavyzdys 3
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <a href="#" id="example3" class="button example">
+                    Pavyzdys 3
                   </a>
                 </li>
               </ul>
@@ -130,10 +106,40 @@
             <h1>Runge-Kutta metodas</h1>
           </div>
 
+          <div class="row main_buttons">
+            <div class="col-sm-3">
+              <div class="subs_react_buttons">
+                <button
+                  id="add_subs"
+                  class="button"
+                  onclick="add_additional_substance_input()"
+                >
+                  Pridėti medžiagą
+                </button>
+              </div>
+            </div>
+            <div class="funct_buttons">
+              <div class="col-sm-3">
+                <button id="submit_reaction" class="button">
+                  Vykdyti reakciją
+                </button>
+              </div>
+              <div class="col-sm-3">
+                <button
+                  id="add_reaction"
+                  class="button"
+                  onclick="add_additional_reaction_input()"
+                >
+                  Pridėti reakciją
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div>
             <div class="row" id="substance_input">
               <div class="col-sm-3" id="example_substance_block">
-                <div id="substance">
+                <div id="substance" class="input-container">
                   <div class="input_blocks">
                     <form>
                       <div class="input-group">
@@ -179,103 +185,69 @@
                 </div>
               </div>
 
-              <div id="inputs">
-                <div class="col-sm-3" id="settings">
+              <!-- <div id="inputs"> -->
+              <div class="col-sm-3 input-container" id="settings">
+                <form>
+                  <div class="input-group">
+                    <span class="input-group-addon">Intervalo pradžia</span>
+                    <div id="interv_begins" class="input_blocks">
+                      <input type="number" id="int_begins" value="0" />
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">Intervalo pabaiga</span>
+                    <div id="interv_ends" class="input_blocks">
+                      <input type="number" id="int_ends" value="1" />
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">N</span>
+                    <div id="N" class="input_blocks">
+                      <input type="number" id="n_inp" value="100" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="col-sm-3 input-container" id="reactions">
+                <div id="reaction_info_0">
                   <form>
                     <div class="input-group">
-                      <span class="input-group-addon">Intervalo pradžia</span>
-                      <div id="interv_begins" class="input_blocks">
-                        <input type="number" id="int_begins" value="0" />
+                      <span class="input-group-addon"
+                        >1. Įveskite norimą reakciją:</span
+                      >
+                      <div id="reaction_0" class="input_blocks">
+                        <input
+                          type="text"
+                          id="reaction_input_0"
+                          value="A+B->B"
+                        />
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon">Intervalo pabaiga</span>
-                      <div id="interv_ends" class="input_blocks">
-                        <input type="number" id="int_ends" value="1" />
+                      <span class="input-group-addon"
+                        >Reakcijos greitis k<sub>1</sub></span
+                      >
+                      <div id="k1_0" class="input_blocks">
+                        <input type="number" id="reaction_rate_0" value="0.9" />
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon">N</span>
-                      <div id="N" class="input_blocks">
-                        <input type="number" id="n_inp" value="100" />
+                      <span class="input-group-addon"
+                        >Reakcijos greitis k<sub>2</sub></span
+                      >
+                      <div id="k2_0" class="input_blocks">
+                        <input
+                          type="number"
+                          id="second_reaction_rate_0"
+                          value="0.1"
+                        />
                       </div>
                     </div>
                   </form>
                 </div>
-
-                <div class="col-sm-3" id="reactions">
-                  <div id="reaction_info_0">
-                    <form>
-                      <div class="input-group">
-                        <span class="input-group-addon"
-                          >1. Įveskite norimą reakciją:</span
-                        >
-                        <div id="reaction_0" class="input_blocks">
-                          <input
-                            type="text"
-                            id="reaction_input_0"
-                            value="A+B->B"
-                          />
-                        </div>
-                      </div>
-                      <div class="input-group">
-                        <span class="input-group-addon"
-                          >Reakcijos greitis k<sub>1</sub></span
-                        >
-                        <div id="k1_0" class="input_blocks">
-                          <input
-                            type="number"
-                            id="reaction_rate_0"
-                            value="0.9"
-                          />
-                        </div>
-                      </div>
-                      <div class="input-group">
-                        <span class="input-group-addon"
-                          >Reakcijos greitis k<sub>2</sub></span
-                        >
-                        <div id="k2_0" class="input_blocks">
-                          <input
-                            type="number"
-                            id="second_reaction_rate_0"
-                            value="0.1"
-                          />
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
               </div>
-            </div>
-
-            <div class="row main_buttons">
-              <div class="col-sm-3">
-                <div class="subs_react_buttons">
-                  <button
-                    id="add_subs"
-                    class="button"
-                    onclick="add_additional_substance_input()"
-                  >
-                    Pridėti medžiagą
-                  </button>
-                </div>
-              </div>
-              <div class="funct_buttons">
-                <div class="col-sm-3">
-                  <button id="submit_reaction" class="button">
-                    Vykdyti reakciją
-                  </button>
-                </div>
-                <div class="col-sm-3">
-                  <button
-                    id="add_reaction"
-                    class="button"
-                    onclick="add_additional_reaction_input()"
-                  >
-                    Pridėti reakciją
-                  </button>
-                </div>
-              </div>
+              <!-- </div> -->
             </div>
 
             <div id="graph_draw">

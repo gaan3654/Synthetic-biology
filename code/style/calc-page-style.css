@@ -3,3 +3,44 @@
   text-align: center;
   background-color: #eee;
 }
+
+.row {
+  margin-bottom: 20px;
+}
+
+.btn {
+  border-color: rgba(177, 177, 177, 0.637);
+  box-shadow: black;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+}
+
+.input-group {
+  margin-bottom: 7px;
+  width: auto;
+}
+
+/* .input-group-addon {
+  width: 150px;
+}
+
+#substance .input-group-addon,
+#substance input,
+#substance .s_colors {
+  width: auto;
+}
+
+.s_colors {
+  width: 25px !important;
+  border: none;
+  border-color: transparent;
+  outline: none;
+}
+
+.input-container {
+  max-width: 33vw;
+  margin-right: 10px;
+} */
