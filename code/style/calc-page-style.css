@@ -5,7 +5,7 @@
 }
 
 .button {
-  margin: 20px 0;
+  margin: 20px -15px;
 }
 
 .input-group {
@@ -36,6 +36,12 @@ input::-webkit-color-swatch {
   border-radius: 0;
 }
 /* *********************************************8 */
+#substance {
+  width: 20%;
+  /* background-color: lightseagreen; */
+  display: inline;
+}
+
 #reactions {
   /* background-color: khaki; */
 }
@@ -44,17 +50,13 @@ input::-webkit-color-swatch {
   /* background-color: lightcoral; */
 }
 
-#substance {
-  /* background-color: lightseagreen; */
-  float: left;
-  display: inline;
-}
-
 .input-container {
   width: 33%;
+  min-width: 300px;
   height: 300px;
+  margin: 0;
 }
 
 .subs_react_buttons {
-  width: auto;
+  width: 100%;
 }
