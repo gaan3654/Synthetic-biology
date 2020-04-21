@@ -1,0 +1,62 @@
+.well {
+  padding: 2%;
+  text-align: center;
+  background-color: #eee;
+}
+
+.button {
+  margin: 20px -15px;
+}
+
+.input-group {
+  margin-bottom: 7px;
+  width: auto;
+}
+
+.s_colors {
+  width: 30px !important;
+  /* height: 25px; */
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+input::-webkit-color-swatch {
+  border: none;
+}
+
+.btn-custom-functionality {
+  background: rgb(238, 238, 238);
+  border: 0;
+  font-weight: 500;
+}
+.btn {
+  min-width: 130px;
+  width: 130px;
+  border-radius: 0;
+}
+/* *********************************************8 */
+#substance {
+  width: 20%;
+  /* background-color: lightseagreen; */
+  display: inline;
+}
+
+#reactions {
+  /* background-color: khaki; */
+}
+
+#settings {
+  /* background-color: lightcoral; */
+}
+
+.input-container {
+  width: 33%;
+  min-width: 300px;
+  height: 300px;
+  margin: 0;
+}
+
+.subs_react_buttons {
+  width: 100%;
+}

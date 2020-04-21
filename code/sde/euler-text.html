@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eulerio metodas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../style/text-page-style.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav">
+          <a href="../index.html"
+            ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
+          /></a>
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a class="btn-custom" href="#section1">Apibrėžimas</a>
+            </li>
+            <li><a class="btn-custom" href="#section2">Pavyzdžiai</a></li>
+            <li><a class="btn-custom" href="#section3">Skaičiuotuvas</a></li>
+            <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
+          </ul>
+          <br />
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search.." />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-9 content-container">
+          <h1>Eulerio metodas</h1>
+          <p>
+            Eulerio metodas yra paprasčiausias būdas paprastoms diferencialinėms
+            lygtims spręsti. Diferencialinę lygtį galima skaičiuoti integravimo
+            būdu, tačiau toks sprendimo būdas yra labai ribotas. Norint spręsti
+            sudetingesnio tipo užduotis, yra rašomos programos, o Eulerio
+            metodas puikiai tinka skaičiuoti lygtis kompiuteriniu būdu.
+          </p>
+
+          <p>
+            Diferencialinių lygčių esmė yra tokia, jog skačiuojame \(y\)
+            kintamojo reikšmę taškuose nuo \(t_{0}\) iki \(t\). Norėdami
+            skaitmeniniu būdu išspręsti diferencialinę lygtį, pirmiausia turime
+            nubrėžti laiko ašį. Visą laiko intervalą nuo \(t_{0}\) iki \(t\)
+            padalijame į lygiai \(N\) dalių, toliau kiekviena laiko atkarpa bus
+            apibrėžiama kaip \(\Delta t\). Tuomet, pagal Eulerio metodą
+            \(y_{i+1}\) bus skaičiuojamas naudojantis formule: $$ y_{i+1} =
+            y_{i} + \Delta t f_{i} $$.
+          </p>
+
+          <p>
+            Sprendžiant stochastines diferencialines lygtis, formulė nežymiai
+            sudėtingėja.
+          </p>
+
+          <p>
+            Toliau bus nagrinėjama sekanti stochastinė diferencialinė lygtis: $$
+            dX_{t} = a(X_{t})dt + b(X_{t})d W_t $$.
+          </p>
+
+          <p>
+            \(X_{t}\) yra apibėžiamas stochastinis procesas, \(a\) - rekcijos
+            greitis, o \(b\) difuzijos koeficientas. Sprendžiant šią lygti laiko
+            intervale \([0, T ]: \Delta t = T / N \), kur \(T\) yra galutinis
+            reakcijos laikas, o \(N\) reakcijos trukmės skaidymo dalių skaičius,
+            t.y. į kiek dalių reakcija sukarpoma laike \([0, T ]\) . Taip pa
+            laikoma, jog \(Y_{0} = x_{0}\). Tuomet: $$Y_{n+1} = Y_{n} + a
+            (Y_{n}) \Delta t+ b(Y_{n}) \Delta W_n $$.
+          </p>
+
+          <p>
+            Formulėje \(\Delta W_t\) yra nepriklausomi vienodai pasiskirstę
+            noramlūs atsitiktiniai kintamieji su vidurkiu 0 ir dispersija
+            \(\Delta t\) \cite{EulerioWiki}.
+          </p>
+
+          <p>
+            Apibendrinant stochastinių sprocesų sprendimus, galima išskirti du
+            sprendinių tipus: stiprioji ir silpnoji aproksimacijos.
+          </p>
+
+          <p>
+            Laikoma, kad \(X_t^h\) yra skaitinis sprendimas, o \(X_t\)-tikslusis
+            sprendinys.
+          </p>
+
+          <p>
+            Stipriąja aproksimacija laikomas atvejis kai skaitinio ir tiksliojo
+            sprendinių skirtumo vidurkis yra nedidelis visame sprendimų
+            intervale: $$ E|(X_t^h) - (X_t)| =O(h^n), h\rightarrow0 $$.
+          </p>
+
+          <p>
+            O silpnoji aproksimacija yra tais atvejais, kai minėtas skirtumas,
+            skaičiuojamas tarp žemiau pateiktų funkcionalų, yra nedidelis: $$ E
+            f(X_t^h) - E f (X_t) = O(h^n), h\rightarrow0 $$.
+          </p>
+
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid">
+      <p>Footer Text</p>
+    </footer>
+  </body>
+</html>

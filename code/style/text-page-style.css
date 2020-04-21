@@ -1,0 +1,13 @@
+.content-container h1 {
+  padding: 2%;
+  text-align: center;
+  background-color: #eee;
+}
+
+.content-container p {
+  padding: 1%;
+}
+
+.content-container ul {
+  padding-left: 25%;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stochastinės diferencialinės lygtys</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../style/text-page-style.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav">
+          <a href="../index.html"
+            ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
+          /></a>
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a class="btn-custom" href="#section1">Apibrėžimas</a>
+            </li>
+            <li>
+              <a class="btn-custom" href="bm-text.html"
+                >Brauno judesys ir jo modeliavimas</a
+              >
+            </li>
+            <li>
+              <a class="btn-custom" href="euler-text.html">Eulerio metodas</a>
+            </li>
+            <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
+          </ul>
+          <br />
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search.." />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-9 content-container">
+          <h1>Stochastiniai procesai</h1>
+          <p>
+            Tikimybių teorijoje stochastinis procesas yra matematinis objektas,
+            paprastai apibūdinamas kaip atsitiktinių kintamųjų grupė. Tokie
+            procesai dažnai yra vadinami atsitiktiniais procesais. Stochastinis
+            procesas pasižymi tuo, jog kintamieji laikui bėgant atsitiktinai
+            keičiasi. \cite{SPWiki} Šie procesai yra plačiai naudojami įvairiose
+            mokslo srityse apibūdinant įvykius kurie atsitiktinai, paveikti
+            šalutinių poveikių gali kisti.
+          </p>
+
+          <p>
+            Stochastiniame procese dalyvaujančių kintamųjų reikšmės negali būti
+            konkrečiai nuspėjamos, kadangi šio proceso metu jog gali chaotiškai
+            kisti. Iliustracija 1 pav. vaizduoja stochastinių kintamųjų išvestį.
+            Joje matoma, jog rezultatai yra ,,triukšmingi“, tačiau nėra visiškai
+            savavališki. Visi \(x_{i}\), t.y. stochastinio proceso kintamieji,
+            yra sutelkti ties fiksuota verte ir dauguma reikšmių patenka į labai
+            siaurą diapazoną.
+          </p>
+
+          <figure class="figure">
+            <img
+              class="img-responsive"
+              src="../../assets/pav1.png"
+              alt="pav1"
+            />
+            <figcaption class="figure-caption text-center">
+              1 pav. Kairėje - stochastinių kintamųjų išdėstymas, dešinėje
+              tikimybių pasiskirstimas. Juoda linija žymį vidurkį, mėlynos -
+              standartinį nuokrypį. \cite{KyotoUx}
+            </figcaption>
+          </figure>
+
+          <p>
+            Šį kintamųjų išdėstymą galima paaiškinti tikimybės pasiskirstymo
+            \(P(x)\) dėka. \(P(x)\) duotame pavyzdyje pateiktas paveikslėlio
+            dešinėje. Tikimybių pasiskirstyme yra visa informacija, padedanti
+            nuspėti stochastinio proceso kintamųjų reikšmes.
+          </p>
+
+          <p>
+            Norint gauti tikslesnius proceso kintamųjų dydžius verta apsibrėžti
+            dar du matematinius vienetus- vidurkį bei standartinį nuokrypį.
+            Vidurkis, kaip rodo jo pavadinimas, yra tiesiog atsitiktinių
+            kintamųjų vidutinė reikšmė. Standartinis nuokrypis matuoja
+            svyravimus apie vidurkį, tai yra, jis parodo, kokiame intervale yra
+            galimos atsitiktinio kintamojo reikšmės. Pavyzdiniuose
+            paveikslėliuose juoda linija žymi \(X\) vidurkį ir jis yra lygus 10,
+            tuo tarpu mėlynos linijos rodo standartinį nuokrypį, kuris apibrėžia
+            intervalą nuo 5 iki 15.
+          </p>
+
+          <p>
+            Išnagrinėjus tankio funkcijos grafiką, jo vidurkį bei standartinį
+            nuokrypį, yra lengva suprasti stochastinio proceso kintamųjų
+            pasiskirstymą.
+          </p>
+
+          <p>
+            Kadangi stochastiniai procesai yra glaudžiai susiję su
+            atsitiktinėmis funkcijomis, svarbu apibrėžti matematinę atsitiktinio
+            proceso sąvoką. Atsitiktinis procesas yra atvaizdis \(X\),
+            kiekvienam elementariajam įvykiui \(\omega \in \Omega\),
+            priskiriantis funkciją \(X(\omega) = \{X_{t}(\omega)=X(t,\omega), t
+            \in I \}\), vadinamą atsitiktinio proceso trajektorija. Fiksuojant
+            \(t \in I\), gaunamas atsitiktinis dydis \(X_{t}=X_{t}(\omega),
+            \omega \in \Omega\). Dėl to atsitiktinis procesas dažnai yra
+            apibrėžiamas kaip atsitiktinių dydžių rinkinys \(X_{t}, t \in I\).
+            \cite{SA}
+          </p>
+
+          <!-- tegul čia lieka pvz: -->
+          <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
+          <br /><br />
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid">
+      <p>Footer Text</p>
+    </footer>
+  </body>
+</html>
