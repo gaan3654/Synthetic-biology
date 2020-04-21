@@ -111,7 +111,7 @@
               <div class="subs_react_buttons">
                 <button
                   id="add_subs"
-                  class="button"
+                  class="button btn btn-custom-functionality"
                   onclick="add_additional_substance_input()"
                 >
                   Pridėti medžiagą
@@ -120,14 +120,17 @@
             </div>
             <div class="funct_buttons">
               <div class="col-sm-3">
-                <button id="submit_reaction" class="button">
+                <button
+                  id="submit_reaction"
+                  class="button btn btn-custom-functionality"
+                >
                   Vykdyti reakciją
                 </button>
               </div>
               <div class="col-sm-3">
                 <button
                   id="add_reaction"
-                  class="button"
+                  class="button btn btn-custom-functionality"
                   onclick="add_additional_reaction_input()"
                 >
                   Pridėti reakciją
@@ -143,7 +146,7 @@
                   <div class="input_blocks">
                     <form>
                       <div class="input-group">
-                        <span class="input-group-addon">[A']</span>
+                        <span class="input-group-addon input-addon">[A']</span>
                         <input type="number" id="A" value="2" />
                         <input
                           type="color"
@@ -157,7 +160,7 @@
                   <div class="input_blocks">
                     <form>
                       <div class="input-group">
-                        <span class="input-group-addon">[B']</span>
+                        <span class="input-group-addon input-addon">[B']</span>
                         <input type="number" id="B" value="3" />
                         <input
                           type="color"
@@ -171,7 +174,7 @@
                   <div class="input_blocks">
                     <form>
                       <div class="input-group">
-                        <span class="input-group-addon">[C']</span>
+                        <span class="input-group-addon input-addon">[C']</span>
                         <input type="number" id="C" value="1" />
                         <input
                           type="color"
@@ -189,19 +192,23 @@
               <div class="col-sm-3 input-container" id="settings">
                 <form>
                   <div class="input-group">
-                    <span class="input-group-addon">Intervalo pradžia</span>
+                    <span class="input-group-addon settings-addon"
+                      >Intervalo pradžia</span
+                    >
                     <div id="interv_begins" class="input_blocks">
                       <input type="number" id="int_begins" value="0" />
                     </div>
                   </div>
                   <div class="input-group">
-                    <span class="input-group-addon">Intervalo pabaiga</span>
+                    <span class="input-group-addon settings-addon"
+                      >Intervalo pabaiga</span
+                    >
                     <div id="interv_ends" class="input_blocks">
                       <input type="number" id="int_ends" value="1" />
                     </div>
                   </div>
                   <div class="input-group">
-                    <span class="input-group-addon">N</span>
+                    <span class="input-group-addon settings-addon">N</span>
                     <div id="N" class="input_blocks">
                       <input type="number" id="n_inp" value="100" />
                     </div>
@@ -213,7 +220,7 @@
                 <div id="reaction_info_0">
                   <form>
                     <div class="input-group">
-                      <span class="input-group-addon"
+                      <span class="input-group-addon reaction-addon"
                         >1. Įveskite norimą reakciją:</span
                       >
                       <div id="reaction_0" class="input_blocks">
@@ -225,7 +232,7 @@
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon"
+                      <span class="input-group-addon reaction-addon"
                         >Reakcijos greitis k<sub>1</sub></span
                       >
                       <div id="k1_0" class="input_blocks">
@@ -233,7 +240,7 @@
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon"
+                      <span class="input-group-addon reaction-addon"
                         >Reakcijos greitis k<sub>2</sub></span
                       >
                       <div id="k2_0" class="input_blocks">
@@ -251,16 +258,18 @@
             </div>
 
             <div id="graph_draw">
-              <div id="function_block">
+              <div id="function_block" class="row col-sm-3 input-container">
+                <!-- <div id="dumygtukai"> -->
+                <button
+                  id="submit"
+                  class="button btn btn-custom-functionality"
+                  style="display: none;"
+                >
+                  Piešti grafiką
+                </button>
+                <!-- </div> -->
                 <div id="function" style="display: none;">
                   <!--Talpinamos reakcijos sukurtos funkcijos-->
-                </div>
-                <div class="visimygtukai">
-                  <div id="dumygtukai">
-                    <button id="submit" class="button" style="display: none;">
-                      Piešti grafiką
-                    </button>
-                  </div>
                 </div>
               </div>
 

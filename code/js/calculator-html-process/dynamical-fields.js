@@ -52,30 +52,34 @@ function add_additional_reaction_input() {
   var d = document.getElementById("reactions");
   var i = reactions_id.length;
   reactions_id[i] = "reaction_" + [i];
-  //Pridedami įvesties laukai papildomoms reacjimos
+  //Pridedami įvesties laukai papildomoms reakcijoms
   d.innerHTML += `<div id = reaction_info_${[i]}>
                     <form>
                     <div class="input-group">
-                      <span class="input-group-addon">${
+                      <span class="input-group-addon reaction-addon">${
                         i + 1
                       }. Įveskite norimą reakciją:</span>
-                      <div id=reaction_${[i]} class=input_blocks>
+                      <div id=reaction_${[i]} class="input_blocks">
                           <input type="text" id="reaction_input_${[
                             i,
                           ]}" value="A->C">
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon">Reakcijos greitis k<sub>1</sub></span>
-                      <div id=k1_${[i]} class=input_blocks>
+                      <span class="input-group-addon reaction-addon">
+                        Reakcijos greitis k<sub>1</sub>
+                      </span>
+                      <div id=k1_${[i]} class="input_blocks">
                           <input type="number" id="reaction_rate_${[
                             i,
                           ]}" value="0.9">
                       </div>
                     </div>
                     <div class="input-group">
-                      <span class="input-group-addon">Reakcijos greitis k<sub>2</sub></span>
-                      <div id=k2_${[i]} class=input_blocks>
+                      <span class="input-group-addon reaction-addon">
+                        Reakcijos greitis k<sub>2</sub>
+                      </span>
+                      <div id=k2_${[i]} class="input_blocks">
                           <input type="number" id="second_reaction_rate_${[
                             i,
                           ]}" value="0.1">

@@ -27,7 +27,6 @@ footer {
   float: left;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
@@ -37,6 +36,8 @@ footer {
     height: auto;
   }
 }
+
+/* Buttons */
 
 .button:hover {
   cursor: pointer;
@@ -59,6 +60,18 @@ footer {
   background-color: rgba(223, 223, 223, 0.87);
 }
 
+.btn {
+  border-color: rgba(177, 177, 177, 0.637);
+  box-shadow: black;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+}
+
+/*******/
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
@@ -69,4 +82,39 @@ footer {
 
 .dropdown-menu {
   width: -webkit-fill-available !important;
+}
+
+.input-group-addon {
+  text-align: left;
+  border-radius: 2px;
+  line-height: 0.9;
+}
+
+.reaction-addon {
+  min-width: 195px;
+}
+
+input[type="text"] {
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.settings-addon {
+  min-width: 135px;
+}
+
+.input-addon {
+  min-width: 45px;
+}
+
+.generated-reaction-block {
+  display: table;
+  margin: 10px 0;
+}
+
+.generated-reaction-block input {
+  width: 300px;
+}
+
+.generated-reaction-block span {
+  min-width: 65px;
 }
