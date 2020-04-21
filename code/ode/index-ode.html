@@ -106,7 +106,7 @@
             <h1>Runge-Kutta metodas</h1>
           </div>
 
-          <div class="row main_buttons">
+          <!-- <div class="row main_buttons">
             <div class="col-sm-3">
               <div class="subs_react_buttons">
                 <button
@@ -137,121 +137,148 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div>
             <div class="row" id="substance_input">
-              <div class="col-sm-3" id="example_substance_block">
-                <div id="substance" class="input-container">
-                  <div class="input_blocks">
-                    <form>
-                      <div class="input-group">
-                        <span class="input-group-addon input-addon">[A']</span>
-                        <input type="number" id="A" value="2" />
-                        <input
-                          type="color"
-                          id="colorA"
-                          class="s_colors"
-                          value="#ff0000"
-                        />
-                      </div>
-                    </form>
+              <!-- <div class="col-sm-3" id="example_substance_block"> -->
+              <div class="col-sm-3 input-container" id="substance">
+                <div class="col-sm-3 subs_react_buttons">
+                  <!-- <div class="subs_react_buttons"> -->
+                  <button
+                    id="add_subs"
+                    class="button btn btn-custom-functionality"
+                    onclick="add_additional_substance_input()"
+                  >
+                    Pridėti medžiagą
+                  </button>
+                  <!-- </div> -->
+                </div>
+
+                <div class="input_blocks">
+                  <!-- <form> -->
+                  <div class="input-group">
+                    <span class="input-group-addon input-addon">[A']</span>
+                    <input type="number" id="A" value="2" />
+                    <input
+                      type="color"
+                      id="colorA"
+                      class="s_colors"
+                      value="#ff0000"
+                    />
                   </div>
-                  <div class="input_blocks">
-                    <form>
-                      <div class="input-group">
-                        <span class="input-group-addon input-addon">[B']</span>
-                        <input type="number" id="B" value="3" />
-                        <input
-                          type="color"
-                          id="colorB"
-                          class="s_colors"
-                          value="#0000ff"
-                        />
-                      </div>
-                    </form>
+                  <!-- </form> -->
+                </div>
+                <div class="input_blocks">
+                  <!-- <form> -->
+                  <div class="input-group">
+                    <span class="input-group-addon input-addon">[B']</span>
+                    <input type="number" id="B" value="3" />
+                    <input
+                      type="color"
+                      id="colorB"
+                      class="s_colors"
+                      value="#0000ff"
+                    />
                   </div>
-                  <div class="input_blocks">
-                    <form>
-                      <div class="input-group">
-                        <span class="input-group-addon input-addon">[C']</span>
-                        <input type="number" id="C" value="1" />
-                        <input
-                          type="color"
-                          id="colorC"
-                          class="s_colors"
-                          value="#00ff00"
-                        />
-                      </div>
-                    </form>
+                  <!-- </form> -->
+                </div>
+                <div class="input_blocks">
+                  <!-- <form> -->
+                  <div class="input-group">
+                    <span class="input-group-addon input-addon">[C']</span>
+                    <input type="number" id="C" value="1" />
+                    <input
+                      type="color"
+                      id="colorC"
+                      class="s_colors"
+                      value="#00ff00"
+                    />
                   </div>
+                  <!-- </form> -->
                 </div>
               </div>
+              <!-- </div> -->
 
               <!-- <div id="inputs"> -->
               <div class="col-sm-3 input-container" id="settings">
-                <form>
-                  <div class="input-group">
-                    <span class="input-group-addon settings-addon"
-                      >Intervalo pradžia</span
-                    >
-                    <div id="interv_begins" class="input_blocks">
-                      <input type="number" id="int_begins" value="0" />
-                    </div>
+                <div class="col-sm-3">
+                  <button
+                    id="submit_reaction"
+                    class="button btn btn-custom-functionality"
+                  >
+                    Vykdyti reakciją
+                  </button>
+                </div>
+
+                <!-- <form> -->
+                <div class="input-group">
+                  <span class="input-group-addon settings-addon"
+                    >Intervalo pradžia</span
+                  >
+                  <div id="interv_begins" class="input_blocks">
+                    <input type="number" id="int_begins" value="0" />
                   </div>
-                  <div class="input-group">
-                    <span class="input-group-addon settings-addon"
-                      >Intervalo pabaiga</span
-                    >
-                    <div id="interv_ends" class="input_blocks">
-                      <input type="number" id="int_ends" value="1" />
-                    </div>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon settings-addon"
+                    >Intervalo pabaiga</span
+                  >
+                  <div id="interv_ends" class="input_blocks">
+                    <input type="number" id="int_ends" value="1" />
                   </div>
-                  <div class="input-group">
-                    <span class="input-group-addon settings-addon">N</span>
-                    <div id="N" class="input_blocks">
-                      <input type="number" id="n_inp" value="100" />
-                    </div>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon settings-addon">N</span>
+                  <div id="N" class="input_blocks">
+                    <input type="number" id="n_inp" value="100" />
                   </div>
-                </form>
+                </div>
+                <!-- </form> -->
               </div>
 
               <div class="col-sm-3 input-container" id="reactions">
+                <div class="col-sm-3">
+                  <button
+                    id="add_reaction"
+                    class="button btn btn-custom-functionality"
+                    onclick="add_additional_reaction_input()"
+                  >
+                    Pridėti reakciją
+                  </button>
+                </div>
+
                 <div id="reaction_info_0">
-                  <form>
-                    <div class="input-group">
-                      <span class="input-group-addon reaction-addon"
-                        >1. Įveskite norimą reakciją:</span
-                      >
-                      <div id="reaction_0" class="input_blocks">
-                        <input
-                          type="text"
-                          id="reaction_input_0"
-                          value="A+B->B"
-                        />
-                      </div>
+                  <!-- <form> -->
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >1. Įveskite norimą reakciją:</span
+                    >
+                    <div id="reaction_0" class="input_blocks">
+                      <input type="text" id="reaction_input_0" value="A+B->B" />
                     </div>
-                    <div class="input-group">
-                      <span class="input-group-addon reaction-addon"
-                        >Reakcijos greitis k<sub>1</sub></span
-                      >
-                      <div id="k1_0" class="input_blocks">
-                        <input type="number" id="reaction_rate_0" value="0.9" />
-                      </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Reakcijos greitis k<sub>1</sub></span
+                    >
+                    <div id="k1_0" class="input_blocks">
+                      <input type="number" id="reaction_rate_0" value="0.9" />
                     </div>
-                    <div class="input-group">
-                      <span class="input-group-addon reaction-addon"
-                        >Reakcijos greitis k<sub>2</sub></span
-                      >
-                      <div id="k2_0" class="input_blocks">
-                        <input
-                          type="number"
-                          id="second_reaction_rate_0"
-                          value="0.1"
-                        />
-                      </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Reakcijos greitis k<sub>2</sub></span
+                    >
+                    <div id="k2_0" class="input_blocks">
+                      <input
+                        type="number"
+                        id="second_reaction_rate_0"
+                        value="0.1"
+                      />
                     </div>
-                  </form>
+                  </div>
+                  <!-- </form> -->
                 </div>
               </div>
               <!-- </div> -->

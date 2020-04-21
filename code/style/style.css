@@ -94,16 +94,12 @@ footer {
   min-width: 195px;
 }
 
-input[type="text"] {
-  border: 1px solid rgb(204, 204, 204);
-}
-
 .settings-addon {
   min-width: 135px;
 }
 
 .input-addon {
-  min-width: 45px;
+  min-width: 50px;
 }
 
 .generated-reaction-block {
