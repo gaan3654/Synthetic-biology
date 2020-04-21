@@ -26,11 +26,11 @@ function createCharts(am4core) {
   chart.legend = new am4charts.Legend();
   chart.legend.position = "right";
   chart.legend.scrollable = true;
-  chart.legend.itemContainers.template.events.on("over", function(event) {
+  chart.legend.itemContainers.template.events.on("over", function (event) {
     processOver(event.target.dataItem.dataContext);
   });
 
-  chart.legend.itemContainers.template.events.on("out", function(event) {
+  chart.legend.itemContainers.template.events.on("out", function (event) {
     processOut(event.target.dataItem.dataContext);
   });
 }
@@ -40,7 +40,7 @@ function addToChart(y, t) {
   tList = t;
   let seriesList = [];
   for (let i = 0; i < yList.length; i++) {
-    seriesList.push(createSeries(i, "Medžiaga #" + i, yList[i]));
+    seriesList.push(createSeries(i, "Medžiaga " + subs_html_name[i], yList[i]));
   }
 }
 
@@ -74,11 +74,11 @@ function addFeatures(series) {
   let dimmed = segment.states.create("dimmed");
   dimmed.properties.stroke = am4core.color("#0adada");
 
-  segment.events.on("over", function(event) {
+  segment.events.on("over", function (event) {
     processOver(event.target.parent.parent.parent);
   });
 
-  segment.events.on("out", function(event) {
+  segment.events.on("out", function (event) {
     processOut(event.target.parent.parent.parent);
   });
 }
@@ -86,13 +86,13 @@ function addFeatures(series) {
 function processOver(hoveredSeries) {
   hoveredSeries.toFront();
 
-  hoveredSeries.segments.each(function(segment) {
+  hoveredSeries.segments.each(function (segment) {
     segment.setState("hover");
   });
 
-  chart.series.each(function(series) {
+  chart.series.each(function (series) {
     if (series != hoveredSeries) {
-      series.segments.each(function(segment) {
+      series.segments.each(function (segment) {
         segment.setState("dimmed");
       });
       series.bulletsContainer.setState("dimmed");
@@ -101,8 +101,8 @@ function processOver(hoveredSeries) {
 }
 
 function processOut(hoveredSeries) {
-  chart.series.each(function(series) {
-    series.segments.each(function(segment) {
+  chart.series.each(function (series) {
+    series.segments.each(function (segment) {
       segment.setState("default");
     });
     series.bulletsContainer.setState("default");
