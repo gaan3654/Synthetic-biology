@@ -126,3 +126,23 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+/* 
+.graph_draw {
+  height: auto;
+  width: auto;
+} */
+
+.input-container {
+  width: 33%;
+  min-width: 300px;
+  height: auto;
+  margin: 0;
+  /* background-color: khaki; */
+}
+
+#chartdiv {
+  padding-bottom: 300px;
+  height: auto;
+  width: auto;
+  /* background-color: lawngreen; */
+}

@@ -50,13 +50,6 @@ input::-webkit-color-swatch {
   /* background-color: lightcoral; */
 }
 
-.input-container {
-  width: 33%;
-  min-width: 300px;
-  height: 300px;
-  margin: 0;
-}
-
 .subs_react_buttons {
   width: 100%;
 }

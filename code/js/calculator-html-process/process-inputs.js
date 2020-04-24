@@ -21,9 +21,10 @@ $("#submit").click(function () {
     let catalyzation = 0;
 
     let iterations = 1;
-    let interationsObject = document.getElementById("iterations");
-    if (interationsObject) {
-      iterations = parseInt(interationsObject.value);
+    let iterationsObject = document.getElementById("iterations");
+    let sde = iterationsObject != null;
+    if (sde) {
+      iterations = parseInt(iterationsObject.value);
       catalyzation = document.getElementById("reaction_cat").value;
     }
 
@@ -47,32 +48,53 @@ $("#submit").click(function () {
     for (let i = 0; i < substance_array.length; i++) {
       //Nepridedamos dulikuotos medžiagų reikšmės
       var check_array = 0;
-      for (let j = 0; j < substance_obj.length; j++) {
-        if (substance_array[i] in substance_obj[j]) {
-          console.log(substance_obj[j], substance_obj[j]["function"]);
-          // Nifiga kažkodėl normaliai negeneruoja funkcijos objekte
-          check_array = 1;
-          substance_obj[j]["repetitions"]++;
-          //Į objektą talpinami duomenys apie substratus, bei sugeneruojamos funkcijos
-          //Jei medžiaga veikia kai katalizatorius
-          if (
-            get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
-            get_reaction[1].match(new RegExp(substance_array[i], "g"))
-          ) {
-            console.log(get_reaction[0]);
-            console.log(get_reaction[1]);
-            console.log(substance_array[i]);
-            if (substance_obj[j]["occurrences"] == "left") {
-              substance_obj[j][
-                "function"
-              ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
-            } else if (substance_obj[j]["occurrences"] == "right") {
+      if (!sde) {
+        for (let j = 0; j < substance_obj.length; j++) {
+          if (substance_array[i] in substance_obj[j]) {
+            console.log(substance_obj[j], substance_obj[j]["function"]);
+            // Nifiga kažkodėl normaliai negeneruoja funkcijos objekte
+            check_array = 1;
+            substance_obj[j]["repetitions"]++;
+            //Į objektą talpinami duomenys apie substratus, bei sugeneruojamos funkcijos
+            //Jei medžiaga veikia kai katalizatorius
+            if (
+              get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
+              get_reaction[1].match(new RegExp(substance_array[i], "g"))
+            ) {
+              console.log(get_reaction[0]);
+              console.log(get_reaction[1]);
+              console.log(substance_array[i]);
+              if (substance_obj[j]["occurrences"] == "left") {
+                substance_obj[j][
+                  "function"
+                ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
+              } else if (substance_obj[j]["occurrences"] == "right") {
+                substance_obj[j][
+                  "function"
+                ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
+              } else {
+                if (skip == "no") {
+                  substance_obj[j][
+                    "function"
+                  ] = `${substance_obj[j]["function"]}+${func_array[0]}+${func_array[1]}`;
+                  skip = "yes";
+                }
+              }
+              substance_obj[j]["occurrences"] = "both";
+              //Jeigu medžiaga veikia kaip substratas arba produktas
+            } else if (
+              get_reaction[0].match(new RegExp(substance_array[i], "g"))
+            ) {
+              substance_obj[j]["occurrences"] = "left";
               substance_obj[j][
                 "function"
               ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
+            } else {
+              substance_obj[j]["occurrences"] = "right";
+              substance_obj[j][
+                "function"
+              ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
             }
-            substance_obj[j]["occurrences"] = "both";
-            //Jeigu medžiaga veikia kaip substratas arba produktas
           }
         }
       }
