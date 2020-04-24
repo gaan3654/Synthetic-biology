@@ -17,7 +17,7 @@ function calculateK(t, y, h, k_old, func) {
 }
 
 function copyArray(array) {
-  return array.map(function(arr) {
+  return array.map(function (arr) {
     return arr.slice();
   });
 }
@@ -66,5 +66,6 @@ function solution(substance_obj) {
       );
     }
   }
+  console.log("from solution", y);
   return [y, t];
 }

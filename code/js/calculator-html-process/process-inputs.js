@@ -1,4 +1,5 @@
-$("#submit").click(function() {
+// function fetchParameters() {
+$("#submit").click(function () {
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
   var N = parseInt(document.getElementById("n_inp").value);
@@ -17,9 +18,20 @@ $("#submit").click(function() {
     let reaction_left = get_reaction[0].split("");
     let reaction_right = get_reaction[1].split("");
 
+    let catalyzation = 0;
+
+    let iterations = 1;
+    let interationsObject = document.getElementById("iterations");
+    if (interationsObject) {
+      iterations = parseInt(interationsObject.value);
+      catalyzation = document.getElementById("reaction_cat").value;
+    }
+
+    let y_values = [];
+
     var func_array = [
       document.getElementById(`reaction_side${i}_${reaction_left[0]}_L`).value,
-      document.getElementById(`reaction_side${i}_${reaction_right[0]}_R`).value
+      document.getElementById(`reaction_side${i}_${reaction_right[0]}_R`).value,
     ];
     //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
     var substance_array = [];
@@ -31,20 +43,25 @@ $("#submit").click(function() {
     }
 
     var skip = "no";
-    var subs_arr_left = substance_array;
+    console.log("substance_array", substance_array);
     for (let i = 0; i < substance_array.length; i++) {
       //Nepridedamos dulikuotos medžiagų reikšmės
       var check_array = 0;
       for (let j = 0; j < substance_obj.length; j++) {
-        if (subs_arr_left[i] in substance_obj[j]) {
+        if (substance_array[i] in substance_obj[j]) {
+          console.log(substance_obj[j], substance_obj[j]["function"]);
+          // Nifiga kažkodėl normaliai negeneruoja funkcijos objekte
           check_array = 1;
           substance_obj[j]["repetitions"]++;
           //Į objektą talpinami duomenys apie substratus, bei sugeneruojamos funkcijos
           //Jei medžiaga veikia kai katalizatorius
           if (
-            get_reaction[0].match(new RegExp(subs_arr_left[i], "g")) &&
-            get_reaction[1].match(new RegExp(subs_arr_left[i], "g"))
+            get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
+            get_reaction[1].match(new RegExp(substance_array[i], "g"))
           ) {
+            console.log(get_reaction[0]);
+            console.log(get_reaction[1]);
+            console.log(substance_array[i]);
             if (substance_obj[j]["occurrences"] == "left") {
               substance_obj[j][
                 "function"
@@ -53,56 +70,48 @@ $("#submit").click(function() {
               substance_obj[j][
                 "function"
               ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
-            } else {
-              if (skip == "no") {
-                substance_obj[j][
-                  "function"
-                ] = `${substance_obj[j]["function"]}+${func_array[0]}+${func_array[1]}`;
-                skip = "yes";
-              }
             }
             substance_obj[j]["occurrences"] = "both";
             //Jeigu medžiaga veikia kaip substratas arba produktas
-          } else if (get_reaction[0].match(new RegExp(subs_arr_left[i], "g"))) {
-            substance_obj[j]["occurrences"] = "left";
-            substance_obj[j][
-              "function"
-            ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
-          } else {
-            substance_obj[j]["occurrences"] = "right";
-            substance_obj[j][
-              "function"
-            ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
           }
         }
       }
       //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
       if (check_array == 0) {
+        console.log("check array");
         var obj = {};
-        obj[subs_arr_left[i]] = `y[${possition++}][0]`;
+        obj[substance_array[i]] = `y[${possition++}][0]`;
         obj[`initial_conc`] = parseFloat(
-          document.getElementById(`${subs_arr_left[i]}`).value
+          document.getElementById(`${substance_array[i]}`).value
         );
         obj["color"] = document.getElementById(
-          `color${subs_arr_left[i]}`
+          `color${substance_array[i]}`
         ).value;
         obj["repetitions"] = 1;
 
-        if (get_reaction[0].match(new RegExp(subs_arr_left[i], "g"))) {
+        if (get_reaction[0].match(new RegExp(substance_array[i], "g"))) {
           obj["occurrences"] = "left";
           obj["function"] = `${func_array[0]}`;
         } else {
           obj["occurrences"] = "right";
           obj["function"] = `${func_array[1]}`;
         }
-
+        obj["catalyzation"] = catalyzation;
         substance_obj.push(obj);
       }
     }
+    // console.log(get_reaction);
+    // console.log(i);
   }
-  initializeValues(N, int_begin, int_end, substance_obj);
-  let [yy, tt] = solution(substance_obj);
-  createCharts(am4core);
+  console.log(substance_obj);
 
+  initializeValues(N, int_begin, int_end, substance_obj);
+
+  let [yy, tt] = solution(substance_obj);
+  // y_values.push(yy);
+
+  console.log(yy);
+  // console.log(y_values);
+  createCharts(am4core, false);
   addToChart(yy, tt);
 });

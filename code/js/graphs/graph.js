@@ -1,9 +1,13 @@
 let chart;
 let yList;
 let tList;
-function initializeChart(am4core) {}
+let sde = false;
+// function initializeChart(am4core) {}
 
-function createCharts(am4core) {
+function createCharts(am4core, sdeValue) {
+  // VALUE DOES NOT GET SET
+  sde = sdeValue;
+  console.log(sde);
   // Themes begin
   am4core.useTheme(am4themes_animated);
   // Themes end
@@ -40,8 +44,11 @@ function addToChart(y, t) {
   tList = t;
   let seriesList = [];
   for (let i = 0; i < yList.length; i++) {
-    console.log("yList", yList[i]);
     seriesList.push(createSeries(i, "Medžiaga " + subs_html_name[i], yList[i]));
+  }
+  if (sde) {
+    console.log(sde);
+    addMean(seriesList, y);
   }
 }
 
@@ -63,6 +70,38 @@ function createSeries(s, name, y) {
   series.data = data;
 
   return series;
+}
+
+function meanOfSeries(seriesList, meanSeries, y) {
+  let data = [];
+  for (let i = 0; i < y[0].length - 1; i++) {
+    let value = 0;
+    for (let s = 0; s < seriesList.length; s++) {
+      value += seriesList[s].data[i]["value" + s];
+    }
+
+    let dataItem = { time: tList[i] };
+    dataItem["valueMean"] = value / seriesList.length;
+    data.push(dataItem);
+  }
+  meanSeries.data = data;
+}
+
+function addMean(seriesList, y) {
+  let meanSeries = chart.series.push(new am4charts.LineSeries());
+  meanSeries.dataFields.valueY = "valueMean";
+  meanSeries.dataFields.valueX = "time";
+  meanSeries.name = "Mean";
+  addFeatures(meanSeries);
+  meanSeries.strokeWidth = 2;
+  meanOfSeries(seriesList, meanSeries, y);
+
+  meanSeries.tooltipText =
+    "Time: [bold]{valueX}[/]\nConcentration: [bold]{categoryY}[/]";
+  meanSeries.tooltip.pointerOrientation = "vertical";
+  meanSeries.tooltip.background.cornerRadius = 20;
+  meanSeries.tooltip.background.fillOpacity = 0.5;
+  meanSeries.tooltip.label.padding(12, 12, 12, 12);
 }
 
 function addFeatures(series) {

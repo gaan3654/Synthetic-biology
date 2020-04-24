@@ -15,7 +15,7 @@
 
 <!-- Chart code -->
 <script>
-  am4core.ready(function() {
+  am4core.ready(function () {
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
@@ -31,7 +31,7 @@
 
     let seriesList = [];
     for (let i = 0; i < 10; i++) {
-      seriesList.push(createSeries("value" + i, "Series #" + i));
+      seriesList.push(createSeries("value" + i, "Medžiagos iteracija #" + i));
     }
 
     // Create series
@@ -71,11 +71,11 @@
       let dimmed = segment.states.create("dimmed");
       dimmed.properties.stroke = am4core.color("#dadada");
 
-      segment.events.on("over", function(event) {
+      segment.events.on("over", function (event) {
         processOver(event.target.parent.parent.parent);
       });
 
-      segment.events.on("out", function(event) {
+      segment.events.on("out", function (event) {
         processOut(event.target.parent.parent.parent);
       });
     }
@@ -103,7 +103,6 @@
     meanSeries.strokeWidth = 2;
     meanOfSeries(seriesList, meanSeries);
 
-
     meanSeries.tooltipText =
       "Time: [bold]{valueX}[/]\nConcentration: [bold]{categoryY}[/]";
     meanSeries.tooltip.pointerOrientation = "vertical";
@@ -123,24 +122,24 @@
     chart.legend = new am4charts.Legend();
     chart.legend.position = "right";
     chart.legend.scrollable = true;
-    chart.legend.itemContainers.template.events.on("over", function(event) {
+    chart.legend.itemContainers.template.events.on("over", function (event) {
       processOver(event.target.dataItem.dataContext);
     });
 
-    chart.legend.itemContainers.template.events.on("out", function(event) {
+    chart.legend.itemContainers.template.events.on("out", function (event) {
       processOut(event.target.dataItem.dataContext);
     });
 
     function processOver(hoveredSeries) {
       hoveredSeries.toFront();
 
-      hoveredSeries.segments.each(function(segment) {
+      hoveredSeries.segments.each(function (segment) {
         segment.setState("hover");
       });
 
-      chart.series.each(function(series) {
+      chart.series.each(function (series) {
         if (series != hoveredSeries) {
-          series.segments.each(function(segment) {
+          series.segments.each(function (segment) {
             segment.setState("dimmed");
           });
           series.bulletsContainer.setState("dimmed");
@@ -149,8 +148,8 @@
     }
 
     function processOut(hoveredSeries) {
-      chart.series.each(function(series) {
-        series.segments.each(function(segment) {
+      chart.series.each(function (series) {
+        series.segments.each(function (segment) {
           segment.setState("default");
         });
         series.bulletsContainer.setState("default");

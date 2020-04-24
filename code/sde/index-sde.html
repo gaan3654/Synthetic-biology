@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script
-      type="text/javascript"
-      src="sde-algorithm/euler-method.js"
-    ></script>
+    <script type="text/javascript" src="sde-algorithm/euler-method.js"></script>
     <script
       type="text/javascript"
       src="../ode/ode-algorithm/normalization.js"
@@ -59,7 +56,9 @@
             ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
           /></a>
           <ul class="nav nav-pills nav-stacked btn-list">
-            <li><a class="btn-custom" href="euler-text.html">Apibrėžimas</a></li>
+            <li>
+              <a class="btn-custom" href="euler-text.html">Apibrėžimas</a>
+            </li>
             <li class="dropdown">
               <a
                 class="dropdown-toggle btn-custom"
@@ -169,46 +168,50 @@
                 </div>
 
                 <div id="reaction_info_0">
-                    <div class="input-group">
-                        <span class="input-group-addon reaction-addon"
-                            >1. Įveskite norimą reakciją:</span
-                         >
-                        <div id="reaction_0" class="input_blocks">
-                            <input type="text" id="reaction_input_0" value="A+B->B" />
-                        </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >1. Įveskite norimą reakciją:</span
+                    >
+                    <div id="reaction_0" class="input_blocks">
+                      <input type="text" id="reaction_input_0" value="A+B->B" />
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon reaction-addon"
-                            >Reakcijos greitis k<sub>1</sub></span
-                        >
-                        <div id="k1_0" class="input_blocks">
-                            <input type="number" id="reaction_rate_0" value="0.9" />
-                        </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Reakcijos greitis k<sub>1</sub></span
+                    >
+                    <div id="k1_0" class="input_blocks">
+                      <input type="number" id="reaction_rate_0" value="0.9" />
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon reaction-addon"
-                            >Reakcijos greitis k<sub>2</sub></span
-                        >
-                        <div id="k2_0" class="input_blocks">
-                            <input type="number" id="second_reaction_rate_0" value="0.1" />
-                        </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Reakcijos greitis k<sub>2</sub></span
+                    >
+                    <div id="k2_0" class="input_blocks">
+                      <input
+                        type="number"
+                        id="second_reaction_rate_0"
+                        value="0.1"
+                      />
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon reaction-addon"
-                            >Reakcijos triukšmas</span
-                        >
-                        <div id="reaction" class="input_blocks">
-                            <input type="text" id="reaction_cat" value="0.7">
-                        </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Reakcijos triukšmas</span
+                    >
+                    <div id="reaction" class="input_blocks">
+                      <input type="number" id="reaction_cat" value="0.7" />
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon reaction-addon"
-                            >Iteracijų skaičius</span
-                        >
-                        <div id="iter" class="input_blocks">
-                            <input type="text" id="iterations" value="1000">
-                        </div>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon reaction-addon"
+                      >Iteracijų skaičius</span
+                    >
+                    <div id="iter" class="input_blocks">
+                      <input type="number" id="iterations" value="1000" />
                     </div>
+                  </div>
                 </div>
               </div>
 
@@ -269,10 +272,10 @@
             type="text/javascript"
             src="../js/calculator-html-process/process-inputs.js"
           ></script>
-          <script
+          <!-- <script
             type="text/javascript"
             src="ode-algorithm/examples.js"
-          ></script>
+          ></script> -->
           <script
             type="text/javascript"
             src="../js/calculator-html-process/update-inputs.js"
@@ -319,7 +322,6 @@
               "T",
               "U",
               "V",
-              "W",
               "X",
               "Y",
               "Z",

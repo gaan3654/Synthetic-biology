@@ -6,6 +6,9 @@ $("#submit_reaction").click(function () {
     var reaction_right = [];
     var left_side = [];
     var right_side = [];
+
+    let catalyzation = document.getElementById("reaction_cat");
+
     for (var i = 0; i < reactions_id.length; i++) {
       var get_rate = document.getElementById(`reaction_rate_${i}`).value;
       var get_rate_2 = document.getElementById(`second_reaction_rate_${i}`)
@@ -14,10 +17,60 @@ $("#submit_reaction").click(function () {
       var reaction = get_reaction.split(/<?->/);
       reaction[0] = reaction[0].replace(/\+/g, "*");
       reaction[1] = reaction[1].replace(/\+/g, "*");
-      reaction_left[i] =
-        reaction[0] + `*(-${get_rate})` + `+` + reaction[1] + `*${get_rate_2}`;
-      reaction_right[i] =
-        reaction[0] + `*${get_rate}` + `+` + reaction[1] + `*(-${get_rate_2})`;
+
+      if (catalyzation) {
+        reaction_left[i] =
+          reaction[0] +
+          `*(-${get_rate})` +
+          `+` +
+          reaction[1] +
+          `*${get_rate_2}` +
+          `+(` +
+          reaction[0] +
+          `+` +
+          reaction[1] +
+          `)` +
+          `*${catalyzation.value}` +
+          `*W`;
+        reaction_right[i] =
+          reaction[0] +
+          `*${get_rate}` +
+          `+` +
+          reaction[1] +
+          `*(-${get_rate_2})` +
+          `+(` +
+          reaction[0] +
+          `+` +
+          reaction[1] +
+          `)` +
+          `*${catalyzation.value}` +
+          `*W`;
+        // reaction_left[i] =
+        //   reaction[0] +
+        //   `*(-${get_rate})` +
+        //   `+` +
+        //   reaction[1] +
+        //   `*${get_rate_2}`;
+        // reaction_right[i] =
+        //   reaction[0] +
+        //   `*${get_rate}` +
+        //   `+` +
+        //   reaction[1] +
+        //   `*(-${get_rate_2})`;
+      } else {
+        reaction_left[i] =
+          reaction[0] +
+          `*(-${get_rate})` +
+          `+` +
+          reaction[1] +
+          `*${get_rate_2}`;
+        reaction_right[i] =
+          reaction[0] +
+          `*${get_rate}` +
+          `+` +
+          reaction[1] +
+          `*(-${get_rate_2})`;
+      }
 
       left_side[i] = reaction[0].split("*");
       right_side[i] = reaction[1].split("*");

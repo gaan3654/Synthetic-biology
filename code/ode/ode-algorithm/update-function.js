@@ -1,4 +1,4 @@
-let alphabet_pattern = /A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|W|X|Y|Z/;
+let alphabet_pattern = /A|B|C|D|E|F|G|H|I|J|K|N|L|O|P|Q|R|S|T|U|V|X|Y|Z/;
 
 function replaceLetters(function_to_change, substance_obj) {
   if (function_to_change.match(alphabet_pattern)) {
