@@ -48,7 +48,10 @@ $("#submit").click(function () {
       //Nepridedamos dulikuotos medžiagų reikšmės
       if (!sde) {
         for (let j = 0; j < substance_obj.length; j++) {
-          if (substance_array[i] in substance_obj[j]) {
+          if (
+            substance_array[i] in substance_obj[j] &&
+            substance_obj[j]["occurrences"] != "both"
+          ) {
             console.log(substance_obj[j], substance_obj[j]["function"]);
             substance_obj[j]["repetitions"]++;
             if (get_reaction[0].match(new RegExp(substance_array[i], "g"))) {

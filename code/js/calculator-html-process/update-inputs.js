@@ -45,18 +45,6 @@ $("#submit_reaction").click(function () {
           `)` +
           `*${catalyzation.value}` +
           `*W`;
-        // reaction_left[i] =
-        //   reaction[0] +
-        //   `*(-${get_rate})` +
-        //   `+` +
-        //   reaction[1] +
-        //   `*${get_rate_2}`;
-        // reaction_right[i] =
-        //   reaction[0] +
-        //   `*${get_rate}` +
-        //   `+` +
-        //   reaction[1] +
-        //   `*(-${get_rate_2})`;
       } else {
         reaction_left[i] =
           reaction[0] +
@@ -100,6 +88,7 @@ $("#submit_reaction").click(function () {
       }
     }
     $("#submit").css("display", "inline");
+    // $("#submit").prop("enabled", true);
     $("#function").css("display", "block");
     if (rection_submited) {
       chart.dispose();

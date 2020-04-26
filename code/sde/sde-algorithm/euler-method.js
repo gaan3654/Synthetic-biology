@@ -1,4 +1,7 @@
 function evaluateFunction(t, y, func, W) {
+  // console.log("Parameters y, t, W", y, t, W);
+  // console.log("func", func);
+  // console.log("eval", eval(func));
   return eval(func);
 }
 
@@ -22,13 +25,10 @@ function copyArray(array) {
   });
 }
 
-function generateKArray(t, y, h, substance_obj, previous_kk) {
-  let kk = [];
+function updateFunctionIndices(y, substance_obj) {
   for (let j = 0; j < y.length; j++) {
     substance_obj[j].function = renewFunction(y, j, substance_obj, false);
-    kk.push(calculateK(t, y, h, previous_kk, substance_obj[j].function));
   }
-  return kk;
 }
 
 function randomGaussian(mean, sigma) {
@@ -55,6 +55,7 @@ function initializeValues(big_n, a, b, substance_obj) {
   }
   y = y_to_set;
   h = (b - a) / big_n;
+  console.log("h", h);
   N = big_n;
   catalyzation = substance_obj[0].catalyzation;
   console.log("catalyzation", catalyzation);
@@ -64,14 +65,16 @@ function solution(substance_obj) {
   for (let i = 0; i < N; i++) {
     let W = randomGaussian(0, 1);
     // console.log(W);
+    W = 1;
     t[i + 1] = t[i] + h;
     let kk1 = [];
     //a+b+b->c kol kas neveikia
     for (let j = 0; j < y.length; j++) {
       let func = renewFunction(y, j, substance_obj, true);
       kk1.push(calculateK1(t[i], y, h, func, W));
+      updateFunctionIndices(y, substance_obj);
     }
-
+    console.log(kk1);
     for (let j = 0; j < y.length; j++) {
       y[j][i + 1] = eval(y[j][i] * kk1[j]);
     }
