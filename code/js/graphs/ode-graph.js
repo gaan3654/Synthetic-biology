@@ -40,7 +40,7 @@ function addToChart(y, t) {
   tList = t;
   let seriesList = [];
   for (let i = 0; i < yList.length; i++) {
-    console.log("yList", yList[i]);
+    // console.log("yList", yList[i]);
     seriesList.push(createSeries(i, "Medžiaga " + subs_html_name[i], yList[i]));
   }
 }
@@ -58,6 +58,7 @@ function createSeries(s, name, y) {
   for (let i = 0; i < y.length - 1; i++) {
     let dataItem = { time: tList[i] };
     dataItem["value" + s] = y[i];
+    // console.log("VALUE", dataItem);
     data.push(dataItem);
   }
   series.data = data;
