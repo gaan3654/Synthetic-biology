@@ -121,6 +121,9 @@ function addFeatures(series) {
   segment.events.on("out", function (event) {
     processOut(event.target.parent.parent.parent);
   });
+
+  // Set it on chart's container
+  chart.svgContainer.htmlElement.style.height = "900px";
 }
 
 function processOver(hoveredSeries) {

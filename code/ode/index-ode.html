@@ -52,275 +52,263 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row content">
-        <div class="col-sm-3 sidenav">
-          <a href="../index.html"
-            ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
-          /></a>
-          <ul class="nav nav-pills nav-stacked btn-list">
-            <li><a class="btn-custom" href="rk-text.html">Apibrėžimas</a></li>
-            <li class="dropdown">
-              <a
-                class="dropdown-toggle btn-custom"
-                data-toggle="dropdown"
-                href="#"
-                >Pavyzdžiai <span class="caret"></span
-              ></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" id="example1" class="example">
-                    Pavyzdys 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#" id="example2" class="example">
-                    Pavyzdys 2
-                  </a>
-                </li>
-                <li>
-                  <a href="#" id="example3" class="example">
-                    Pavyzdys 3
-                  </a>
-                </li>
-              </ul>
+    <div class="col-sm-3 sidenav">
+      <a href="../index.html"
+        ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
+      /></a>
+      <ul class="nav nav-pills nav-stacked btn-list">
+        <li><a class="btn-custom" href="rk-text.html">Apibrėžimas</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
+            >Pavyzdžiai <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#" id="example1" class="example">
+                Pavyzdys 1
+              </a>
             </li>
-            <li class="active">
-              <a class="btn-custom" href="#section3">Skaičiuotuvas</a>
+            <li>
+              <a href="#" id="example2" class="example">
+                Pavyzdys 2
+              </a>
             </li>
-            <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
+            <li>
+              <a href="#" id="example3" class="example">
+                Pavyzdys 3
+              </a>
+            </li>
           </ul>
-          <br />
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search.." />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
-
-        <div class="col-sm-9">
-          <div class="well">
-            <h1>Runge-Kutta metodas</h1>
-          </div>
-
-          <div>
-            <div class="row" id="substance_input">
-              <div class="col-sm-3 input-container" id="substance">
-                <div class="col-sm-3 subs_react_buttons">
-                  <button
-                    id="add_subs"
-                    class="button btn btn-custom-functionality"
-                    onclick="add_additional_substance_input()"
-                  >
-                    Pridėti medžiagą
-                  </button>
-                </div>
-
-                <div class="input_blocks">
-                  <div class="input-group">
-                    <span class="input-group-addon input-addon">[A']</span>
-                    <input type="number" id="A" value="2" />
-                    <input
-                      type="color"
-                      id="colorA"
-                      class="s_colors"
-                      value="#ff0000"
-                    />
-                  </div>
-                </div>
-                <div class="input_blocks">
-                  <div class="input-group">
-                    <span class="input-group-addon input-addon">[B']</span>
-                    <input type="number" id="B" value="3" />
-                    <input
-                      type="color"
-                      id="colorB"
-                      class="s_colors"
-                      value="#0000ff"
-                    />
-                  </div>
-                </div>
-                <div class="input_blocks">
-                  <div class="input-group">
-                    <span class="input-group-addon input-addon">[C']</span>
-                    <input type="number" id="C" value="1" />
-                    <input
-                      type="color"
-                      id="colorC"
-                      class="s_colors"
-                      value="#00ff00"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-3 input-container" id="reactions">
-                <div class="col-sm-3">
-                  <button
-                    id="add_reaction"
-                    class="button btn btn-custom-functionality"
-                    onclick="add_additional_reaction_input()"
-                  >
-                    Pridėti reakciją
-                  </button>
-                </div>
-
-                <div id="reaction_info_0">
-                  <div class="input-group">
-                    <span class="input-group-addon reaction-addon"
-                      >1. Įveskite norimą reakciją:</span
-                    >
-                    <div id="reaction_0" class="input_blocks">
-                      <input type="text" id="reaction_input_0" value="A+B->B" />
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon reaction-addon"
-                      >Reakcijos greitis k<sub>1</sub></span
-                    >
-                    <div id="k1_0" class="input_blocks">
-                      <input type="number" id="reaction_rate_0" value="0.9" />
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon reaction-addon"
-                      >Reakcijos greitis k<sub>2</sub></span
-                    >
-                    <div id="k2_0" class="input_blocks">
-                      <input
-                        type="number"
-                        id="second_reaction_rate_0"
-                        value="0.1"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-3 input-container" id="settings">
-                <div class="col-sm-3">
-                  <button
-                    id="submit_reaction"
-                    class="button btn btn-custom-functionality"
-                  >
-                    Vykdyti reakciją
-                  </button>
-                </div>
-
-                <div class="input-group">
-                  <span class="input-group-addon settings-addon"
-                    >Intervalo pradžia</span
-                  >
-                  <div id="interv_begins" class="input_blocks">
-                    <input type="number" id="int_begins" value="0" />
-                  </div>
-                </div>
-                <div class="input-group">
-                  <span class="input-group-addon settings-addon"
-                    >Intervalo pabaiga</span
-                  >
-                  <div id="interv_ends" class="input_blocks">
-                    <input type="number" id="int_ends" value="1" />
-                  </div>
-                </div>
-                <div class="input-group">
-                  <span class="input-group-addon settings-addon">N</span>
-                  <div id="N" class="input_blocks">
-                    <input type="number" id="n_inp" value="100" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="graph_draw">
-              <div id="function_block" class="row col-sm-3 input-container">
-                <button
-                  id="submit"
-                  class="button btn btn-custom-functionality"
-                  style="display: none;"
-                >
-                  Piešti grafiką
-                </button>
-                <div id="function" style="display: none;">
-                  <!--Talpinamos reakcijos sukurtos funkcijos-->
-                </div>
-              </div>
-
-              <div id="chartdiv"></div>
-            </div>
-          </div>
-
-          <script
-            type="text/javascript"
-            src="../js/calculator-html-process/process-inputs.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="ode-algorithm/examples.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="../js/calculator-html-process/update-inputs.js"
-          ></script>
-          <script>
-            let reactions_id = ["reaction_0"];
-            let rection_submited = false;
-            //Užpildomi funkcijų laukai iš pateiktos reakcijos
-
-            var subs_names = ["A", "B", "C"];
-            var subs_color_id = ["colorA", "colorB", "colorC"];
-            var subs_color = [
-              "#ff0000",
-              "#0000ff",
-              "#00ff00",
-              "#9E618D",
-              "#ff9900",
-              "#00ff99",
-              "#0099ff",
-              "#9900ff",
-              "#990099",
-              "#009900",
-            ];
-            var subs_html_name = [
-              "A",
-              "B",
-              "C",
-              "D",
-              "E",
-              "F",
-              "G",
-              "H",
-              "I",
-              "J",
-              "K",
-              "L",
-              "M",
-              "N",
-              "O",
-              "P",
-              "Q",
-              "R",
-              "S",
-              "T",
-              "U",
-              "V",
-              "W",
-              "X",
-              "Y",
-              "Z",
-            ];
-          </script>
-
-          <br /><br />
-        </div>
+        </li>
+        <li class="active">
+          <a class="btn-custom" href="#section3">Skaičiuotuvas</a>
+        </li>
+        <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
+      </ul>
+      <br />
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search.." />
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
       </div>
     </div>
+    <div class="content col-sm-9">
+      <div class="well">
+        <h1>Runge-Kutta metodas</h1>
+      </div>
 
-    <footer class="container-fluid">
+      <div>
+        <div class="row" id="substance_input">
+          <div class="col-sm-3 input-container" id="substance">
+            <div class="col-sm-3 subs_react_buttons">
+              <button
+                id="add_subs"
+                class="button btn btn-custom-functionality"
+                onclick="add_additional_substance_input()"
+              >
+                Pridėti medžiagą
+              </button>
+            </div>
+
+            <div class="input_blocks">
+              <div class="input-group">
+                <span class="input-group-addon input-addon">[A']</span>
+                <input type="number" id="A" value="2" />
+                <input
+                  type="color"
+                  id="colorA"
+                  class="s_colors"
+                  value="#ff0000"
+                />
+              </div>
+            </div>
+            <div class="input_blocks">
+              <div class="input-group">
+                <span class="input-group-addon input-addon">[B']</span>
+                <input type="number" id="B" value="3" />
+                <input
+                  type="color"
+                  id="colorB"
+                  class="s_colors"
+                  value="#0000ff"
+                />
+              </div>
+            </div>
+            <div class="input_blocks">
+              <div class="input-group">
+                <span class="input-group-addon input-addon">[C']</span>
+                <input type="number" id="C" value="1" />
+                <input
+                  type="color"
+                  id="colorC"
+                  class="s_colors"
+                  value="#00ff00"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 input-container" id="reactions">
+            <div class="col-sm-3">
+              <button
+                id="add_reaction"
+                class="button btn btn-custom-functionality"
+                onclick="add_additional_reaction_input()"
+              >
+                Pridėti reakciją
+              </button>
+            </div>
+
+            <div id="reaction_info_0">
+              <div class="input-group">
+                <span class="input-group-addon reaction-addon"
+                  >1. Įveskite norimą reakciją:</span
+                >
+                <div id="reaction_0" class="input_blocks">
+                  <input type="text" id="reaction_input_0" value="A+B->B" />
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon reaction-addon"
+                  >Reakcijos greitis k<sub>1</sub></span
+                >
+                <div id="k1_0" class="input_blocks">
+                  <input type="number" id="reaction_rate_0" value="0.9" />
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon reaction-addon"
+                  >Reakcijos greitis k<sub>2</sub></span
+                >
+                <div id="k2_0" class="input_blocks">
+                  <input
+                    type="number"
+                    id="second_reaction_rate_0"
+                    value="0.1"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 input-container" id="settings">
+            <div class="col-sm-3">
+              <button
+                id="submit_reaction"
+                class="button btn btn-custom-functionality"
+              >
+                Vykdyti reakciją
+              </button>
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Intervalo pradžia</span
+              >
+              <div id="interv_begins" class="input_blocks">
+                <input type="number" id="int_begins" value="0" />
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Intervalo pabaiga</span
+              >
+              <div id="interv_ends" class="input_blocks">
+                <input type="number" id="int_ends" value="1" />
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon">N</span>
+              <div id="N" class="input_blocks">
+                <input type="number" id="n_inp" value="100" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="graph_draw">
+          <div id="function_block" class="row col-sm-3 input-container">
+            <button
+              id="submit"
+              class="button btn btn-custom-functionality"
+              style="display: none;"
+            >
+              Piešti grafiką
+            </button>
+            <div id="function" style="display: none;">
+              <!--Talpinamos reakcijos sukurtos funkcijos-->
+            </div>
+          </div>
+        </div>
+        <div id="chartdiv"></div>
+      </div>
+
+      <script
+        type="text/javascript"
+        src="../js/calculator-html-process/process-inputs.js"
+      ></script>
+      <script type="text/javascript" src="ode-algorithm/examples.js"></script>
+      <script
+        type="text/javascript"
+        src="../js/calculator-html-process/update-inputs.js"
+      ></script>
+      <script>
+        let reactions_id = ["reaction_0"];
+        let rection_submited = false;
+        //Užpildomi funkcijų laukai iš pateiktos reakcijos
+
+        var subs_names = ["A", "B", "C"];
+        var subs_color_id = ["colorA", "colorB", "colorC"];
+        var subs_color = [
+          "#ff0000",
+          "#0000ff",
+          "#00ff00",
+          "#9E618D",
+          "#ff9900",
+          "#00ff99",
+          "#0099ff",
+          "#9900ff",
+          "#990099",
+          "#009900",
+        ];
+        var subs_html_name = [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+        ];
+      </script>
+
+      <br /><br />
+    </div>
+
+    <!-- <footer class="container-fluid">
       <p>Footer Text</p>
-    </footer>
+    </footer> -->
   </body>
 </html>

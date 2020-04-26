@@ -26,78 +26,71 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row content">
-        <div class="col-sm-3 sidenav">
-          <a href="../index.html"
-            ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
-          /></a>
-          <ul class="nav nav-pills nav-stacked">
-            <li class="active">
-              <a class="btn-custom" href="#section1">Apibrėžimas</a>
-            </li>
-            <li>
-              <a class="btn-custom" href="rk-text.html">Runge-Kutta metodas</a>
-            </li>
-            <!-- <li><a class="btn-custom" href="#section3">Skaičiuotuvas</a></li> -->
-            <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
-          </ul>
-          <br />
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search.." />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
-
-        <div class="col-sm-9 content-container">
-          <h1>
-            <!-- <img src="../../assets/logo_.png" alt="Logo"> <br> -->
-            Paprastosios diferencialinės lygtys
-          </h1>
-          <p>
-            Paprasta diferencialinė lygtis (ODE) yra lygtis, kurią sudaro
-            nepriklausomas kintamasis, ieškoma funkcija ir jos išvestinė.
-          </p>
-
-          <p>
-            Diferencialinės lygties sprendiniu yra funkcija, kuri įstatyta į
-            lygtį paverčia ją tapatybe. Diferencialinės lygties y’=f(x)
-            sprendiniu yra funkcija y=F(x), kur F(x) yra funkcijos f(x)
-            pirmykštė.
-          </p>
-
-          <p>
-            Paprastąja diferencialine lygtimi vadinama lygybė F(x, y, y’, …,
-            y(n))=0, kurioje x ∈ I⊂ℝ yra nepriklausomas kintamasis, o y(x) -
-            nežinoma funkcija.
-          </p>
-
-          <p>
-            Kokiu būdu turint funkcijos išvestinę galima rasti pačią funkciją?
-            Paprasčiausias būdas išspręsti šią užduotį yra apskaičiuoti
-            pirmykštę, t.y. integruoti. Pavyzdžiui, jeigu yra duota
-            dx/dt(t)=cos(t), tuomet kokia būtų x(t) funkcija? <čia galima
-            padaryti testuko tipo klausimą???> Akivaizdu, kadangi cos(t)
-            pirmykštė yra sin(t), funkcijos x(t) reikšmė bus lygi sint(t).
-            Reikėtų tik paminėti savavališką konstantą - C, kurios reikšmės
-            negalime nustatyti. Todėl, aukščiau pateikto klausimo atsakymas yra
-            x(t)=sin(t)+C.
-          </p>
-
-          <!-- tegul čia lieka pvz: -->
-          <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
-          <br /><br />
-        </div>
+    <div class="col-sm-3 sidenav">
+      <a href="../index.html"
+        ><img src="../../assets/logo_w.png" alt="Logo" class="image-center"
+      /></a>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+          <a class="btn-custom" href="#section1">Apibrėžimas</a>
+        </li>
+        <li>
+          <a class="btn-custom" href="rk-text.html">Runge-Kutta metodas</a>
+        </li>
+        <!-- <li><a class="btn-custom" href="#section3">Skaičiuotuvas</a></li> -->
+        <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
+      </ul>
+      <br />
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search.." />
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
       </div>
     </div>
+    <div class="content col-sm-9 content-container">
+      <h1>
+        <!-- <img src="../../assets/logo_.png" alt="Logo"> <br> -->
+        Paprastosios diferencialinės lygtys
+      </h1>
+      <p>
+        Paprasta diferencialinė lygtis (ODE) yra lygtis, kurią sudaro
+        nepriklausomas kintamasis, ieškoma funkcija ir jos išvestinė.
+      </p>
 
-    <footer class="container-fluid">
+      <p>
+        Diferencialinės lygties sprendiniu yra funkcija, kuri įstatyta į lygtį
+        paverčia ją tapatybe. Diferencialinės lygties y’=f(x) sprendiniu yra
+        funkcija y=F(x), kur F(x) yra funkcijos f(x) pirmykštė.
+      </p>
+
+      <p>
+        Paprastąja diferencialine lygtimi vadinama lygybė F(x, y, y’, …,
+        y(n))=0, kurioje x ∈ I⊂ℝ yra nepriklausomas kintamasis, o y(x) -
+        nežinoma funkcija.
+      </p>
+
+      <p>
+        Kokiu būdu turint funkcijos išvestinę galima rasti pačią funkciją?
+        Paprasčiausias būdas išspręsti šią užduotį yra apskaičiuoti pirmykštę,
+        t.y. integruoti. Pavyzdžiui, jeigu yra duota dx/dt(t)=cos(t), tuomet
+        kokia būtų x(t) funkcija? <čia galima padaryti testuko tipo klausimą???>
+        Akivaizdu, kadangi cos(t) pirmykštė yra sin(t), funkcijos x(t) reikšmė
+        bus lygi sint(t). Reikėtų tik paminėti savavališką konstantą - C, kurios
+        reikšmės negalime nustatyti. Todėl, aukščiau pateikto klausimo atsakymas
+        yra x(t)=sin(t)+C.
+      </p>
+
+      <!-- tegul čia lieka pvz: -->
+      <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
+      <br /><br />
+    </div>
+
+    <!-- <footer class="container-fluid">
       <p>Footer Text</p>
-    </footer>
+    </footer> -->
   </body>
 </html>
