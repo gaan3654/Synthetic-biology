@@ -9,3 +9,9 @@
 .equations-container {
   padding: 2%;
 }
+
+.jumbotron,
+.jumbotron h1 {
+  margin: 0 !important;
+  padding: 1% 0 !important;
+}

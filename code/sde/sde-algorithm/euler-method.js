@@ -64,8 +64,6 @@ function initializeValues(big_n, a, b, substance_obj) {
 function solution(substance_obj) {
   for (let i = 0; i < N; i++) {
     let W = randomGaussian(0, 1);
-    // console.log(W);
-    W = 1;
     t[i + 1] = t[i] + h;
     let kk1 = [];
     //a+b+b->c kol kas neveikia
@@ -76,7 +74,7 @@ function solution(substance_obj) {
     }
     console.log(kk1);
     for (let j = 0; j < y.length; j++) {
-      y[j][i + 1] = eval(y[j][i] * kk1[j]);
+      y[j][i + 1] = eval(y[j][i] + kk1[j]);
     }
   }
   return [y, t];

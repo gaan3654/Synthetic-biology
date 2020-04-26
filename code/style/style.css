@@ -16,7 +16,6 @@ body {
 
 .content {
   float: right;
-  /* background-color: wheat; */
   height: 100vh;
 }
 
@@ -32,6 +31,13 @@ footer {
   background-color: #555;
   color: white;
   padding: 15px;
+}
+
+h1 {
+  padding: 2%;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #eee;
 }
 
 #function_block {
@@ -149,7 +155,6 @@ input[type="number"] {
 
 #chartdiv {
   padding-bottom: 50vh;
-  /* margin-bottom: 50vh; */
   height: max-content;
   width: auto;
 }
