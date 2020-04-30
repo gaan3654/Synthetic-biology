@@ -250,6 +250,54 @@
               <span>Rodyti tik medžiagų vidurkius (Iter.<100)</span>
             </div>
           </div>
+
+          <div class="col-sm-3 input-container" id="settings">
+            <div class="col-sm-3">
+              <button
+                id="calculate-probability"
+                class="button btn btn-custom-functionality"
+              >
+                Skaičiuoti
+              </button>
+            </div>
+
+            <div class="input-group">
+              <p class="input-group-addon">
+                Apskaičiuoti tikimybę, kad reakcija patenka į intervalą:
+              </p>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Intervalo pradžia</span
+              >
+              <div class="input_blocks">
+                <input
+                  type="number"
+                  id="probability-interval-begin"
+                  value="2"
+                />
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Intervalo pabaiga</span
+              >
+              <div class="input_blocks">
+                <input type="number" id="probability-interval-end" value="4" />
+              </div>
+            </div>
+
+            <div
+              id="probability-result-block"
+              class="input-group"
+              style="display: none;"
+            >
+              <span class="input-group-addon settings-addon">Tikimibė</span>
+              <div class="input_blocks">
+                <input type="number" id="probabily-result" value="" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="graph_draw">

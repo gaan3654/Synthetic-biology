@@ -1,4 +1,5 @@
-// function fetchParameters() {
+var sdeAllYIterations = [];
+
 $("#submit").click(function () {
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
@@ -8,7 +9,6 @@ $("#submit").click(function () {
   let iterations = 1;
   let iterationsObject = document.getElementById("iterations");
   let showOnlyMean = false;
-  let sdeAllYIterations = [];
   let sde = iterationsObject != null;
   if (sde) {
     iterations = parseInt(iterationsObject.value);
@@ -109,11 +109,13 @@ $("#submit").click(function () {
 
     let [yy, tt] = solution(substance_obj);
 
-    if (showOnlyMean) {
+    if (!showOnlyMean) {
+      addToChart(yy, tt, substance_obj);
+    }
+
+    if (sde) {
       sdeAllYIterations.push(yy);
       timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
-    } else {
-      addToChart(yy, tt, substance_obj);
     }
   }
   if (showOnlyMean) {
@@ -143,5 +145,44 @@ $("#show-only-mean").click(function () {
   if (constraint > 100) {
     document.getElementById("show-only-mean").checked = true;
     var isReadOnly = true;
+  }
+});
+
+$("#calculate-probability").click(function () {
+  let intervalBegin = document.getElementById("probability-interval-begin")
+    .value;
+  let intervalEnd = document.getElementById("probability-interval-end").value;
+
+  let substanceMeanList = [];
+
+  if (sdeAllYIterations.length > 0) {
+    for (
+      let substance = 0;
+      substance < sdeAllYIterations[0].length;
+      substance++
+    ) {
+      let yCount = 0;
+      for (
+        let iteration = 0;
+        iteration < sdeAllYIterations.length;
+        iteration++
+      ) {
+        let lastY =
+          sdeAllYIterations[iteration][substance][
+            sdeAllYIterations[iteration][substance].length - 1
+          ];
+        console.log("last y", lastY, "substance", substance);
+        if (lastY <= intervalEnd && lastY >= intervalBegin) {
+          yCount++;
+        }
+      }
+      substanceMeanList.push((yCount * 100) / sdeAllYIterations.length);
+    }
+    for (let i = 0; i < substanceMeanList.length; i++) {
+      // Reikia sugalvoti kaip atvaizduoti šiuos rezultatus
+      console.log(subs_html_name[i], substanceMeanList[i]);
+    }
+  } else {
+    alert("Apskaičiuokite reakcijas");
   }
 });

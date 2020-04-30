@@ -27,23 +27,6 @@ function add_additional_substance_input() {
   }
 }
 
-{
-  /* <div class="input_blocks">
-<form>
-  <div class="input-group">
-    <span class="input-group-addon">[C']</span>
-    <input type="number" id="C" value="1" />
-    <input
-      type="color"
-      id="colorC"
-      class="s_colors"
-      value="#00ff00"
-    />
-  </div>
-</form>
-</div> */
-}
-
 //Prideda papildomų reakcijų input laukų
 function add_additional_reaction_input() {
   document.getElementById("submit_reaction").value = "Vykdyti reakcijas";
@@ -86,15 +69,7 @@ function add_additional_reaction_input() {
                   </div>`;
 }
 
-// Pakeičiamas mygtuko pavadinimas
+// Ištrinamas grafikas
 function renew_button() {
-  document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
   rection_submited = true;
-}
-
-let previousBtn = "btn-list";
-function focusItem(id) {
-  document.getElementById(previousBtn).classList.remove("active");
-  document.getElementById(id).classList.add("active");
-  previousBtn = id;
 }

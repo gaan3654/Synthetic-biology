@@ -1,5 +1,6 @@
 $("#submit_reaction").click(function () {
   $("#function").load(" #function", function () {
+    document.getElementById("submit").disabled = false;
     var sde = document.getElementById("iterations") != null;
     if (sde) {
       let constraint = document.getElementById("iterations").value;
