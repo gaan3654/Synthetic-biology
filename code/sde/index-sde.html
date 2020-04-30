@@ -19,7 +19,7 @@
       src="../js/external-packages/jquery.js"
     ></script>
 
-    <script type="text/javascript" src="../js/graphs/ode-graph.js"></script>
+    <script type="text/javascript" src="../js/graphs/graph.js"></script>
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
@@ -189,22 +189,6 @@
                   />
                 </div>
               </div>
-              <div class="input-group">
-                <span class="input-group-addon reaction-addon"
-                  >Reakcijos triukšmas</span
-                >
-                <div id="reaction" class="input_blocks">
-                  <input type="number" id="reaction_cat" value="0.7" />
-                </div>
-              </div>
-              <div class="input-group">
-                <span class="input-group-addon reaction-addon"
-                  >Iteracijų skaičius</span
-                >
-                <div id="iter" class="input_blocks">
-                  <input type="number" id="iterations" value="1000" />
-                </div>
-              </div>
             </div>
           </div>
 
@@ -239,6 +223,31 @@
               <div id="N" class="input_blocks">
                 <input type="number" id="n_inp" value="100" />
               </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Reakcijos triukšmas</span
+              >
+              <div id="reaction" class="input_blocks">
+                <input type="number" id="reaction_cat" value="0.7" />
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon settings-addon"
+                >Iteracijų skaičius</span
+              >
+              <div id="iter" class="input_blocks">
+                <input type="number" id="iterations" value="2" />
+              </div>
+            </div>
+            <div class="input-group">
+              <input
+                type="checkbox"
+                readonly="readonly"
+                checked
+                id="show-only-mean"
+              />
+              <span>Rodyti tik medžiagų vidurkius (Iter.<100)</span>
             </div>
           </div>
         </div>

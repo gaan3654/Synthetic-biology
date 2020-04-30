@@ -1,50 +1,71 @@
 let chart;
-let yList;
 let tList;
 let sde = false;
-// function initializeChart(am4core) {}
+let colors = [];
+var legendData = [];
 
 function createCharts(am4core, sdeValue) {
   // VALUE DOES NOT GET SET
   sde = sdeValue;
-  console.log(sde);
-  // Themes begin
-  am4core.useTheme(am4themes_animated);
-  // Themes end
+  console.log("sde", sde);
 
-  // Create chart instance
+  am4core.useTheme(am4themes_animated);
   chart = am4core.create("chartdiv", am4charts.XYChart);
 
-  // Create axes
   let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
   xAxis.title.text = "Time";
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.title.text = "Concentration";
 
-  // Add scrollbar
   chart.scrollbarX = new am4charts.XYChartScrollbar();
 
-  chart.cursor = new am4charts.XYCursor();
-  chart.cursor.yAxis = yAxis;
+  // chart.cursor = new am4charts.XYCursor();
+  // chart.cursor.yAxis = xAxis;
+}
+
+function addLegend(showOnlyMean, sde) {
+  console.log("Legend", window.legendData);
+  console.log(legendData);
 
   chart.legend = new am4charts.Legend();
   chart.legend.position = "right";
   chart.legend.scrollable = true;
-  chart.legend.itemContainers.template.events.on("over", function (event) {
-    processOver(event.target.dataItem.dataContext);
-  });
 
-  chart.legend.itemContainers.template.events.on("out", function (event) {
-    processOut(event.target.dataItem.dataContext);
-  });
+  chart.legend.markers.template.width = 20;
+  chart.legend.markers.template.height = 1;
+
+  if (!showOnlyMean && sde) {
+    chart.legend.data = window.legendData;
+  } else {
+    chart.legend.itemContainers.template.events.on("over", function (event) {
+      processOver(event.target.dataItem.dataContext);
+    });
+
+    chart.legend.itemContainers.template.events.on("out", function (event) {
+      processOut(event.target.dataItem.dataContext);
+    });
+  }
 }
 
-function addToChart(y, t) {
-  yList = y;
+function addToChart(y, t, substance_obj) {
+  for (let i = 0; i < substance_obj.length; i++) {
+    colors.push(substance_obj[i]["color"]);
+    let legendObject = {
+      name: "Medžiaga " + subs_html_name[i],
+      fill: colors[i],
+    };
+    if (!legendData.some((data) => data.name === legendObject.name)) {
+      legendData.push(legendObject);
+    }
+  }
+
+  let yList = y;
   tList = t;
   let seriesList = [];
   for (let i = 0; i < yList.length; i++) {
-    seriesList.push(createSeries(i, "Medžiaga " + subs_html_name[i], yList[i]));
+    seriesList.push(
+      createSeries(i, "Medžiaga " + subs_html_name[i], yList[i], colors[i])
+    );
   }
   if (sde) {
     console.log(sde);
@@ -53,12 +74,13 @@ function addToChart(y, t) {
 }
 
 // Create series
-function createSeries(s, name, y) {
+function createSeries(s, name, y, color) {
   let series = chart.series.push(new am4charts.LineSeries());
   series.dataFields.valueY = "value" + s;
   series.dataFields.valueX = "time";
   series.name = name;
-
+  series.properties.stroke = am4core.color(color);
+  // series.legendSettings.labelText = "[{stroke}]{name}[/]";
   addFeatures(series);
 
   let data = [];
@@ -112,7 +134,8 @@ function addFeatures(series) {
   hoverState.properties.strokeWidth = 3;
 
   let dimmed = segment.states.create("dimmed");
-  dimmed.properties.stroke = am4core.color("#0adada");
+  // dimmed.properties.stroke = am4core.color("#0adada");
+  dimmed.properties.stroke = am4core.color("#d3d3d3");
 
   segment.events.on("over", function (event) {
     processOver(event.target.parent.parent.parent);

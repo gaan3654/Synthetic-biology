@@ -29,21 +29,17 @@ input::-webkit-color-swatch {
   width: 130px;
   border-radius: 0;
 }
-/* *********************************************8 */
+/* ********************************************* */
 #substance {
   width: 20%;
-  /* background-color: lightseagreen; */
   display: inline;
-}
-
-#reactions {
-  /* background-color: khaki; */
-}
-
-#settings {
-  /* background-color: lightcoral; */
 }
 
 .subs_react_buttons {
   width: 100%;
+}
+
+#show-only-mean {
+  margin-top: 2px;
+  margin-right: 5px;
 }

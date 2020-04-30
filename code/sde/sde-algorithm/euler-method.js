@@ -68,7 +68,8 @@ function solution(substance_obj) {
       updateFunctionIndices(y, substance_obj);
     }
     for (let j = 0; j < y.length; j++) {
-      y[j][i + 1] = eval(y[j][i] + kk1[j]);
+      let result = eval(y[j][i] + kk1[j]);
+      y[j][i + 1] = result <= 0 ? 0 : result;
     }
   }
   return [y, t];

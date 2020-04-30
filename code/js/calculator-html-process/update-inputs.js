@@ -1,5 +1,13 @@
 $("#submit_reaction").click(function () {
   $("#function").load(" #function", function () {
+    var sde = document.getElementById("iterations") != null;
+    if (sde) {
+      let constraint = document.getElementById("iterations").value;
+      if (constraint > 100) {
+        document.getElementById("show-only-mean").checked = true;
+      }
+    }
+
     var d = document.getElementById("function");
     //Sugeneruojamos funkcijos abiem reakcijos pusėms
     var reaction_left = [];

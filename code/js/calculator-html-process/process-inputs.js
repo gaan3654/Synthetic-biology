@@ -3,13 +3,17 @@ $("#submit").click(function () {
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
   var N = parseInt(document.getElementById("n_inp").value);
+  let timeCoordinate = [];
   let catalyzation = 0;
   let iterations = 1;
   let iterationsObject = document.getElementById("iterations");
+  let showOnlyMean = false;
+  let sdeAllYIterations = [];
   let sde = iterationsObject != null;
   if (sde) {
     iterations = parseInt(iterationsObject.value);
     catalyzation = document.getElementById("reaction_cat").value;
+    showOnlyMean = document.getElementById("show-only-mean").checked;
   }
 
   //Į objektą talpinami duomenis apie medžiagas:
@@ -101,15 +105,43 @@ $("#submit").click(function () {
         }
       }
     }
-    console.log("Goes to solution", substance_obj);
-
     initializeValues(N, int_begin, int_end, substance_obj);
 
-    console.log("iterations", iterations);
-    // for (let i = 0; i < iterations; i++) {
     let [yy, tt] = solution(substance_obj);
-    console.log(yy);
-    addToChart(yy, tt);
-    // }
+
+    if (showOnlyMean) {
+      sdeAllYIterations.push(yy);
+      timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
+    } else {
+      addToChart(yy, tt, substance_obj);
+    }
+  }
+  if (showOnlyMean) {
+    let yMeans = [];
+
+    for (let i = 0; i < sdeAllYIterations[0].length; i++) {
+      let ySum = [];
+
+      for (let j = 0; j < sdeAllYIterations.length; j++) {
+        if (j == 0) {
+          ySum = sdeAllYIterations[j][i];
+        } else {
+          ySum = ySum.map((a, n) => a + sdeAllYIterations[j][i][n]);
+        }
+      }
+      yMeans.push(ySum.map((a) => a / iterations));
+    }
+
+    addToChart(yMeans, timeCoordinate, substance_obj);
+  }
+  addLegend(showOnlyMean, sde);
+});
+
+$("#show-only-mean").click(function () {
+  let constraint = document.getElementById("iterations").value;
+  var isReadOnly = false;
+  if (constraint > 100) {
+    document.getElementById("show-only-mean").checked = true;
+    var isReadOnly = true;
   }
 });
