@@ -1,6 +1,8 @@
 var sdeAllYIterations = [];
 
 $("#submit").click(function () {
+  $("#calculate-probability").css("display", "inline");
+  $("#probability").css("display", "inline");
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
   var N = parseInt(document.getElementById("n_inp").value);
