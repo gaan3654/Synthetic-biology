@@ -30,8 +30,12 @@ $("#submit").click(function () {
     for (let i = 0; i < reactions_id.length; i++) {
       var get_reaction = document.getElementById(`reaction_input_${i}`).value;
       get_reaction = get_reaction.split(/<?->/);
-      get_reaction[0] = get_reaction[0].replace(/\+/g, "");
-      get_reaction[1] = get_reaction[1].replace(/\+/g, "");
+      get_reaction[0] = get_reaction[0]
+        .replace(/\+/g, "")
+        .replace(/\d+\*|\*\d+/g, "");
+      get_reaction[1] = get_reaction[1]
+        .replace(/\+/g, "")
+        .replace(/\d+\*|\*\d+/g, "");
       let reaction_left = get_reaction[0].split("");
       let reaction_right = get_reaction[1].split("");
 
@@ -41,6 +45,7 @@ $("#submit").click(function () {
         document.getElementById(`reaction_side${i}_${reaction_right[0]}_R`)
           .value,
       ];
+
       //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
       var substance_array = [];
 

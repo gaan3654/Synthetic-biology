@@ -68,9 +68,10 @@ $("#submit_reaction").click(function () {
           reaction[1] +
           `*(-${get_rate_2})`;
       }
-
-      left_side[i] = reaction[0].split("*");
-      right_side[i] = reaction[1].split("*");
+      left_side[i] = reaction[0].replace(/\d+\*|\*\d+/g, "").split("*");
+      right_side[i] = reaction[1].replace(/\d+\*|\*\d+/g, "").split("*");
+      console.log("Left side", left_side);
+      console.log(reaction);
     }
     // Sukuriami input laukai funkcijoms paleidus programą pirmą kartą
     for (let i = 0; i < left_side.length; i++) {

@@ -17,7 +17,7 @@ function add_additional_substance_input() {
       }
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
-    d.innerHTML += `<div class=input_blocks>
+    d.innerHTML += `<div class="input_blocks" id="block-${subs_names[i]}">
                         <div class="input-group">
                           <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
                           <input id=${subs_names[i]} type='text' value=0>
