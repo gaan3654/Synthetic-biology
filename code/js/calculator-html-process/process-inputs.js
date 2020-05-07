@@ -185,10 +185,13 @@ $("#calculate-probability").click(function () {
       }
       substanceMeanList.push((yCount * 100) / sdeAllYIterations.length);
     }
+    var d = document.getElementById("probability-result-block");
     for (let i = 0; i < substanceMeanList.length; i++) {
       // Reikia sugalvoti kaip atvaizduoti šiuos rezultatus
       console.log(subs_html_name[i], substanceMeanList[i]);
+      d.innerHTML += `<p>${subs_html_name[i]}: ${substanceMeanList[i]}%</p>`;
     }
+    $("#probability-result-block").css("display", "inline");
   } else {
     alert("Apskaičiuokite reakcijas");
   }

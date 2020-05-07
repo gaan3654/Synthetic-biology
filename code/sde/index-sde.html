@@ -250,28 +250,29 @@
               <span>Rodyti tik medžiagų vidurkius (Iter.<100)</span>
             </div>
           </div>
+          <!--  -->
 
-
-
-            <div id="graph_draw">
-              <div class="col-sm-6">
-                <div id="function_block" class="row col-sm-3 input-container">
-                  <button
-                    id="submit"
-                    class="button btn btn-custom-functionality"
-                    style="display: none;"
-                  >
-                    Piešti grafiką
-                  </button>
-                  <div id="function" style="display: none;">
-                    <!--Talpinamos reakcijos sukurtos funkcijos-->
-                  </div>
+          <!--  -->
+          <div id="graph_draw">
+            <div class="col-sm-6">
+              <div id="function_block" class="row col-sm-3 input-container">
+                <button
+                  id="submit"
+                  class="button btn btn-custom-functionality"
+                  style="display: none;"
+                >
+                  Piešti grafiką
+                </button>
+                <div id="function" style="display: none;">
+                  <!--Talpinamos reakcijos sukurtos funkcijos-->
                 </div>
               </div>
-              <div id="chartdiv"></div>
             </div>
+            <div id="chartdiv"></div>
+          </div>
 
-          <div class="col-sm-3 input-container" id="settings" >
+          <!--  -->
+          <div class="col-sm-3 input-container" id="settings">
             <div class="col-sm-3">
               <button
                 id="calculate-probability"
@@ -283,7 +284,7 @@
             </div>
 
             <div id="probability" style="display: none;">
-              <div class="input-group" >
+              <div class="input-group">
                 <p class="input-group-addon">
                   Apskaičiuoti tikimybę, kad reakcija patenka į intervalą:
                 </p>
@@ -297,7 +298,6 @@
                     type="number"
                     id="probability-interval-begin"
                     value="2"
-                    
                   />
                 </div>
               </div>
@@ -306,7 +306,11 @@
                   >Intervalo pabaiga</span
                 >
                 <div class="input_blocks">
-                  <input type="number" id="probability-interval-end" value="4" />
+                  <input
+                    type="number"
+                    id="probability-interval-end"
+                    value="4"
+                  />
                 </div>
               </div>
 
@@ -315,16 +319,15 @@
                 class="input-group"
                 style="display: none;"
               >
-                <span class="input-group-addon settings-addon">Tikimibė</span>
-                <div class="input_blocks">
+                <span class="input-group-addon settings-addon">Tikimibės</span>
+                <!-- <div class="input_blocks">
                   <input type="number" id="probabily-result" value="" />
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
+          <!--  -->
         </div>
-
-
       </div>
 
       <script
