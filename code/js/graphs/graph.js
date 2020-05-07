@@ -24,9 +24,6 @@ function createCharts(am4core, sdeValue) {
 }
 
 function addLegend(showOnlyMean, sde) {
-  console.log("Legend", window.legendData);
-  console.log(legendData);
-
   chart.legend = new am4charts.Legend();
   chart.legend.position = "right";
   chart.legend.scrollable = true;

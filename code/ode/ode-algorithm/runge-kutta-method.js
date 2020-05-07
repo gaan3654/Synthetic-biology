@@ -61,9 +61,14 @@ function solution(substance_obj) {
     let kk4 = generateKArray(t[i], y, h, substance_obj, kk3);
 
     for (let j = 0; j < y.length; j++) {
-      y[j][i + 1] = eval(
+      let result = eval(
         y[j][i] + (1 / 6) * (kk1[j] + 2 * kk2[j] + 2 * kk3[j] + kk4[j])
       );
+      if (result < 0) {
+        y[j][i + 1] = 0;
+      } else {
+        y[j][i + 1] = result;
+      }
     }
   }
   console.log("from solution", y);
