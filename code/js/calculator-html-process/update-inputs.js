@@ -2,12 +2,12 @@ $("#submit_reaction").click(function () {
   $("#function").load(" #function", function () {
     document.getElementById("submit").disabled = false;
     var sde = document.getElementById("iterations") != null;
-    if (sde) {
-      let constraint = document.getElementById("iterations").value;
-      if (constraint > 100) {
-        document.getElementById("show-only-mean").checked = true;
-      }
-    }
+    // if (sde) {
+    //   let constraint = document.getElementById("iterations").value;
+    // if (constraint > 100) {
+    //   document.getElementById("show-only-mean").checked = true;
+    // }
+    // }
 
     var d = document.getElementById("function");
     //Sugeneruojamos funkcijos abiem reakcijos pusėms
@@ -75,24 +75,28 @@ $("#submit_reaction").click(function () {
     for (let i = 0; i < left_side.length; i++) {
       for (var j = 0; j < left_side[i].length; j++) {
         d.innerHTML += `<div class="input_blocks generated-reaction-block">
-          <span class="input-group-addon">
-            ${i + 1}.${j + 1} ${left_side[i][j]}':
-          </span>
-          <input type="text"
-            id="reaction_side${i}_${left_side[i][j]}_L" 
-            value=${reaction_left[i]}>
-        </div>`;
+                          <div class="input-group"> 
+                            <span class="input-group-addon">
+                              ${i + 1}.${j + 1} ${left_side[i][j]}':
+                            </span>
+                            <input type="text"
+                              id="reaction_side${i}_${left_side[i][j]}_L" 
+                              value=${reaction_left[i]}>
+                          </div>
+                        </div>`;
       }
       // style="width:10px"
       for (let n = 0; n < right_side[i].length; n++) {
         d.innerHTML += `<div class="input_blocks generated-reaction-block">
-          <span class="input-group-addon">
-            ${i + 1}.${j + n + 1} ${right_side[i][n]}':
-          </span>
-          <input type="text" 
-            id="reaction_side${i}_${right_side[i][n]}_R" 
-            value=${reaction_right[i]}>
-        </div>`;
+                          <div class="input-group"> 
+                            <span class="input-group-addon">
+                              ${i + 1}.${j + n + 1} ${right_side[i][n]}':
+                            </span>
+                            <input type="text" 
+                              id="reaction_side${i}_${right_side[i][n]}_R" 
+                              value=${reaction_right[i]}>
+                          </div>
+                        </div>`;
       }
     }
     $("#submit").css("display", "inline");

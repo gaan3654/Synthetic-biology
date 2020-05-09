@@ -35,11 +35,11 @@ function add_additional_reaction_input() {
   reactions_id[i] = "reaction_" + [i];
   //Pridedami įvesties laukai papildomoms reakcijoms
   d.innerHTML += `<div id = reaction_info_${[i]}>
-                    <form>
                     <div class="input-group">
                       <span class="input-group-addon reaction-addon">${
                         i + 1
-                      }. Įveskite norimą reakciją:</span>
+                      }. Įveskite norimą reakciją:
+                      </span>
                       <div id=reaction_${[i]} class="input_blocks">
                           <input type="text" id="reaction_input_${[
                             i,

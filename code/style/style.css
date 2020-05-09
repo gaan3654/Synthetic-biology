@@ -2,16 +2,12 @@ body {
   height: 100%;
 }
 
-/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-.row.content {
-  /* height: 1200px; */
-}
-
 .image-center {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  max-width: 250px;
 }
 
 .content {
@@ -144,17 +140,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-.input-container {
-  width: 33%;
-  min-width: 300px;
-  height: auto;
-  margin: 0;
-}
-
-#chartdiv {
-  padding-bottom: 50vh;
-  height: max-content;
-  width: auto;
 }

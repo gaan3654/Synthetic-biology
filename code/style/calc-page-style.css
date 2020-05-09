@@ -30,9 +30,10 @@ input::-webkit-color-swatch {
   border-radius: 0;
 }
 /* ********************************************* */
+
 #substance {
-  width: 20%;
-  display: inline;
+  min-width: 20%;
+  /* display: inline; */
 }
 
 .subs_react_buttons {
@@ -42,4 +43,61 @@ input::-webkit-color-swatch {
 #show-only-mean {
   margin-top: 2px;
   margin-right: 5px;
+}
+
+#graph_draw {
+  margin: 0;
+}
+
+#probability-block {
+  /* background-color: lightseagreen; */
+  height: min-content;
+  z-index: 5;
+  margin-left: 0px;
+}
+
+/* ********************************************* */
+
+@media screen and (max-width: 767px) {
+  .input-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* #function_block {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  } */
+}
+
+/* ********************************************* */
+
+.input-container,
+.graph-input-container {
+  min-width: 370px !important;
+  width: 30%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  /* background-color: lawngreen; */
+}
+
+.input-container {
+  margin-left: 15px;
+}
+
+#chartdiv {
+  padding-bottom: 50vh;
+  height: max-content;
+  width: auto;
+}
+
+.generated-reaction-block {
+  margin: 0;
+  margin-left: -15px;
+}
+
+#function_block {
+  /* background-color: rgb(255, 0, 0); */
+  /* margin-left: 10px; */
 }

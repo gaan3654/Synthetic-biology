@@ -21,6 +21,8 @@ $("#submit").click(function () {
   //Į objektą talpinami duomenis apie medžiagas:
   // Vietą masyvę; Pradinę koncentraciją; Spalvą;
   // Pasikartojimų kiekį; Buvimą kairėje ar dešinėje reakcijos pusėse
+  // ---------------------------------------------------------------------------------------------------
+  sdeAllYIterations = [];
 
   createCharts(am4core, false);
   for (let i = 0; i < iterations; i++) {
@@ -116,15 +118,16 @@ $("#submit").click(function () {
 
     let [yy, tt] = solution(substance_obj);
 
-    if (!showOnlyMean) {
-      addToChart(yy, tt, substance_obj);
-    }
-
+    // if (!showOnlyMean) {
+    //   addToChart(yy, tt, substance_obj);
+    // }
+    // ---------------------------------------------------------------------------------------------------
     if (sde) {
       sdeAllYIterations.push(yy);
       timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
     }
   }
+
   if (showOnlyMean) {
     let yMeans = [];
 
@@ -141,19 +144,50 @@ $("#submit").click(function () {
       yMeans.push(ySum.map((a) => a / iterations));
     }
 
-    addToChart(yMeans, timeCoordinate, substance_obj);
+    addToChart([yMeans], timeCoordinate, substance_obj);
+  } else {
+    if (iterations < 201) {
+      addToChart(sdeAllYIterations, timeCoordinate, substance_obj);
+      console.log("hello 100");
+    } else if (iterations < 1001) {
+      console.log("hello 1000");
+      let y = [];
+      for (let i = 0; i < sdeAllYIterations.length; i += 10) {
+        y.push(sdeAllYIterations[i]);
+      }
+      addToChart(y, timeCoordinate, substance_obj);
+    } else if (iterations < 10001) {
+      console.log("hello 10000");
+      let y = [];
+      for (let i = 0; i < sdeAllYIterations.length; i += 100) {
+        y.push(sdeAllYIterations[i]);
+      }
+      addToChart(y, timeCoordinate, substance_obj);
+    } else {
+      console.log("hello else");
+      let y = [];
+      for (let i = 0; i < sdeAllYIterations.length; i += 500) {
+        y.push(sdeAllYIterations[i]);
+        if (y.length > 100) {
+          break;
+        }
+      }
+      addToChart(y, timeCoordinate, substance_obj);
+    }
   }
   addLegend(showOnlyMean, sde);
 });
 
-$("#show-only-mean").click(function () {
-  let constraint = document.getElementById("iterations").value;
-  var isReadOnly = false;
-  if (constraint > 100) {
-    document.getElementById("show-only-mean").checked = true;
-    var isReadOnly = true;
-  }
-});
+// $("#show-only-mean").click(function () {
+//   let constraint = document.getElementById("iterations").value;
+//   console.log(constraint);
+//   var isReadOnly = false;
+//   if (constraint > 1000) {
+//     console.log("constraint");
+//     document.getElementById("show-only-mean").checked = true;
+//     var isReadOnly = true;
+//   }
+// });
 
 $("#calculate-probability").click(function () {
   let intervalBegin = document.getElementById("probability-interval-begin")
@@ -178,20 +212,23 @@ $("#calculate-probability").click(function () {
           sdeAllYIterations[iteration][substance][
             sdeAllYIterations[iteration][substance].length - 1
           ];
-        console.log("last y", lastY, "substance", substance);
+        // console.log("last y", lastY, "substance", substance);
         if (lastY <= intervalEnd && lastY >= intervalBegin) {
           yCount++;
         }
       }
-      substanceMeanList.push((yCount * 100) / sdeAllYIterations.length);
+      substanceMeanList.push(
+        Math.round(((yCount * 100) / sdeAllYIterations.length) * 100) / 100
+      );
     }
     var d = document.getElementById("probability-result-block");
     for (let i = 0; i < substanceMeanList.length; i++) {
       // Reikia sugalvoti kaip atvaizduoti šiuos rezultatus
-      console.log(subs_html_name[i], substanceMeanList[i]);
+      // console.log(subs_html_name[i], substanceMeanList[i]);
       d.innerHTML += `<p>${subs_html_name[i]}: ${substanceMeanList[i]}%</p>`;
     }
     $("#probability-result-block").css("display", "inline");
+    addThreshold([intervalBegin, intervalEnd]);
   } else {
     alert("Apskaičiuokite reakcijas");
   }

@@ -14,6 +14,7 @@ function createCharts(am4core, sdeValue) {
 
   let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
   xAxis.title.text = "Time";
+
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.title.text = "Concentration";
 
@@ -24,6 +25,7 @@ function createCharts(am4core, sdeValue) {
 }
 
 function addLegend(showOnlyMean, sde) {
+  console.log("showOnlyMean", legendData);
   chart.legend = new am4charts.Legend();
   chart.legend.position = "right";
   chart.legend.scrollable = true;
@@ -45,6 +47,7 @@ function addLegend(showOnlyMean, sde) {
 }
 
 function addToChart(y, t, substance_obj) {
+  console.log("substance_obj", substance_obj);
   for (let i = 0; i < substance_obj.length; i++) {
     colors.push(substance_obj[i]["color"]);
     let legendObject = {
@@ -56,28 +59,49 @@ function addToChart(y, t, substance_obj) {
     }
   }
 
-  let yList = y;
   tList = t;
-  let seriesList = [];
-  for (let i = 0; i < yList.length; i++) {
-    seriesList.push(
-      createSeries(i, "Medžiaga " + subs_html_name[i], yList[i], colors[i])
-    );
+  seriesAllList = [];
+  for (let j = 0; j < y.length; j++) {
+    let yList = y[j];
+    let seriesList = [];
+    for (let i = 0; i < yList.length; i++) {
+      seriesList.push(
+        createSeries(i, "Medžiaga " + subs_html_name[i], yList[i], colors[i])
+      );
+    }
+    seriesAllList.push(seriesList);
   }
-  if (sde) {
-    console.log(sde);
-    addMean(seriesList, y);
+  // if (sde) {
+  //   console.log(sde);
+  //   addMean(seriesList, y);
+  // }
+}
+
+function addThreshold(threshold) {
+  let series = [];
+  for (let i = 0; i < threshold.length; i++) {
+    let data = new Array(tList.length).fill(threshold[i]);
+    series[i] = createSeries("Threshold", "Intervalas", data, "#000", true);
+    series[i].hiddenInLegend = true;
   }
+  chart.legend.data = window.legendData;
 }
 
 // Create series
-function createSeries(s, name, y, color) {
+function createSeries(s, name, y, color, threshold) {
   let series = chart.series.push(new am4charts.LineSeries());
   series.dataFields.valueY = "value" + s;
   series.dataFields.valueX = "time";
   series.name = name;
+  series.strokeWidth = 1;
   series.properties.stroke = am4core.color(color);
   // series.legendSettings.labelText = "[{stroke}]{name}[/]";
+
+  if (threshold) {
+    series.strokeDasharray = 7;
+    series.strokeWidth = 2;
+  }
+
   addFeatures(series);
 
   let data = [];
