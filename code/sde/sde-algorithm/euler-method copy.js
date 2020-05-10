@@ -1,4 +1,5 @@
 function evaluateFunction(t, y, func) {
+  let W = 1;
   return eval(func);
 }
 
@@ -31,12 +32,23 @@ function generateKArray(t, y, h, substance_obj, previous_kk) {
   return kk;
 }
 
+function randomGaussian(mean, sigma) {
+  let u = Math.random();
+  return (
+    (u % 1e-8 > 5e-9 ? 1 : -1) *
+      Math.sqrt(-Math.log(Math.max(1e-9, u))) *
+      sigma +
+    mean
+  );
+}
+
 let y = [];
 let t = [];
 let h;
 let N;
+let catalyzation;
 
-function initializeValues(big_n, a, b, substance_obj) {
+function initializeValues(a, b, big_n, substance_obj) {
   t[0] = a;
   let y_to_set = [];
   for (let i = 0; i < substance_obj.length; i++) {
@@ -45,10 +57,12 @@ function initializeValues(big_n, a, b, substance_obj) {
   y = y_to_set;
   h = (b - a) / big_n;
   N = big_n;
+  catalyzation = substance_obj[0].catalyzation;
 }
 
 function solution(substance_obj) {
   for (let i = 0; i < N; i++) {
+    // let W = randomGaussian(0, 1);
     t[i + 1] = t[i] + h;
     let kk1 = [];
     //a+b+b->c kol kas neveikia
@@ -60,17 +74,13 @@ function solution(substance_obj) {
     let kk3 = generateKArray(t[i], y, h, substance_obj, kk2);
     let kk4 = generateKArray(t[i], y, h, substance_obj, kk3);
 
+    console.log(substance_obj);
     for (let j = 0; j < y.length; j++) {
-      let result = eval(
+      y[j][i + 1] = eval(
         y[j][i] + (1 / 6) * (kk1[j] + 2 * kk2[j] + 2 * kk3[j] + kk4[j])
       );
-      if (result < 0) {
-        y[j][i + 1] = 0;
-      } else {
-        y[j][i + 1] = result;
-      }
+      // y[j][i + 1] = eval(y[j][i] * kk1[j]);
     }
   }
-  console.log("from solution", y);
   return [y, t];
 }

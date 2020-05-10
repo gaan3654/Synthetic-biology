@@ -17,31 +17,14 @@ function add_additional_substance_input() {
       }
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
-    d.innerHTML += `<div class=input_blocks>
+    d.innerHTML += `<div class="input_blocks" id="block-${subs_names[i]}">
                         <div class="input-group">
                           <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
-                          <input id=${subs_names[i]} type='text' value=0>
+                          <input id=${subs_names[i]} class="amount-input" type='text' value=0>
                           <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                         </div>
                     </div>`;
   }
-}
-
-{
-  /* <div class="input_blocks">
-<form>
-  <div class="input-group">
-    <span class="input-group-addon">[C']</span>
-    <input type="number" id="C" value="1" />
-    <input
-      type="color"
-      id="colorC"
-      class="s_colors"
-      value="#00ff00"
-    />
-  </div>
-</form>
-</div> */
 }
 
 //Prideda papildomų reakcijų input laukų
@@ -51,12 +34,12 @@ function add_additional_reaction_input() {
   var i = reactions_id.length;
   reactions_id[i] = "reaction_" + [i];
   //Pridedami įvesties laukai papildomoms reakcijoms
-  d.innerHTML += `<div id = reaction_info_${[i]}>
-                    <form>
+  d.innerHTML += `<div id = reaction_info_${[i]} class="input-group">
                     <div class="input-group">
                       <span class="input-group-addon reaction-addon">${
                         i + 1
-                      }. Įveskite norimą reakciją:</span>
+                      }. Įveskite norimą reakciją:
+                      </span>
                       <div id=reaction_${[i]} class="input_blocks">
                           <input type="text" id="reaction_input_${[
                             i,
@@ -86,15 +69,7 @@ function add_additional_reaction_input() {
                   </div>`;
 }
 
-// Pakeičiamas mygtuko pavadinimas
+// Ištrinamas grafikas
 function renew_button() {
-  document.getElementById("submit_reaction").value = "Atnaujinti reakciją(as)";
   rection_submited = true;
-}
-
-let previousBtn = "btn-list";
-function focusItem(id) {
-  document.getElementById(previousBtn).classList.remove("active");
-  document.getElementById(id).classList.add("active");
-  previousBtn = id;
 }

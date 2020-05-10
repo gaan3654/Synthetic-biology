@@ -8,19 +8,16 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <link rel="stylesheet" type="text/css" href="style/main-page-style.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
-    <div class="jumbotron text-center" style="margin-bottom: 0;">
+    <div class="jumbotron text-center">
       <img src="../assets/logo_.png" alt="Logo" />
       <h1>Diferencialinių lygčių sprendimas</h1>
-
-      <!-- Need do add logo here -->
-      <!-- <p>Resize this responsive page to see the effect!</p>  -->
     </div>
 
     <div class="container">
@@ -29,56 +26,54 @@
           <!-- Leaving empty place in the left side -->
         </div>
         <!-- Block for ODE buttons -->
-        <div class="col-sm-4 equations-container">
+        <div class="col-sm-4 equations-container" id="ode-container">
           <div class="btn-group-vertical btn-group-lg">
-            <a href="ode/ode-text.html" type="button" class="btn btn-custom">
-              Diferencialinės lygtys
-            </a>
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group">
-                <a href="ode/rk-text.html" type="button" class="btn btn-custom">
-                  Runge-Kutta metodas
-                </a>
-              </div>
-              <div class="btn-group">
-                <a
-                  href="ode/index-ode.html"
-                  type="button"
-                  class="btn btn-custom"
-                >
-                  Skaičiuok
-                </a>
-              </div>
+            <div class="btn-group-justified">
+              <a href="ode/ode-text.html" type="button" class="btn btn-custom">
+                Diferencialinės lygtys
+              </a>
+            </div>
+            <div class="btn-group-justified">
+              <a
+                href="ode/rk-text.html"
+                type="button"
+                class="btn btn-custom btn-title"
+              >
+                Runge-Kutta metodas
+              </a>
+              <a
+                href="ode/index-ode.html"
+                type="button"
+                class="btn btn-custom btn-calculate"
+              >
+                Skaičiuok
+              </a>
             </div>
           </div>
         </div>
         <!-- Block for SDE buttons-->
         <div class="col-sm-4 equations-container">
           <div class="btn-group-vertical btn-group-lg">
-            <a href="sde/sde-text.html" type="button" class="btn btn-custom">
-              Stochastinės lygtys
-            </a>
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group">
-                <a
-                  href="sde/euler-text.html"
-                  type="button"
-                  class="btn btn-custom"
-                >
-                  Eulerio metodas
-                </a>
-              </div>
-              <div class="btn-group">
-                <a type="button" class="btn btn-custom">Skaičiuok</a>
-              </div>
+            <div class="btn-group-justified">
+              <a href="sde/sde-text.html" type="button" class="btn btn-custom">
+                Stochastinės lygtys
+              </a>
             </div>
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group">
-                <a type="button" class="btn btn-custom">Metodas2</a>
-              </div>
-              <div class="btn-group">
-                <a type="button" class="btn btn-custom">Skaičiuok</a>
-              </div>
+            <div class="btn-group-justified">
+              <a
+                href="sde/euler-text.html"
+                type="button"
+                class="btn btn-custom btn-title"
+              >
+                Eulerio metodas
+              </a>
+              <a
+                href="sde/index-sde.html"
+                type="button"
+                class="btn btn-custom btn-calculate"
+              >
+                Skaičiuok
+              </a>
             </div>
           </div>
         </div>

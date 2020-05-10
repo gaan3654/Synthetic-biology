@@ -1,6 +1,5 @@
-/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-.row.content {
-  height: 1200px;
+body {
+  height: 100%;
 }
 
 .image-center {
@@ -8,12 +7,19 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  max-width: 250px;
+}
+
+.content {
+  float: right;
+  height: 100vh;
 }
 
 .sidenav {
   background-image: url("../../assets/background.jpg");
-  height: 100%;
+  height: 100vh;
   padding: 1%;
+  position: fixed;
 }
 
 /* Set black background color, white text and some padding */
@@ -23,18 +29,15 @@ footer {
   padding: 15px;
 }
 
-#function_block {
-  float: left;
+h1 {
+  padding: 2%;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #eee;
 }
 
-@media screen and (max-width: 767px) {
-  .sidenav {
-    height: auto;
-    padding: 15px;
-  }
-  .row.content {
-    height: auto;
-  }
+#function_block {
+  float: left;
 }
 
 /* Buttons */
@@ -95,7 +98,7 @@ footer {
 }
 
 .settings-addon {
-  min-width: 135px;
+  min-width: 150px;
 }
 
 .input-addon {
@@ -114,3 +117,96 @@ footer {
 .generated-reaction-block span {
   min-width: 65px;
 }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.btn-group-justified > .btn-group .btn {
+  width: unset;
+}
+
+.btn-group-justified > .btn,
+.btn-group-justified > .btn-group {
+  width: auto;
+}
+.btn-custom {
+  width: 100%;
+}
+.btn-title {
+  width: 70% !important;
+}
+.btn-calculate {
+  width: 30% !important;
+}
+
+.btn-group-vertical {
+  min-width: 280px;
+}
+
+/* ********************************************* */
+@media (max-width: 992px) {
+  .container {
+    width: inherit;
+  }
+}
+@media (min-width: 768px) {
+  #ode-container {
+    margin-right: 40px;
+    margin-left: -20px;
+  }
+  .col-sm-3 {
+    width: 20%;
+  }
+  .col-sm-9 {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+    z-index: 5;
+    position: static;
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-title,
+  .btn-calculate {
+    width: 100% !important;
+  }
+  .btn-group-justified {
+    /* width: 100% !important; */
+    display: grid !important;
+  }
+  .btn-group-vertical {
+    width: 100%;
+  }
+}
+
+/* ********************************************* */
