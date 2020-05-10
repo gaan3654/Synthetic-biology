@@ -118,14 +118,8 @@ $("#submit").click(function () {
 
     let [yy, tt] = solution(substance_obj);
 
-    // if (!showOnlyMean) {
-    //   addToChart(yy, tt, substance_obj);
-    // }
-    // ---------------------------------------------------------------------------------------------------
-    if (sde) {
-      sdeAllYIterations.push(yy);
-      timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
-    }
+    sdeAllYIterations.push(yy);
+    timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
 
   if (showOnlyMean) {

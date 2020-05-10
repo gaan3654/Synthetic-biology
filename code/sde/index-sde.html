@@ -84,7 +84,7 @@
         </li>
         <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
       </ul>
-      <br />
+      <!-- <br />
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search.." />
         <span class="input-group-btn">
@@ -92,7 +92,7 @@
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
-      </div>
+      </div> -->
     </div>
 
     <div class="content col-sm-9">
@@ -111,9 +111,10 @@
               </button>
             </div>
 
-            <div class="input_blocks">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[A']</span>
+            <!-- <div class="input_blocks"> -->
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[A']</span>
+              <div class="input_blocks">
                 <input type="number" id="A" value="2" />
                 <input
                   type="color"
@@ -123,9 +124,11 @@
                 />
               </div>
             </div>
-            <div class="input_blocks">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[B']</span>
+            <!-- </div>
+            <div class="input_blocks"> -->
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[B']</span>
+              <div class="input_blocks">
                 <input type="number" id="B" value="3" />
                 <input
                   type="color"
@@ -135,9 +138,11 @@
                 />
               </div>
             </div>
-            <div class="input_blocks">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[C']</span>
+            <!-- </div>
+            <div class="input_blocks"> -->
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[C']</span>
+              <div class="input_blocks">
                 <input type="number" id="C" value="1" />
                 <input
                   type="color"
@@ -147,6 +152,7 @@
                 />
               </div>
             </div>
+            <!-- </div> -->
           </div>
 
           <div class="col-sm-3 input-container" id="reactions">
@@ -259,23 +265,23 @@
         </div>
 
         <div id="graph_draw" class="row">
-          <!-- <div class="col-sm-6 graph-input-container"> -->
-          <div
-            class="col-sm-6 input-container graph-input-container"
-            id="function_block"
-          >
-            <button
-              id="submit"
-              class="button btn btn-custom-functionality"
-              style="display: none;"
-            >
-              Piešti grafiką
-            </button>
-            <div id="function" style="display: none;">
-              <!--Talpinamos reakcijos sukurtos funkcijos-->
+          <!-- ------------------------------------------------------------------------------------------------ -->
+          <div class="input-container">
+            <div class="col-sm-3 graph-input-container" id="function_block">
+              <div class="col-sm-3">
+                <button
+                  id="submit"
+                  class="button btn btn-custom-functionality"
+                  style="display: none;"
+                >
+                  Piešti grafiką
+                </button>
+              </div>
+
+              <div id="function" style="display: none;"></div>
             </div>
-            <!-- </div> -->
           </div>
+          <!-- ------------------------------------------------------------------------------------------------ -->
           <div
             class="col-sm-6 input-container graph-input-container"
             id="probability-block"
@@ -333,7 +339,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 input-container graph-input-container"></div>
+          <div class="col-sm-3 input-container graph-input-container"></div>
           <div id="chartdiv"></div>
         </div>
       </div>

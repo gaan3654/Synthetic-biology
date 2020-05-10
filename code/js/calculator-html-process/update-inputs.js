@@ -75,7 +75,7 @@ $("#submit_reaction").click(function () {
     for (let i = 0; i < left_side.length; i++) {
       for (var j = 0; j < left_side[i].length; j++) {
         d.innerHTML += `<div class="input_blocks generated-reaction-block">
-                          <div class="input-group"> 
+                          <div class="input-group "> 
                             <span class="input-group-addon">
                               ${i + 1}.${j + 1} ${left_side[i][j]}':
                             </span>

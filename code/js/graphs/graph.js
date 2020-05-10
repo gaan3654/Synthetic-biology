@@ -48,6 +48,7 @@ function addLegend(showOnlyMean, sde) {
 
 function addToChart(y, t, substance_obj) {
   console.log("substance_obj", substance_obj);
+  console.log("y", y);
   for (let i = 0; i < substance_obj.length; i++) {
     colors.push(substance_obj[i]["color"]);
     let legendObject = {

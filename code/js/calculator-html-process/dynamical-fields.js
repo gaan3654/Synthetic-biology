@@ -18,7 +18,7 @@ function add_additional_substance_input() {
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
     d.innerHTML += `<div class="input_blocks" id="block-${subs_names[i]}">
-                        <div class="input-group">
+                        <div class="input-group input_blocks" id="block-${subs_names[i]}">
                           <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
                           <input id=${subs_names[i]} type='text' value=0>
                           <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
@@ -27,6 +27,13 @@ function add_additional_substance_input() {
   }
 }
 
+/* <div class="input-group">
+  <span class="input-group-addon settings-addon">Intervalo pradžia</span>
+  <div class="input_blocks">
+    <input type="number" id="probability-interval-begin" value="2" />
+  </div>
+</div>; */
+
 //Prideda papildomų reakcijų input laukų
 function add_additional_reaction_input() {
   document.getElementById("submit_reaction").value = "Vykdyti reakcijas";
@@ -34,7 +41,7 @@ function add_additional_reaction_input() {
   var i = reactions_id.length;
   reactions_id[i] = "reaction_" + [i];
   //Pridedami įvesties laukai papildomoms reakcijoms
-  d.innerHTML += `<div id = reaction_info_${[i]}>
+  d.innerHTML += `<div id = reaction_info_${[i]} class="input-group">
                     <div class="input-group">
                       <span class="input-group-addon reaction-addon">${
                         i + 1

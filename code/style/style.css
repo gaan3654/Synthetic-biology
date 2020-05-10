@@ -40,18 +40,6 @@ h1 {
   float: left;
 }
 
-@media screen and (max-width: 767px) {
-  .sidenav {
-    z-index: 5;
-    position: static;
-    height: auto;
-    padding: 15px;
-  }
-  .row.content {
-    height: auto;
-  }
-}
-
 /* Buttons */
 
 .button:hover {
@@ -141,3 +129,78 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.btn-group-justified > .btn-group .btn {
+  width: unset;
+}
+
+.btn-group-justified > .btn,
+.btn-group-justified > .btn-group {
+  width: auto;
+}
+.btn-custom {
+  width: 100%;
+}
+.btn-title {
+  width: 70% !important;
+}
+.btn-calculate {
+  width: 30% !important;
+}
+
+.btn-group-vertical {
+  min-width: 280px;
+}
+
+/* ********************************************* */
+@media (max-width: 992px) {
+  .container {
+    width: inherit;
+  }
+}
+@media (min-width: 768px) {
+  #ode-container {
+    margin-right: 40px;
+    margin-left: -20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+    z-index: 5;
+    position: static;
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 30px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-title,
+  .btn-calculate {
+    width: 100% !important;
+  }
+  .btn-group-justified {
+    /* width: 100% !important; */
+    display: grid !important;
+  }
+  .btn-group-vertical {
+    width: 100%;
+  }
+}
+
+/* ********************************************* */
