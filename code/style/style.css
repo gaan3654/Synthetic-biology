@@ -168,6 +168,12 @@ input[type="number"] {
     margin-right: 40px;
     margin-left: -20px;
   }
+  .col-sm-3 {
+    width: 20%;
+  }
+  .col-sm-9 {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 767px) {

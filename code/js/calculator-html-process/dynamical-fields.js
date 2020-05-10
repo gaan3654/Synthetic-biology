@@ -18,21 +18,14 @@ function add_additional_substance_input() {
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
     d.innerHTML += `<div class="input_blocks" id="block-${subs_names[i]}">
-                        <div class="input-group input_blocks" id="block-${subs_names[i]}">
+                        <div class="input-group">
                           <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
-                          <input id=${subs_names[i]} type='text' value=0>
+                          <input id=${subs_names[i]} class="amount-input" type='text' value=0>
                           <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
                         </div>
                     </div>`;
   }
 }
-
-/* <div class="input-group">
-  <span class="input-group-addon settings-addon">Intervalo pradžia</span>
-  <div class="input_blocks">
-    <input type="number" id="probability-interval-begin" value="2" />
-  </div>
-</div>; */
 
 //Prideda papildomų reakcijų input laukų
 function add_additional_reaction_input() {

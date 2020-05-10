@@ -102,11 +102,10 @@
               </button>
             </div>
 
-            <!-- <div class="input_blocks"> -->
             <div class="input-group">
               <span class="input-group-addon input-addon">[A']</span>
               <div class="input_blocks">
-                <input type="number" id="A" value="2" />
+                <input type="number" class="amount-input" id="A" value="2" />
                 <input
                   type="color"
                   id="colorA"
@@ -115,12 +114,10 @@
                 />
               </div>
             </div>
-            <!-- </div>
-            <div class="input_blocks"> -->
             <div class="input-group">
               <span class="input-group-addon input-addon">[B']</span>
               <div class="input_blocks">
-                <input type="number" id="B" value="3" />
+                <input type="number" class="amount-input" id="B" value="3" />
                 <input
                   type="color"
                   id="colorB"
@@ -129,12 +126,10 @@
                 />
               </div>
             </div>
-            <!-- </div>
-            <div class="input_blocks"> -->
             <div class="input-group">
               <span class="input-group-addon input-addon">[C']</span>
               <div class="input_blocks">
-                <input type="number" id="C" value="1" />
+                <input type="number" class="amount-input" id="C" value="1" />
                 <input
                   type="color"
                   id="colorC"
@@ -143,7 +138,6 @@
                 />
               </div>
             </div>
-            <!-- </div> -->
           </div>
 
           <div class="col-sm-3 input-container" id="reactions">
@@ -244,7 +238,7 @@
                 checked
                 id="show-only-mean"
               />
-              <span>Rodyti tik medžiagų vidurkius (Iter.<100)</span>
+              <span>Rodyti tik medžiagų vidurkius</span>
             </div>
           </div>
           <!--  -->
@@ -352,6 +346,7 @@
         let rection_submited = false;
         //Užpildomi funkcijų laukai iš pateiktos reakcijos
 
+        var concentrationList = [];
         var subs_names = ["A", "B", "C"];
         var subs_color_id = ["colorA", "colorB", "colorC"];
         var subs_color = [

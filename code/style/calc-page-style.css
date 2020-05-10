@@ -58,9 +58,9 @@ input::-webkit-color-swatch {
   height: auto;
   margin: 0;
   padding: 0;
-  /* background-color: lawngreen; */
-  min-width: 370px !important;
-  width: 30%;
+  width: 370px;
+  /* background-color: khaki; */
+  margin-right: 1vw;
 }
 #chartdiv {
   padding-bottom: 50vh;
@@ -76,17 +76,12 @@ input::-webkit-color-swatch {
   z-index: 6;
 }
 
-#function {
-  padding-left: -15px;
-}
-
 /* ********************************************* */
 
 @media screen and (max-width: 767px) {
   .input-container {
     margin-left: auto !important;
     margin-right: auto !important;
-    /* background-color: khaki; */
   }
 }
 
@@ -99,7 +94,7 @@ input::-webkit-color-swatch {
   .graph-input-container {
     min-width: 50px !important;
     width: 100% !important;
-    float: none;
+    float: left;
   }
 
   .input-group {
