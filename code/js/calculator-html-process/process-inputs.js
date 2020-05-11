@@ -220,7 +220,7 @@ $("#calculate-probability").click(function () {
       // Reikia sugalvoti kaip atvaizduoti šiuos rezultatus
       d.innerHTML += `<p>${subs_html_name[i]}: ${substanceMeanList[i]}%</p>`;
     }
-    $("#probability-result-block").css("display", "inline");
+    $("#probability-result-block").css("display", "block");
     addThreshold([intervalBegin, intervalEnd]);
   } else {
     alert("Apskaičiuokite reakcijas");

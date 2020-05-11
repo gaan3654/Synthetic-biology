@@ -19,7 +19,8 @@ input::-webkit-color-swatch {
 }
 
 .btn-custom-functionality {
-  background: rgb(238, 238, 238);
+  /* background: rgb(238, 238, 238); */
+  background: rgb(216, 216, 216);
   border: 0;
   font-weight: 500;
 }
@@ -79,13 +80,27 @@ input::-webkit-color-swatch {
 /* ********************************************* */
 
 @media screen and (max-width: 767px) {
-  .input-container {
+  .input-container,
+  .graph-input-container {
     margin-left: auto !important;
     margin-right: auto !important;
+    width: 420px;
+  }
+
+  .input-group-addon {
+    width: 200px;
+    text-align: center;
+  }
+
+  input:not(.amount-input) {
+    width: 220px;
+  }
+  #show-only-mean {
+    width: auto;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
   .col-sm-9 {
     padding: 0;
   }
@@ -101,8 +116,36 @@ input::-webkit-color-swatch {
     display: block;
   }
 
-  .input-group-addon {
-    width: 170px;
+  .input-group,
+  .generated-reaction-block,
+  .col-sm-3:not(.sidenav) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .btn,
+  .input-group-addon,
+  input:not(.amount-input) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
+    text-align: center;
+  }
+
+  .amount-input {
+    text-align: center;
+    width: 196px;
+  }
+
+  .btn {
+    margin-top: 40px;
+  }
+
+  .input-group-addon:first-child {
+    border: 1px solid #ccc;
   }
 }
 
