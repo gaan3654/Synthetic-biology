@@ -101,6 +101,7 @@
         <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
       </ul>
     </div>
+    
     <div class="content col-sm-9">
       <h1>Runge-Kutta metodas</h1>
 
@@ -180,10 +181,10 @@
               </button>
             </div>
 
-            <div class="input_blocks" id="block-A">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[A']</span>
-                <input type="number" id="A" value="2" />
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[A']</span>
+              <div class="input_blocks">
+                <input type="number" class="amount-input" id="A" value="2" />
                 <input
                   type="color"
                   id="colorA"
@@ -192,10 +193,10 @@
                 />
               </div>
             </div>
-            <div class="input_blocks" id="block-B">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[B']</span>
-                <input type="number" id="B" value="3" />
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[B']</span>
+              <div class="input_blocks">
+                <input type="number" class="amount-input" id="B" value="3" />
                 <input
                   type="color"
                   id="colorB"
@@ -204,10 +205,10 @@
                 />
               </div>
             </div>
-            <div class="input_blocks" id="block-C">
-              <div class="input-group">
-                <span class="input-group-addon input-addon">[C']</span>
-                <input type="number" id="C" value="1" />
+            <div class="input-group">
+              <span class="input-group-addon input-addon">[C']</span>
+              <div class="input_blocks">
+                <input type="number" class="amount-input" id="C" value="1" />
                 <input
                   type="color"
                   id="colorC"
@@ -296,20 +297,22 @@
           </div>
         </div>
 
-        <div id="graph_draw">
-          <div id="function_block" class="row col-sm-3 input-container">
-            <button
-              id="submit"
-              class="button btn btn-custom-functionality"
-              style="display: none;"
-            >
-              Piešti grafiką
-            </button>
-            <div id="function" style="display: none;">
-              <!--Talpinamos reakcijos sukurtos funkcijos-->
+        <div id="graph_draw" class="row">
+          <div class="input-container">
+            <div class="col-sm-3 graph-input-container" id="function_block">
+              <div class="col-sm-3">
+                <button
+                  id="submit"
+                  class="button btn btn-custom-functionality"
+                  style="display: none;"
+                >
+                  Piešti grafiką
+                </button>
+              </div>
+
+              <div id="function" style="display: none;"></div>
             </div>
           </div>
-        </div>
         <div id="chartdiv"></div>
       </div>
 

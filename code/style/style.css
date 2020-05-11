@@ -186,6 +186,9 @@ input[type="number"] {
   .row.content {
     height: auto;
   }
+  .content {
+    float: none;
+  }
 }
 
 @media screen and (max-width: 400px) {
