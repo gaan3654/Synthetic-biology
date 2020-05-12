@@ -2,6 +2,7 @@ var sdeAllYIterations = [];
 
 $("#submit").click(function () {
   $("#calculate-probability").css("display", "inline");
+  $(".tooltip").css("display", "block");
   $("#probability").css("display", "inline");
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);

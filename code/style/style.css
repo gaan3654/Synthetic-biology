@@ -88,37 +88,6 @@ h1 {
   width: -webkit-fill-available !important;
 }
 
-.input-group-addon {
-  text-align: left;
-  border-radius: 2px;
-  line-height: 0.9;
-}
-
-.reaction-addon {
-  min-width: 195px;
-}
-
-.settings-addon {
-  min-width: 150px;
-}
-
-.input-addon {
-  min-width: 50px;
-}
-
-.generated-reaction-block {
-  display: table;
-  margin: 10px 0;
-}
-
-.generated-reaction-block input {
-  width: 300px;
-}
-
-.generated-reaction-block span {
-  min-width: 65px;
-}
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
