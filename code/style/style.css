@@ -8,6 +8,7 @@ body {
   margin-right: auto;
   width: 50%;
   max-width: 250px;
+  min-width: 130px;
 }
 
 .content {
@@ -143,12 +144,15 @@ input[type="number"] {
 .btn-group-justified > .btn-group {
   width: auto;
 }
+
 .btn-custom {
   width: 100%;
 }
+
 .btn-title {
   width: 70% !important;
 }
+
 .btn-calculate {
   width: 30% !important;
 }
@@ -168,9 +172,11 @@ input[type="number"] {
     margin-right: 40px;
     margin-left: -20px;
   }
+
   .col-sm-3 {
     width: 20%;
   }
+
   .col-sm-9 {
     width: 80%;
   }
@@ -183,9 +189,11 @@ input[type="number"] {
     height: auto;
     padding: 15px;
   }
+
   .row.content {
     height: auto;
   }
+
   .content {
     float: none;
   }
@@ -197,18 +205,25 @@ input[type="number"] {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
   .btn-title,
   .btn-calculate {
     width: 100% !important;
   }
+
   .btn-group-justified {
     /* width: 100% !important; */
     display: grid !important;
   }
+
   .btn-group-vertical {
     width: 100%;
+  }
+
+  body {
+    min-width: 320px;
   }
 }
 
