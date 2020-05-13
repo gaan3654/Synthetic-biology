@@ -37,14 +37,14 @@ $("#example2").click(function () {
 $("#example3").click(function () {
   $("#cancer_treatment").css("display", "block");
   $("#reactions").load(" #reactions > *", function () {
-    addSubstances(4);
-    addReaction(4);
+    addSubstances(2);
+    addReaction(1);
+    document.getElementById("A").value = "5";
+    document.getElementById("B").value = "5";
     document.getElementById("int_ends").value = "10";
     document.getElementById("n_inp").value = "1000";
-    document.getElementById("reaction_input_0").value = "A->B";
-    document.getElementById("reaction_input_1").value = "B->C";
-    document.getElementById("reaction_input_2").value = "C->D";
-    document.getElementById("reaction_input_3").value = "D->A";
+    document.getElementById("reaction_input_0").value = "A+B->B";
+
   });
   disposeGraph();
   reactions_id = ["reaction_0"];
