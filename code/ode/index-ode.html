@@ -58,46 +58,46 @@
       /></a>
       <ul class="nav nav-pills nav-stacked btn-list">
         <li><a class="btn-custom" href="rk-text.html">Apibrėžimas</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
-            >Pavyzdžiai <span class="caret"></span
-          ></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a
-                href="#"
-                id="example1"
-                class="example"
-                onclick="removePreviousText()"
-              >
-                Vandens susidarymo reakcija
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                id="example2"
-                class="example"
-                onclick="removePreviousText()"
-              >
-                Fotosintezė
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                id="example3"
-                class="example"
-                onclick="removePreviousText()"
-              >
-                Izomerizacijos reakcija
-              </a>
-            </li>
-          </ul>
-        </li>
         <li class="active">
-          <a class="btn-custom" href="#section3">Skaičiuotuvas</a>
+          <a class="btn-custom" href="#section3" onclick="removePreviousText()">Skaičiuotuvas</a>
         </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
+              >Pavyzdžiai <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  href="#"
+                  id="example1"
+                  class="example"
+                  onclick="removePreviousText()"
+                >
+                  Vandens susidarymo reakcija
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  id="example2"
+                  class="example"
+                  onclick="removePreviousText()"
+                >
+                  Fotosintezė
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  id="example3"
+                  class="example"
+                  onclick="removePreviousText()"
+                >
+                  Izomerizacijos reakcija
+                </a>
+              </li>
+            </ul>
+          </li>
         <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
       </ul>
     </div>
@@ -181,7 +181,7 @@
               </button>
             </div>
 
-            <div class="input-group">
+            <div class="input-group" id="block-A">
               <span class="input-group-addon input-addon">[A']</span>
               <div class="input_blocks">
                 <input type="number" class="amount-input" id="A" value="2" />
@@ -193,7 +193,7 @@
                 />
               </div>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="block-B">
               <span class="input-group-addon input-addon">[B']</span>
               <div class="input_blocks">
                 <input type="number" class="amount-input" id="B" value="3" />
@@ -205,7 +205,7 @@
                 />
               </div>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="block-C">
               <span class="input-group-addon input-addon">[C']</span>
               <div class="input_blocks">
                 <input type="number" class="amount-input" id="C" value="1" />

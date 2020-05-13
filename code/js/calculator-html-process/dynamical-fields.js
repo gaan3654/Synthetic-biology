@@ -17,12 +17,12 @@ function add_additional_substance_input() {
       }
     }
     //Pridedami įvesties laukai papildomoms medžiagoms
-    d.innerHTML += `<div class="input_blocks" id="block-${subs_names[i]}">
-                        <div class="input-group">
-                          <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
-                          <input id=${subs_names[i]} class="amount-input" type='text' value=0>
-                          <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
-                        </div>
+    d.innerHTML += `<div class="input-group" id="block-${subs_names[i]}">
+                      <span class="input-group-addon input-addon">[${subs_html_name[i]}']</span>
+                      <div class="input_blocks">
+                        <input id=${subs_names[i]} class="amount-input" type='text' value=0>
+                        <input type="color" id=${subs_color_id[i]} class="s_colors" value=${subs_color[i]}>
+                      </div>
                     </div>`;
   }
 }

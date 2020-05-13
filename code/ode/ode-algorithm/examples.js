@@ -12,8 +12,6 @@ $("#example1").click(function () {
     document.getElementById("C").value = "0";
   });
   reactions_id = ["reaction_0"];
-  last_added_reaction_id = -1;
-  exp3_clicked = "no";
 });
 
 $("#example2").click(function () {
@@ -32,11 +30,7 @@ $("#example2").click(function () {
     document.getElementById("D").value = "0";
   });
   reactions_id = ["reaction_0"];
-  last_added_reaction_id = -1;
-  exp3_clicked = "no";
 });
-
-var exp3_clicked = "no";
 
 $("#example3").click(function () {
   $("#reactions").load(" #reactions > *", function () {
@@ -50,8 +44,6 @@ $("#example3").click(function () {
     document.getElementById("reaction_input_3").value = "D->A";
   });
   reactions_id = ["reaction_0"];
-  last_added_reaction_id = -1;
-  exp3_clicked == "no";
 });
 
 function removePreviousText() {

@@ -19,7 +19,6 @@ input::-webkit-color-swatch {
 }
 
 .btn-custom-functionality {
-  /* background: rgb(238, 238, 238); */
   background: rgb(216, 216, 216);
   border: 0;
   font-weight: 500;
@@ -79,27 +78,19 @@ input::-webkit-color-swatch {
   display: table;
 }
 
-/* .generated-reaction-block input {
-  width: 225px;
-} */
-
 .input-container,
 .graph-input-container {
   height: auto;
   margin: 0;
   padding: 0;
   width: 370px;
-  /* background-color: khaki; */
   margin-right: 1vw;
 }
 
 /* *******************tooltip************************** */
 
 .tooltip {
-  /* background-color: khaki; */
   opacity: 10;
-  /* margin-left: 30px;
-  margin-top: 25px; */
   margin-left: 123px;
   margin-top: -48px;
 }
@@ -170,7 +161,6 @@ input:not(.amount-input) {
   .graph-input-container {
     margin-left: auto !important;
     margin-right: auto !important;
-    /* width: 420px; */
   }
 }
 
@@ -238,8 +228,4 @@ input:not(.amount-input) {
     left: 51%;
     border-color: transparent transparent #555 transparent;
   }
-  /* .tooltip .tooltiptext .tooltiptext::after {
-    bottom: -10px;
-    left: -50px;
-  } */
 }

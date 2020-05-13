@@ -23,13 +23,6 @@ body {
   position: fixed;
 }
 
-/* Set black background color, white text and some padding */
-footer {
-  background-color: #555;
-  color: white;
-  padding: 15px;
-}
-
 h1 {
   padding: 2%;
   vertical-align: middle;
@@ -183,7 +176,6 @@ input[type="number"] {
   }
 
   .btn-group-justified {
-    /* width: 100% !important; */
     display: grid !important;
   }
 

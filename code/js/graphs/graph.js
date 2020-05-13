@@ -19,9 +19,6 @@ function createCharts(am4core, sdeValue) {
   yAxis.title.text = "Concentration";
 
   chart.scrollbarX = new am4charts.XYChartScrollbar();
-
-  // chart.cursor = new am4charts.XYCursor();
-  // chart.cursor.yAxis = xAxis;
 }
 
 function addLegend(showOnlyMean, sde) {
@@ -46,9 +43,8 @@ function addLegend(showOnlyMean, sde) {
   }
 }
 
-function addToChart(y, t, substance_obj) {
-  console.log("substance_obj", substance_obj);
-  console.log("y", y);
+function addToChart(y, t, substance_obj, allIterations) {
+  colors = [];
   for (let i = 0; i < substance_obj.length; i++) {
     colors.push(substance_obj[i]["color"]);
     let legendObject = {
@@ -59,7 +55,6 @@ function addToChart(y, t, substance_obj) {
       legendData.push(legendObject);
     }
   }
-
   tList = t;
   seriesAllList = [];
   for (let j = 0; j < y.length; j++) {
@@ -72,10 +67,10 @@ function addToChart(y, t, substance_obj) {
     }
     seriesAllList.push(seriesList);
   }
-  // if (sde) {
-  //   console.log(sde);
-  //   addMean(seriesList, y);
-  // }
+  if (allIterations) {
+    console.log(allIterations);
+    addMean(seriesAllList, allIterations);
+  }
 }
 
 function addThreshold(threshold) {
@@ -121,7 +116,12 @@ function meanOfSeries(seriesList, meanSeries, y) {
   for (let i = 0; i < y[0].length - 1; i++) {
     let value = 0;
     for (let s = 0; s < seriesList.length; s++) {
-      value += seriesList[s].data[i]["value" + s];
+      console.log(subs_html_name[s]);
+      console.log(seriesList[s]);
+      console.log(seriesList[s].data.length);
+      console.log(seriesList[s].data[i]);
+      console.log(seriesList[s].data[i]["Medžiaga " + subs_html_name[s]]);
+      value += seriesList[s].data[i]["Medžiaga " + subs_html_name[s]];
     }
 
     let dataItem = { time: tList[i] };

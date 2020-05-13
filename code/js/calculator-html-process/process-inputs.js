@@ -142,24 +142,29 @@ $("#submit").click(function () {
     addToChart([yMeans], timeCoordinate, substance_obj);
   } else {
     if (iterations < 201) {
-      addToChart(sdeAllYIterations, timeCoordinate, substance_obj);
-      console.log("hello 100");
+      if (sde) {
+        addToChart(
+          sdeAllYIterations,
+          timeCoordinate,
+          substance_obj,
+          sdeAllYIterations
+        );
+      } else {
+        addToChart(sdeAllYIterations, timeCoordinate, substance_obj);
+      }
     } else if (iterations < 1001) {
-      console.log("hello 1000");
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 10) {
         y.push(sdeAllYIterations[i]);
       }
-      addToChart(y, timeCoordinate, substance_obj);
+      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
     } else if (iterations < 10001) {
-      console.log("hello 10000");
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 100) {
         y.push(sdeAllYIterations[i]);
       }
-      addToChart(y, timeCoordinate, substance_obj);
+      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
     } else {
-      console.log("hello else");
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 500) {
         y.push(sdeAllYIterations[i]);
@@ -167,22 +172,11 @@ $("#submit").click(function () {
           break;
         }
       }
-      addToChart(y, timeCoordinate, substance_obj);
+      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
     }
   }
   addLegend(showOnlyMean, sde);
 });
-
-// $("#show-only-mean").click(function () {
-//   let constraint = document.getElementById("iterations").value;
-//   console.log(constraint);
-//   var isReadOnly = false;
-//   if (constraint > 1000) {
-//     console.log("constraint");
-//     document.getElementById("show-only-mean").checked = true;
-//     var isReadOnly = true;
-//   }
-// });
 
 $("#calculate-probability").click(function () {
   let intervalBegin = document.getElementById("probability-interval-begin")
@@ -207,7 +201,6 @@ $("#calculate-probability").click(function () {
           sdeAllYIterations[iteration][substance][
             sdeAllYIterations[iteration][substance].length - 1
           ];
-        // console.log("last y", lastY, "substance", substance);
         if (lastY <= intervalEnd && lastY >= intervalBegin) {
           yCount++;
         }
