@@ -1,5 +1,6 @@
 $("#example1").click(function () {
   $("#water_production").css("display", "block");
+  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(3);
     addReaction(1);
@@ -16,6 +17,7 @@ $("#example1").click(function () {
 
 $("#example2").click(function () {
   $("#photosynthesis").css("display", "block");
+  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(4);
     addReaction(1);
@@ -33,6 +35,7 @@ $("#example2").click(function () {
 });
 
 $("#example3").click(function () {
+  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(4);
     addReaction(4);
@@ -45,41 +48,3 @@ $("#example3").click(function () {
   });
   reactions_id = ["reaction_0"];
 });
-
-function removePreviousText() {
-  $("#photosynthesis").css("display", "none");
-  $("#water_production").css("display", "none");
-}
-
-function addSubstances(totalAmount) {
-  colorId = [];
-  names = [];
-  for (let i = 0; i <= subs_names.length; i++) {
-    if (
-      !(totalAmount < subs_names.length && i >= totalAmount) &&
-      i < subs_names.length
-    ) {
-      names[i] = subs_names[i];
-      colorId[i] = `color${subs_names[i]}`;
-    }
-
-    if (totalAmount > subs_names.length) {
-      add_additional_substance_input();
-    } else if (totalAmount < subs_names.length && i > totalAmount) {
-      removeElement(subs_names[i - 1]);
-    }
-  }
-  subs_color_id = colorId;
-  subs_names = names;
-}
-
-function addReaction(totalAmount) {
-  for (let i = 0; i < totalAmount - 1; i++) {
-    add_additional_reaction_input();
-  }
-}
-
-function removeElement(elementId) {
-  var element = document.getElementById(`block-${elementId}`);
-  element.parentNode.removeChild(element);
-}

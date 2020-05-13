@@ -93,8 +93,8 @@ $("#submit_reaction").click(function () {
       }
     }
     $("#submit").css("display", "inline");
-    // $("#submit").prop("enabled", true);
     $("#function").css("display", "block");
+    $("#function_block").css("display", "block");
     if (rection_submited) {
       chart.dispose();
     }
