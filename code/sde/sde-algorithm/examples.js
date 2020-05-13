@@ -14,43 +14,44 @@ $("#example1").click(function () {
   reactions_id = ["reaction_0"];
 });
 
+// $("#example2").click(function () {
+
+//   $("#reactions").load(" #reactions > *", function () {
+//     addSubstances(4);
+//     addReaction(1);
+//     document.getElementById("int_ends").value = "1";
+//     document.getElementById("n_inp").value = "1000";
+//     document.getElementById("reaction_rate_0").value = "0.5";
+//     document.getElementById("second_reaction_rate_0").value = "0";
+//     document.getElementById("reaction_input_0").value = "6*A+6*B->C+6*D";
+//     document.getElementById("A").value = "8";
+//     document.getElementById("B").value = "5";
+//     document.getElementById("C").value = "0";
+//     document.getElementById("D").value = "0";
+//   });
+//   reactions_id = ["reaction_0"];
+// });
+
 $("#example2").click(function () {
-
-  $("#reactions").load(" #reactions > *", function () {
-    addSubstances(4);
-    addReaction(1);
-    document.getElementById("int_ends").value = "1";
-    document.getElementById("n_inp").value = "1000";
-    document.getElementById("reaction_rate_0").value = "0.5";
-    document.getElementById("second_reaction_rate_0").value = "0";
-    document.getElementById("reaction_input_0").value = "6*A+6*B->C+6*D";
-    document.getElementById("A").value = "8";
-    document.getElementById("B").value = "5";
-    document.getElementById("C").value = "0";
-    document.getElementById("D").value = "0";
-  });
-  reactions_id = ["reaction_0"];
-});
-
-$("#example3").click(function () {
   $("#covid19").css("display", "block");
   $("#reactions").load(" #reactions > *", function () {
-    addSubstances(4);
+    addSubstances(3);
     addReaction(2);
-    document.getElementById("int_ends").value = "1";
-    document.getElementById("n_inp").value = "1000";
+    document.getElementById("int_ends").value = "7";
+    document.getElementById("n_inp").value = "700";
     document.getElementById("A").value = "200";
-    document.getElementById("reaction_rate_0").value = "0.6";
     document.getElementById("B").value = "15";
-    document.getElementById("reaction_rate_1").value = "0.4";
     document.getElementById("C").value = "0";
-    document.getElementById("reaction_rate_2").value = "0.6";
-    document.getElementById("D").value = "0";
-    document.getElementById("reaction_rate_3").value = "0.4";
     document.getElementById("reaction_input_0").value = "A->B";
-    // document.getElementById("reaction_input_1").value = "A->A";
-    // document.getElementById("reaction_input_2").value = "B->C";
-    document.getElementById("reaction_input_3").value = "B->D";
+    document.getElementById("reaction_rate_0").value = "0.25";
+    document.getElementById("second_reaction_rate_0").value = "0.6";
+    document.getElementById("reaction_input_1").value = "B->C";
+    document.getElementById("reaction_rate_1").value = "0.04";
+    document.getElementById("second_reaction_rate_1").value = "0";
+    document.getElementById("iterations").value = "14";
+    document.getElementById("show-only-mean").checked=false;
+    document.getElementById("probability-interval-begin").value="20";
+    document.getElementById("probability-interval-end").value="140";
   });
   reactions_id = ["reaction_0"];
 });
