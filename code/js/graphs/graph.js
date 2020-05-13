@@ -46,6 +46,7 @@ function addLegend(showOnlyMean, sde) {
 function addToChart(y, t, substance_obj, allIterations) {
   colors = [];
   for (let i = 0; i < substance_obj.length; i++) {
+    console.log("substance_obj", substance_obj[i]);
     colors.push(substance_obj[i]["color"]);
     let legendObject = {
       name: "Medžiaga " + subs_html_name[i],
