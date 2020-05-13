@@ -72,5 +72,6 @@ function solution(substance_obj) {
       y[j][i + 1] = result <= 0 ? 0 : result;
     }
   }
+  console.log("From solution", y);
   return [y, t];
 }

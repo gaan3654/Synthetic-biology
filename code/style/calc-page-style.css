@@ -87,11 +87,14 @@ input::-webkit-color-swatch {
   margin-right: 1vw;
 }
 
+.dropdown-menu > li > a {
+  white-space: unset;
+}
 /* *******************tooltip************************** */
 
 .tooltip {
   opacity: 10;
-  margin-left: 123px;
+  margin-left: 143px;
   margin-top: -48px;
 }
 
@@ -134,7 +137,8 @@ input::-webkit-color-swatch {
 
 /* ***************Responsive****************************** */
 
-.input-group-addon {
+.input-group-addon,
+.btn {
   width: 150px;
   text-align: center;
 }
