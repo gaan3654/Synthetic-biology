@@ -1,6 +1,5 @@
 $("#example1").click(function () {
   $("#water_production").css("display", "block");
-  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(3);
     addReaction(1);
@@ -12,12 +11,12 @@ $("#example1").click(function () {
     document.getElementById("B").value = "2";
     document.getElementById("C").value = "0";
   });
+  disposeGraph();
   reactions_id = ["reaction_0"];
 });
 
 $("#example2").click(function () {
   $("#photosynthesis").css("display", "block");
-  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(4);
     addReaction(1);
@@ -31,11 +30,11 @@ $("#example2").click(function () {
     document.getElementById("C").value = "0";
     document.getElementById("D").value = "0";
   });
+  disposeGraph();
   reactions_id = ["reaction_0"];
 });
 
 $("#example3").click(function () {
-  disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(4);
     addReaction(4);
@@ -46,5 +45,6 @@ $("#example3").click(function () {
     document.getElementById("reaction_input_2").value = "C->D";
     document.getElementById("reaction_input_3").value = "D->A";
   });
+  disposeGraph();
   reactions_id = ["reaction_0"];
 });
