@@ -35,6 +35,7 @@ $("#example2").click(function () {
 });
 
 $("#example3").click(function () {
+  $("#cancer_treatment").css("display", "block");
   disposeGraph();
   $("#reactions").load(" #reactions > *", function () {
     addSubstances(4);
