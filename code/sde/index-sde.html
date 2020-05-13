@@ -76,7 +76,7 @@
           <ul class="dropdown-menu">
             <li>
               <a href="#" id="example1" class="example">
-                Pavyzdys 1
+                Vėžio gydymo modelis
               </a>
             </li>
             <li>
@@ -96,7 +96,70 @@
     </div>
 
     <div class="content col-sm-9">
-      <h1>Eulerio metodas</h1>
+      <h1>Euler-Matuyama metodas</h1>
+
+      <div id="cancer_treatment" class="example-text" style="display: none;">
+        <h2>Vėžio gydymo modelis</h2>
+        <p>
+          Stochastinių diferencialinių lygčių modelis gali būti naudingas vėžio gydymo plano kūrime. 
+          Verta neatmesti hipotezės, jog gydymo metu didelę įtaką daro ne tik skiriami vaistai, 
+          tačiau ir paciento emocinė būsena. 
+        </p>
+        <p>
+          Paimkimę, jog emocinė paciento būsena yra nenuspėjama, atsitiktinė. 
+          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo.
+        </p>
+        <p>
+          Gydymo reakciją užrašykime kaip :
+          \[ A+ B \longrightarrow^{k_1} C   , \]
+        </p>
+
+        <p>
+          kur \(A\) yra žymimos sergančios ląstelės, \(B\) - skirta vaistų dozė, 
+          o \(C\) - sveiktančios ląstelės. Reakcijos rezultato modelis turėtų parodyti, 
+          jog reakcijos pabaigoje pasveikusių ląstelių yra tiek pat, kiek ir buvo sergančių. 
+          Tačiau, be reakcijos greičio, yra pridedamas difuzijos koeficientas ir atsitiktinis kintamasis - emocinė būseną, 
+          teoriškai lygtyje ją vadintumę Wienerio procesu. 
+        </p>
+
+      </div>
+
+      <div id="covid19" class="example-text" style="display: none;">
+        <h2>COVID-19 prognozėse</h2>
+        <p>
+          2020 metų pandemija, apvertusi visą pasaulį aukštyn kojomis, palietusi tiek stipriausius tiek silniausius. 
+          Daugybė spelionių kiek bus aukų, kada viskas pasibaigs ir koks gyvenimas lauks žmonių pasibaigus pandemijai? 
+          Ne ką mažiau prognozių, bei moklsinių spelionių. 
+          Prie šių spelionių prisideda ir darbo autorės, siūlydamos savo COVID-19 prognozių modelį.
+        </p>
+        <p>
+          Studentės modeliui atlikti pateikia kelis pradinius duomenis:
+          Populiacijos skaičius, susirgimo tikyimybė ir sergančiųjų skaičius, 
+          tikimybė pasveikti bei neišgyventi.
+        </p>
+        <p>
+          Turint tokius pradinius duomenis yra aprašomos keturios reakcijos lygtys.
+          <ol>
+            <li>\( A \longrightarrow ^{k_{1}} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos skačius, 
+              \(B\) sergančiųjų o \(k\) susirgimo tikimybė.</li>
+            <li>
+              \( A \longrightarrow ^{k_{1}} A,\) reakcija, kuri vyksta su tam tikra nesusirgimo tikimybe.
+            </li>
+            <li>
+              \( B \longrightarrow ^{k_{1}} C,\) šioje reakcijoje \(C\) yra 
+              žymimas pasveikusiųjų skaičius su pateiktu procentu. 
+            </li>
+            <li>
+              \( B \longrightarrow ^{k_{1}} D,\) kur \(D\) yra aukų skaičius.
+            </li>
+          </ol>
+        </p>
+        <p>
+          Tokios situacijos įvykių baigties niekas tiksliai nuspėti negali, 
+          tačiau dėka stochastinių diferencialinių lygčių galima sukurti apytikslį modelį 
+          kaip bėgant laikui pandemija atsispindės populiacijoje.
+        </p>
+      </div>
 
       <div>
         <div class="row" id="substance_input">
