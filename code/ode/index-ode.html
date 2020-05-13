@@ -59,7 +59,7 @@
       <ul class="nav nav-pills nav-stacked btn-list">
         <li><a class="btn-custom" href="rk-text.html">Apibrėžimas</a></li>
         <li class="active">
-          <a class="btn-custom" href="#section3" onclick="removePreviousText()">Skaičiuotuvas</a>
+          <a class="btn-custom" href="#section3" onclick="removePreviousText(); disposeGraph();">Skaičiuotuvas</a>
         </li>
           <li class="dropdown">
             <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
@@ -320,6 +320,7 @@
         type="text/javascript"
         src="../js/calculator-html-process/process-inputs.js"
       ></script>
+      <script type="text/javascript" src="../js/calculator-html-process/examples-shared.js"></script>
       <script type="text/javascript" src="ode-algorithm/examples.js"></script>
       <script
         type="text/javascript"
