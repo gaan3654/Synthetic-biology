@@ -65,7 +65,7 @@
           <a
             class="btn-custom"
             href="#section3"
-            onclick="removePreviousText(); disposeGraph();"
+            onclick="removePreviousText();"
             >Skaičiuotuvas</a
           >
         </li>
@@ -75,20 +75,15 @@
           ></a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" id="example1" class="example">
+              <a href="#" id="example1" class="example" onclick="removePreviousText();">
                 Vėžio gydymo modelis
               </a>
             </li>
             <li>
-              <a href="#" id="example2" class="example">
+              <a href="#" id="example2" class="example" onclick="removePreviousText();">
                 COVID-19 progonzės
               </a>
             </li>
-            <!-- <li>
-              <a href="#" id="example3" class="example">
-                Pavyzdys 3
-              </a>
-            </li> -->
           </ul>
         </li>
         <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
@@ -96,7 +91,7 @@
     </div>
 
     <div class="content col-sm-9">
-      <h1>Euler-Matuyama metodas</h1>
+      <h1>Euler-Maruyama metodas</h1>
 
       <div id="cancer_treatment" class="example-text" style="display: none;">
         <h2>Vėžio gydymo modelis</h2>
@@ -313,12 +308,6 @@
               <span>Rodyti tik medžiagų vidurkius</span>
             </div>
           </div>
-          <!--  -->
-
-          <!--  -->
-
-          <!--  -->
-          <!--  -->
         </div>
 
         <div id="graph_draw" class="row">
@@ -466,9 +455,5 @@
 
       <br /><br />
     </div>
-
-    <!-- <footer class="container-fluid">
-      <p>Footer Text</p>
-    </footer> -->
   </body>
 </html>

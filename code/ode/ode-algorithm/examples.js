@@ -11,6 +11,7 @@ $("#example1").click(function () {
     document.getElementById("B").value = "2";
     document.getElementById("C").value = "0";
   });
+  removePreviousText();
   disposeGraph();
   reactions_id = ["reaction_0"];
 });
@@ -30,6 +31,7 @@ $("#example2").click(function () {
     document.getElementById("C").value = "0";
     document.getElementById("D").value = "0";
   });
+  removePreviousText();
   disposeGraph();
   reactions_id = ["reaction_0"];
 });
@@ -44,8 +46,8 @@ $("#example3").click(function () {
     document.getElementById("int_ends").value = "10";
     document.getElementById("n_inp").value = "1000";
     document.getElementById("reaction_input_0").value = "A+B->B";
-
   });
+  removePreviousText();
   disposeGraph();
   reactions_id = ["reaction_0"];
 });

@@ -57,7 +57,7 @@ function initializeValues(big_n, a, b, substance_obj) {
 }
 
 function solution(substance_obj) {
-  for (let i = 0; i < N; i++) {
+  for (let i = 0; i < N - 1; i++) {
     let W = randomGaussian(0, 1);
     t[i + 1] = t[i] + h;
     let kk1 = [];
@@ -72,6 +72,5 @@ function solution(substance_obj) {
       y[j][i + 1] = result <= 0 ? 0 : result;
     }
   }
-  console.log("From solution", y);
   return [y, t];
 }

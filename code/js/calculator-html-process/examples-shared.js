@@ -1,6 +1,8 @@
 function removePreviousText() {
   $("#photosynthesis").css("display", "none");
   $("#water_production").css("display", "none");
+  $("#cancer_treatment").css("display", "none");
+  $("#covid19").css("display", "none");
 }
 
 function disposeGraph() {

@@ -1,14 +1,9 @@
 let chart;
 let tList;
-let sde = false;
 let colors = [];
 var legendData = [];
 
-function createCharts(am4core, sdeValue) {
-  // VALUE DOES NOT GET SET
-  sde = sdeValue;
-  console.log("sde", sde);
-
+function createCharts(am4core) {
   am4core.useTheme(am4themes_animated);
   chart = am4core.create("chartdiv", am4charts.XYChart);
 
@@ -22,9 +17,8 @@ function createCharts(am4core, sdeValue) {
 }
 
 function addLegend(showOnlyMean, sde) {
-  console.log("showOnlyMean", legendData);
   chart.legend = new am4charts.Legend();
-  chart.legend.position = "right";
+  chart.legend.position = "bottom";
   chart.legend.scrollable = true;
 
   chart.legend.markers.template.width = 20;
@@ -43,13 +37,12 @@ function addLegend(showOnlyMean, sde) {
   }
 }
 
-function addToChart(y, t, substance_obj, allIterations) {
+function addToChart(y, t, substance_obj, showOnlyMeans, sde, allIterations) {
   colors = [];
   for (let i = 0; i < substance_obj.length; i++) {
-    console.log("substance_obj", substance_obj[i]);
     colors.push(substance_obj[i]["color"]);
     let legendObject = {
-      name: "Medžiaga " + subs_html_name[i],
+      name: "Medžiaga " + substance_obj[i]["name"],
       fill: colors[i],
     };
     if (!legendData.some((data) => data.name === legendObject.name)) {
@@ -63,14 +56,20 @@ function addToChart(y, t, substance_obj, allIterations) {
     let seriesList = [];
     for (let i = 0; i < yList.length; i++) {
       seriesList.push(
-        createSeries(i, "Medžiaga " + subs_html_name[i], yList[i], colors[i])
+        createSeries(
+          i,
+          "Medžiaga " + substance_obj[i]["name"],
+          yList[i],
+          colors[i],
+          showOnlyMeans,
+          sde
+        )
       );
     }
     seriesAllList.push(seriesList);
   }
   if (allIterations) {
-    console.log(allIterations);
-    addMean(seriesAllList, allIterations);
+    addMean(allIterations);
   }
 }
 
@@ -78,21 +77,36 @@ function addThreshold(threshold) {
   let series = [];
   for (let i = 0; i < threshold.length; i++) {
     let data = new Array(tList.length).fill(threshold[i]);
-    series[i] = createSeries("Threshold", "Intervalas", data, "#000", true);
+    series[i] = createSeries(
+      "Threshold",
+      "Intervalas",
+      data,
+      "#000",
+      false,
+      true,
+      true
+    );
     series[i].hiddenInLegend = true;
   }
   chart.legend.data = window.legendData;
 }
 
-// Create series
-function createSeries(s, name, y, color, threshold) {
+function createSeries(s, name, y, color, showOnlyMeans, sde, threshold, mean) {
   let series = chart.series.push(new am4charts.LineSeries());
   series.dataFields.valueY = "value" + s;
   series.dataFields.valueX = "time";
   series.name = name;
-  series.strokeWidth = 1;
   series.properties.stroke = am4core.color(color);
-  // series.legendSettings.labelText = "[{stroke}]{name}[/]";
+  if (mean || threshold) {
+    series.strokeWidth = 2;
+    series.properties.strokeOpacity = 1;
+  } else if (!showOnlyMeans && sde) {
+    series.strokeWidth = 1;
+    series.properties.strokeOpacity = 0.5;
+  } else {
+    series.strokeWidth = 1;
+    series.properties.strokeOpacity = 1;
+  }
 
   if (threshold) {
     series.strokeDasharray = 7;
@@ -112,41 +126,29 @@ function createSeries(s, name, y, color, threshold) {
   return series;
 }
 
-function meanOfSeries(seriesList, meanSeries, y) {
-  let data = [];
-  for (let i = 0; i < y[0].length - 1; i++) {
-    let value = 0;
-    for (let s = 0; s < seriesList.length; s++) {
-      console.log(subs_html_name[s]);
-      console.log(seriesList[s]);
-      console.log(seriesList[s].data.length);
-      console.log(seriesList[s].data[i]);
-      console.log(seriesList[s].data[i]["Medžiaga " + subs_html_name[s]]);
-      value += seriesList[s].data[i]["Medžiaga " + subs_html_name[s]];
+function addMean(allIterations) {
+  let meanSeries = [];
+  for (let substance = 0; substance < allIterations[0].length; substance++) {
+    let yList = [];
+    for (let n = 0; n < allIterations[0][substance].length; n++) {
+      let value = 0;
+      for (let iteration = 0; iteration < allIterations.length; iteration++) {
+        value += allIterations[iteration][substance][n];
+      }
+      yList.push(value / allIterations.length);
     }
-
-    let dataItem = { time: tList[i] };
-    dataItem["valueMean"] = value / seriesList.length;
-    data.push(dataItem);
+    meanSeries.push(
+      createSeries("Mean", "Vidurkis ", yList, "#000", false, true, false, true)
+    );
   }
-  meanSeries.data = data;
-}
 
-function addMean(seriesList, y) {
-  let meanSeries = chart.series.push(new am4charts.LineSeries());
-  meanSeries.dataFields.valueY = "valueMean";
-  meanSeries.dataFields.valueX = "time";
-  meanSeries.name = "Mean";
-  addFeatures(meanSeries);
-  meanSeries.strokeWidth = 2;
-  meanOfSeries(seriesList, meanSeries, y);
-
-  meanSeries.tooltipText =
-    "Time: [bold]{valueX}[/]\nConcentration: [bold]{categoryY}[/]";
-  meanSeries.tooltip.pointerOrientation = "vertical";
-  meanSeries.tooltip.background.cornerRadius = 20;
-  meanSeries.tooltip.background.fillOpacity = 0.5;
-  meanSeries.tooltip.label.padding(12, 12, 12, 12);
+  let legendObject = {
+    name: "Vidurkis",
+    fill: "#000",
+  };
+  if (!legendData.some((data) => data.name === legendObject.name)) {
+    legendData.push(legendObject);
+  }
 }
 
 function addFeatures(series) {
@@ -157,7 +159,6 @@ function addFeatures(series) {
   hoverState.properties.strokeWidth = 3;
 
   let dimmed = segment.states.create("dimmed");
-  // dimmed.properties.stroke = am4core.color("#0adada");
   dimmed.properties.stroke = am4core.color("#d3d3d3");
 
   segment.events.on("over", function (event) {

@@ -93,6 +93,7 @@ $("#submit").click(function () {
             `color${substance_array[i]}`
           ).value;
           obj["repetitions"] = 1;
+          obj["name"] = substance_array[i];
 
           if (
             get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
@@ -139,7 +140,7 @@ $("#submit").click(function () {
       yMeans.push(ySum.map((a) => a / iterations));
     }
 
-    addToChart([yMeans], timeCoordinate, substance_obj);
+    addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
     if (iterations < 201) {
       if (sde) {
@@ -147,23 +148,45 @@ $("#submit").click(function () {
           sdeAllYIterations,
           timeCoordinate,
           substance_obj,
+          showOnlyMean,
+          sde,
           sdeAllYIterations
         );
       } else {
-        addToChart(sdeAllYIterations, timeCoordinate, substance_obj);
+        addToChart(
+          sdeAllYIterations,
+          timeCoordinate,
+          substance_obj,
+          showOnlyMean,
+          sde
+        );
       }
     } else if (iterations < 1001) {
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 10) {
         y.push(sdeAllYIterations[i]);
       }
-      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
+      addToChart(
+        y,
+        timeCoordinate,
+        substance_obj,
+        showOnlyMean,
+        sde,
+        sdeAllYIterations
+      );
     } else if (iterations < 10001) {
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 100) {
         y.push(sdeAllYIterations[i]);
       }
-      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
+      addToChart(
+        y,
+        timeCoordinate,
+        substance_obj,
+        showOnlyMean,
+        sde,
+        sdeAllYIterations
+      );
     } else {
       let y = [];
       for (let i = 0; i < sdeAllYIterations.length; i += 500) {
@@ -172,7 +195,14 @@ $("#submit").click(function () {
           break;
         }
       }
-      addToChart(y, timeCoordinate, substance_obj, sdeAllYIterations);
+      addToChart(
+        y,
+        timeCoordinate,
+        substance_obj,
+        showOnlyMean,
+        sde,
+        sdeAllYIterations
+      );
     }
   }
   addLegend(showOnlyMean, sde);
