@@ -11,7 +11,6 @@ $("#example1").click(function () {
     document.getElementById("B").value = "12";
     document.getElementById("C").value = "0";
   });
-  removePreviousText();
   disposeGraph();
   reactions_id = ["reaction_0"];
 });
@@ -37,7 +36,6 @@ $("#example2").click(function () {
     document.getElementById("probability-interval-begin").value = "20";
     document.getElementById("probability-interval-end").value = "140";
   });
-  removePreviousText();
   disposeGraph();
   reactions_id = ["reaction_0"];
 });
