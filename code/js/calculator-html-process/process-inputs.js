@@ -1,44 +1,35 @@
 var sdeAllYIterations = [];
+var substance_obj = [];
+var possition = 0;
+var objectArray = [];
 
 $("#submit").click(function () {
-  $("#calculate-probability").css("display", "inline");
-  $(".tooltip").css("display", "block");
-  $("#probability").css("display", "inline");
+  showGraphBlocks();
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
   var N = parseInt(document.getElementById("n_inp").value);
   let timeCoordinate = [];
-  let catalyzation = 0;
   let iterations = 1;
   let iterationsObject = document.getElementById("iterations");
   let showOnlyMean = false;
   let sde = iterationsObject != null;
   if (sde) {
     iterations = parseInt(iterationsObject.value);
-    catalyzation = document.getElementById("reaction_cat").value;
     showOnlyMean = document.getElementById("show-only-mean").checked;
+  } else {
+    catalyzation = 0;
   }
 
-  //Į objektą talpinami duomenis apie medžiagas:
-  // Vietą masyvę; Pradinę koncentraciją; Spalvą;
-  // Pasikartojimų kiekį; Buvimą kairėje ar dešinėje reakcijos pusėse
-  // ---------------------------------------------------------------------------------------------------
   sdeAllYIterations = [];
 
   createCharts(am4core, false);
   for (let i = 0; i < iterations; i++) {
-    var substance_obj = [];
-    let possition = 0;
-    let objectArray = [];
+    substance_obj = [];
+    possition = 0;
+    objectArray = [];
     for (let i = 0; i < reactions_id.length; i++) {
-      var get_reaction = document.getElementById(`reaction_input_${i}`).value;
-      get_reaction = get_reaction.split(/<?->/);
-      get_reaction[0] = get_reaction[0]
-        .replace(/\+/g, "")
-        .replace(/\d+\*|\*\d+/g, "");
-      get_reaction[1] = get_reaction[1]
-        .replace(/\+/g, "")
-        .replace(/\d+\*|\*\d+/g, "");
+      let get_reaction = extractSubstances(i);
+
       let reaction_left = get_reaction[0].split("");
       let reaction_right = get_reaction[1].split("");
 
@@ -49,7 +40,6 @@ $("#submit").click(function () {
           .value,
       ];
 
-      //Padaryti, kad surastų medžiagų raides ir tik jas paimtų, o ne tiesiog visas raides
       var substance_array = [];
 
       let tmp = func_array[0];
@@ -58,62 +48,9 @@ $("#submit").click(function () {
         tmp = tmp.replace(tmp.match(alphabet_pattern)[0], "");
       }
 
-      var skip = "no";
       for (let i = 0; i < substance_array.length; i++) {
-        //Nepridedamos dulikuotos medžiagų reikšmės
-        if (!sde) {
-          for (let j = 0; j < substance_obj.length; j++) {
-            if (
-              substance_array[i] in substance_obj[j] &&
-              substance_obj[j]["occurrences"] != "both"
-            ) {
-              substance_obj[j]["repetitions"]++;
-              if (get_reaction[0].match(new RegExp(substance_array[i], "g"))) {
-                substance_obj[j]["occurrences"] = "left";
-                substance_obj[j][
-                  "function"
-                ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
-              } else {
-                substance_obj[j]["occurrences"] = "right";
-                substance_obj[j][
-                  "function"
-                ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
-              }
-            }
-          }
-        }
-        //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
-        if (!objectArray.includes(substance_array[i], 0)) {
-          var obj = {};
-          obj[substance_array[i]] = `y[${possition++}][0]`;
-          obj[`initial_conc`] = parseFloat(
-            document.getElementById(`${substance_array[i]}`).value
-          );
-          obj["color"] = document.getElementById(
-            `color${substance_array[i]}`
-          ).value;
-          obj["repetitions"] = 1;
-          obj["name"] = substance_array[i];
-
-          if (
-            get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
-            get_reaction[1].match(new RegExp(substance_array[i], "g"))
-          ) {
-            obj["occurrences"] = "both";
-            obj["function"] = `${func_array[0]}` + "+" + `${func_array[1]}`;
-          } else if (
-            get_reaction[0].match(new RegExp(substance_array[i], "g"))
-          ) {
-            obj["occurrences"] = "left";
-            obj["function"] = `${func_array[0]}`;
-          } else {
-            obj["occurrences"] = "right";
-            obj["function"] = `${func_array[1]}`;
-          }
-          obj["catalyzation"] = catalyzation;
-          substance_obj.push(obj);
-          objectArray.push(substance_array[i]);
-        }
+        processDuplicates(substance_array, i, func_array, sde);
+        initializeSubstances(substance_array, i, get_reaction, func_array);
       }
     }
     initializeValues(N, int_begin, int_end, substance_obj);
@@ -125,21 +62,7 @@ $("#submit").click(function () {
   }
 
   if (showOnlyMean) {
-    let yMeans = [];
-
-    for (let i = 0; i < sdeAllYIterations[0].length; i++) {
-      let ySum = [];
-
-      for (let j = 0; j < sdeAllYIterations.length; j++) {
-        if (j == 0) {
-          ySum = sdeAllYIterations[j][i];
-        } else {
-          ySum = ySum.map((a, n) => a + sdeAllYIterations[j][i][n]);
-        }
-      }
-      yMeans.push(ySum.map((a) => a / iterations));
-    }
-
+    let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
     if (iterations < 201) {
@@ -207,6 +130,99 @@ $("#submit").click(function () {
   }
   addLegend(showOnlyMean, sde);
 });
+
+function initializeSubstances(substance_array, i, get_reaction, func_array) {
+  //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
+  if (!objectArray.includes(substance_array[i], 0)) {
+    var obj = {};
+    obj[substance_array[i]] = `y[${possition++}][0]`;
+    obj[`initial_conc`] = parseFloat(
+      document.getElementById(`${substance_array[i]}`).value
+    );
+    obj["color"] = document.getElementById(`color${substance_array[i]}`).value;
+    obj["repetitions"] = 1;
+    obj["name"] = substance_array[i];
+
+    if (
+      get_reaction[0].match(new RegExp(substance_array[i], "g")) &&
+      get_reaction[1].match(new RegExp(substance_array[i], "g"))
+    ) {
+      obj["occurrences"] = "both";
+      obj["function"] = `${func_array[0]}` + "+" + `${func_array[1]}`;
+    } else if (get_reaction[0].match(new RegExp(substance_array[i], "g"))) {
+      obj["occurrences"] = "left";
+      obj["function"] = `${func_array[0]}`;
+    } else {
+      obj["occurrences"] = "right";
+      obj["function"] = `${func_array[1]}`;
+    }
+    obj["catalyzation"] = catalyzation;
+    substance_obj.push(obj);
+    objectArray.push(substance_array[i]);
+  }
+}
+
+function processDuplicates(substance_array, i, func_array, sde) {
+  if (!sde) {
+    for (let j = 0; j < substance_obj.length; j++) {
+      if (
+        substance_array[i] in substance_obj[j] &&
+        substance_obj[j]["occurrences"] != "both"
+      ) {
+        substance_obj[j]["repetitions"]++;
+        if (get_reaction[0].match(new RegExp(substance_array[i], "g"))) {
+          substance_obj[j]["occurrences"] = "left";
+          substance_obj[j][
+            "function"
+          ] = `${substance_obj[j]["function"]}+${func_array[0]}`;
+        } else {
+          substance_obj[j]["occurrences"] = "right";
+          substance_obj[j][
+            "function"
+          ] = `${substance_obj[j]["function"]}+${func_array[1]}`;
+        }
+      }
+    }
+  }
+}
+
+function extractSubstances(i) {
+  let get_reaction = document.getElementById(`reaction_input_${i}`).value;
+  get_reaction = get_reaction.split(/<?->/);
+  get_reaction[0] = get_reaction[0]
+    .replace(/\+/g, "")
+    .replace(/\d+\*|\*\d+/g, "");
+  get_reaction[1] = get_reaction[1]
+    .replace(/\+/g, "")
+    .replace(/\d+\*|\*\d+/g, "");
+
+  return get_reaction;
+}
+
+function drawOnlyMeans(iterations) {
+  let yMeans = [];
+
+  for (let i = 0; i < sdeAllYIterations[0].length; i++) {
+    let ySum = [];
+
+    for (let j = 0; j < sdeAllYIterations.length; j++) {
+      if (j == 0) {
+        ySum = sdeAllYIterations[j][i];
+      } else {
+        ySum = ySum.map((a, n) => a + sdeAllYIterations[j][i][n]);
+      }
+    }
+    yMeans.push(ySum.map((a) => a / iterations));
+  }
+
+  return yMeans;
+}
+
+function showGraphBlocks() {
+  $("#calculate-probability").css("display", "inline");
+  $(".tooltip").css("display", "block");
+  $("#probability").css("display", "inline");
+}
 
 $("#calculate-probability").click(function () {
   let intervalBegin = document.getElementById("probability-interval-begin")

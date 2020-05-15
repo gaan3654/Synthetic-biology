@@ -61,7 +61,6 @@ function solution(substance_obj) {
     let W = randomGaussian(0, Math.sqrt(h));
     t[i + 1] = t[i] + h;
     let kk1 = [];
-    //a+b+b->c kol kas neveikia
     for (let j = 0; j < y.length; j++) {
       let func = renewFunction(y, j, substance_obj, true);
       kk1.push(calculateK1(t[i], y, h, func, W));

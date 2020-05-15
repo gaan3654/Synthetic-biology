@@ -1,7 +1,6 @@
 $("#submit_reaction").click(function () {
   $("#function").load(" #function", function () {
     document.getElementById("submit").disabled = false;
-    var sde = document.getElementById("iterations") != null;
 
     var d = document.getElementById("function");
     //Sugeneruojamos funkcijos abiem reakcijos pusėms
@@ -10,7 +9,7 @@ $("#submit_reaction").click(function () {
     var left_side = [];
     var right_side = [];
 
-    let catalyzation = document.getElementById("reaction_cat");
+    var catalyzation = document.getElementById("reaction_cat");
     for (var i = 0; i < reactions_id.length; i++) {
       var get_rate = document.getElementById(`reaction_rate_${i}`).value;
       var get_rate_2 = document.getElementById(`second_reaction_rate_${i}`)
