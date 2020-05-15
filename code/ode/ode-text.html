@@ -47,20 +47,53 @@
         Paprastosios diferencialinės lygtys
       </h1>
       <p>
-        Paprasta diferencialinė lygtis (ODE) yra lygtis, kurią sudaro
-        nepriklausomas kintamasis, ieškoma funkcija ir jos išvestinė.
+        Paprastosios diferencialinės lygtys yra mažiausiai sudėtingos 
+        iš diferencialinių lygčių. 
+        Jose dalyvauja vienas nežinomas kintamasis. 
+        Paprastųjų diferencialinių lygčių sudėtingumas gali kisti priklausomai nuo jose dalyvaujančių funkcijų. 
+        Jei lygtyje yra skaičiuojama pirmojo laipsnio funkcija - 
+        lygtis atitinkamai bus vadinama pirmojo laipsnio diferencialine lygtimi, jei antro laipsnio nelygybė, 
+        tuomet ir diferencialinės lygties rūšis skirsis.
       </p>
 
       <p>
-        Diferencialinės lygties sprendiniu yra funkcija, kuri įstatyta į lygtį
-        paverčia ją tapatybe. Diferencialinės lygties \(y’=f(x)\) sprendiniu yra
-        funkcija \(y=F(x)\), kur \(F(x)\) yra funkcijos \(f(x)\) pirmykštė.
+        Paprastosios diferencialinės lygtys <i>(iš anglų kalbos - Ordinary Differential Equations, trumpinys -ODE)</i> 
+        gali būti puikus įrankis modeliuoti biologinių procesų pokyčius (dinamiką). 
+        Teoriniai eksperimentų rezultatai, dažniausiai yra sunkiai suprantami. 
+        Rezultatų modeliavimas gali suteikti tyrimui daugiau prasmės bei suteikti aiškesnę išvestį. 
+        Modeliuojant biologinius procesus naudojant diferencialines lygtis, užtenka žinoti pradinius duomenis, 
+        t.y. reakcijoje dalyvaujančių medžiagų pradines koncentracijas, reakcijos laiką, bei šalutinius poveikius. 
+        Toks modeliavimas palengvina proceso analizę bei gali skatinti naujų idėjų bei hipotezių atsiradimą. 
+        Verta paminėti, jog biologinių procesų tyrimų modeliavimas pasitelkiant diferencialines lygtis sutaupo tyrėjų laiką ir reakcijoms naudojamus resursus, 
+        kadangi modeliavimas vyksta skaitiniu pavidalu.
+      </p>
+      <h3>
+        Paprastųjų diferencialinių lygčių apibrėžimas
+      </h3>
+      <p>
+        Paprastosios diferencialinės lygtys apibūdina, kaip laikui bėgant kinta įvykių būsenos, pasitelkiant tik pradinėmis jų duomenimis.  
+        Paprastoji diferencialinė lygtis gali būti užrašyta tokiu pavidalu: \[ \mbox{$\dot{x} = f(x(t), u(t), t) $}. \]
+        Tašku virš funkcijos yra žymima išvestinė \(\mbox{$\frac{dx(t)}{dt}$}\), skaičiuojama pagal laiko kintamąjį \(\mbox{$t$}\). 
+        Čia \(\mbox{$x(t)\in \mathbb{R}^n$}\) yra funkcijos reikšmė laike \(\mbox{$t$}\), skaičiuojama \(\mbox{$n$}\) kartų.  
+        Diferencialinei lygčiai skaičiuoti taip pat naudojamas šalutinių poveikių vektorius \(\mbox{$u(t)\in \mathbb{R}^m$}\), kuris lygčiai taikomas viso laiko metu
       </p>
 
       <p>
-        Paprastąja diferencialine lygtimi vadinama lygybė \(F(x, y, y’, …,
-        y(n))=0\), kurioje \(x \in I \subset \mathbb{R} \) yra nepriklausomas
-        kintamasis, o \(y(x)\) - nežinoma funkcija.
+        ODE paaiškinti, puikiai tinka biologinių reakcijų pavyzdys. Paimkime denatūracijos reakciją. 
+        Denatūracija, tai yra baltymo erdvinės struktūros pasikeitimas, dėl kurio jis negali atlikti savo funkcijos. 
+        Konkretus denatūracijos pavyzdys būtų fibrinogeno virsmas į fibriną. Du skirtingi baltymai, fibrinogenas 
+         - gyvame organizme atliekantis apsauginę funkciją, tretinės baltymo struktūros, tirpus vandenyje, 
+         esant staigiam temperatūros pokyčiui pakeičia savo struktūrą į antrinę, netirpstantį vandenyje fibrino baltymą. 
+         Taigi, abiejų baltymų koncentracijas reakcijos metu galima užrašyti sekančiu būdu \(\mbox{$a(t)=[a_1(t), a_2(t), ..., a_n(t)]^T$}\)  ir 
+         \(\mbox{$b(t)=[b_1(t), b_2(t), ..., b_n(t)]^T$}\) , kur \(\mbox{$a_1(t)$}\) atvaizduoja fibrinogeno koncentracijos kiekį laike \(\mbox{$t$}\), 
+         o  \() \mbox{$b_1(t)$}\) - fibrino. Šios reakcijos pavyzdyje, \(\mbox{$u(t)$}\) atspindėtų pH ir temperatūros pokyčius, 
+         mechaninius poveikius ar sunkiųjų metalų įtaką reakcijos greičiui.
+       </p>
+       <p>
+         \(\mbox{$\dot{x} = f(x(t), u(t), t) $}\) diferencialinės lygties užrašas aprašo, 
+         kaip kinta reakcijoje dalyvaujančių medžiagų kiekis bėgant laikui ir esant papildomiems dirgikliams. 
+         Tačiau ne visuomet lygtį veikia papildomos sąlygos, 
+          tad  diferencialinė lygtis gali būti modeliuojama tik  atsižvelgiant į laiką ir užrašoma \(\mbox{$\dot{x} = f(x(t), t) $}\).
       </p>
 
       <!-- <p>
