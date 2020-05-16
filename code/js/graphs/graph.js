@@ -8,14 +8,14 @@ function createCharts(am4core, weakEuler) {
   chart = am4core.create("chartdiv", am4charts.XYChart);
 
   let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
-  xAxis.title.text = "Time";
+  xAxis.title.text = "Laikas";
 
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  yAxis.title.text = "Concentration";
+  yAxis.title.text = "Koncentracija";
 
   if (weakEuler) {
-    xAxis.title.text = "Intervals";
-    yAxis.title.text = "Repetitions";
+    xAxis.title.text = "Intervalas";
+    yAxis.title.text = "Pasikartojimai";
   }
 
   chart.scrollbarX = new am4charts.XYChartScrollbar();
