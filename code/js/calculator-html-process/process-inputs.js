@@ -351,7 +351,6 @@ $("#calculate-probability").click(function () {
     }
     var d = document.getElementById("probability-result-block");
     for (let i = 0; i < substanceMeanList.length; i++) {
-      // Reikia sugalvoti kaip atvaizduoti šiuos rezultatus
       d.innerHTML += `<p>${subs_html_name[i]}: ${substanceMeanList[i]}%</p>`;
     }
     $("#probability-result-block").css("display", "block");

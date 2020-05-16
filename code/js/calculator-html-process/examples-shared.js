@@ -45,3 +45,9 @@ function removeElement(elementId) {
   var element = document.getElementById(`block-${elementId}`);
   element.parentNode.removeChild(element);
 }
+
+function sdeInitial() {
+  $("#reactions").load(" #reactions > *", function () {});
+  $("#substance").load(" #substance > *", function () {});
+  $("#settings").load(" #settings > *", function () {});
+}
