@@ -3,7 +3,7 @@ let tList;
 let colors = [];
 var legendData = [];
 
-function createCharts(am4core) {
+function createCharts(am4core, weakEuler) {
   am4core.useTheme(am4themes_animated);
   chart = am4core.create("chartdiv", am4charts.XYChart);
 
@@ -12,6 +12,11 @@ function createCharts(am4core) {
 
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.title.text = "Concentration";
+
+  if (weakEuler) {
+    xAxis.title.text = "Intervals";
+    yAxis.title.text = "Repetitions";
+  }
 
   chart.scrollbarX = new am4charts.XYChartScrollbar();
 }
