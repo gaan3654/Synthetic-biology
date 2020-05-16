@@ -24,7 +24,6 @@ $("#submit").click(function () {
 
   sdeAllYIterations = [];
 
-  // createCharts(am4core);
   for (let i = 0; i < iterations; i++) {
     substance_obj = [];
     possition = 0;
@@ -66,7 +65,6 @@ $("#submit").click(function () {
 
   if (weakEuler) {
     drawHistogram(N, substance_obj, showOnlyMean, sde);
-    // addToChart([yIterations], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else if (showOnlyMean) {
     let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
@@ -316,7 +314,7 @@ function generateDistributionIntervals(min, max, interval) {
 
 function showGraphBlocks() {
   $("#calculate-probability").css("display", "inline");
-  $(".tooltip").css("display", "block");
+  $("#tooltip-probability").css("display", "block");
   $("#probability").css("display", "inline");
 }
 

@@ -162,11 +162,16 @@
             <div class="col-sm-3 subs_react_buttons">
               <button
                 id="add_subs"
-                class="button btn btn-custom-functionality"
+                class="button btn btn-custom-functionality tooltip-space"
                 onclick="add_additional_substance_input()"
               >
                 Pridėti medžiagą
               </button>
+              <div class="tooltip" id="tooltip-euler">
+                <span class="tooltiptext"
+                  >Silpnas Eulerio metodas:</br>vidurkis sigma</br>Stiprus Eulerio metodas:</br>koncentracija</span
+                >
+              </div>
             </div>
 
             <div class="input-group" id="block-A">
@@ -340,7 +345,7 @@
               >
                 Skaičiuoti
               </button>
-              <div class="tooltip" style="display: none;">
+              <div class="tooltip" id="tooltip-probability" style="display: none;">
                 <span class="tooltiptext"
                   >Apskaičiuoti tikimybę, kad reakcija patenka į
                   intervalą:</span

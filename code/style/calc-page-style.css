@@ -92,10 +92,18 @@ input::-webkit-color-swatch {
 }
 /* *******************tooltip************************** */
 
-.tooltip {
-  opacity: 10;
+#tooltip-euler {
   margin-left: 143px;
   margin-top: -48px;
+}
+
+#tooltip-probability {
+  margin-left: 143px;
+  margin-top: -48px;
+}
+
+.tooltip {
+  opacity: 10;
 }
 
 .tooltip::before {
@@ -105,7 +113,6 @@ input::-webkit-color-swatch {
 }
 
 .tooltip .tooltiptext {
-  visibility: hidden;
   width: 200px;
   background-color: #555;
   color: #fff;
@@ -120,6 +127,10 @@ input::-webkit-color-swatch {
   transition: opacity 0.3s;
 }
 
+.tooltiptext {
+  visibility: hidden;
+}
+
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -129,6 +140,10 @@ input::-webkit-color-swatch {
   border-width: 5px;
   border-style: solid;
   border-color: transparent #555 transparent transparent;
+}
+
+#tooltip-euler .tooltiptext {
+  bottom: -43px;
 }
 
 .tooltip:hover .tooltiptext {
@@ -216,7 +231,9 @@ input:not(.amount-input) {
     margin-bottom: 30px;
   }
 
-  .tooltip {
+  .tooltip,
+  #tooltip-euler,
+  #tooltip-probability {
     margin: 0;
     margin-top: -25px;
     margin-left: 47%;
@@ -225,6 +242,10 @@ input:not(.amount-input) {
   .tooltip .tooltiptext {
     bottom: -50px;
     left: -30px;
+  }
+
+  #tooltip-euler .tooltiptext {
+    bottom: -80px;
   }
 
   .tooltip .tooltiptext::after {
