@@ -91,6 +91,8 @@ function updateInputs() {
     $("#submit").css("display", "inline");
     $("#function").css("display", "block");
     $("#function_block").css("display", "block");
+    $("#probability-block").css("display", "none");
+    refreshProbabilityResults();
     renew_button();
   });
 }

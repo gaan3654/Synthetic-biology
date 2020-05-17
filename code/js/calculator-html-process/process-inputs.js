@@ -71,6 +71,7 @@ $("#submit").click(function () {
     let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
+    showGraphBlocks();
     if (iterations < 201) {
       createCharts(am4core, true);
       if (sde) {
@@ -330,6 +331,7 @@ function showGraphBlocks() {
   $("#calculate-probability").css("display", "inline");
   $("#tooltip-probability").css("display", "block");
   $("#probability").css("display", "inline");
+  $("#probability-block").css("display", "inline");
 }
 
 $("#calculate-probability").click(function () {
@@ -365,7 +367,9 @@ $("#calculate-probability").click(function () {
     }
     var d = document.getElementById("probability-result-block");
     for (let i = 0; i < substanceMeanList.length; i++) {
-      d.innerHTML += `<p>${subs_html_name[i]}: ${substanceMeanList[i]}%</p>`;
+      d.innerHTML += `<p id="probability-${subs_html_name[i]}" class="probability-result">
+                        ${subs_html_name[i]}: ${substanceMeanList[i]}%
+                      </p>`;
     }
     $("#probability-result-block").css("display", "block");
     addThreshold([intervalBegin, intervalEnd]);

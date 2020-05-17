@@ -91,3 +91,20 @@ function disposeCharts() {
     graphList = [];
   }
 }
+
+function refreshCalculator() {
+  removePreviousText();
+  disposeGraphData();
+  sdeInitial();
+  disposeCharts();
+  refreshProbabilityResults();
+}
+
+function refreshProbabilityResults() {
+  Array.from(document.getElementsByClassName("probability-result")).forEach(
+    function (item) {
+      removeElement(item.id);
+    }
+  );
+  document.getElementById("probability-result-block").style = "display: none";
+}
