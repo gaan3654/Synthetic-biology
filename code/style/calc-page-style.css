@@ -54,10 +54,6 @@ input::-webkit-color-swatch {
   margin-left: 0px;
 }
 
-#graph-container {
-  /* padding-bottom: 50vh; */
-  /* height: -webkit-fill-available; */
-}
 #chartdiv0 {
   margin-top: 200px;
   bottom: 10px;

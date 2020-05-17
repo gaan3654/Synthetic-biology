@@ -10,7 +10,6 @@ function disposeGraphData() {
   $("#calculate-probability").css("display", "none");
   $(".tooltip").css("display", "none");
   $("#probability").css("display", "none");
-  // chart.dispose();
 }
 
 function addSubstances(totalAmount) {

@@ -1,4 +1,4 @@
-$("#submit_reaction").click(function () {
+function updateInputs() {
   $("#function").load(" #function", function () {
     var d = document.getElementById("function");
     //Sugeneruojamos funkcijos abiem reakcijos pusėms
@@ -75,7 +75,6 @@ $("#submit_reaction").click(function () {
                           </div>
                         </div>`;
       }
-      // style="width:10px"
       for (let n = 0; n < right_side[i].length; n++) {
         d.innerHTML += `<div class="input_blocks generated-reaction-block">
                           <div class="input-group"> 
@@ -92,9 +91,6 @@ $("#submit_reaction").click(function () {
     $("#submit").css("display", "inline");
     $("#function").css("display", "block");
     $("#function_block").css("display", "block");
-    // if (rection_submited) {
-    //   chart.dispose();
-    // }
     renew_button();
   });
-});
+}

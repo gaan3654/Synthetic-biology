@@ -76,18 +76,14 @@ function renew_button() {
 
 function addGraph(numeration) {
   var d = document.getElementById("graph-container");
-  //Pridedami įvesties laukai papildomoms medžiagoms
   d.innerHTML += `<div id="chartdiv${numeration}" class="graph"></div>`;
 }
 
 function disposeCharts() {
   if (chartList.length > 0) {
-    console.log("chartList", chartList);
-    console.log("graphList", graphList);
     for (let i = 0; i < chartList.length; i++) {
       chartList[i].dispose();
-      if (i > 0) {
-        console.log("Bool", graphList[i - 1]);
+      if (i > 0 && i < graphList.length) {
         removeElement(graphList[i - 1]);
       }
     }

@@ -87,7 +87,7 @@
                   href="#"
                   id="example3"
                   class="example"
-                  onclick="removePreviousText()"
+                  onclick="removePreviousText();disposeCharts()"
                 >
                   Vėžio gydymo planavimas
                 </a>
@@ -292,6 +292,7 @@
               <button
                 id="submit_reaction"
                 class="button btn btn-custom-functionality"
+                onclick="disposeCharts(); updateInputs()"
               >
                 Vykdyti reakciją
               </button>

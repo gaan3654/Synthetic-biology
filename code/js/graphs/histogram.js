@@ -1,4 +1,5 @@
 function draw(objectList, substanceObjectList) {
+  chartList = [];
   Array.from(document.getElementsByClassName("graph")).forEach(function (item) {
     document.getElementById(item.id).style.height = "200px";
     let matches = item.id.match(/(\d+)/);

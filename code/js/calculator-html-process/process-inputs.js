@@ -276,9 +276,6 @@ function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
       addGraph(substance);
       graphList.push("chartdiv" + substance);
     }
-    console.log(
-      "-----------------------------------------------------------------"
-    );
     objectList.push(dataObject);
     substanceObjectList.push(substance_obj[substance]);
   }
