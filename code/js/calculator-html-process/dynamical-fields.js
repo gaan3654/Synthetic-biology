@@ -35,30 +35,38 @@ function add_additional_reaction_input() {
   reactions_id[i] = "reaction_" + [i];
   //Pridedami įvesties laukai papildomoms reakcijoms
   d.innerHTML += `<div id = reaction_info_${[i]} class="input-group">
-  <div class="input-group">
-  <span class="input-group-addon reaction-addon">${i + 1}. Įveskite reakciją:
-  </span>
-  <div id=reaction_${[i]} class="input_blocks">
-  <input type="text" id="reaction_input_${[i]}" value="A->C">
-  </div>
-  </div>
-  <div class="input-group">
-  <span class="input-group-addon reaction-addon">
-  Reakcijos greitis k<sub>1</sub>
-  </span>
-  <div id=k1_${[i]} class="input_blocks">
-  <input type="number" id="reaction_rate_${[i]}" value="0.9">
-  </div>
-  </div>
-  <div class="input-group">
-  <span class="input-group-addon reaction-addon">
-  Reakcijos greitis k<sub>2</sub>
-  </span>
-  <div id=k2_${[i]} class="input_blocks">
-  <input type="number" id="second_reaction_rate_${[i]}" value="0.1">
-  </div>
-  </div>
-  </div>`;
+                    <div class="input-group">
+                      <span class="input-group-addon reaction-addon">${
+                        i + 1
+                      }. Įveskite reakciją:
+                      </span>
+                      <div id=reaction_${[i]} class="input_blocks">
+                        <input type="text" id="reaction_input_${[
+                          i,
+                        ]}" value="A->C">
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon reaction-addon">
+                      Reakcijos greitis k<sub>1</sub>
+                      </span>
+                      <div id=k1_${[i]} class="input_blocks">
+                        <input type="number" id="reaction_rate_${[
+                          i,
+                        ]}" value="0.9">
+                      </div>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon reaction-addon">
+                      Reakcijos greitis k<sub>2</sub>
+                      </span>
+                      <div id=k2_${[i]} class="input_blocks">
+                        <input type="number" id="second_reaction_rate_${[
+                          i,
+                        ]}" value="0.1">
+                      </div>
+                    </div>
+                  </div>`;
 }
 
 // Ištrinamas grafikas
@@ -67,7 +75,23 @@ function renew_button() {
 }
 
 function addGraph(numeration) {
-  var d = document.getElementById("graph_draw");
+  var d = document.getElementById("graph-container");
   //Pridedami įvesties laukai papildomoms medžiagoms
   d.innerHTML += `<div id="chartdiv${numeration}" class="graph"></div>`;
+}
+
+function disposeCharts() {
+  if (chartList.length > 0) {
+    console.log("chartList", chartList);
+    console.log("graphList", graphList);
+    for (let i = 0; i < chartList.length; i++) {
+      chartList[i].dispose();
+      if (i > 0) {
+        console.log("Bool", graphList[i - 1]);
+        removeElement(graphList[i - 1]);
+      }
+    }
+    chartList = [];
+    graphList = [];
+  }
 }

@@ -55,7 +55,7 @@
       <ul class="nav nav-pills nav-stacked btn-list">
         <li><a class="btn-custom" href="rk-text.html">Apibrėžimas</a></li>
         <li class="active">
-          <a class="btn-custom" href="#section3" onclick="removePreviousText(); disposeGraph(); sdeInitial()">Skaičiuotuvas</a>
+          <a class="btn-custom" href="#section3" onclick="removePreviousText(); disposeGraphData(); sdeInitial(); disposeCharts()">Skaičiuotuvas</a>
         </li>
           <li class="dropdown">
             <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
@@ -67,7 +67,7 @@
                   href="#"
                   id="example1"
                   class="example"
-                  onclick="removePreviousText()"
+                  onclick="removePreviousText(); disposeCharts()"
                 >
                   Vandens susidarymo reakcija
                 </a>
@@ -77,7 +77,7 @@
                   href="#"
                   id="example2"
                   class="example"
-                  onclick="removePreviousText()"
+                  onclick="removePreviousText(); disposeCharts()"
                 >
                   Fotosintezė
                 </a>
@@ -338,7 +338,7 @@
               <div id="function" style="display: none;"></div>
             </div>
           </div>
-        <div id="chartdiv"></div>
+        <div id="chartdiv0"></div>
       </div>
 
       <script
@@ -403,8 +403,5 @@
       <br /><br />
     </div>
 
-    <!-- <footer class="container-fluid">
-      <p>Footer Text</p>
-    </footer> -->
   </body>
 </html>

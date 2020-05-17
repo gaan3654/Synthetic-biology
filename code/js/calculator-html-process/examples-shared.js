@@ -5,12 +5,12 @@ function removePreviousText() {
   $("#covid19").css("display", "none");
 }
 
-function disposeGraph() {
+function disposeGraphData() {
   $("#function_block").css("display", "none");
   $("#calculate-probability").css("display", "none");
   $(".tooltip").css("display", "none");
   $("#probability").css("display", "none");
-  chart.dispose();
+  // chart.dispose();
 }
 
 function addSubstances(totalAmount) {
@@ -28,7 +28,7 @@ function addSubstances(totalAmount) {
     if (totalAmount > subs_names.length) {
       add_additional_substance_input();
     } else if (totalAmount < subs_names.length && i > totalAmount) {
-      removeElement(subs_names[i - 1]);
+      removeElement("block-" + subs_names[i - 1]);
     }
   }
   subs_color_id = colorId;
@@ -42,7 +42,7 @@ function addReaction(totalAmount) {
 }
 
 function removeElement(elementId) {
-  var element = document.getElementById(`block-${elementId}`);
+  var element = document.getElementById(elementId);
   element.parentNode.removeChild(element);
 }
 

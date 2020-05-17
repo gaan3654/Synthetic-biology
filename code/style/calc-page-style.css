@@ -54,10 +54,18 @@ input::-webkit-color-swatch {
   margin-left: 0px;
 }
 
-/* #chartdiv */
+#graph-container {
+  /* padding-bottom: 50vh; */
+  height: -webkit-fill-available;
+}
+#chartdiv0 {
+  margin-top: 200px;
+  bottom: 10px;
+}
 .graph {
-  padding-bottom: 50vh;
-  height: max-content;
+  /* margin-bottom: 200px; */
+  /* height: max-content; */
+  height: 200px;
   width: auto;
 }
 

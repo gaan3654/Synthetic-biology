@@ -1,7 +1,5 @@
 $("#submit_reaction").click(function () {
   $("#function").load(" #function", function () {
-    document.getElementById("submit").disabled = false;
-
     var d = document.getElementById("function");
     //Sugeneruojamos funkcijos abiem reakcijos pusėms
     var reaction_left = [];
@@ -94,9 +92,9 @@ $("#submit_reaction").click(function () {
     $("#submit").css("display", "inline");
     $("#function").css("display", "block");
     $("#function_block").css("display", "block");
-    if (rection_submited) {
-      chart.dispose();
-    }
+    // if (rection_submited) {
+    //   chart.dispose();
+    // }
     renew_button();
   });
 });

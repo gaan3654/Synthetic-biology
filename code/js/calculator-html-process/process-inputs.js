@@ -3,9 +3,10 @@ var substance_obj = [];
 var possition = 0;
 var objectArray = [];
 var weakEuler = false;
+var graphList = [];
+var chartList = [];
 
 $("#submit").click(function () {
-  showGraphBlocks();
   var int_begin = parseFloat(document.getElementById("int_begins").value);
   var int_end = parseFloat(document.getElementById("int_ends").value);
   var N = parseInt(document.getElementById("n_inp").value);
@@ -65,12 +66,13 @@ $("#submit").click(function () {
   if (weakEuler) {
     genetareHistogramData(N, substance_obj, showOnlyMean, sde);
   } else if (showOnlyMean) {
-    createCharts(am4core);
+    showGraphBlocks();
+    createCharts(am4core, true);
     let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
-    createCharts(am4core);
     if (iterations < 201) {
+      createCharts(am4core, true);
       if (sde) {
         addToChart(
           sdeAllYIterations,
@@ -89,48 +91,51 @@ $("#submit").click(function () {
           sde
         );
       }
-    } else if (iterations < 1001) {
-      let y = [];
-      for (let i = 0; i < sdeAllYIterations.length; i += 10) {
-        y.push(sdeAllYIterations[i]);
-      }
-      addToChart(
-        y,
-        timeCoordinate,
-        substance_obj,
-        showOnlyMean,
-        sde,
-        sdeAllYIterations
-      );
-    } else if (iterations < 10001) {
-      let y = [];
-      for (let i = 0; i < sdeAllYIterations.length; i += 100) {
-        y.push(sdeAllYIterations[i]);
-      }
-      addToChart(
-        y,
-        timeCoordinate,
-        substance_obj,
-        showOnlyMean,
-        sde,
-        sdeAllYIterations
-      );
     } else {
-      let y = [];
-      for (let i = 0; i < sdeAllYIterations.length; i += 500) {
-        y.push(sdeAllYIterations[i]);
-        if (y.length > 100) {
-          break;
+      createCharts(am4core);
+      if (iterations < 1001) {
+        let y = [];
+        for (let i = 0; i < sdeAllYIterations.length; i += 10) {
+          y.push(sdeAllYIterations[i]);
         }
+        addToChart(
+          y,
+          timeCoordinate,
+          substance_obj,
+          showOnlyMean,
+          sde,
+          sdeAllYIterations
+        );
+      } else if (iterations < 10001) {
+        let y = [];
+        for (let i = 0; i < sdeAllYIterations.length; i += 100) {
+          y.push(sdeAllYIterations[i]);
+        }
+        addToChart(
+          y,
+          timeCoordinate,
+          substance_obj,
+          showOnlyMean,
+          sde,
+          sdeAllYIterations
+        );
+      } else {
+        let y = [];
+        for (let i = 0; i < sdeAllYIterations.length; i += 500) {
+          y.push(sdeAllYIterations[i]);
+          if (y.length > 100) {
+            break;
+          }
+        }
+        addToChart(
+          y,
+          timeCoordinate,
+          substance_obj,
+          showOnlyMean,
+          sde,
+          sdeAllYIterations
+        );
       }
-      addToChart(
-        y,
-        timeCoordinate,
-        substance_obj,
-        showOnlyMean,
-        sde,
-        sdeAllYIterations
-      );
     }
   }
   if (!weakEuler) {
@@ -242,6 +247,8 @@ function drawOnlyMeans(iterations) {
 
 function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
   let yIterations = [];
+  let objectList = [];
+  let substanceObjectList = [];
   for (
     let substance = 0;
     substance < sdeAllYIterations[0].length;
@@ -258,11 +265,6 @@ function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
     yIterations.push(substanceY);
     let [thresholds, amounts] = generateDistribution(substanceY, min, max);
 
-    console.log("substance", substance);
-    console.log("substance obj", substance_obj[substance]);
-    console.log("thresholds", thresholds);
-    console.log("amounts", amounts);
-
     for (let i = 0; i < thresholds.length; i++) {
       let object = {};
       object["interval"] = thresholds[i];
@@ -270,24 +272,17 @@ function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
       dataObject.push(object);
     }
 
-    let graphId = "chartdiv";
     if (substance != 0) {
       addGraph(substance);
-      graphId = "chartdiv" + substance;
+      graphList.push("chartdiv" + substance);
     }
-    drawHistogram(dataObject, substance_obj[substance]["name"], graphId);
     console.log(
       "-----------------------------------------------------------------"
     );
-    // addToChart(
-    //   [[amounts]],
-    //   thresholds,
-    //   [substance_obj[substance]],
-    //   showOnlyMean,
-    //   sde
-    // );
+    objectList.push(dataObject);
+    substanceObjectList.push(substance_obj[substance]);
   }
-
+  draw(objectList, substanceObjectList);
   return yIterations;
 }
 

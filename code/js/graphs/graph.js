@@ -3,20 +3,19 @@ let tList;
 let colors = [];
 var legendData = [];
 
-function createCharts(am4core, weakEuler) {
-  am4core.useTheme(am4themes_animated);
-  chart = am4core.create("chartdiv", am4charts.XYChart);
+function createCharts(am4core, animation) {
+  if (animation) {
+    am4core.useTheme(am4themes_animated);
+  } else {
+    am4core.unuseTheme(am4themes_animated);
+  }
+  chart = am4core.create("chartdiv0", am4charts.XYChart);
 
   let xAxis = chart.xAxes.push(new am4charts.ValueAxis());
   xAxis.title.text = "Laikas";
 
   let yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.title.text = "Koncentracija";
-
-  if (weakEuler) {
-    xAxis.title.text = "Intervalas";
-    yAxis.title.text = "Pasikartojimai";
-  }
 
   chart.scrollbarX = new am4charts.XYChartScrollbar();
 }
@@ -40,6 +39,7 @@ function addLegend(showOnlyMean, sde) {
       processOut(event.target.dataItem.dataContext);
     });
   }
+  chartList.push(chart);
 }
 
 function addToChart(y, t, substance_obj, showOnlyMeans, sde, allIterations) {

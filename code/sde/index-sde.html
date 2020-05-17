@@ -20,7 +20,11 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
+<!--  -->
+    <script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="//www.amcharts.com/lib/3/pie.js"></script>
+    <script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+<!--  -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -62,7 +66,7 @@
           <a
             class="btn-custom"
             href="#section3"
-            onclick="removePreviousText(); disposeGraph(); sdeInitial()"
+            onclick="removePreviousText(); disposeGraphData(); sdeInitial(); disposeCharts()"
             >Skaičiuotuvas</a
           >
         </li>
@@ -72,12 +76,12 @@
           ></a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" id="example1" class="example" onclick="removePreviousText();">
+              <a href="#" id="example1" class="example" onclick="removePreviousText(); disposeCharts()">
                 Vėžio gydymo modelis
               </a>
             </li>
             <li>
-              <a href="#" id="example2" class="example" onclick="removePreviousText();">
+              <a href="#" id="example2" class="example" onclick="removePreviousText(); disposeCharts()">
                 COVID-19 progonzės
               </a>
             </li>
@@ -257,6 +261,7 @@
               <button
                 id="submit_reaction"
                 class="button btn btn-custom-functionality"
+                onclick="disposeCharts()"
               >
                 Vykdyti reakciją
               </button>
@@ -389,7 +394,11 @@
             </div>
           </div>
           <div class="col-sm-3 input-container graph-input-container"></div>
-          <div id="chartdiv" class="graph"></div>
+          <div id="graph-container">
+            <div id="chartdiv0" class="graph"></div>
+            
+          </div>
+          <!-- <div id="chartdiv1" class="graph"></div> -->
         </div>
       </div>
 
