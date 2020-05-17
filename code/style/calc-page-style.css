@@ -54,7 +54,8 @@ input::-webkit-color-swatch {
   margin-left: 0px;
 }
 
-#chartdiv {
+/* #chartdiv */
+.graph {
   padding-bottom: 50vh;
   height: max-content;
   width: auto;
@@ -148,6 +149,11 @@ input::-webkit-color-swatch {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.chartdiv {
+  z-index: 10000;
+  background-color: khaki;
 }
 
 /* ***************Responsive****************************** */

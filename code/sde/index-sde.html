@@ -14,12 +14,9 @@
       type="text/javascript"
       src="../js/calculator-html-process/dynamical-fields.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="../js/external-packages/jquery.js"
-    ></script>
 
     <script type="text/javascript" src="../js/graphs/graph.js"></script>
+    <script type="text/javascript" src="../js/graphs/histogram.js"></script>
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
@@ -177,7 +174,7 @@
             <div class="input-group" id="block-A">
               <span class="input-group-addon input-addon">[A']</span>
               <div class="input_blocks">
-                <input type="text" class="amount-input" id="A" value="2" />
+                <input type="text" class="amount-input" id="A" value="2 0.5" />
                 <input
                   type="color"
                   id="colorA"
@@ -189,7 +186,7 @@
             <div class="input-group" id="block-B">
               <span class="input-group-addon input-addon">[B']</span>
               <div class="input_blocks">
-                <input type="text" class="amount-input" id="B" value="3" />
+                <input type="text" class="amount-input" id="B" value="3 0.25" />
                 <input
                   type="color"
                   id="colorB"
@@ -300,7 +297,7 @@
                 >Iteracijų skaičius</span
               >
               <div id="iter" class="input_blocks">
-                <input type="number" id="iterations" value="2" />
+                <input type="number" id="iterations" value="20" />
               </div>
             </div>
             <div class="input-group" id="checkbox">
@@ -392,7 +389,7 @@
             </div>
           </div>
           <div class="col-sm-3 input-container graph-input-container"></div>
-          <div id="chartdiv"></div>
+          <div id="chartdiv" class="graph"></div>
         </div>
       </div>
 

@@ -29,7 +29,7 @@ $("#submit").click(function () {
     possition = 0;
     objectArray = [];
     for (let i = 0; i < reactions_id.length; i++) {
-      let get_reaction = extractSubstances(i);
+      get_reaction = extractSubstances(i);
 
       let reaction_left = get_reaction[0].split("");
       let reaction_right = get_reaction[1].split("");
@@ -51,7 +51,7 @@ $("#submit").click(function () {
 
       for (let i = 0; i < substance_array.length; i++) {
         processDuplicates(substance_array, i, func_array, sde);
-        initializeSubstances(substance_array, i, get_reaction, func_array);
+        initializeSubstances(substance_array, i, func_array);
       }
     }
     initializeValues(N, int_begin, int_end, substance_obj);
@@ -61,14 +61,15 @@ $("#submit").click(function () {
     sdeAllYIterations.push(yy);
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
-  createCharts(am4core, weakEuler);
 
   if (weakEuler) {
-    drawHistogram(N, substance_obj, showOnlyMean, sde);
+    genetareHistogramData(N, substance_obj, showOnlyMean, sde);
   } else if (showOnlyMean) {
+    createCharts(am4core);
     let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
+    createCharts(am4core);
     if (iterations < 201) {
       if (sde) {
         addToChart(
@@ -132,10 +133,12 @@ $("#submit").click(function () {
       );
     }
   }
-  addLegend(showOnlyMean, sde);
+  if (!weakEuler) {
+    addLegend(showOnlyMean, sde);
+  }
 });
 
-function initializeSubstances(substance_array, i, get_reaction, func_array) {
+function initializeSubstances(substance_array, i, func_array) {
   //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
   if (!objectArray.includes(substance_array[i], 0)) {
     var obj = {};
@@ -143,7 +146,7 @@ function initializeSubstances(substance_array, i, get_reaction, func_array) {
     // ------------------------------------------------------------------------------------------
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
-    let regex = new RegExp(/\D/);
+    let regex = new RegExp(/[^\d\.]/);
     if (regex.test(concentrationInput)) {
       let separator = concentrationInput.match(regex);
       let meanSigma = concentrationInput.split(separator);
@@ -237,16 +240,15 @@ function drawOnlyMeans(iterations) {
   return yMeans;
 }
 
-function drawHistogram(N, substance_obj, showOnlyMean, sde) {
+function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
   let yIterations = [];
-  let maxValues = [];
-  let minValues = [];
   for (
     let substance = 0;
     substance < sdeAllYIterations[0].length;
     substance++
   ) {
     let substanceY = [];
+    let dataObject = [];
     for (let iteration = 0; iteration < sdeAllYIterations.length; iteration++) {
       substanceY.push(sdeAllYIterations[iteration][substance][N - 1]);
     }
@@ -254,16 +256,36 @@ function drawHistogram(N, substance_obj, showOnlyMean, sde) {
     let max = Math.max.apply(Math, substanceY);
 
     yIterations.push(substanceY);
-    maxValues.push(max);
-    minValues.push(min);
     let [thresholds, amounts] = generateDistribution(substanceY, min, max);
-    addToChart(
-      [[amounts]],
-      thresholds,
-      [substance_obj[substance]],
-      showOnlyMean,
-      sde
+
+    console.log("substance", substance);
+    console.log("substance obj", substance_obj[substance]);
+    console.log("thresholds", thresholds);
+    console.log("amounts", amounts);
+
+    for (let i = 0; i < thresholds.length; i++) {
+      let object = {};
+      object["interval"] = thresholds[i];
+      object["amount"] = amounts[i];
+      dataObject.push(object);
+    }
+
+    let graphId = "chartdiv";
+    if (substance != 0) {
+      addGraph(substance);
+      graphId = "chartdiv" + substance;
+    }
+    drawHistogram(dataObject, substance_obj[substance]["name"], graphId);
+    console.log(
+      "-----------------------------------------------------------------"
     );
+    // addToChart(
+    //   [[amounts]],
+    //   thresholds,
+    //   [substance_obj[substance]],
+    //   showOnlyMean,
+    //   sde
+    // );
   }
 
   return yIterations;
