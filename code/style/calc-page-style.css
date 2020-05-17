@@ -56,16 +56,15 @@ input::-webkit-color-swatch {
 
 #graph-container {
   /* padding-bottom: 50vh; */
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
 }
 #chartdiv0 {
   margin-top: 200px;
   bottom: 10px;
+  height: 400px;
 }
 .graph {
-  /* margin-bottom: 200px; */
-  /* height: max-content; */
-  height: 200px;
+  max-height: 400px !important;
   width: auto;
 }
 
