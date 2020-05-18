@@ -33,8 +33,8 @@ function randomGaussian(mean, sigma) {
   return (
     (u % 1e-8 > 5e-9 ? 1 : -1) *
       Math.sqrt(-Math.log(Math.max(1e-9, u))) *
-      sigma +
-    mean
+      parseFloat(sigma) +
+    parseFloat(mean)
   );
 }
 
