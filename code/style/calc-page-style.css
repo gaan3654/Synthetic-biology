@@ -78,6 +78,10 @@ input::-webkit-color-swatch {
   line-height: 0.9;
 }
 
+.full-addon {
+  border: 1px solid #ccc !important;
+}
+
 .generated-reaction-block {
   display: table;
 }
