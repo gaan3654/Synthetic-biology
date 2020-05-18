@@ -83,8 +83,8 @@ function disposeCharts() {
   if (chartList.length > 0) {
     for (let i = 0; i < chartList.length; i++) {
       chartList[i].dispose();
-      if (i > 0 && i < graphList.length) {
-        removeElement(graphList[i - 1]);
+      if (i < graphList.length) {
+        removeElement(graphList[i]);
       }
     }
     chartList = [];
