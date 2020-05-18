@@ -22,10 +22,11 @@ $("#submit").click(function () {
     catalyzation = 0;
   }
   weakEuler = false;
+  sigma = [];
 
   sdeAllYIterations = [];
 
-  for (let i = 0; i < iterations; i++) {
+  for (let iteration = 0; iteration < iterations; iteration++) {
     substance_obj = [];
     possition = 0;
     objectArray = [];
@@ -50,9 +51,9 @@ $("#submit").click(function () {
         tmp = tmp.replace(tmp.match(alphabet_pattern)[0], "");
       }
 
-      for (let i = 0; i < substance_array.length; i++) {
-        processDuplicates(substance_array, i, func_array, sde);
-        initializeSubstances(substance_array, i, func_array);
+      for (let substance = 0; substance < substance_array.length; substance++) {
+        processDuplicates(substance_array, substance, func_array, sde);
+        initializeSubstances(substance_array, substance, func_array);
       }
     }
     initializeValues(N, int_begin, int_end, substance_obj);
@@ -62,9 +63,8 @@ $("#submit").click(function () {
     sdeAllYIterations.push(yy);
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
-
   if (weakEuler) {
-    genetareHistogramData(N, substance_obj, showOnlyMean, sde);
+    genetareHistogramData(N, substance_obj);
   } else if (showOnlyMean) {
     showGraphBlocks();
     createCharts(am4core, true);
@@ -152,16 +152,23 @@ function initializeSubstances(substance_array, i, func_array) {
     // ------------------------------------------------------------------------------------------
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
+
+    // Process weak Euler
     let regex = new RegExp(/[^\d\.]/);
     if (regex.test(concentrationInput)) {
       let separator = concentrationInput.match(regex);
       let meanSigma = concentrationInput.split(separator);
       meanSigma = meanSigma.filter(Boolean);
-      let randomConcentration = Math.abs(
-        randomGaussian(meanSigma[0], meanSigma[1])
-      );
-      obj[`initial_conc`] = randomConcentration;
-      weakEuler = true;
+
+      if (meanSigma.length > 1) {
+        let randomConcentration = Math.abs(
+          randomGaussian(meanSigma[0], meanSigma[1])
+        );
+        obj[`initial_conc`] = randomConcentration;
+        weakEuler = true;
+      } else {
+        obj[`initial_conc`] = parseFloat(concentrationInput);
+      }
     } else {
       obj[`initial_conc`] = parseFloat(concentrationInput);
     }
@@ -246,7 +253,7 @@ function drawOnlyMeans(iterations) {
   return yMeans;
 }
 
-function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
+function genetareHistogramData(N, substance_obj) {
   let yIterations = [];
   let objectList = [];
   let substanceObjectList = [];
@@ -272,7 +279,6 @@ function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
       object["amount"] = amounts[i];
       dataObject.push(object);
     }
-
     if (substance != 0) {
       addGraph(substance);
       graphList.push("chartdiv" + substance);
@@ -285,12 +291,8 @@ function genetareHistogramData(N, substance_obj, showOnlyMean, sde) {
 }
 
 function generateDistribution(y, min, max) {
-  let interval = 0;
-  if (max - min < 1) {
-    interval = 1;
-  } else {
-    interval = 2;
-  }
+  let interval = max / 10;
+  // let interval = (max - min) / 10;
   let distribution = generateDistributionIntervals(min, max, interval);
 
   for (let i = 0; i < y.length; i++) {
@@ -313,15 +315,12 @@ function generateDistribution(y, min, max) {
 
 function generateDistributionIntervals(min, max, interval) {
   let distribution = [];
-  let round = Math.pow(10, interval);
-  let minThreshold = Math.floor(min * round) / round;
-  let addInterval = 1 / round;
-  while (max > minThreshold) {
+  while (max > min) {
     let distributionObject = {};
-    distributionObject["min"] = minThreshold;
-    distributionObject["max"] = minThreshold + addInterval;
+    distributionObject["min"] = min;
+    distributionObject["max"] = min + interval;
     distributionObject["count"] = 0;
-    minThreshold += addInterval;
+    min += interval;
     distribution.push(distributionObject);
   }
   return distribution;
