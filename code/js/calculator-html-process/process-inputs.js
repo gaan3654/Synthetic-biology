@@ -1,6 +1,6 @@
 var sdeAllYIterations = [];
 var substance_obj = [];
-var possition = 0;
+var position = 0;
 var objectArray = [];
 var weakEuler = false;
 var graphList = [];
@@ -28,7 +28,7 @@ $("#submit").click(function () {
 
   for (let iteration = 0; iteration < iterations; iteration++) {
     substance_obj = [];
-    possition = 0;
+    position = 0;
     objectArray = [];
     for (let i = 0; i < reactions_id.length; i++) {
       get_reaction = extractSubstances(i);
@@ -64,7 +64,7 @@ $("#submit").click(function () {
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
   if (weakEuler) {
-    genetareHistogramData(N, substance_obj);
+    genetareHistogramData(N - 1, substance_obj);
   } else if (showOnlyMean) {
     showGraphBlocks();
     createCharts(am4core, true);
@@ -148,7 +148,7 @@ function initializeSubstances(substance_array, i, func_array) {
   //Sutikus medžiagą pirmą kartą, jos reikšmės inicializuojamos
   if (!objectArray.includes(substance_array[i], 0)) {
     var obj = {};
-    obj[substance_array[i]] = `y[${possition++}][0]`;
+    obj[substance_array[i]] = `y[${position++}][0]`;
     // ------------------------------------------------------------------------------------------
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
@@ -257,34 +257,51 @@ function genetareHistogramData(N, substance_obj) {
   let yIterations = [];
   let objectList = [];
   let substanceObjectList = [];
-  for (
-    let substance = 0;
-    substance < sdeAllYIterations[0].length;
-    substance++
-  ) {
-    let substanceY = [];
-    let dataObject = [];
-    for (let iteration = 0; iteration < sdeAllYIterations.length; iteration++) {
-      substanceY.push(sdeAllYIterations[iteration][substance][N - 1]);
+  let index = 0;
+  for (let i = 0; i < 2; i++) {
+    if (i > 0) {
+      index = N - 1;
     }
-    let min = Math.min.apply(Math, substanceY);
-    let max = Math.max.apply(Math, substanceY);
+    for (
+      let substance = 0;
+      substance < sdeAllYIterations[0].length;
+      substance++
+    ) {
+      let substanceY = [];
+      let dataObject = [];
+      for (
+        let iteration = 0;
+        iteration < sdeAllYIterations.length;
+        iteration++
+      ) {
+        substanceY.push(sdeAllYIterations[iteration][substance][index]);
+      }
+      let min = Math.min.apply(Math, substanceY);
+      let max = Math.max.apply(Math, substanceY);
 
-    yIterations.push(substanceY);
-    let [thresholds, amounts] = generateDistribution(substanceY, min, max);
+      yIterations.push(substanceY);
+      let [thresholds, amounts] = generateDistribution(substanceY, min, max);
 
-    for (let i = 0; i < thresholds.length; i++) {
-      let object = {};
-      object["interval"] = thresholds[i];
-      object["amount"] = amounts[i];
-      dataObject.push(object);
+      for (let i = 0; i < thresholds.length; i++) {
+        let object = {};
+        object["interval"] = thresholds[i];
+        object["amount"] = amounts[i];
+        dataObject.push(object);
+      }
+      if (objectList.length != 0) {
+        if (i == 1) {
+          addGraph(substance + sdeAllYIterations[0].length);
+          graphList.push(
+            "chartdiv" + (substance + sdeAllYIterations[0].length)
+          );
+        } else {
+          addGraph(substance);
+          graphList.push("chartdiv" + substance);
+        }
+      }
+      objectList.push(dataObject);
+      substanceObjectList.push(substance_obj[substance]);
     }
-    if (substance != 0) {
-      addGraph(substance);
-      graphList.push("chartdiv" + substance);
-    }
-    objectList.push(dataObject);
-    substanceObjectList.push(substance_obj[substance]);
   }
   draw(objectList, substanceObjectList);
   return yIterations;
@@ -315,7 +332,7 @@ function generateDistribution(y, min, max) {
 
 function generateDistributionIntervals(min, max, interval) {
   let distribution = [];
-  while (max > min) {
+  while (max >= min) {
     let distributionObject = {};
     distributionObject["min"] = min;
     distributionObject["max"] = min + interval;
