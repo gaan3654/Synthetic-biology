@@ -161,34 +161,48 @@
         <h2>Vėžio gydymo planavimas</h2>
         <p>
           Paprastųjų diferencialinių lygčių skaitinis sprendimas gali būti naudingas ir sunkiai pagydomų ligų gydymui. 
-          ODE dėka, galima sukurti modelį, kuris gebėtų parodyti gydymui taikomų sprendimų rezultatus. 
-          Medicinoje, svarbu ne tik nespėti suteikti reikiamos pagalbos ir įdėti per mažai pastangų gydymui, 
-          tačiau svarbu ir nepersistengti. Sergantys organizmai yra jautrūs ir kiekvienas netinkamas sprendimas gali pasibaigti tragiškai. 
-          Naudojant ODE modelį, galima suprastį chemoterapinių vaistų poveiki vežiu sergančioms ląstelės.
-          Kadangi diferencialinės lygtys vyksta tam tikru laiku, jų dėka galima pamatyti 
-          kaip navikas reaguos taikant gydymą tam tikru laiko periodu, 
+          ODE dėka, galima sukurti modelį, kuris gebėtų parodyti gydymui taikomų sprendimų rezultatus.
+        </p>
+        <p>
+          Kiekvienam gyvybei svarbiam procesui vykti turi būti palankios sąlygos. 
+          Neretai, žmogaus organizmas nusilpsta ir gyvybės palaikymui yra būtina medicinos pagalba. 
+          Didžiausia medikų rizika yra ne tik nespėti suteikti reikiamos pagalbos ir įdėti per mažai pastangų gydymui, tačiau ir nepersistengti, 
+          t.y. gydymo metu nesukelti organizmui dar daugiau žalos. 
+           Sergantys organizmai yra jautrūs ir kiekvienas netinkamas sprendimas gali pasibaigti tragiškai. 
+        </p>
+        <p>
+          Naudojant ODE modelį, galima suprasti gydymo poveiki sergančioms ląstelėms.
+           Šiuo atveju yra nagrinėjamas vėžiu sergančio organizmo gydymas. 
+           Kadangi diferencialinės lygtys vyksta tam tikru laiku, jų dėka galima pamatyti kaip navikas reaguos taikant gydymą nustatytu laiko periodu, 
           taip pat galima nuspręsti kokią vaistų dozę reikėtų skirti pacientui.
         </p>
         <p>
+          Be vaistų poveikio, taip pat galima modeliuoti ir kitus gydymo procesus.
           Paimkime krūties vėžio atvejį. Esat tokiai diagnozei, krūties ląstelėse yra viršijamas HER2 kiekis. 
           HER yra epiderminis augimo faktoriaus receptorius, kuris turi didelę įtaką naviko ląstelių augimui. 
           Esant per dideliam šio receptoriaus kiekiui, vėžį gydantys vaistai Tirozino Kinazės Inhibitorius (TKI) būna neveiksmingi. 
-          Mokslininkų įrodyta, jog tokį atsparumą sukelia HER3 forforilinimo-defosforilinimo pusiausvyra, 
-          kurią lemia HER3 aktyvumo sumažėjimas, taip pat sukeltas didelis emmbranos atsparumas. 
-          To pasekoje, defosforilinimo reakcija negali sklandžiai vykti. 
-          Taigi, vėžiui gydyti padėtų HER3 atsparumo mažinimas, kurį galima sukelti mažais trukdančiais RNR smūgiais
+          Mokslininkų įrodyta, jog tokį atsparumą sukelia pakitusi HER3 forforilinimo-defosforilinimo pusiausvyra,
+          kurią lemia HER3 aktyvumo sumažėjimas, taip pat sukeltas didelis membranos atsparumas. To pasekoje, defosforilinimo reakcija negali sklandžiai vykti. 
+        </p>
+        <p>
+          Fosforilinimas yra gyvybiškai svarbus procesas, jo metu prie molekulės prisijungia fosfato grupė. Biologijoje ypač dažnas yra baltymų fosforilinimas, 
+          kurio katalizatorius yra baltymų kinazė.  Fosforilinimo metu yra keičiama baltymo struktūra, o to pasekoje, kinta ir baltymų funkcijos. 
+          Kadangi baltymų fosforilinimas yra grįžtamoji baltymo modifikaciją, atgalinė reakcija yra vadinama defosforilinimu ir katalizuojama baltymų fosfataze. 
+        </p>
+        <p>
+          Grįžkime prie HER3 fosforilinimo-defosforilinimo problemos, kuri galimai iškilo dėl vieno iš aukščiau paminėtų fermentų trūkumo. 
+          Taigi, manoma, jog padidinus katalizatorių kiekį, kažkuri reakcija vyks greičiau ir pusiausvyra atsistatys.
         </p>
         <p>
           Imkime tokią reakciją :
-          \[ A+B \longrightarrow^{k} B . \]
-          kur \(A+B\) yra HER3 fosforilinimo ir defosforilinimo pusiausvyra, 
-          kuri dėka papildomų sąlygų \(k\) sumažina forsforilinimą ir išlaiko tik defosforilinimą. 
-          Tokios reakcijos rezultate, galetų būti taikomas naviko gydymas.
+          \[ A+B \longrightarrow^{k} C . \]
+          kur \(A\) yra HER3 fosforilinimo proceso rodiklis, \(B\) - defosforilinimo, o \(C\) yra susidariusi fosforilinimo ir defosforilinimo pusiausvyra, 
+          kuri atsiranda dėka papildomų katalizatorių \(k\). Toks tyrimas yra naudingas norint sužinoti kokių sąlygų reikia procesų pusiausvyros atsistatymui 
+          ir normaliam HER3 veikimui, 
+          kad naviko gydymas būtų vykdomas vaisingai. 
         </p>
         <p>
-          Tokio atlikto tyrimo dėka, mokslininkai gali sužinoti, kaip greitai galima išskaidyti baltymų pusiausvyrą. 
-          Taip pat, tokį modelį gali naudoti ir vaistų dozės nustatytmui. Modelis galėtų parodyti, 
-          kiek laiko užtruktų tam tikros dozės poveikis sergančioms ląstelėms. 
+          Taip pat, tokį modelį gali naudoti ir vaistų dozės nustatymui. Modelis galėtų parodyti, kiek laiko užtruktų tam tikros dozės poveikis sergančioms ląstelėms. 
           Toks tyrimas padėtų apsisaugoti nuo per ilgo gydymo proceso, kuris galėtų pakenkti ir kitų, sveikų, ląstelių būklei.
         </p>
       </div>
