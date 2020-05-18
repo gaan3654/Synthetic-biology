@@ -64,7 +64,6 @@ $("#submit").click(function () {
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
   if (weakEuler) {
-    console.log(iterations);
     genetareHistogramData(N - 1, substance_obj, iterations);
   } else if (showOnlyMean) {
     showGraphBlocks();
