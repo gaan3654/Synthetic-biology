@@ -98,6 +98,14 @@ input::-webkit-color-swatch {
 .dropdown-menu > li > a {
   white-space: unset;
 }
+
+#graph-title-1 {
+  margin-top: 200px;
+  margin-bottom: -200px;
+}
+.graph-title {
+  width: 100%;
+}
 /* *******************tooltip************************** */
 
 #tooltip-euler {

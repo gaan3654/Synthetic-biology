@@ -64,7 +64,8 @@ $("#submit").click(function () {
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
   if (weakEuler) {
-    genetareHistogramData(N - 1, substance_obj);
+    console.log(iterations);
+    genetareHistogramData(N - 1, substance_obj, iterations);
   } else if (showOnlyMean) {
     showGraphBlocks();
     createCharts(am4core, true);
@@ -172,7 +173,6 @@ function initializeSubstances(substance_array, i, func_array) {
     } else {
       obj[`initial_conc`] = parseFloat(concentrationInput);
     }
-
     // ------------------------------------------------------------------------------------------
     obj["color"] = document.getElementById(`color${substance_array[i]}`).value;
     obj["repetitions"] = 1;
@@ -251,96 +251,6 @@ function drawOnlyMeans(iterations) {
   }
 
   return yMeans;
-}
-
-function genetareHistogramData(N, substance_obj) {
-  let yIterations = [];
-  let objectList = [];
-  let substanceObjectList = [];
-  let index = 0;
-  for (let i = 0; i < 2; i++) {
-    if (i > 0) {
-      index = N - 1;
-    }
-    for (
-      let substance = 0;
-      substance < sdeAllYIterations[0].length;
-      substance++
-    ) {
-      let substanceY = [];
-      let dataObject = [];
-      for (
-        let iteration = 0;
-        iteration < sdeAllYIterations.length;
-        iteration++
-      ) {
-        substanceY.push(sdeAllYIterations[iteration][substance][index]);
-      }
-      let min = Math.min.apply(Math, substanceY);
-      let max = Math.max.apply(Math, substanceY);
-
-      yIterations.push(substanceY);
-      let [thresholds, amounts] = generateDistribution(substanceY, min, max);
-
-      for (let i = 0; i < thresholds.length; i++) {
-        let object = {};
-        object["interval"] = thresholds[i];
-        object["amount"] = amounts[i];
-        dataObject.push(object);
-      }
-      if (objectList.length != 0) {
-        if (i == 1) {
-          addGraph(substance + sdeAllYIterations[0].length);
-          graphList.push(
-            "chartdiv" + (substance + sdeAllYIterations[0].length)
-          );
-        } else {
-          addGraph(substance);
-          graphList.push("chartdiv" + substance);
-        }
-      }
-      objectList.push(dataObject);
-      substanceObjectList.push(substance_obj[substance]);
-    }
-  }
-  draw(objectList, substanceObjectList);
-  return yIterations;
-}
-
-function generateDistribution(y, min, max) {
-  let interval = max / 10;
-  // let interval = (max - min) / 10;
-  let distribution = generateDistributionIntervals(min, max, interval);
-
-  for (let i = 0; i < y.length; i++) {
-    for (let j = 0; j < distribution.length; j++) {
-      if (y[i] >= distribution[j]["min"] && y[i] < distribution[j]["max"]) {
-        distribution[j]["count"] += 1;
-        break;
-      }
-    }
-  }
-
-  let threshtolds = [];
-  let amounts = [];
-  for (let i = 0; i < distribution.length; i++) {
-    threshtolds.push(distribution[i]["min"]);
-    amounts.push(distribution[i]["count"]);
-  }
-  return [threshtolds, amounts];
-}
-
-function generateDistributionIntervals(min, max, interval) {
-  let distribution = [];
-  while (max >= min) {
-    let distributionObject = {};
-    distributionObject["min"] = min;
-    distributionObject["max"] = min + interval;
-    distributionObject["count"] = 0;
-    min += interval;
-    distribution.push(distributionObject);
-  }
-  return distribution;
 }
 
 function showGraphBlocks() {

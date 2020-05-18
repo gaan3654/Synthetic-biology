@@ -88,6 +88,7 @@ function updateInputs() {
                         </div>`;
       }
     }
+    disposeGraphData();
     $("#submit").css("display", "inline");
     $("#function").css("display", "block");
     $("#function_block").css("display", "block");
