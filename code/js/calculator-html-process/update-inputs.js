@@ -95,11 +95,12 @@ function updateInputs() {
     $("#probability-block").css("display", "none");
     let blockHeight =
       document.getElementById("function_block").offsetHeight + 30;
-    console.log(blockHeight);
-    document.getElementById("graph-title-1").style.marginTop =
-      blockHeight + "px";
-    // document.getElementById("chartdiv0").style.marginTop = blockHeight + "px";
-    refreshProbabilityResults();
+
+    if (document.getElementById("graph-title-1")) {
+      document.getElementById("graph-title-1").style.marginTop =
+        blockHeight + "px";
+    }
+    if (catalyzation) refreshProbabilityResults();
     renew_button();
   });
 }

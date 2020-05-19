@@ -57,7 +57,7 @@ input::-webkit-color-swatch {
 #chartdiv0 {
   margin-top: 200px;
   bottom: 10px;
-  height: 400px;
+  max-height: 400px;
 }
 .graph {
   max-height: 400px !important;

@@ -164,7 +164,7 @@
               <button
                 id="add_subs"
                 class="button btn btn-custom-functionality tooltip-space"
-                onclick="add_additional_substance_input()"
+                onclick="add_additional_substance_input(); disposeCharts();"
               >
                 Pridėti medžiagą
               </button>
@@ -218,7 +218,7 @@
               <button
                 id="add_reaction"
                 class="button btn btn-custom-functionality"
-                onclick="add_additional_reaction_input()"
+                onclick="add_additional_reaction_input(); disposeCharts();"
               >
                 Pridėti reakciją
               </button>
@@ -319,7 +319,6 @@
 
         <div id="graph_draw" class="row">
           <!-- ------------------------------------------------------------------------------------------------ -->
-          <!-- <div class="input-container"> -->
             <div class="col-sm-3 graph-input-container input-container" id="function_block">
               <div class="col-sm-3">
                 <button
@@ -333,7 +332,6 @@
 
               <div id="function" style="display: none;"></div>
             </div>
-          <!-- </div> -->
           <!-- ------------------------------------------------------------------------------------------------ -->
           <div
             class="col-sm-6 input-container graph-input-container"

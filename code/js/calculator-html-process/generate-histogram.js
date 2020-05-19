@@ -23,7 +23,6 @@ function genetareHistogramData(N, substance_obj, iterations) {
       }
       let min = Math.min.apply(Math, substanceY);
       let max = Math.max.apply(Math, substanceY);
-      console.log(substance_obj[substance]["name"], min, max, substanceY);
       yIterations.push(substanceY);
       let [thresholds, amounts] = generateDistribution(
         substanceY,
@@ -31,7 +30,6 @@ function genetareHistogramData(N, substance_obj, iterations) {
         max,
         iterations
       );
-      //   console.log(thresholds);
       for (let i = 0; i < thresholds.length; i++) {
         let object = {};
         object["interval"] = thresholds[i];
@@ -112,6 +110,5 @@ function generateDistributionIntervals(min, max, interval, iterations) {
     min += interval;
     distribution.push(distributionObject);
   }
-  console.log("DISTRIBUTION--------", distribution);
   return distribution;
 }
