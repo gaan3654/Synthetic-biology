@@ -28,14 +28,23 @@ function updateFunctionIndices(y, substance_obj) {
   }
 }
 
+//old Gaussian
+// let u = Math.random();
+// return (
+//   (u % 1e-8 > 5e-9 ? 1 : -1) *
+//     Math.sqrt(-Math.log(Math.max(1e-9, u))) *
+  //   parseFloat(sigma) +
+  // parseFloat(mean)
+// );
+
 function randomGaussian(mean, sigma) {
-  let u = Math.random();
-  return (
-    (u % 1e-8 > 5e-9 ? 1 : -1) *
-      Math.sqrt(-Math.log(Math.max(1e-9, u))) *
-      parseFloat(sigma) +
-    parseFloat(mean)
-  );
+  let u = 0.0;
+    for (var i=0;i<12;i++)
+       u += Math.random();
+    u -= 6;
+   
+    return u*parseFloat(sigma) +
+    parseFloat(mean);
 }
 
 let y = [];
