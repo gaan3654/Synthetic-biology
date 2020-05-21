@@ -152,7 +152,10 @@ function initializeSubstances(substance_array, i, func_array) {
     // ------------------------------------------------------------------------------------------
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
-
+    if (!concentrationInput) {
+      document.getElementById(substance_array[i]).value = "0";
+      concentrationInput = 0;
+    }
     // Process weak Euler
     let regex = new RegExp(/[^\d\.]/);
     if (regex.test(concentrationInput)) {
