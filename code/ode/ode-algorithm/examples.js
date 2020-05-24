@@ -46,7 +46,7 @@ $("#example3").click(function () {
     document.getElementById("second_reaction_rate_0").value = "0";
     document.getElementById("int_ends").value = "5";
     document.getElementById("n_inp").value = "1000";
-    document.getElementById("reaction_input_0").value = "A+B->C";
+    document.getElementById("reaction_input_0").value = "A+B->C+B";
   });
   disposeGraphData();
   reactions_id = ["reaction_0"];

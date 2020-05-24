@@ -1,15 +1,14 @@
 $("#example1").click(function () {
   $("#cancer_treatment").css("display", "block");
   $("#reactions").load(" #reactions > *", function () {
-    addSubstances(3);
+    addSubstances(2);
     addReaction(1);
     document.getElementById("int_ends").value = "1";
     document.getElementById("n_inp").value = "100";
     document.getElementById("second_reaction_rate_0").value = "0.2";
-    document.getElementById("reaction_input_0").value = "A+B->C";
+    document.getElementById("reaction_input_0").value = "A+B->0";
     document.getElementById("A").value = "30";
-    document.getElementById("B").value = "12";
-    document.getElementById("C").value = "0";
+    document.getElementById("B").value = "42";
   });
   disposeGraphData();
   reactions_id = ["reaction_0"];
