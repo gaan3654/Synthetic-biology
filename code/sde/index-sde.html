@@ -159,6 +159,7 @@
 
       <div>
         <div class="row" id="substance_input">
+          <div class="col-sm-3 input-container">
           <div class="col-sm-3 input-container" id="substance">
             <div class="col-sm-3 subs_react_buttons">
               <button
@@ -210,6 +211,16 @@
                   value="#00ff00"
                 />
               </div>
+            </div>
+          </div>
+            <div class="input-group">
+              <input
+                type="checkbox"
+                readonly="readonly"
+                checked
+                id="checkbox-weak-euler"
+              />
+              <span>Spręsti silnuoju metodu</span>
             </div>
           </div>
 
@@ -302,7 +313,7 @@
                 >Iteracijų skaičius</span
               >
               <div id="iter" class="input_blocks">
-                <input type="number" id="iterations" value="20" />
+                <input type="number" id="iterations" value="10000" />
               </div>
             </div>
             <div class="input-group" id="checkbox">
@@ -394,6 +405,13 @@
               <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
             </div>
             <div id="chartdiv0" class="graph"></div>
+          </div>
+          <!-- To store histograms -->
+          <div id="graph-container-right">
+            <div class="graph-title" id="graph-title-1" style="display: none;">
+              <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
+            </div>
+            <!-- <div id="chartdiv0" class="graph"></div> -->
           </div>
         </div>
       </div>

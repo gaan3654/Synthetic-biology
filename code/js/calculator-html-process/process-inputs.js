@@ -21,7 +21,7 @@ $("#submit").click(function () {
   } else {
     catalyzation = 0;
   }
-  weakEuler = false;
+  weakEuler = document.getElementById("checkbox-weak-euler").checked;
   sigma = [];
 
   sdeAllYIterations = [];
@@ -168,7 +168,6 @@ function initializeSubstances(substance_array, i, func_array) {
           randomGaussian(meanSigma[0], meanSigma[1])
         );
         obj[`initial_conc`] = randomConcentration;
-        weakEuler = true;
       } else {
         obj[`initial_conc`] = parseFloat(concentrationInput);
       }
