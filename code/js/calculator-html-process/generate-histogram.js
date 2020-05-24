@@ -42,17 +42,17 @@ function genetareHistogramData(N, substance_obj, iterations) {
         document.getElementById(
           "graph-container"
         ).innerHTML += `<div id="graph-title-2" class="graph-title">
-                            <h4>Skirstinys koncentracijos paskutiniame reakcijos taške:</h4>
+                            <h4>Skirstinys koncentracijos laiko intervalo gale:</h4>
                         </div>`;
       }
       if (objectList.length != 0) {
         if (i == 1) {
-          addGraph(substance + sdeAllYIterations[0].length);
+          addGraph("graph-container", substance + sdeAllYIterations[0].length);
           graphList.push(
             "chartdiv" + (substance + sdeAllYIterations[0].length)
           );
         } else {
-          addGraph(substance);
+          addGraph("graph-container", substance);
           graphList.push("chartdiv" + substance);
         }
       }
@@ -65,7 +65,7 @@ function genetareHistogramData(N, substance_obj, iterations) {
 }
 
 function generateDistribution(y, min, max, iterations) {
-  let interval = max / 10;
+  let interval = max / 100;
   // let interval = (max - min) / 10;
   let distribution = generateDistributionIntervals(
     min,

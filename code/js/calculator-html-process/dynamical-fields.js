@@ -82,8 +82,8 @@ function renew_button() {
   rection_submited = true;
 }
 
-function addGraph(numeration) {
-  let d = document.getElementById("graph-container");
+function addGraph(location, numeration) {
+  let d = document.getElementById(location);
   d.innerHTML += `<div id="chartdiv${numeration}" class="graph"></div>`;
 }
 
