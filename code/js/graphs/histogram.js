@@ -15,6 +15,8 @@ function draw(objectList, substanceObjectList) {
       iChart = chartList.length - 1;
     }
 
+    chartList[iChart].scrollbarX = new am4core.Scrollbar();
+
     chartList[iChart].data = objectList[i];
 
     categoryAxis = chartList[iChart].xAxes.push(new am4charts.CategoryAxis());

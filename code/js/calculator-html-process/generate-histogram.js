@@ -68,7 +68,6 @@ function genetareHistogramData(N, substance_obj, iterations) {
 
 function generateDistribution(y, min, max, iterations) {
   let interval = max / 100;
-  // let interval = (max - min) / 10;
   let distribution = generateDistributionIntervals(
     min,
     max,
