@@ -30,6 +30,9 @@ function draw(objectList, substanceObjectList) {
     series.stroke = "#d3d3d3";
     series.fill = substanceObjectList[i]["color"];
 
+    if (objectList[i].length < 5)
+      series.columns.template.width = am4core.percent(20);
+
     chartList[iChart].titles.create().text =
       "Medžiaga " + substanceObjectList[i]["name"];
   });
