@@ -39,15 +39,17 @@ function genetareHistogramData(N, substance_obj, iterations) {
 
       if (i == 1 && substance == 0) {
         $("#graph-title-1").css("display", "block");
-        document.getElementById(
-          "graph-container"
-        ).innerHTML += `<div id="graph-title-2" class="graph-title">
-                            <h4>Skirstinys koncentracijos laiko intervalo gale:</h4>
-                        </div>`;
+        $("#graph-title-2").css("display", "block");
+        $("#graphs").css("display", "inline");
+        $("#graph-container").css("width", "48%");
+        $("#graph-container-right").css("width", "48%");
       }
       if (objectList.length != 0) {
         if (i == 1) {
-          addGraph("graph-container", substance + sdeAllYIterations[0].length);
+          addGraph(
+            "graph-container-right",
+            substance + sdeAllYIterations[0].length
+          );
           graphList.push(
             "chartdiv" + (substance + sdeAllYIterations[0].length)
           );

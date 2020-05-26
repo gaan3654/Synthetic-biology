@@ -55,7 +55,6 @@ input[type="checkbox"] {
 }
 
 #chartdiv0 {
-  margin-top: 200px;
   bottom: 10px;
   max-height: 400px;
 }
@@ -99,12 +98,16 @@ input[type="checkbox"] {
   white-space: unset;
 }
 
-#graph-title-1 {
-  margin-top: 200px;
-  margin-bottom: -200px;
-}
 .graph-title {
   width: 100%;
+}
+
+#function-probability-container {
+  width: 100%;
+}
+
+#graph-container-right {
+  float: right;
 }
 /* *******************tooltip************************** */
 

@@ -93,13 +93,9 @@ function updateInputs() {
     $("#function").css("display", "block");
     $("#function_block").css("display", "block");
     $("#probability-block").css("display", "none");
-    let blockHeight =
-      document.getElementById("function_block").offsetHeight + 30;
+    document.getElementById("function-probability-container").style.height =
+      document.getElementById("function_block").offsetHeight + "px";
 
-    if (document.getElementById("graph-title-1")) {
-      document.getElementById("graph-title-1").style.marginTop =
-        blockHeight + "px";
-    }
     if (catalyzation) refreshProbabilityResults();
     renew_button();
   });

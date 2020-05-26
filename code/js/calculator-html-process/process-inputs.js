@@ -18,10 +18,10 @@ $("#submit").click(function () {
   if (sde) {
     iterations = parseInt(iterationsObject.value);
     showOnlyMean = document.getElementById("show-only-mean").checked;
+    weakEuler = document.getElementById("checkbox-weak-euler").checked;
   } else {
     catalyzation = 0;
   }
-  weakEuler = document.getElementById("checkbox-weak-euler").checked;
   sigma = [];
 
   sdeAllYIterations = [];
@@ -64,13 +64,18 @@ $("#submit").click(function () {
     timeCoordinate.length == 0 ? (timeCoordinate = tt) : timeCoordinate;
   }
   if (weakEuler) {
+    $("#graph-container").css("float", "left");
     genetareHistogramData(N - 1, substance_obj, iterations);
   } else if (showOnlyMean) {
+    $("#graph-container").css("float", "none");
+    $("#graph-container").css("width", "100%");
     showGraphBlocks();
     createCharts(am4core, true);
     let yMeans = drawOnlyMeans(iterations);
     addToChart([yMeans], timeCoordinate, substance_obj, showOnlyMean, sde);
   } else {
+    $("#graph-container").css("float", "none");
+    $("#graph-container").css("width", "100%");
     showGraphBlocks();
     if (iterations < 201) {
       createCharts(am4core, true);
@@ -153,7 +158,7 @@ function initializeSubstances(substance_array, i, func_array) {
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
     if (!concentrationInput) {
-      document.getElementById(substance_array[i]).value = "0";
+      document.getElementById(substance_array[i]).value = 0;
       concentrationInput = 0;
     }
     // Process weak Euler
@@ -170,9 +175,15 @@ function initializeSubstances(substance_array, i, func_array) {
         obj[`initial_conc`] = randomConcentration;
       } else {
         obj[`initial_conc`] = parseFloat(concentrationInput);
+        document.getElementById(substance_array[i]).value =
+          document.getElementById(substance_array[i]).value + " 0";
       }
     } else {
       obj[`initial_conc`] = parseFloat(concentrationInput);
+      if (weakEuler) {
+        document.getElementById(substance_array[i]).value =
+          document.getElementById(substance_array[i]).value + " 0";
+      }
     }
     // ------------------------------------------------------------------------------------------
     obj["color"] = document.getElementById(`color${substance_array[i]}`).value;

@@ -329,6 +329,7 @@
         </div>
 
         <div id="graph_draw" class="row">
+          <div class="input-container" id="function-probability-container">
           <!-- ------------------------------------------------------------------------------------------------ -->
             <div class="col-sm-3 graph-input-container input-container" id="function_block">
               <div class="col-sm-3">
@@ -399,19 +400,22 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 input-container graph-input-container"></div>
-          <div id="graph-container">
-            <div class="graph-title" id="graph-title-1" style="display: none;">
-              <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
+        </div>
+          <!-- <div class="col-sm-3 input-container graph-input-container"></div> -->
+          <div id="graphs">
+            <div id="graph-container">
+              <div class="graph-title" id="graph-title-1" style="display: none;">
+                <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
+              </div>
+              <div id="chartdiv0" class="graph"></div>
             </div>
-            <div id="chartdiv0" class="graph"></div>
-          </div>
-          <!-- To store histograms -->
-          <div id="graph-container-right">
-            <div class="graph-title" id="graph-title-1" style="display: none;">
-              <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
+            <!-- To store histograms -->
+            <div id="graph-container-right">
+              <div class="graph-title" id="graph-title-2" style="display: none;">
+                <h4>Skirstinys koncentracijos laiko intervalo gale:</h4>
+              </div>
+              <!-- <div id="chartdiv0" class="graph"></div> -->
             </div>
-            <!-- <div id="chartdiv0" class="graph"></div> -->
           </div>
         </div>
       </div>
