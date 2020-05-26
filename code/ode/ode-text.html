@@ -22,7 +22,11 @@
       id="MathJax-script"
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+
+
     ></script>
+
+
   </head>
 
   <body>
@@ -43,73 +47,133 @@
     </div>
     <div class="content col-sm-9 content-container">
       <h1>
-        <!-- <img src="../../assets/logo_.png" alt="Logo"> <br> -->
         Paprastosios diferencialinės lygtys
       </h1>
       <p>
-        Paprastosios diferencialinės lygtys yra mažiausiai sudėtingos 
-        iš diferencialinių lygčių. 
-        Jose dalyvauja vienas nežinomas kintamasis. 
-        Paprastųjų diferencialinių lygčių sudėtingumas gali kisti priklausomai nuo jose dalyvaujančių funkcijų. 
-        Jei lygtyje yra skaičiuojama pirmojo laipsnio funkcija - 
-        lygtis atitinkamai bus vadinama pirmojo laipsnio diferencialine lygtimi, jei antro laipsnio nelygybė, 
-        tuomet ir diferencialinės lygties rūšis skirsis.
+        Paprastosios diferencialinės lygtys yra lengviausios ir elementariausios 
+        iš diferencialinių lygčių rūšių. Jose dalyvauja vienas nepriklausomas kintamasis. 
+        Paprastųjų diferencialinių lygčių sudėtingumas gali kisti priklausomai nuo jose dalyvaujančių funkcijų. Jei lygtyje dalyvauja pirmojo laipsnio išvestinė -- 
+        lygtis atitinkamai bus vadinama pirmosios eilės diferencialine lygtimi, jei antro laipsnio išvestinė, tuomet ir diferencialinės lygties eilė skirsis 
+        <a href="https://en.wikipedia.org/wiki/Differential_equation">[1]</a>.
       </p>
 
       <p>
-        Paprastosios diferencialinės lygtys <i>(iš anglų kalbos - Ordinary Differential Equations, trumpinys -ODE)</i> 
+        Paprastosios diferencialinės lygtys <i>(iš anglų kalbos -- Ordinary Differential Equations, trumpinys -- ODE)</i>
         gali būti puikus įrankis modeliuoti biologinių procesų pokyčius (dinamiką). 
         Teoriniai eksperimentų rezultatai, dažniausiai yra sunkiai suprantami. 
-        Rezultatų modeliavimas gali suteikti tyrimui daugiau prasmės bei suteikti aiškesnę išvestį. 
+        Rezultatų modeliavimo dėka yra gaunama aiški išvestis, kuri gali supaprastinti tyrimo analizę. 
         Modeliuojant biologinius procesus naudojant diferencialines lygtis, užtenka žinoti pradinius duomenis, 
-        t.y. reakcijoje dalyvaujančių medžiagų pradines koncentracijas, reakcijos laiką, bei šalutinius poveikius. 
-        Toks modeliavimas palengvina proceso analizę bei gali skatinti naujų idėjų bei hipotezių atsiradimą. 
+        pavyzdžiui reakcijoje dalyvaujančių medžiagų pradines koncentracijas, reakcijos laiką, bei šalutinius poveikius. 
+        Toks modeliavimas palengvina cheminės reakcijos proceso analizę bei gali skatinti naujų idėjų bei hipotezių atsiradimą. 
         Verta paminėti, jog biologinių procesų tyrimų modeliavimas pasitelkiant diferencialines lygtis sutaupo tyrėjų laiką ir reakcijoms naudojamus resursus, 
-        kadangi modeliavimas vyksta skaitiniu pavidalu.
+        kadangi modeliavimą atlieka kompiuteriai.
       </p>
       <h3>
         Paprastųjų diferencialinių lygčių apibrėžimas
       </h3>
       <p>
-        Paprastosios diferencialinės lygtys apibūdina, kaip laikui bėgant kinta įvykių būsenos, pasitelkiant tik pradinėmis jų duomenimis.  
-        Paprastoji diferencialinė lygtis gali būti užrašyta tokiu pavidalu: \[ \mbox{$\dot{x} = f(x(t), u(t), t) $}. \]
-        Tašku virš funkcijos yra žymima išvestinė \(\mbox{$\frac{dx(t)}{dt}$}\), skaičiuojama pagal laiko kintamąjį \(\mbox{$t$}\). 
-        Čia \(\mbox{$x(t)\in \mathbb{R}^n$}\) yra funkcijos reikšmė laike \(\mbox{$t$}\), skaičiuojama \(\mbox{$n$}\) kartų.  
-        Diferencialinei lygčiai skaičiuoti taip pat naudojamas šalutinių poveikių vektorius \(\mbox{$u(t)\in \mathbb{R}^m$}\), kuris lygčiai taikomas viso laiko metu
+        Paprastosios diferencialinės lygtys apibūdina, kaip laikui bėgant kinta įvykių būsenos, 
+        pasitelkiant tik pradinius jų duomenimis.  Paprastoji diferencialinė lygtis gali būti užrašyta tokiu pavidalu:
+          \begin{equation}
+              \mbox{$\dot{x} = f(x(t), t) $}.
+              \tag{1}
+              \label{ODE}
+          \end{equation}
+        Tašku virš funkcijos yra žymima pilnoji išvestinė \(\frac{dx(t)}{dt}\), skaičiuojama pagal laiko kintamąjį \(t\). 
+        Čia \(x(t)\in \mathbb{R}\) yra funkcijos reikšmė laike \(t\), skaičiuojama \(n\) kartų.
       </p>
 
       <p>
-        ODE paaiškinti, puikiai tinka biologinių reakcijų pavyzdys. Paimkime denatūracijos reakciją. 
-        Denatūracija, tai yra baltymo erdvinės struktūros pasikeitimas, dėl kurio jis negali atlikti savo funkcijos. 
-        Konkretus denatūracijos pavyzdys būtų fibrinogeno virsmas į fibriną. Du skirtingi baltymai, fibrinogenas 
-         - gyvame organizme atliekantis apsauginę funkciją, tretinės baltymo struktūros, tirpus vandenyje, 
-         esant staigiam temperatūros pokyčiui pakeičia savo struktūrą į antrinę, netirpstantį vandenyje fibrino baltymą. 
-         Taigi, abiejų baltymų koncentracijas reakcijos metu galima užrašyti sekančiu būdu \(\mbox{$a(t)=[a_1(t), a_2(t), ..., a_n(t)]^T$}\)  ir 
-         \(\mbox{$b(t)=[b_1(t), b_2(t), ..., b_n(t)]^T$}\) , kur \(\mbox{$a_1(t)$}\) atvaizduoja fibrinogeno koncentracijos kiekį laike \(\mbox{$t$}\), 
-         o  \() \mbox{$b_1(t)$}\) - fibrino. Šios reakcijos pavyzdyje, \(\mbox{$u(t)$}\) atspindėtų pH ir temperatūros pokyčius, 
-         mechaninius poveikius ar sunkiųjų metalų įtaką reakcijos greičiui.
-       </p>
-       <p>
-         \(\mbox{$\dot{x} = f(x(t), u(t), t) $}\) diferencialinės lygties užrašas aprašo, 
-         kaip kinta reakcijoje dalyvaujančių medžiagų kiekis bėgant laikui ir esant papildomiems dirgikliams. 
-         Tačiau ne visuomet lygtį veikia papildomos sąlygos, 
-          tad  diferencialinė lygtis gali būti modeliuojama tik  atsižvelgiant į laiką ir užrašoma \(\mbox{$\dot{x} = f(x(t), t) $}\).
+        Pateiktas \eqref{ODE} diferencialinės lygties užrašas aprašo, kaip kinta reakcijoje dalyvaujančių medžiagų kiekis bėgant laikui. 
+        Tačiau kai kurias lygtis veikia papildomos sąlygos, tad  diferencialinė lygtis gali būti modeliuojama ne tik  atsižvelgiant į laiką 
+        <a href="https://klevas.mif.vu.lt/~ash/PDL/PDL_all.pdf">[2]</a>
+        <a href="https://www.biorxiv.org/content/10.1101/071134v1.full.pdf">[3]</a>
+        ir užrašoma:
+          \begin{equation} 
+            \mbox{$\dot{x} = f(x(t), u(t), t) $}.
+            \tag{2}
+          \end{equation}
+      Šioje diferencialinėje lygtyje naudojamas šalutinių poveikių (kitaip valdymo) vektorius \(u(t)\in \mathbb{R}\), kuris lygčiai taikomas viso laiko metu 
+      <a href="https://www.biorxiv.org/content/10.1101/071134v1.full.pdf">[3]</a>.
       </p>
 
-      <!-- <p>
-        Kokiu būdu turint funkcijos išvestinę galima rasti pačią funkciją?
-        Paprasčiausias būdas išspręsti šią užduotį yra apskaičiuoti pirmykštę,
-        t.y. integruoti. Pavyzdžiui, jeigu yra duota \(\frac{dx}{dt}(t)=cos(t)\), tuomet
-        kokia būtų x(t) funkcija? 
-        Akivaizdu, kadangi cos(t) pirmykštė yra sin(t), funkcijos x(t) reikšmė
-        bus lygi sint(t). Reikėtų tik paminėti savavališką konstantą - C, kurios
-        reikšmės negalime nustatyti. Todėl, aukščiau pateikto klausimo atsakymas
-        yra x(t)=sin(t)+C.
-      </p> -->
+      <p>
+        ODE paaiškinti, puikiai tinka biocheminių reakcijų pavyzdys. Paimkime denatūracijos reakciją. <b>Denatūracija</b> 
+        tai yra baltymo erdvinės struktūros pasikeitimas, dėl kurio jis negali atlikti savo funkcijos. 
+        Konkretus denatūracijos pavyzdys būtų fibrinogeno virsmas į fibriną. Du skirtingi baltymai, fibrinogenas  
+        -- gyvame organizme atliekantis apsauginę funkciją, tretinės baltymo struktūros, tirpus vandenyje,
+         esant staigiam temperatūros pokyčiui pakeičia savo struktūrą į antrinę, netirpstantį vandenyje fibrino baltymą. 
+        Tirdami tokią reakciją, mokslininkai galėtų skaitiniu būdu atvaizduoti fibrinogeno ir fibrino koncentracijų pokyčius duotajame laiko intervale. 
+        Šioje reakcijoje dalyvautų dviejų medžiagų funkcijos: \(A(t)\), kuri atspindi fibrinogeno pokyčius ir \(B(t)\), atspindinti fibrino. 
+        Šios reakcijos pavyzdyje, \(u(t)\) būtų pH ir temperatūros pokyčiai, mechaniniai poveikiai ar sunkiųjų metalų įtaka reakcijos greičiui. 
+        Taip pat, ODE spręsti yra pateikiamas laiko intervalas \(T=[0,t]\). 
+        Diferencialinių lygčių sudarymo taisyklės bus nurodomos toliau.
+       </p>
 
-      <!-- tegul čia lieka pvz: -->
-      <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-          $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
+       <h3>Paprastųjų diferencialinių lygčių sudarymo principai</h3>
+
+       <p>
+        Diferencialinių lygčių sudarymo principams pateikti, imkime aukščiau pateiktą denatūracijos pavyzdį. 
+        Ši biochemijos reakcija būtų užrašoma:
+        \begin{equation}
+            \mbox{$A \longrightarrow^k B$}
+            \tag{3}
+            \label{ODE_pvz}
+        \end{equation}
+        Primenama, kad \(A\) atstovauja fibrinogeno molekules, o \(B\) -- fibrino. 
+        Reakcija vyksta valdymo vektoriaus \(k\) (pvz. temperatūros arba pH pokyčių) dėka. 
+        Paminėkime, jog ši reakcija vyks laiko atžvilgiu, tad yra apibrėžiamas laiko intervalas \(T=[0,t] \). 
+        Diferencialinei lygčiai spręsti, laiko intervalas yra dalijamas į \(N\) dalių. 
+      </p>
+      <p>
+        Pagal \eqref{ODE_pvz} reakciją teigiama, jog medžiaga \(A\) skyla į \(B\). 
+        Taigi, jei turime pradinę \(A\) reikšmę \(a(t_0)\), tuomet reikšmė \(a(t_1)\), 
+        sekančiame laiko intervalo taške \(t_1\), bus mažesnė. Atitinkamai \(B\) reikšmės didės. 
+        Kadangi \(A\) koncentracijos mažėjimą įtakos valdymo vektorius \(k\), diferencialinėje lygtyje jo reikšmė bus neigiama. 
+        Taigi, šių dviejų medžiagų diferencialinės lygtys yra užrašomos sistema:
+        \begin{equation}
+            \begin{cases}
+                \mbox{$\frac{dA}{dt} = A \cdot (-k)$} \\
+                \mbox{$\frac{dB}{dt} = A \cdot (k)$}
+            \end{cases}
+            \tag{4}
+        \end{equation}
+        Taip yra užrašoma diferencialinių lygčių sistema, kurių dėka, bus fiksuojami medžiagų pokyčiai, atitinkamu tikslumu, pasirinktame laiko intervale. 
+        Taigi, abiejų baltymų koncentracijas reakcijos metu galima užrašyti tokiu būdu \(A=[a(t_0), a(t_1), ..., a(t_n)]\)  ir \(B=[b(t_0), b(t_1), ..., b(t_n)]\).
+      </p>
+      <p>
+        Tam, kad mes vienareikšmiškai nusakytume kiekvienos reakcijos koncentracijas, turime pateikti pradines sąlygas. 
+        Taigi, kiekvienai diferencialinei lygčiai skaičiuoti yra būtina pateikti kintamųjų pradines reikšmes, 
+        diferencijavimo sąlygas (pvz. laiką), tikslumo matą ir papildomus dirgiklius, jei tokie egzistuoja.
+      </p>
+      <p>
+        Paprastai, diferencialinių lygčių sistemos negalima išspręsti analitiškai, todėl jos yra ieškomos metodiškai.
+      </p>
+
+      <p>
+        Artutiniam diferencialinių lygčių sprendimui išvestinė \(y'=f(x,y)\) yra užrašoma taip:
+        \begin{equation}
+            \mbox{$f(x,y)=\frac{y(x+ \Delta x) -y(x)}{\Delta x}$}
+            \tag{5}
+        \end{equation}
+        \begin{equation}
+          \mbox{$y(x+ \Delta x) = y(x) + \Delta x \cdot f(x,y)$}
+          \tag{6}
+        \end{equation}
+      </p>
+
+      <p>
+        Iš šių pateiktų lygčių yra generuojamas Eulerio sprendimas, kuriame:
+        <ul>
+          <li>\(y(x_0)=y_0\), t.y. duotosios pradinės sąlygos</li>
+          <li>\(x_1=x_0+h\), kur \(h\) yra pasirinktas tikslumas. 
+            Pavyzdžiui, imamas laiko intervalas \(T=[0,1]\) ir \(N=100\), tuomet \(h=\frac{t_{n} - t_0}{N}=\frac{1}{100}=0.01\)</li>
+          <li>Naujoji kintamojo reikšmė apskaičiuojama pagal: \(y_1=y_0+f(x_0,y_0) \cdot h\)</li>
+        </ul>
+      </p>
+
+
+
       <br /><br />
     </div>
 

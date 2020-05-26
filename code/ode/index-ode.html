@@ -106,17 +106,17 @@
         <p>
           Vanduo - gyvybės palaikymui būtina medžiaga. Be vandens negalėtų vykti
           itin svarbūs procesai, pavyzdžiui medžiagų pernešimas ar fotosintezė.
-        </p>
-        <p>
-          Taigi, cheminė vandens susidarymo reakcija yra vienas iš svarbiausių
-          gyvybei reikalingų procesų.
+          Taigi, vandens susidarymo reakcija yra būtina gyvybės palaikymui.
         </p>
         <p>
           Chemijoje, vandens molekulės yra žymimos \(H_2O\) ir dar vadinamos
           divandenilio monoksidu. \(H_2O\) susidaro vykstant daugeliui reakcijų,
           tačiau paprasčiausia jų yra vandenilio bei deguonies susijungimas,
-          kitaip vadinamas vandenilio deginimu. Ši reakcija yra žymima \[2H_2 +
-          O_2 → 2H_2O.\] Tačiau ši iš pirmo žvilgsnio paprasta reakcija,
+          kitaip vadinamas vandenilio deginimu. Ši reakcija yra žymima
+          \begin{equation}
+              \mbox{$2H_2 + O_2 \longrightarrow 2H_2O.$} 
+          \end{equation} 
+          Tačiau ši iš pirmo žvilgsnio paprasta reakcija,
           nevyksta be papildomų reikalavimų. Natūraliomis sąlygomis tiek
           vandenilis tiek deguonis yra dujos, paprastas šių dviejų dujų
           sumaišymas kambario temperatūroje neturės jokio rezultato, juk
@@ -124,36 +124,38 @@
           reikia papildomos šilumos, aktyvatoriaus arba kitokio katalizatoriaus.
         </p>
         <p>
-          Žemiau yra pateikiamas šios reakcijos pavyzdys. Laikoma, jog \(H_2\)
+          Žemiau yra pateikiamas šios reakcijos modeliavimo pavyzdys. Laikoma, jog \(H_2\)
           yra medžiaga <b>A</b>, \(O_2\) - medžiaga <b>B</b>, o \(H_2O\) -
-          <b>C</b>. Kadangi reakcija vyksta tik į vieną pusę, yra nustatomas tik
-          vienas katalizatorius - \(k_1\).
+          <b>C</b>. \(k_1\) yra tiesioginės reakcijos greitis, o  \(k_2\) yra atvirkštinės reakcijos greitis.  
         </p>
       </div>
 
       <div id="photosynthesis" class="example-text" style="display: none;">
         <h2>Fotosintezė</h2>
         <p>
-          Fotosintezė - procesas, kurio metu iš neorganinių medžiagų, naudojant
-          šviesos energiją, yra gaminamos organinės. Šiai reakcijai vykti yra
-          būtinas chlorofilas, kuris yra augalų ląstelėse. Tad ši reakcija yra
-          būdinga augalams.
+          Fotosintezė -- procesas, kurio metu iš neorganinių medžiagų, naudojant šviesos energiją, yra gaminamos organinės. 
+          Šiai reakcijai vykti yra būtinas chlorofilas, 
+          kuris yra augalų arba kai kurių kitų karalysčių atstovų ląstelėse. Tačiau ši reakcija dažniausiai yra būdinga augalams.
         </p>
         <p>
           Reakcijoje dalyvauja 6 anglies dioksido \(CO_2\) ir 6 vandens \(H_2O\)
           moelkulės. Šio proceso produktas yra angliavandenis gliukozė
-          \(C_6H_{12}O_6\) ir deguonis \(O_2\). \[6CO_2 + 6H_2O -> C_6H_{12}O_6
-          + 6O_2.\]
+          \(C_6H_{12}O_6\) ir deguonis \(O_2\). 
+          \begin{equation}
+              6CO_2 + 6H_2O \longrightarrow C_6H_{12}O_6 + 6O_2
+          \end{equation}
         </p>
         <p>
           Kuo didesnis yra šviesos kiekis, tuo greičiau vyksta fotosintezė. Taip
           pat reakciją pagreitina ir reagentų kiekis.
         </p>
         <p>
-          Žemiau yra pateikiamas šios reakcijos pavyzdys. Laikoma, jog \(CO_2\)
+          Žemiau yra pateikiamas šios reakcijos modelio pavyzdys. Laikoma, jog \(CO_2\)
           yra medžiaga <b>A</b>, \(H_2O\) - medžiaga <b>B</b>, \(C_6H_{12}O_6\)
-          - <b>C</b>, o \(O_2\) yra <b>D</b>. Šviesos intensyvumas žymimas -
-          \(k_1\).
+          - <b>C</b>, o \(O_2\) yra <b>D</b>. 
+          Šioje reakcijoje yra įvesti du greičiai \(k_1\) ir \(k_2\). 
+          Tarkime, jog \(k_1\) yra palankios sąlygos fotosintezei vykti, o \(k_2\) šiuo atveju yra lygus nuliui, 
+          kadangi reakcija nevyksta atgaline tvarka, tačiau susidarę produktai gali būti išeikvoti kitų, organizme vykstančių, procesų metu. 
         </p>
       </div>
 
@@ -164,25 +166,36 @@
           ODE dėka, galima sukurti modelį, kuris gebėtų parodyti gydymui taikomų sprendimų rezultatus.
         </p>
         <p>
-          Kiekvienam gyvybei svarbiam procesui vykti turi būti palankios sąlygos. 
           Neretai, žmogaus organizmas nusilpsta ir gyvybės palaikymui yra būtina medicinos pagalba. 
-          Didžiausia medikų rizika yra ne tik nespėti suteikti reikiamos pagalbos ir įdėti per mažai pastangų gydymui, tačiau ir nepersistengti, 
-          t.y. gydymo metu nesukelti organizmui dar daugiau žalos. 
-           Sergantys organizmai yra jautrūs ir kiekvienas netinkamas sprendimas gali pasibaigti tragiškai. 
+          Didžiausia medikų rizika yra ne tik nespėti suteikti reikiamos pagalbos ir įdėti per mažai pastangų gydymui, tačiau ir nepersistengti,
+           t.y. gydymo metu nesukelti organizmui dar daugiau žalos. 
+           Sergantys organizmai yra jautrūs ir kiekvienas netinkamas sprendimas gali pasibaigti tragiškai.
         </p>
         <p>
-          Naudojant ODE modelį, galima suprasti gydymo poveiki sergančioms ląstelėms.
-           Šiuo atveju yra nagrinėjamas vėžiu sergančio organizmo gydymas. 
-           Kadangi diferencialinės lygtys vyksta tam tikru laiku, jų dėka galima pamatyti kaip navikas reaguos taikant gydymą nustatytu laiko periodu, 
+          Diferencialines lygtis ir jų sistemas galima naudoti vėžio gydymo plano sudarymo metu.
+          Naudojant ODE modelį, galima suprasti gydymo poveikį sergančioms ląstelėms. Šiuo atveju yra nagrinėjamas vėžiu sergančio organizmo gydymas.
+          Kadangi diferencialinės lygtys vyksta tam tikru laiku, jų dėka galima pamatyti kaip navikas reaguos taikant gydymą nustatytu laiko periodu, 
           taip pat galima nuspręsti kokią vaistų dozę reikėtų skirti pacientui.
         </p>
+
         <p>
           Be vaistų poveikio, taip pat galima modeliuoti ir kitus gydymo procesus.
-          Paimkime krūties vėžio atvejį. Esat tokiai diagnozei, krūties ląstelėse yra viršijamas HER2 kiekis. 
-          HER yra epiderminis augimo faktoriaus receptorius, kuris turi didelę įtaką naviko ląstelių augimui. 
-          Esant per dideliam šio receptoriaus kiekiui, vėžį gydantys vaistai Tirozino Kinazės Inhibitorius (TKI) būna neveiksmingi. 
-          Mokslininkų įrodyta, jog tokį atsparumą sukelia pakitusi HER3 forforilinimo-defosforilinimo pusiausvyra,
-          kurią lemia HER3 aktyvumo sumažėjimas, taip pat sukeltas didelis membranos atsparumas. To pasekoje, defosforilinimo reakcija negali sklandžiai vykti. 
+          Žmogaus organizme, keletą ląstelės procesų, tokių kaip dalijimąsi, diferenciaciją, naviko progresavimą, 
+          reguliuoja transmembraninis baltymas- epidermio augimo faktorių receptorius
+          <i>(iš anglų kalbos - epidermal growth factor receptor (EGFR), taip pat žinomas kaip HER)}. </i>
+          EGFR priklauso keli receptoriai: EGFR/ERBB1/HER1, ERBB2/HER2/Neu, ERBB3/HER3 ir ERBB4/HER4
+          <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6047885/">[1]</a>,
+          <a href="https://en.wikipedia.org/wiki/Epidermal_growth_factor_receptor">[2]</a>.
+        </p>
+        <p>
+          Paimkime krūties vėžio atvejį.
+          Esant tokiai diagnozei, krūties ląstelėse yra viršijamas HER2 kiekis. Esant per dideliam šio receptoriaus kiekiui, 
+          vėžį gydantys vaistai <i>Tirozino Kinazės Inhibitorius (TKI)</i> būna neveiksmingi. Mokslininkų įrodyta, 
+          jog tokį atsparumą sukelia pakitusi HER3 forforilinimo -- defosforilinimo pusiausvyra, kurią lemia HER3 aktyvumo sumažėjimas, 
+          taip pat sukeltas didelis membranos atsparumas. 
+          To pasekoje, defosforilinimo reakcija negali sklandžiai vykti 
+          <a href="https://www.biorxiv.org/content/10.1101/071134v1.full.pdf">[3]</a>,
+          <a href="https://www.ncbi.nlm.nih.gov/pubmed/17206155">[4]</a>.
         </p>
         <p>
           Fosforilinimas yra gyvybiškai svarbus procesas, jo metu prie molekulės prisijungia fosfato grupė. Biologijoje ypač dažnas yra baltymų fosforilinimas, 
@@ -195,15 +208,15 @@
         </p>
         <p>
           Imkime tokią reakciją :
-          \[ A+B \longrightarrow^{k} C +B . \]
-          kur \(A\) yra HER3 fosforilinimo proceso rodiklis, \(B\) - katalizatorius,o \(C\) yra susidariusi defosforilinimo pusiausvyra, 
-          kuri atsiranda katalizatorių dėka.  \(k\) yra reakcijos greitis.  Toks tyrimas yra naudingas norint sužinoti kokių sąlygų reikia procesų pusiausvyros atsistatymui 
-          ir normaliam HER3 veikimui, 
-          kad naviko gydymas būtų vykdomas vaisingai. 
+          \[ A+B \longleftrightarrow^{k} C +B . \]
+          kur \(A\) yra baltymų kiekis, kuriuose vyksta fosforilinimas, \(B\) -- katalizatorius -- fosfatazė, 
+          o \mbox{$C$} yra baltymai, kuriuose vyksta defosforilinimas, kuris atsirado katalizatorių dėka. 
+          \(k_1\) ir \(k_2\) yra reakcijos greičiai. Toks tyrimas yra naudingas norint sužinoti kokių sąlygų reikia procesų pusiausvyros atsistatymui ir normaliam HER3 veikimui, 
+          kad naviko gydymas būtų vykdomas produktyviai. 
 
         </p>
         <p>
-          Diferencialinės lygtys parodo, jog \mbox{$B$} koncentracija išliks pastovi, kadangi lygtyje reikšmės išsilygina. 
+          Modelis parodys, jog \(B\) koncentracija išliks pastovi, atstovauja katalizatorių, kuris tik padeda reakcijai vykti ir jos metu neišsieikvoja.
           Dažniausiai, susirgimo priežastis ir yra katalizatorių trūkumas organizme, dėl to gyvybei svarbūs procesai negali sklandžiai vykti. 
           Tad šis modelis yra naudingas norint ištirti, kokia yra fosforilinimo ir defosforilinimo situacija segančiojo organizme.
         </p>
