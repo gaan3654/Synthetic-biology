@@ -107,15 +107,19 @@
         </p>
         <p>
           Gydymo reakciją užrašykime kaip :
-          \[ A+ B \longrightarrow^{k_1} C   , \]
+          \[ A+ B \longrightarrow^{k_1} 0  , \]
         </p>
 
         <p>
-          kur \(A\) yra žymimos sergančios ląstelės, \(B\) - skirta vaistų dozė, 
-          o \(C\) - sveiktančios ląstelės. Reakcijos rezultato modelis turėtų parodyti, 
-          jog reakcijos pabaigoje pasveikusių ląstelių yra tiek pat, kiek ir buvo sergančių. 
-          Tačiau, be reakcijos greičio, yra pridedamas difuzijos koeficientas ir atsitiktinis kintamasis - emocinė būseną, 
-          teoriškai lygtyje ją vadintumę Wienerio procesu. 
+          kur \(A\) yra žymimos sergančios ląstelės, \(B\) - skirta vaistų dozė. 
+          eakcijos rezultato modelis turėtų parodyti, jog reakcijos pabaigoje sergančiųjų ląstelių sumažėja. 
+          Taigi, reakcija turėtu vykti nykstančio proceso principu, kai sergančios ląstelės, sąveikoje su vaistais, miršta.
+        </p>
+        <p>
+          Tačiau, be reakcijos greičio, yra pridedamas difuzijos koeficientas ir atsitiktiniai faktoriai, kurie lemia vaistų poveikį. 
+          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo. Pavyzdžiui, jei yra sutrikusi inkstų veikla, 
+          pacientas gydymo metu suvartoja per daug cukraus ir pradeda trikti ir kiti biocheminiai procesai. 
+          To pasekoje vėžio gydymas gali sutrikti. Tokie atsitiktiniai faktoriai teoriškai lygtyje yra vadinami Vynerio procesu.
         </p>
 
       </div>
@@ -123,30 +127,29 @@
       <div id="covid19" class="example-text" style="display: none;">
         <h2>COVID-19 prognozės</h2>
         <p>
-          2020 metų pandemija, apvertusi visą pasaulį aukštyn kojomis, palietusi tiek stipriausius tiek silniausius. 
-          Daugybė spelionių kiek bus aukų, kada viskas pasibaigs ir koks gyvenimas lauks žmonių pasibaigus pandemijai? 
-          Ne ką mažiau prognozių, bei moklsinių spelionių. 
-          Prie šių spelionių prisideda ir darbo autorės, siūlydamos savo COVID-19 prognozių modelį.
+          2020 metų pandemija, apvertusi visą pasaulį aukštyn kojomis, palietusi tiek stipriausius tiek silpniausius. 
+          Daugybė spėliojimų kiek bus aukų, kada viskas pasibaigs ir koks gyvenimas lauks žmonių pasibaigus pandemijai? Ne ką mažiau prognozių, bei mokslinių spėliojimų. 
+          Prie šių spėliojimų prisideda ir darbo autorės, siūlydamos savo COVID-19 prognozių modelį, kurį sukūrė remdamosios tyrimais 
         </p>
         <p>
           Studentės modeliui atlikti pateikia kelis pradinius duomenis:
-          Populiacijos skaičius, susirgimo tikyimybė ir sergančiųjų skaičius, 
-          tikimybė pasveikti bei neišgyventi.
+          Populiacijos skaičius, susirgimo tikimybė ir sergančiųjų skaičius, tikimybė pasveikti bei neišgyventi.
         </p>
         <p>
-          Turint tokius pradinius duomenis yra aprašomos keturios reakcijos lygtys.
+          Turint tokius pradinius duomenis yra aprašomos trys reakcijos lygtys.
           <ol>
-            <li>\( A \longleftrightarrow _{k_{2}}^{k_{1}} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos sveikųjų skačius, 
-              \(B\) sergančiųjų. \(k_{1}\) susirgimo tikimybė, \(k_{2}\) - tikimybė susirgus pasveikti.</li>
-            <!-- <li>
-              \( A \longrightarrow ^{k_{1}} A,\) reakcija, kuri vyksta su tam tikra nesusirgimo tikimybe.
-            </li> -->
-            <!-- <li>
+            <li>\( A \longrightarrow ^{\beta} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos sveikųjų skačius, 
+              \(B\) sergančiųjų, o \(\beta\) susirgimo tikimybė.</li>
+            <li>
+              \( B \longrightarrow ^{\gamma_1} C,\) šioje reakcijoje \(C\) yra 
+              žymimas pasveikusiųjų skaičius, pagal pateiktą procentą \(\gamma_1\).
+            </li> 
+            <li>
               \( B \longrightarrow ^{k_{1}} C,\) šioje reakcijoje \(C\) yra 
               žymimas pasveikusiųjų skaičius su pateiktu procentu. 
-            </li> -->
+            </li>
             <li>
-              \( B \longrightarrow ^{k_{1}} C,\) kur \(C\) yra aukų skaičius.
+              \( B \longrightarrow ^{\gamma_2} D,\) kur \(D\) yra aukų skaičius, o \(\gamma_2\), tikimybė susirgus neišgyventi.
             </li>
           </ol>
         </p>
