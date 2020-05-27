@@ -1,7 +1,7 @@
 function draw(objectList, substanceObjectList) {
   chartList = [];
   Array.from(document.getElementsByClassName("graph")).forEach(function (item) {
-    document.getElementById(item.id).style.height = "200px";
+    document.getElementById(item.id).style.height = "300px";
     let matches = item.id.match(/(\d+)/);
     let i = 0;
     if (matches) {
