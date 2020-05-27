@@ -55,7 +55,11 @@
         Visą laiko intervalą nuo \(t_{0}\) iki \(t\) padalijame į lygiai \(N\)
         dalių, toliau kiekviena laiko atkarpa bus apibrėžiama kaip \(\Delta t\).
         Tuomet, pagal Eulerio metodą \(y_{i+1}\) bus skaičiuojamas naudojantis
-        formule: $$ y_{i+1} = y_{i} + \Delta t f_{i} $$.
+        formule: 
+        \begin{equation}
+        \mbox{$d$}\mbox{$y_{i+1} = y_{i} + \Delta t f_{i}$}.
+        \tag{1}
+    \end{equation}
       </p>
 
       <p>
@@ -64,8 +68,11 @@
       </p>
 
       <p>
-        Toliau bus nagrinėjama sekanti stochastinė diferencialinė lygtis: $$
-        dX_{t} = a(X_{t})dt + b(X_{t})d W_t $$.
+        Toliau bus nagrinėjama sekanti stochastinė diferencialinė lygtis: 
+        \begin{equation}
+            \mbox{$d$}\mbox{$X_{t}$} = \mbox{$a$}\mbox{$(X_{t})$}\mbox{$d t$} + \mbox{$b$}\mbox{$(X_{t})$}\mbox{$d W_t$}.
+            \tag{2}
+        \end{equation}
       </p>
 
       <p>
@@ -73,15 +80,18 @@
         greitis, o \(b\) difuzijos koeficientas. Sprendžiant šią lygti laiko
         intervale \([0, T ]: \Delta t = T / N \), kur \(T\) yra galutinis
         reakcijos laikas, o \(N\) reakcijos trukmės skaidymo dalių skaičius,
-        t.y. į kiek dalių reakcija sukarpoma laike \([0, T ]\) . Taip pa
-        laikoma, jog \(Y_{0} = x_{0}\). Tuomet: $$Y_{n+1} = Y_{n} + a (Y_{n})
-        \Delta t+ b(Y_{n}) \Delta W_n $$.
+        t.y. į kiek dalių reakcija sukarpoma laike \([0, T ]\) . Taip pay
+        laikoma, jog \(Y_{0} = x_{0}\). Tuomet: 
+        \begin{equation}
+            \mbox{$Y_{n+1} = Y_{n} + a (Y_{n})$} \mbox{$\Delta t$} \mbox{$+ b$}\mbox{$(Y_{n})$} \mbox{$\Delta  W_n$}.
+            \tag{3}
+        \end{equation}
       </p>
 
       <p>
         Formulėje \(\Delta W_t\) yra nepriklausomi vienodai pasiskirstę noramlūs
         atsitiktiniai kintamieji su vidurkiu 0 ir dispersija \(\Delta t\)
-        \cite{EulerioWiki}.
+        <a href="https://en.wikipedia.org/wiki/Euler-Maruyama_method">[1]</a> .
       </p>
 
       <p>
@@ -97,13 +107,24 @@
       <p>
         Stipriąja aproksimacija laikomas atvejis kai skaitinio ir tiksliojo
         sprendinių skirtumo vidurkis yra nedidelis visame sprendimų intervale:
-        $$ E|(X_t^h) - (X_t)| =O(h^n), h\rightarrow0 $$.
+        \begin{equation} \label{strong_e}
+            \mbox{$E|(X_t^h) - (X_t)| =O(h^n), h\rightarrow0$}.
+            \tag{4}
+        \end{equation}
       </p>
 
       <p>
         O silpnoji aproksimacija yra tais atvejais, kai minėtas skirtumas,
-        skaičiuojamas tarp žemiau pateiktų funkcionalų, yra nedidelis: $$ E
-        f(X_t^h) - E f (X_t) = O(h^n), h\rightarrow0 $$.
+        skaičiuojamas tarp žemiau pateiktų funkcionalų, yra nedidelis: 
+        \begin{equation}
+            \mbox{$E f(X_t^h) - E f (X_t) = O(h^n), h\rightarrow0$}.
+            \tag{5}
+        \end{equation}
+      </p>
+
+      <p style="font-size:80%; text-align:right;">
+        <i>Parengta pagal: V. Mackevičius, ,,STOCHASTINĖ ANALIZĖ. 
+          Stochastiniai integralai ir stochastinės diferencialinės lygtys", 2005m.</i>  
       </p>
 
       <br /><br />

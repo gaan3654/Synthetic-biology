@@ -54,7 +54,7 @@
             \mbox{$X(\omega)$} = \big\{\mbox{$X_{t}(\omega)$}=\mbox{$X(t,\omega), t \in I $ }\big\},
             \tag{1}
         \end{equation}
-        vadinamą atsitiktinio proceso trajektorija. Fiksuojant \(t \in I\), gaunamas atsitiktinis dydis \(X_{t}$}=\mbox{$X_{t}(\omega)\), 
+        vadinamą atsitiktinio proceso trajektorija. Fiksuojant \(t \in I\), gaunamas atsitiktinis dydis \(X_{t}=X_{t}(\omega)\), 
         \(\omega \in \Omega\). Dėl to atsitiktinis procesas dažnai yra apibrėžiamas kaip atsitiktinių dydžių rinkinys \(X_{t}, \quad t \in I\).
       </p>
 
@@ -80,7 +80,7 @@
       </figure>
 
       <p>
-        Šį kintamųjų išdėstymą galima paaiškinti tikimybės pasiskirstymo
+        Šį kintamųjų išdėstymą galima paaiškinti tankio funkcijos
         \(P(x)\) dėka. \(P(x)\) duotame pavyzdyje pateiktas paveikslėlio
         dešinėje. Tikimybių pasiskirstyme yra visa informacija, padedanti
         nuspėti stochastinio proceso kintamųjų reikšmes.
@@ -103,6 +103,56 @@
         pasiskirstymą.
       </p>
 
+      <h3>Stochastinių diferencialinių lygčių apibrėžimas</h3>
+      <p>
+        Stochastinės diferencialinės lygtys (SDE) yra apskaičiuojamos priklausomai nuo kai kurių atsitiktinių procesų, 
+        kurie rezultate sprendinį modeliuoja kaip triukšmingą įvykį. 
+        Geriausiai žinomas atsitiktinis reakcijos dirgiklis yra <i>baltasis triukšmas</i>, aprašomas naudojant Vynerio procesą 
+        (apie jį skaityti <a href="bm-text.html">ČIA</a >). 
+      </p>
+      <p>
+        Stochastinę lygtį galima užrašyti integralo pavidalu:
+        \begin{equation}
+            \mbox{$ X_t=X_0 + \int_{0}^{t}a(s,X_s)ds + \int_{0}^{t}\sigma(s,X_s)dW_s $}.
+            \tag{2}
+        \end{equation}
+
+
+        Stochastinės diferencialinės lygtys yra tolydūs atsitiktiniai procesai, kurių diferencialinė formulė yra užrašoma lygtimi: 
+        \begin{equation}
+            \mbox{$   dX_t = a(t, X_t)dt + \sigma (t, X_t)dW_t, \space  t \geq 0 $}.
+            \tag{3}
+        \end{equation}
+        Šiai lygčiai spręsti yra pateikiamos pirminės sąlygos, \(X_0\), kurios nurodo \(x\) reikšmę pradiniame laike, 
+        taip pat laikas \(t\). 
+        \(a\) yra žymimas reakcijos greitis, dar vadinamas dreifu, o \(\sigma\) yra difuzijos koeficientas. 
+      </p>
+
+      <h3>Stochastinių diferencialinių lygčių sudarymo principai</h3>
+      <p>
+        Remiantis <a href="../ode/ode-text.html" >
+          Paprastosios diferencialinės lygtys
+        </a> puslapyje minėtais principais ir naudojant pateiktą reakciją, 
+        yra pristatomas būdas, kaip galima sudaryti stochastines diferencialines lygtis. 
+        Žemiau pateikiamame pavyzdyje yra matoma, jog nuo ODE stochastinės lygtys skiriasi antrąja dalimi, 
+        kurioje atsiranda \(W\) -  Vynerio procesas ir difuzijos koeficientas \(\sigma\). 
+      </p>
+
+      <p>
+        Galima bandyti sudaryti SDE taip:
+        \begin{equation}
+            \begin{cases}
+                \mbox{$\frac{dA}{dt} = A \cdot (-k) + A \cdot \sigma \cdot W$} \\
+                \mbox{$\frac{dB}{dt} = A \cdot (k) + A \cdot \sigma \cdot W$}
+            \end{cases}
+            \tag{4}
+        \end{equation}
+      </p>
+      
+      <p style="font-size:80%; text-align:right;">
+        <i>Parengta pagal: V. Mackevičius, ,,STOCHASTINĖ ANALIZĖ. 
+          Stochastiniai integralai ir stochastinės diferencialinės lygtys", 2005m.</i>  
+      </p>
 
       <!-- tegul čia lieka pvz: -->
       <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
