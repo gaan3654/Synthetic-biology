@@ -48,29 +48,32 @@
     <div class="content col-sm-9 content-container">
       <h1>Stochastiniai procesai</h1>
       <p>
-        Tikimybių teorijoje stochastinis procesas yra matematinis objektas,
-        paprastai apibūdinamas kaip atsitiktinių kintamųjų grupė. Tokie procesai
-        dažnai yra vadinami atsitiktiniais procesais. Stochastinis procesas
-        pasižymi tuo, jog kintamieji laikui bėgant atsitiktinai keičiasi.
-        \cite{SPWiki} Šie procesai yra plačiai naudojami įvairiose mokslo
-        srityse apibūdinant įvykius kurie atsitiktinai, paveikti šalutinių
-        poveikių gali kisti.
+         <b>Atsitiktinis procesas</b>, dar vadinamas <b>stochastiniu procesu</b>, yra atvaizdis \(X\), kiekvienam elementariajam įvykiui \(\omega \in \Omega\),
+         kurio laiko intervalas yra interpretuojamas kaip \(I\), priskiriantis funkciją
+        \begin{equation}
+            \mbox{$X(\omega)$} = \big\{\mbox{$X_{t}(\omega)$}=\mbox{$X(t,\omega), t \in I $ }\big\},
+            \tag{1}
+        \end{equation}
+        vadinamą atsitiktinio proceso trajektorija. Fiksuojant \(t \in I\), gaunamas atsitiktinis dydis \(X_{t}$}=\mbox{$X_{t}(\omega)\), 
+        \(\omega \in \Omega\). Dėl to atsitiktinis procesas dažnai yra apibrėžiamas kaip atsitiktinių dydžių rinkinys \(X_{t}, \quad t \in I\).
       </p>
 
       <p>
         Stochastiniame procese dalyvaujančių kintamųjų reikšmės negali būti
         konkrečiai nuspėjamos, kadangi šio proceso metu jog gali chaotiškai
-        kisti. Iliustracija 1 pav. vaizduoja stochastinių kintamųjų išvestį.
-        Joje matoma, jog rezultatai yra ,,triukšmingi“, tačiau nėra visiškai
+        kisti. 1 pav. vaizduoja stochastinių kintamųjų išvestį.
+        Tokį grafiką galima vadinti matematinio modelio kompiuterine realizacija, 
+        kur minint matematinį modelį, turima omenyje realaus proceso atvaizdį. Realizacijoje matoma, 
+        jog rezultatai yra ,,triukšmingi“, tačiau nėra visiškai
         savavališki. Visi \(x_{i}\), t.y. stochastinio proceso kintamieji, yra
         sutelkti ties fiksuota verte ir dauguma reikšmių patenka į labai siaurą
         diapazoną.
       </p>
 
       <figure class="figure">
-        <img class="img-responsive" src="../../assets/pav1.png" alt="pav1" />
+        <img class="img-responsive" src="../../assets/pav1.png"  alt="pav1" />
         <figcaption class="figure-caption text-center">
-          1 pav. Kairėje - stochastinių kintamųjų išdėstymas, dešinėje tikimybių
+          1 pav. Kairėje - stochastinio proceso realizacija, dešinėje tikimybių
           pasiskirstimas. Juoda linija žymį vidurkį, mėlynos - standartinį
           nuokrypį. \cite{KyotoUx}
         </figcaption>
@@ -100,17 +103,6 @@
         pasiskirstymą.
       </p>
 
-      <p>
-        Kadangi stochastiniai procesai yra glaudžiai susiję su atsitiktinėmis
-        funkcijomis, svarbu apibrėžti matematinę atsitiktinio proceso sąvoką.
-        Atsitiktinis procesas yra atvaizdis \(X\), kiekvienam elementariajam
-        įvykiui \(\omega \in \Omega\), priskiriantis funkciją \(X(\omega) =
-        \{X_{t}(\omega)=X(t,\omega), t \in I \}\), vadinamą atsitiktinio proceso
-        trajektorija. Fiksuojant \(t \in I\), gaunamas atsitiktinis dydis
-        \(X_{t}=X_{t}(\omega), \omega \in \Omega\). Dėl to atsitiktinis procesas
-        dažnai yra apibrėžiamas kaip atsitiktinių dydžių rinkinys \(X_{t}, t \in
-        I\). \cite{SA}
-      </p>
 
       <!-- tegul čia lieka pvz: -->
       <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are

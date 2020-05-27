@@ -99,11 +99,7 @@
         <p>
           Stochastinių diferencialinių lygčių modelis gali būti naudingas vėžio gydymo plano kūrime. 
           Verta neatmesti hipotezės, jog gydymo metu didelę įtaką daro ne tik skiriami vaistai, 
-          tačiau ir paciento emocinė būsena. 
-        </p>
-        <p>
-          Paimkimę, jog emocinė paciento būsena yra nenuspėjama, atsitiktinė. 
-          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo.
+          tačiau ir kitos gyvybinės paciento savybės. 
         </p>
         <p>
           Gydymo reakciją užrašykime kaip :
@@ -112,14 +108,14 @@
 
         <p>
           kur \(A\) yra žymimos sergančios ląstelės, \(B\) - skirta vaistų dozė. 
-          eakcijos rezultato modelis turėtų parodyti, jog reakcijos pabaigoje sergančiųjų ląstelių sumažėja. 
+          Reakcijos rezultato modelis turėtų parodyti, jog reakcijos pabaigoje sergančiųjų ląstelių sumažėja. 
           Taigi, reakcija turėtu vykti nykstančio proceso principu, kai sergančios ląstelės, sąveikoje su vaistais, miršta.
         </p>
         <p>
           Tačiau, be reakcijos greičio, yra pridedamas difuzijos koeficientas ir atsitiktiniai faktoriai, kurie lemia vaistų poveikį. 
-          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo. Pavyzdžiui, jei yra sutrikusi inkstų veikla, 
-          pacientas gydymo metu suvartoja per daug cukraus ir pradeda trikti ir kiti biocheminiai procesai. 
-          To pasekoje vėžio gydymas gali sutrikti. Tokie atsitiktiniai faktoriai teoriškai lygtyje yra vadinami Vynerio procesu.
+          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo. Pavyzdžiui, jei yra sutrikusi inkstų veikla, pacientas gydymo metu suvartoja per daug cukraus, 
+          tuomet pradeda trikti ir kiti biocheminiai procesai. To pasekoje vėžio gydymas gali tapti mažiau sėkmingas. 
+          Tokie atsitiktiniai faktoriai teoriškai lygtyje yra vadinami Vynerio procesu.
         </p>
 
       </div>
@@ -130,24 +126,22 @@
           2020 metų pandemija, apvertusi visą pasaulį aukštyn kojomis, palietusi tiek stipriausius tiek silpniausius. 
           Daugybė spėliojimų kiek bus aukų, kada viskas pasibaigs ir koks gyvenimas lauks žmonių pasibaigus pandemijai? Ne ką mažiau prognozių, bei mokslinių spėliojimų. 
           Prie šių spėliojimų prisideda ir darbo autorės, siūlydamos savo COVID-19 prognozių modelį, kurį sukūrė remdamosios tyrimais 
+          <a href="https://arxiv.org/pdf/2003.11920.pdf?fbclid=IwAR2yrbmsQ9uJzClxRIJFresh-_YqLzj4mt75CyByXBwXXZ0JSf-1bl4bNJ0">[1]</a>
         </p>
         <p>
-          Studentės modeliui atlikti pateikia kelis pradinius duomenis:
-          Populiacijos skaičius, susirgimo tikimybė ir sergančiųjų skaičius, tikimybė pasveikti bei neišgyventi.
+          Modeliui atlikti pateikiami keli pradiniai duomenys:
+          populiacijos ir joje sergančiųjų individų skaičius, susirgimo tikimybė ir tikimybės pasveikti arba neišgyventi. 
+          Čia verta paminėti, jog visi skaičiavimai vyksta tik į vieną pusę, tad greitis \(k_2\) pagal nutylėjimą yra lygus 0.
         </p>
         <p>
           Turint tokius pradinius duomenis yra aprašomos trys reakcijos lygtys.
           <ol>
-            <li>\( A \longrightarrow ^{\beta} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos sveikųjų skačius, 
+            <li>\( A \longrightarrow ^{\beta} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos skačius, 
               \(B\) sergančiųjų, o \(\beta\) susirgimo tikimybė.</li>
             <li>
               \( B \longrightarrow ^{\gamma_1} C,\) šioje reakcijoje \(C\) yra 
               žymimas pasveikusiųjų skaičius, pagal pateiktą procentą \(\gamma_1\).
             </li> 
-            <li>
-              \( B \longrightarrow ^{k_{1}} C,\) šioje reakcijoje \(C\) yra 
-              žymimas pasveikusiųjų skaičius su pateiktu procentu. 
-            </li>
             <li>
               \( B \longrightarrow ^{\gamma_2} D,\) kur \(D\) yra aukų skaičius, o \(\gamma_2\), tikimybė susirgus neišgyventi.
             </li>
@@ -155,8 +149,11 @@
         </p>
         <p>
           Tokios situacijos įvykių baigties niekas tiksliai nuspėti negali, 
-          tačiau dėka stochastinių diferencialinių lygčių galima sukurti apytikslį modelį 
-          kaip bėgant laikui pandemija atsispindės populiacijoje.
+          tačiau dėka stochastinių diferencialinių lygčių galima sukurti apytikslį modelį,
+          kuris parodys kokį poveikį pandemija turės populiacijai.
+        </p>
+        <p>Primenama, jog stochastines lygtis galima spręsti dviem sprendimo būdais, 
+          šiuo atveju yra pateikiami silpnojo sprendinio duomenys.
         </p>
       </div>
 
