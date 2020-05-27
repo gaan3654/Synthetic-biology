@@ -34,7 +34,6 @@
         <li class="active">
           <a class="btn-custom" href="#section1">Apibrėžimas</a>
         </li>
-        <li><a class="btn-custom" href="#section2">Pavyzdžiai</a></li>
         <li>
           <a class="btn-custom" href="index-ode.html">Skaičiuotuvas</a>
         </li>
@@ -44,17 +43,24 @@
     <div class="content col-sm-9 content-container">
       <h1>Runge-Kutta metodas</h1>
       <p>
-        Runge-Kutta sudaro keli matematiniai metodai, kurie yra naudojami
-        diferencialinių lygčių sprendimams. Šiuos metodus sukūrė Vokietijos
-        matematikai Carl Runge and Wilhelm Kutta, apytiksliai 1900 metais.
-        Populiariausias yra klasikinis Runge Kutta metodas, dar vadinamas
-        RK4-uoju.
+        Runge-Kutta metodas -- tai vokiečių matematikų Carl Runge ir Wilhelm Kutta, 
+        apie 1900 metus sukurtas skaitinis metodas skirtas paprastosioms diferencialinėms lygtims spręsti 
+        <a href="https://en.wikipedia.org/wiki/Runge-Kutta_methods">[1]</a>. 
+        Šis algoritmas buvo pavadintas jo kūrėjų garbei ir yra dažnai lyginamas su Eulerio sprendimo metodu.  
+        Šiuos du metodus skiria tai, jog Runge-Kutta metu yra vykdoma daugiau iteracijų, tad rezultatas yra tikslesnis. 
+        Šie du mokslininkai sukūrė kelis skaičiavimo modelius, tačiau tiksliausias ir populiariausias yra klasikinis Runge Kutta metodas, dar vadinamas RK4-uoju. 
+        Šio metodo metu yra vykdoma daugiausia tarpinių skaičiavimų tam, kad būtų apskaičiuojama nauja kintamojo reikšmė tam tikrame laiko tarpe.
       </p>
       <p>
-        Šiam metodui svarbu apibrėžti pradinę funkciją \(y’=f(t,y)\) ir pradinę
+        Šiam metodui svarbu apibrėžti pradinę funkciją \(y'=f(t,y)\) ir pradinę
         kintamojo vertę nuliniame laike \(y(t_0)=y_0\). Sekančios kintamųjų
-        reikšmės bus apskaičiuojamos tokia lygtimi : \[ y_{n+1}=y_n+ \frac{1}{6}
-        (k_1+2k_2+2k_3+k_4). \] O \(t\) laikas didėja tokiu būdu:
+        reikšmės bus apskaičiuojamos tokia lygtimi : 
+        \begin{equation}
+            y_{n+1}=y_n+ \frac{1}{6}
+            (k_1+2k_2+2k_3+k_4).
+            \tag{1}
+        \end{equation}
+         O \(t\) laikas didėja tokiu būdu:
         \(t_{n+1}=t_{n}+h\), kur \(h=\frac{t_{max}-t_0}{n}\).
       </p>
       <p>

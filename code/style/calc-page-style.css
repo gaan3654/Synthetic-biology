@@ -19,10 +19,11 @@ input::-webkit-color-swatch {
 }
 
 .btn-custom-functionality {
-  background: rgb(238, 238, 238);
+  background: rgb(216, 216, 216);
   border: 0;
   font-weight: 500;
 }
+
 .btn {
   min-width: 130px;
   width: 130px;
@@ -38,7 +39,7 @@ input::-webkit-color-swatch {
   width: 100%;
 }
 
-#show-only-mean {
+input[type="checkbox"] {
   margin-top: 2px;
   margin-right: 5px;
 }
@@ -53,18 +54,12 @@ input::-webkit-color-swatch {
   margin-left: 0px;
 }
 
-.input-container,
-.graph-input-container {
-  height: auto;
-  margin: 0;
-  padding: 0;
-  width: 370px;
-  /* background-color: khaki; */
-  margin-right: 1vw;
+#chartdiv0 {
+  bottom: 10px;
+  max-height: 400px;
 }
-#chartdiv {
-  padding-bottom: 50vh;
-  height: max-content;
+.graph {
+  max-height: 400px !important;
   width: auto;
 }
 
@@ -76,20 +71,143 @@ input::-webkit-color-swatch {
   z-index: 6;
 }
 
-/* ********************************************* */
+.input-group-addon {
+  text-align: left;
+  border-radius: 2px;
+  line-height: 0.9;
+}
+
+.full-addon {
+  border: 1px solid #ccc !important;
+}
+
+.generated-reaction-block {
+  display: table;
+}
+
+.input-container,
+.graph-input-container {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  width: 370px;
+  margin-right: 1vw;
+}
+
+.dropdown-menu > li > a {
+  white-space: unset;
+}
+
+.graph-title {
+  width: 100%;
+}
+
+#function-probability-container {
+  width: 100%;
+}
+
+#graph-container-right {
+  float: right;
+}
+/* *******************tooltip************************** */
+
+#tooltip-euler {
+  margin-left: 143px;
+  margin-top: -48px;
+}
+
+#tooltip-probability {
+  margin-left: 143px;
+  margin-top: -48px;
+}
+
+.tooltip {
+  opacity: 10;
+}
+
+.tooltip::before {
+  font-family: "FontAwesome";
+  content: "\f05a";
+  font-size: large;
+}
+
+.tooltip .tooltiptext {
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 30;
+  bottom: -10px;
+  left: 90px;
+  margin-left: -60px;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext {
+  visibility: hidden;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 0%;
+  margin-left: -10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+#tooltip-euler .tooltiptext {
+  bottom: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.chartdiv {
+  z-index: 10000;
+  background-color: khaki;
+}
+
+/* ***************Responsive****************************** */
+
+.input-group-addon,
+.btn {
+  width: 150px;
+  text-align: center;
+}
+
+input:not(.amount-input) {
+  width: 220px;
+}
+
+.amount-input {
+  width: 186px;
+}
+
+#function_block > .col-sm-3,
+#probability-block > .col-sm-3 {
+  width: auto;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
 
 @media screen and (max-width: 767px) {
-  .input-container {
+  .input-container,
+  .graph-input-container {
     margin-left: auto !important;
     margin-right: auto !important;
   }
 }
 
-@media screen and (max-width: 400px) {
-  .col-sm-9 {
-    padding: 0;
-  }
-
+@media screen and (max-width: 430px) {
   .input-container,
   .graph-input-container {
     min-width: 50px !important;
@@ -101,9 +219,62 @@ input::-webkit-color-swatch {
     display: block;
   }
 
-  .input-group-addon {
-    width: 170px;
+  .input-group,
+  .generated-reaction-block,
+  .col-sm-3:not(.sidenav) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .btn,
+  .input-group-addon,
+  input:not(.amount-input) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
+    text-align: center;
+  }
+
+  .amount-input {
+    text-align: center;
+    width: 196px;
+  }
+
+  .btn {
+    margin-top: 40px;
+  }
+
+  .input-group-addon:first-child {
+    border: 1px solid #ccc;
+  }
+
+  .tooltip-space {
+    margin-bottom: 30px;
+  }
+
+  .tooltip,
+  #tooltip-euler,
+  #tooltip-probability {
+    margin: 0;
+    margin-top: -25px;
+    margin-left: 47%;
+  }
+
+  .tooltip .tooltiptext {
+    bottom: -50px;
+    left: -30px;
+  }
+
+  #tooltip-euler .tooltiptext {
+    bottom: -100px;
+  }
+
+  .tooltip .tooltiptext::after {
+    top: -10px;
+    left: 51%;
+    border-color: transparent transparent #555 transparent;
   }
 }
-
-/* ********************************************* */

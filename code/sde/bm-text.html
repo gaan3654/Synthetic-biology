@@ -48,10 +48,11 @@
       <p>
         Brauno judesys dar vadinamas Vynerio procesu yra skysčiuose ar dujose
         esančių dalelių šiluminis judėjimas, kuris atsiranda dėl skysčiuose
-        judančių molekulių \cite{BraunoWiki} . Galėtų atrodyti, jog mažų dalelių
+        judančių molekulių 
+        <a href="https://en.wikipedia.org/wiki/Brownian_motion">[1]</a> . Galėtų atrodyti, jog mažų dalelių
         judesiai yra nereikšmingi, tačiau nuolat vykstančių susidurimų skaičius
         yra nepaprastai didelis apie \(10^{21}\) kartų per sekundę, dėl to per
-        mikroskopą galima stebėti nenutrūkstamus dalelių judėjimus \cite{SA}.
+        mikroskopą galima stebėti nenutrūkstamus dalelių judėjimus.
         Svarbu pabrėžti, jog kiekvienos dalelės smūgis yra nepriklausomas. Iš
         čia atsirado matematinis Brauno judesio modelis, teigiantis, jog Brauno
         judesio chaotiškumas pasireiškia tuo, jog jo trajektorijos, nors ir yra
@@ -80,22 +81,31 @@
         dydžių suma yra apytikriai pasiskirsčiusi kaip normalusis atsitiktinis
         dydis, t.y. \(\xi\) pasiskirstęs pagal \(N(0,1)\). Nagrinėjant
         atsitiktinį procesą, apytikriai yra gaunams Brauno judesys. CRT teorema
-        teigia, jeigu \(\mathbf{E}\xi_{n}=0, \mathbf{D}\xi_{n}=
-        \mathbf{E}\xi_{n}^{2}=1, X_{0}=0, X_{n}=\xi_{1}+\xi_{2}+...+\xi_{n}, n
-        \in \mathbb{N}\), kur \(\{ \xi_{n} \}\) yra nepriklausomų vienodai
+        teigia, jeigu 
+        \begin{equation}
+            \frac{X_{n}}{\sqrt{n}} \rightarrow^\omega \xi \sim N(0,1), n
+            \rightarrow \infty.
+            \tag{1}
+        \end{equation}
+       kur \(\{ \xi_{n} \}\) yra nepriklausomų vienodai
         pasiskirsčiusių atsitiktinių dydžių seka. Tuomet
-        \(\frac{X_{n}}{\sqrt{n}} \rightarrow^\omega \xi \sim N(0,1), n
-        \rightarrow \infty\).
+        \begin{equation}
+              \mbox{$\frac{X_{n}}{\sqrt{n}} \rightarrow^\omega \xi \sim N(0,1), n \rightarrow \infty$}.
+              \tag{2}
+        \end{equation}
       </p>
 
       <p>
         Pratęskime, \(X_n\) yra atsitiktinė seka, o jos atsitiktinis procesas
-        yra žymimas \(\{ X_n, t\geq0 \}\).
+        yra žymimas \(\{ X_t, t\geq0 \}\).
       </p>
 
       <p>
-        Toliau, laikoma \(X_t^n := \frac{X_{n t}}{\sqrt{n}}\rightarrow^\omega
-        B_t \sim N(0,t), n \rightarrow \infty, t\geq0\).
+        Toliau, laikoma 
+        \begin{equation}
+            \mbox{$X_t^n := \frac{X_{n t}}{\sqrt{n}}\rightarrow^\omega B_t \sim N(0,t),$} \mbox{$n \rightarrow \infty,$} \mbox{$t\geq0$}.
+            \tag{3}
+        \end{equation}
       </p>
 
       <p>
@@ -104,13 +114,21 @@
 
       <p>
         Egzistuoja toks atsitiktinis procesas \(B =\{ B_{t}, t \geq 0\}\), kad
-        $$\sum_{i=1}^{k} \lambda_{i} X^{n}_{t_{i}} \rightarrow^{w}
-        \sum_{i=1}^{k} \lambda_{i} B_{t_{i}}, n \rightarrow \infty $$ su visais
+        \begin{equation}
+            \mbox{$\sum_{i=1}^{k} \lambda_{i} X^{n}_{t_{i}} \rightarrow^{w} \sum_{i=1}^{k} \lambda_{i} B_{t_{i}}, n \rightarrow \infty $ },
+            \tag{4}
+        \end{equation}
+        su visais
         rinkiniais \(0 \leq t_{1} \lt t_{2} \lt ... \lt t_{k}, \lambda_{i} \in
         \mathbb{R}, i = 1,2,...,k, k\in \mathbb{N} \). Ši savybė yra žymima
         \(X^{n} \rightarrow^{w} B\) ir sakoma, kad procesų seka \(\{ X^{n} \} \)
         silpnai konverguoja į \(B\). Procesas \(B\) yra vadinamas Brauno judesiu
-        arba Vynerio procesu. \cite{SA}
+        arba Vynerio procesu. 
+      </p>
+
+      <p style="font-size:80%; text-align:right;">
+        <i>Parengta pagal: V. Mackevičius, ,,STOCHASTINĖ ANALIZĖ. 
+          Stochastiniai integralai ir stochastinės diferencialinės lygtys", 2005m.</i>  
       </p>
 
       <!-- tegul čia lieka pvz: -->

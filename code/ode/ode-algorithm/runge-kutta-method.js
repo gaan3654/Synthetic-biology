@@ -48,10 +48,9 @@ function initializeValues(big_n, a, b, substance_obj) {
 }
 
 function solution(substance_obj) {
-  for (let i = 0; i < N; i++) {
+  for (let i = 0; i < N - 1; i++) {
     t[i + 1] = t[i] + h;
     let kk1 = [];
-    //a+b+b->c kol kas neveikia
     for (let j = 0; j < y.length; j++) {
       let func = renewFunction(y, j, substance_obj, true);
       kk1.push(calculateK1(t[i], y, h, func, substance_obj[j]));
@@ -71,6 +70,5 @@ function solution(substance_obj) {
       }
     }
   }
-  console.log("from solution", y);
   return [y, t];
 }

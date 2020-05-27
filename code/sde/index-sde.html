@@ -14,16 +14,17 @@
       type="text/javascript"
       src="../js/calculator-html-process/dynamical-fields.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="../js/external-packages/jquery.js"
-    ></script>
 
     <script type="text/javascript" src="../js/graphs/graph.js"></script>
+    <script type="text/javascript" src="../js/graphs/histogram.js"></script>
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
+<!--  -->
+    <script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="//www.amcharts.com/lib/3/pie.js"></script>
+    <script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+<!--  -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -44,6 +45,10 @@
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <title>Modeliai sintetinėje biologijoje</title>
     <meta charset="utf-8" />
@@ -57,55 +62,124 @@
         <li>
           <a class="btn-custom" href="euler-text.html">Apibrėžimas</a>
         </li>
+        <li class="active">
+          <a
+            class="btn-custom"
+            href="#section3"
+            onclick="refreshCalculator()"
+            >Skaičiuotuvas</a
+          >
+        </li>
         <li class="dropdown">
           <a class="dropdown-toggle btn-custom" data-toggle="dropdown" href="#"
             >Pavyzdžiai <span class="caret"></span
           ></a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" id="example1" class="example">
-                Pavyzdys 1
+              <a href="#" id="example1" class="example" onclick="removePreviousText(); disposeCharts()">
+                Vėžio gydymo modelis
               </a>
             </li>
             <li>
-              <a href="#" id="example2" class="example">
-                Pavyzdys 2
-              </a>
-            </li>
-            <li>
-              <a href="#" id="example3" class="example">
-                Pavyzdys 3
+              <a href="#" id="example2" class="example" onclick="removePreviousText(); disposeCharts()">
+                COVID-19 progonzės
               </a>
             </li>
           </ul>
-        </li>
-        <li class="active">
-          <a class="btn-custom" href="#section3">Skaičiuotuvas</a>
         </li>
         <li><a class="btn-custom" href="../index.html">Į Pradžią</a></li>
       </ul>
     </div>
 
     <div class="content col-sm-9">
-      <h1>Eulerio metodas</h1>
+      <h1>Euler-Maruyama metodas</h1>
+
+      <div id="cancer_treatment" class="example-text" style="display: none;">
+        <h2>Vėžio gydymo modelis</h2>
+        <p>
+          Stochastinių diferencialinių lygčių modelis gali būti naudingas vėžio gydymo plano kūrime. 
+          Verta neatmesti hipotezės, jog gydymo metu didelę įtaką daro ne tik skiriami vaistai, 
+          tačiau ir kitos gyvybinės paciento savybės. 
+        </p>
+        <p>
+          Gydymo reakciją užrašykime kaip :
+          \[ A+ B \longrightarrow^{k_1} 0  , \]
+        </p>
+
+        <p>
+          kur \(A\) yra žymimos sergančios ląstelės, \(B\) - skirta vaistų dozė. 
+          Reakcijos rezultato modelis turėtų parodyti, jog reakcijos pabaigoje sergančiųjų ląstelių sumažėja. 
+          Taigi, reakcija turėtu vykti nykstančio proceso principu, kai sergančios ląstelės, sąveikoje su vaistais, miršta.
+        </p>
+        <p>
+          Tačiau, be reakcijos greičio, yra pridedamas difuzijos koeficientas ir atsitiktiniai faktoriai, kurie lemia vaistų poveikį. 
+          Šis faktorius suteiks tyrimo modeliui neapibrėžtumo. Pavyzdžiui, jei yra sutrikusi inkstų veikla, pacientas gydymo metu suvartoja per daug cukraus, 
+          tuomet pradeda trikti ir kiti biocheminiai procesai. To pasekoje vėžio gydymas gali tapti mažiau sėkmingas. 
+          Tokie atsitiktiniai faktoriai teoriškai lygtyje yra vadinami Vynerio procesu.
+        </p>
+
+      </div>
+
+      <div id="covid19" class="example-text" style="display: none;">
+        <h2>COVID-19 prognozės</h2>
+        <p>
+          2020 metų pandemija, apvertusi visą pasaulį aukštyn kojomis, palietusi tiek stipriausius tiek silpniausius. 
+          Daugybė spėliojimų kiek bus aukų, kada viskas pasibaigs ir koks gyvenimas lauks žmonių pasibaigus pandemijai? Ne ką mažiau prognozių, bei mokslinių spėliojimų. 
+          Prie šių spėliojimų prisideda ir darbo autorės, siūlydamos savo COVID-19 prognozių modelį, kurį sukūrė remdamosios tyrimais 
+          <a href="https://arxiv.org/pdf/2003.11920.pdf?fbclid=IwAR2yrbmsQ9uJzClxRIJFresh-_YqLzj4mt75CyByXBwXXZ0JSf-1bl4bNJ0">[1]</a>.
+        </p>
+        <p>
+          Modeliui atlikti pateikiami keli pradiniai duomenys:
+          populiacijos ir joje sergančiųjų individų skaičius, susirgimo tikimybė ir tikimybės pasveikti arba neišgyventi. 
+          Čia verta paminėti, jog visi skaičiavimai vyksta tik į vieną pusę, tad greitis \(k_2\) pagal nutylėjimą yra lygus 0.
+        </p>
+        <p>
+          Turint tokius pradinius duomenis yra aprašomos trys reakcijos lygtys.
+          <ol>
+            <li>\( A \longrightarrow ^{\beta} B,\) šioje reakcijoje \( A\) yra žymimas populiacijos skačius, 
+              \(B\) sergančiųjų, o \(\beta\) susirgimo tikimybė.</li>
+            <li>
+              \( B \longrightarrow ^{\gamma_1} C,\) šioje reakcijoje \(C\) yra 
+              žymimas pasveikusiųjų skaičius, pagal pateiktą procentą \(\gamma_1\).
+            </li> 
+            <li>
+              \( B \longrightarrow ^{\gamma_2} D,\) kur \(D\) yra aukų skaičius, o \(\gamma_2\), tikimybė susirgus neišgyventi.
+            </li>
+          </ol>
+        </p>
+        <p>
+          Tokios situacijos įvykių baigties niekas tiksliai nuspėti negali, 
+          tačiau dėka stochastinių diferencialinių lygčių galima sukurti apytikslį modelį,
+          kuris parodys kokį poveikį pandemija turės populiacijai.
+        </p>
+        <p>Primenama, jog stochastines lygtis galima spręsti dviem sprendimo būdais, 
+          šiuo atveju yra pateikiami silpnojo sprendinio duomenys.
+        </p>
+      </div>
 
       <div>
         <div class="row" id="substance_input">
+          <div class="col-sm-3 input-container">
           <div class="col-sm-3 input-container" id="substance">
             <div class="col-sm-3 subs_react_buttons">
               <button
                 id="add_subs"
-                class="button btn btn-custom-functionality"
-                onclick="add_additional_substance_input()"
+                class="button btn btn-custom-functionality tooltip-space"
+                onclick="add_additional_substance_input(); disposeCharts(); disposeGraphData()"
               >
                 Pridėti medžiagą
               </button>
+              <div class="tooltip" id="tooltip-euler">
+                <span class="tooltiptext"
+                  >Įvestys</br>Silpnas Eulerio metodas:</br>vidurkis sigma</br>Stiprus Eulerio metodas:</br>koncentracija</span
+                >
+              </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group" id="block-A">
               <span class="input-group-addon input-addon">[A']</span>
               <div class="input_blocks">
-                <input type="number" class="amount-input" id="A" value="2" />
+                <input type="text" class="amount-input" id="A" value="2 0.5" />
                 <input
                   type="color"
                   id="colorA"
@@ -114,10 +188,10 @@
                 />
               </div>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="block-B">
               <span class="input-group-addon input-addon">[B']</span>
               <div class="input_blocks">
-                <input type="number" class="amount-input" id="B" value="3" />
+                <input type="text" class="amount-input" id="B" value="3 0.25" />
                 <input
                   type="color"
                   id="colorB"
@@ -126,10 +200,10 @@
                 />
               </div>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="block-C">
               <span class="input-group-addon input-addon">[C']</span>
               <div class="input_blocks">
-                <input type="number" class="amount-input" id="C" value="1" />
+                <input type="text" class="amount-input" id="C" value="1" />
                 <input
                   type="color"
                   id="colorC"
@@ -139,13 +213,23 @@
               </div>
             </div>
           </div>
+            <div class="input-group">
+              <input
+                type="checkbox"
+                readonly="readonly"
+                checked
+                id="checkbox-weak-euler"
+              />
+              <span>Spręsti silnuoju metodu</span>
+            </div>
+          </div>
 
           <div class="col-sm-3 input-container" id="reactions">
             <div class="col-sm-3">
               <button
                 id="add_reaction"
                 class="button btn btn-custom-functionality"
-                onclick="add_additional_reaction_input()"
+                onclick="add_additional_reaction_input(); disposeCharts(); disposeGraphData()"
               >
                 Pridėti reakciją
               </button>
@@ -154,7 +238,7 @@
             <div id="reaction_info_0">
               <div class="input-group">
                 <span class="input-group-addon reaction-addon"
-                  >1. Įveskite norimą reakciją:</span
+                  >1. Įveskite reakciją:</span
                 >
                 <div id="reaction_0" class="input_blocks">
                   <input type="text" id="reaction_input_0" value="A+B->B" />
@@ -188,7 +272,8 @@
               <button
                 id="submit_reaction"
                 class="button btn btn-custom-functionality"
-              >
+                onclick="disposeCharts(); updateInputs()"
+                >
                 Vykdyti reakciją
               </button>
             </div>
@@ -198,7 +283,7 @@
                 >Intervalo pradžia</span
               >
               <div id="interv_begins" class="input_blocks">
-                <input type="number" id="int_begins" value="0" />
+                <input type="number" id="int_begins" value="0" readonly>
               </div>
             </div>
             <div class="input-group">
@@ -228,10 +313,10 @@
                 >Iteracijų skaičius</span
               >
               <div id="iter" class="input_blocks">
-                <input type="number" id="iterations" value="2" />
+                <input type="number" id="iterations" value="10000" />
               </div>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="checkbox">
               <input
                 type="checkbox"
                 readonly="readonly"
@@ -241,18 +326,12 @@
               <span>Rodyti tik medžiagų vidurkius</span>
             </div>
           </div>
-          <!--  -->
-
-          <!--  -->
-
-          <!--  -->
-          <!--  -->
         </div>
 
         <div id="graph_draw" class="row">
+          <div class="input-container" id="function-probability-container">
           <!-- ------------------------------------------------------------------------------------------------ -->
-          <div class="input-container">
-            <div class="col-sm-3 graph-input-container" id="function_block">
+            <div class="col-sm-3 graph-input-container input-container" id="function_block">
               <div class="col-sm-3">
                 <button
                   id="submit"
@@ -265,7 +344,6 @@
 
               <div id="function" style="display: none;"></div>
             </div>
-          </div>
           <!-- ------------------------------------------------------------------------------------------------ -->
           <div
             class="col-sm-6 input-container graph-input-container"
@@ -274,19 +352,20 @@
             <div class="col-sm-3">
               <button
                 id="calculate-probability"
-                class="button btn btn-custom-functionality"
+                class="button btn btn-custom-functionality tooltip-space"
                 style="display: none;"
               >
                 Skaičiuoti
               </button>
+              <div class="tooltip" id="tooltip-probability" style="display: none;">
+                <span class="tooltiptext"
+                  >Apskaičiuoti tikimybę, kad reakcija patenka į
+                  intervalą:</span
+                >
+              </div>
             </div>
 
             <div id="probability" style="display: none;">
-              <div class="input-group">
-                <p class="input-group-addon">
-                  Apskaičiuoti tikimybę, kad reakcija patenka į intervalą:
-                </p>
-              </div>
               <div class="input-group">
                 <span class="input-group-addon settings-addon"
                   >Intervalo pradžia</span
@@ -317,15 +396,27 @@
                 class="input-group"
                 style="display: none;"
               >
-                <span class="input-group-addon settings-addon">Tikimibės</span>
-                <!-- <div class="input_blocks">
-                        <input type="number" id="probabily-result" value="" />
-                      </div> -->
+                <span class="input-group-addon settings-addon full-addon">Tikimibės</span>
               </div>
             </div>
           </div>
-          <div class="col-sm-3 input-container graph-input-container"></div>
-          <div id="chartdiv"></div>
+        </div>
+          <!-- <div class="col-sm-3 input-container graph-input-container"></div> -->
+          <div id="graphs">
+            <div id="graph-container">
+              <div class="graph-title" id="graph-title-1" style="display: none;">
+                <h4>Skirstinys sugeneruotų pradinių koncentracijų:</h4>
+              </div>
+              <div id="chartdiv0" class="graph"></div>
+            </div>
+            <!-- To store histograms -->
+            <div id="graph-container-right">
+              <div class="graph-title" id="graph-title-2" style="display: none;">
+                <h4>Skirstinys koncentracijos laiko intervalo gale:</h4>
+              </div>
+              <!-- <div id="chartdiv0" class="graph"></div> -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -333,10 +424,15 @@
         type="text/javascript"
         src="../js/calculator-html-process/process-inputs.js"
       ></script>
-      <!-- <script
-            type="text/javascript"
-            src="ode-algorithm/examples.js"
-          ></script> -->
+      <script
+        type="text/javascript"
+        src="../js/calculator-html-process/generate-histogram.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="../js/calculator-html-process/examples-shared.js"
+      ></script>
+      <script type="text/javascript" src="sde-algorithm/examples.js"></script>
       <script
         type="text/javascript"
         src="../js/calculator-html-process/update-inputs.js"
@@ -392,9 +488,5 @@
 
       <br /><br />
     </div>
-
-    <!-- <footer class="container-fluid">
-      <p>Footer Text</p>
-    </footer> -->
   </body>
 </html>
