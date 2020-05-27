@@ -28,6 +28,8 @@ function updateFunctionIndices(y, substance_obj) {
   }
 }
 
+// Atsitiktinio kintamojo generavimas remiamas nuorodoje išsakyta logika
+// https://www.r-bloggers.com/clt-standard-normal-generator/
 function randomGaussian(mean, sigma) {
   let u = 0.0;
   for (var i = 0; i < 12; i++) u += Math.random();

@@ -98,7 +98,7 @@ $("#submit").click(function () {
         );
       }
     } else {
-      createCharts(am4core);
+      createCharts(am4core, false);
       if (iterations < 1001) {
         let y = [];
         for (let i = 0; i < sdeAllYIterations.length; i += 10) {
@@ -154,7 +154,7 @@ function initializeSubstances(substance_array, i, func_array) {
   if (!objectArray.includes(substance_array[i], 0)) {
     var obj = {};
     obj[substance_array[i]] = `y[${position++}][0]`;
-    // ------------------------------------------------------------------------------------------
+
     let concentrationInput = document.getElementById(`${substance_array[i]}`)
       .value;
     if (!concentrationInput) {
@@ -185,7 +185,7 @@ function initializeSubstances(substance_array, i, func_array) {
           document.getElementById(substance_array[i]).value + " 0";
       }
     }
-    // ------------------------------------------------------------------------------------------
+
     obj["color"] = document.getElementById(`color${substance_array[i]}`).value;
     obj["repetitions"] = 1;
     obj["name"] = substance_array[i];

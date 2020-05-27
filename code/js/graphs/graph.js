@@ -3,6 +3,9 @@ let tList;
 let colors = [];
 var legendData = [];
 
+// Kodo fragmentai paimti iš https://www.amcharts.com/demos/ pateiktų pavyzdžių
+// Pagrindinis šaltinis https://www.amcharts.com/demos/line-chart-with-scroll-and-zoom/
+
 function createCharts(am4core, animation) {
   if (animation) {
     am4core.useTheme(am4themes_animated);

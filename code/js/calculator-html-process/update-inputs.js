@@ -1,7 +1,7 @@
 function updateInputs() {
   $("#function").load(" #function", function () {
     var d = document.getElementById("function");
-    //Sugeneruojamos funkcijos abiem reakcijos pusėms
+    //Sugeneruojamos funkcijos abiem reakcijos pusėm
     var reaction_left = [];
     var reaction_right = [];
     var left_side = [];

@@ -9,7 +9,9 @@ $("#example1").click(function () {
     document.getElementById("reaction_input_0").value = "A+B->0";
     document.getElementById("A").value = "30";
     document.getElementById("B").value = "42";
+    document.getElementById("iterations").value = "1000";
     document.getElementById("checkbox-weak-euler").checked = false;
+    document.getElementById("show-only-mean").checked = false;
   });
   disposeGraphData();
   reactions_id = ["reaction_0"];
@@ -39,6 +41,7 @@ $("#example2").click(function () {
     document.getElementById("n_inp").value = "2100";
     document.getElementById("iterations").value = "14";
     document.getElementById("show-only-mean").checked = false;
+    document.getElementById("checkbox-weak-euler").checked = false;
     document.getElementById("probability-interval-begin").value = "20";
     document.getElementById("probability-interval-end").value = "140";
   });

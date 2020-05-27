@@ -1,3 +1,5 @@
+// Kodo fragmentas paimtas iš https://www.amcharts.com/demos/column-with-rotated-series/ pateikto pavyzdžio
+
 function draw(objectList, substanceObjectList) {
   chartList = [];
   Array.from(document.getElementsByClassName("graph")).forEach(function (item) {
