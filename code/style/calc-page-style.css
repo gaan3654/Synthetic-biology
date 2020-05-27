@@ -205,6 +205,16 @@ input[type="checkbox"] {
     margin-left: auto !important;
     margin-right: auto !important;
   }
+  #function-probability-container {
+    width: 370px;
+  }
+  #graph-container-right {
+    float: none;
+  }
+  #graph-container-right,
+  #graph-container {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 430px) {
