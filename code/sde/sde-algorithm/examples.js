@@ -38,7 +38,7 @@ $("#example2").click(function () {
     document.getElementById("reaction_rate_2").value = "0.004";
     document.getElementById("second_reaction_rate_2").value = "0";
     document.getElementById("int_ends").value = "21";
-    document.getElementById("n_inp").value = "2100";
+    document.getElementById("n_inp").value = "1000";
     document.getElementById("iterations").value = "14";
     document.getElementById("show-only-mean").checked = false;
     document.getElementById("checkbox-weak-euler").checked = false;

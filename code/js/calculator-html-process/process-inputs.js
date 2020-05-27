@@ -98,7 +98,8 @@ $("#submit").click(function () {
         );
       }
     } else {
-      createCharts(am4core, false);
+      N > 1000 ? createCharts(am4core, true) : createCharts(am4core, false);
+
       if (iterations < 1001) {
         let y = [];
         for (let i = 0; i < sdeAllYIterations.length; i += 10) {
