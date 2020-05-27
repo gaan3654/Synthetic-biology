@@ -5,7 +5,7 @@ function genetareHistogramData(N, substance_obj, iterations) {
   let index = 0;
   for (let i = 0; i < 2; i++) {
     if (i > 0) {
-      index = N - 1;
+      index = N;
     }
     for (
       let substance = 0;

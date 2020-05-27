@@ -65,7 +65,7 @@ $("#submit").click(function () {
   }
   if (weakEuler) {
     $("#graph-container").css("float", "left");
-    genetareHistogramData(N - 1, substance_obj, iterations);
+    genetareHistogramData(N, substance_obj, iterations);
   } else if (showOnlyMean) {
     $("#graph-container").css("float", "none");
     $("#graph-container").css("width", "100%");
@@ -163,7 +163,7 @@ function initializeSubstances(substance_array, i, func_array) {
     }
     // Process weak Euler
     let regex = new RegExp(/[^\d\.]/);
-    if (regex.test(concentrationInput)) {
+    if (regex.test(concentrationInput) && weakEuler) {
       let separator = concentrationInput.match(regex);
       let meanSigma = concentrationInput.split(separator);
       meanSigma = meanSigma.filter(Boolean);
